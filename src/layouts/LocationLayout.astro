@@ -4,12 +4,12 @@
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import FormHero from '../components/FormHero.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { config, business } from '../lib/site';
+import { business } from '../lib/site';
 import { service } from '../lib/schema';
 import { entryUrl, services as getServices, locations } from '../lib/content';
 
@@ -22,10 +22,11 @@ const nearby = (await locations()).filter((l) => l.id !== entry.id);
 ---
 <BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
   <JsonLd slot="head" data={service({ name: `${business.name} in ${entry.data.name}`, description: entry.data.description, url, areaServed: [entry.data.name] })} />
-  <Hero title={entry.data.title} lead={entry.data.description} image={entry.data.image} imageAlt={entry.data.imageAlt} primary={config.cta} />
+  <FormHero title={entry.data.title} lead={entry.data.description} image={entry.data.image}>
+    <Breadcrumbs slot="before" items={[{ name: 'Service Areas', url: '/service-areas/' }, { name: entry.data.name, url }]} />
+  </FormHero>
   <section class="section">
     <div class="container">
-      <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }, { name: entry.data.name, url }]} />
       <div class="prose"><Content /></div>
       <h2>Working in {entry.data.name}</h2>
       <ul class="local-details">{entry.data.localDetails.map((d) => <li>{d}</li>)}</ul>

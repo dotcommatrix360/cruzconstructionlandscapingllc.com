@@ -2,6 +2,7 @@
 title: "Bathroom Remodeling"
 seoTitle: "Bathroom Remodeling in Holland, MI"
 description: "Bathroom remodeling in Holland, MI and West Michigan: custom tile showers, tile and LVP floors, drywall, paint and trim from a Michigan-licensed builder."
+headline: "A bathroom you will love walking into."
 summary: "Custom tile showers, new floors, drywall, paint and trim, done by one crew."
 order: 2
 image: ../../assets/images/bathroom-tile-shower.jpg
@@ -30,4 +31,4 @@ A bathroom is a small room with a lot of detail. Tile, drywall, paint and trim a
 
 We explain each step of the work as it happens, so you know what is coming next and why. Homeowners tell us that is one of the reasons they trust us, along with the quality they see in our earlier projects.
 
-Planning a bathroom? [Request a free estimate](/contact/) or call [616-502-1874](tel:+16165021874).
+Planning a bathroom? [Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).

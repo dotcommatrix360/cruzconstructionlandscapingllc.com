@@ -2,6 +2,7 @@
 title: "Basement Finishing"
 seoTitle: "Basement Finishing in Holland, MI"
 description: "Basement finishing and remodeling in Holland, MI and West Michigan: insulation, drywall, drop ceilings, LVP flooring and paint from a licensed builder."
+headline: "Turn your basement into real living space."
 summary: "Insulation, drywall, drop ceilings, flooring and paint to turn a basement into usable space."
 order: 3
 image: ../../assets/images/finished-living-space.jpg
@@ -34,4 +35,4 @@ West Michigan basements deal with cold winters and humid summers. Insulation and
 
 Tell us how you want to use the space and we will talk through the scope with you.
 
-[Request a free estimate](/contact/) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).

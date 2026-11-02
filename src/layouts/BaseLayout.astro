@@ -7,7 +7,7 @@ import Tracking from '../components/Tracking.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { site } from '../lib/site';
+import { site, business } from '../lib/site';
 import { localBusiness } from '../lib/schema';
 
 type Props = import('../components/Seo.astro').Props;
@@ -34,5 +34,13 @@ const seo = Astro.props;
       <slot />
     </main>
     <Footer />
+    <div class="mobile-bar" aria-label="Quick contact">
+      <a class="mobile-bar__call" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+      <a class="mobile-bar__est" href="/contact/#estimate" data-estimate-link>Free estimate</a>
+    </div>
+    <script>
+      // On pages with the estimate form, jump to it in place instead of going to the contact page.
+      if (document.getElementById('estimate')) for (const a of document.querySelectorAll<HTMLAnchorElement>('[data-estimate-link]')) a.href = '#estimate';
+    </script>
   </body>
 </html>

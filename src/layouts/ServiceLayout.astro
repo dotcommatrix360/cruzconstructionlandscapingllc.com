@@ -1,50 +1,76 @@
 ---
-// One service page. Rendered by /services/[slug]/ and by [...permalink] (old URLs kept from a migration).
+// One service page: photo hero with the estimate form, the service copy, FAQs, related services, CTA.
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import FormHero from '../components/FormHero.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FaqList from '../components/FaqList.astro';
-import ServiceCards from '../components/ServiceCards.astro';
 import CtaBand from '../components/CtaBand.astro';
 import JsonLd from '../components/JsonLd.astro';
-import { config } from '../lib/site';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { business } from '../lib/site';
 import { service } from '../lib/schema';
-import { entryUrl, locations } from '../lib/content';
+import { entryUrl, services } from '../lib/content';
 
 interface Props { entry: CollectionEntry<'services'> }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const url = entryUrl(entry);
-const areas = (await locations()).filter((l) => !l.data.services.length || l.data.services.includes(entry.id));
+const others = (await services()).filter((s) => s.id !== entry.id);
 ---
 <BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
   <JsonLd slot="head" data={service({ name: entry.data.title, description: entry.data.description, url })} />
-  <Hero title={entry.data.title} lead={entry.data.summary} image={entry.data.image} imageAlt={entry.data.imageAlt} primary={config.cta}>
-  </Hero>
+  <FormHero title={`${entry.data.title} in Holland, MI`} headline={entry.data.headline} lead={`${entry.data.summary} Local and owner-operated in Holland, MI.`} image={entry.data.image} formTitle={`Free ${entry.data.title.toLowerCase()} estimate`}>
+    <Breadcrumbs slot="before" items={[{ name: entry.data.title, url }]} />
+  </FormHero>
+
   <section class="section">
-    <div class="container">
-      <Breadcrumbs items={[{ name: 'Services', url: '/services/' }, { name: entry.data.title, url }]} />
+    <div class="container svc-page">
       <div class="prose"><Content /></div>
-      {areas.length > 0 && (
-        <aside class="related-areas">
-          <h2>{entry.data.title} near you</h2>
-          <ul>{areas.map((a) => <li><a href={entryUrl(a)}>{entry.data.title} in {a.data.name}</a></li>)}</ul>
-        </aside>
-      )}
+      <aside class="svc-aside" aria-label="Contact">
+        {entry.data.image && <ResponsiveImage src={entry.data.image} alt={entry.data.imageAlt ?? ''} sizes="(min-width: 60rem) 24rem, 100vw" widths={[480, 960]} />}
+        <div class="svc-aside__body">
+          <p class="svc-aside__h">Talk to the owner</p>
+          <p>Local, owner-operated and licensed in Michigan. Free estimates, 7am to 5pm.</p>
+          <a class="btn btn--primary" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+          <a class="btn btn--secondary" href="#estimate">Send the estimate form</a>
+        </div>
+      </aside>
     </div>
   </section>
-  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} /></div></section>}
+
+  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} title={`${entry.data.title} questions`} /></div></section>}
+
   <section class="section">
     <div class="container">
-      <h2>Other services</h2>
-      <ServiceCards exclude={entry.id} />
+      <h2>More services in Holland, MI</h2>
+      <ul class="others" role="list">
+        {others.map((s) => (
+          <li>
+            <a href={entryUrl(s)}>
+              {s.data.image && <ResponsiveImage src={s.data.image} alt="" sizes="(min-width: 64rem) 16rem, 50vw" widths={[480]} />}
+              <span>{s.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
-  <CtaBand title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} />
+  <CtaBand title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
 </BaseLayout>
 <style>
-  .related-areas { margin-top: var(--space-7); }
-  .related-areas ul { columns: 2 14rem; padding-left: 1.2em; }
+  .svc-page { display: grid; gap: var(--space-7); }
+  @media (min-width: 60rem) { .svc-page { grid-template-columns: 1fr 22rem; align-items: start; } .svc-aside { position: sticky; top: calc(var(--header-h) + var(--space-5)); } }
+  .svc-aside { border: 1px solid var(--color-border); background: var(--color-surface); }
+  .svc-aside :global(img) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .svc-aside__body { padding: var(--space-5); display: grid; gap: var(--space-3); }
+  .svc-aside__body p { margin: 0; color: var(--color-text-muted); }
+  .svc-aside__h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 1.75rem; color: var(--color-text) !important; }
+  .others { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr)); }
+  .others a { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; color: var(--color-text); text-decoration: none; border: 1px solid var(--color-border); }
+  .others :global(picture), .others :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .others a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, rgb(13 13 12 / 90%)); }
+  .others span { position: absolute; left: var(--space-3); right: var(--space-3); bottom: var(--space-3); z-index: 1; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 1.3rem; line-height: 1.05; }
+  .others a:hover span { color: var(--color-accent); }
 </style>

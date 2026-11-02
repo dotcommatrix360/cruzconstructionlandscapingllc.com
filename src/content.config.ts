@@ -37,6 +37,8 @@ const services = defineCollection({
     seoTitle,
     description,
     summary: z.string().min(20),
+    /** Big conversion headline shown above the fold; the H1 carries the keyword. */
+    headline: z.string().optional(),
     order: z.number().default(100),
     image: image().optional(),
     imageAlt: z.string().optional(),

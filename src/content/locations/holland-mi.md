@@ -1,6 +1,6 @@
 ---
 name: "Holland, MI"
-title: "Remodeling Contractor in Holland, MI"
+title: "Your Local Remodeling Contractor in Holland, MI"
 seoTitle: "Kitchen, Bath & Basement Remodeling in Holland, MI"
 description: "Kitchen, bathroom and basement remodeling in Holland, MI, plus drywall, tile, flooring and carpentry from a Michigan-licensed local crew."
 region: "Ottawa & Allegan County, Michigan"
@@ -19,9 +19,9 @@ faqs:
   - question: "What are your working hours?"
     answer: "Our working hours are 7am to 5pm."
   - question: "How do I get an estimate in Holland?"
-    answer: "Call 616-502-1874, email Cruz_construction@icloud.com, or send the estimate form on this website."
+    answer: "Call 616-502-1874, email support@cruzconstructionlandscapingllc.com, or send the estimate form on this website."
 ---
 
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder working in Holland, MI. The owner grew up remodeling and turning over rental properties, then spent years in industrial work, and in 2025 earned his Michigan Builder's license and started the company.
 
-Holland homeowners hire us for [kitchen remodeling](/services/kitchen-remodeling/), [bathroom remodeling](/services/bathroom-remodeling/) and [basement finishing](/services/basement-finishing/), and for single trades like [drywall and painting](/services/drywall-painting/), [tile and flooring](/services/tile-flooring/) and [carpentry and trim](/services/carpentry-trim/). The same two-person crew does the work, and we explain each step as it happens.
+Holland homeowners hire us for [kitchen remodeling](/services/kitchen-remodeling/), [bathroom remodeling](/services/bathroom-remodeling/) and [basement finishing](/services/basement-finishing/), and for single trades like [drywall](/services/drywall/), [painting](/services/painting/), [custom tile showers](/services/custom-tile-showers/), [tile and LVP flooring](/services/tile-lvp-flooring/) and [carpentry and trim](/services/carpentry-trim/). Our own crew does the work, and we explain each step as it happens.

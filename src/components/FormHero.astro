@@ -1,0 +1,48 @@
+---
+// Photo hero with the H1, call button and the same three-field estimate form as the home page.
+// Used on every service and service-area page so each one converts on its own.
+import type { ImageMetadata } from 'astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+import EstimateForm from './EstimateForm.astro';
+import { business } from '../lib/site';
+// title = the H1: short, exact keyword ("Kitchen Remodeling in Holland, MI"). headline = the big conversion line.
+interface Props { title: string; headline?: string; lead?: string; image?: ImageMetadata; formTitle?: string }
+const { title, headline = 'Your dream home or dream project can be a reality.', lead, image, formTitle = 'Get a free estimate' } = Astro.props;
+---
+<section class="fhero">
+  {image && <div class="fhero__bg" aria-hidden="true"><ResponsiveImage src={image} alt="" priority sizes="100vw" widths={[640, 960, 1400]} /></div>}
+  <div class="container fhero__grid">
+    <div>
+      <slot name="before" />
+      <h1 class="fhero__kw">{title}</h1>
+      <p class="fhero__big">{headline}</p>
+      {lead && <p class="fhero__lead">{lead}</p>}
+      <ul class="fhero__trust" role="list">
+        <li>Free estimates</li><li>Licensed in Michigan</li><li>Local &amp; owner-operated</li><li>20+ projects completed</li>
+      </ul>
+      <div class="fhero__call">
+        <a class="btn btn--primary fhero__btn" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+        <span>or send the form and we will get back to you</span>
+      </div>
+    </div>
+    <EstimateForm id="estimate" title={formTitle} />
+  </div>
+</section>
+<style>
+  .fhero { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(2rem, 1.5rem + 3vw, 4.5rem); background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .fhero__bg { position: absolute; inset: 0; z-index: -1; }
+  .fhero__bg :global(picture) { display: block; height: 100%; }
+  .fhero__bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .fhero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 13 12 / 93%) 0%, rgb(13 13 12 / 82%) 60%, rgb(13 13 12 / 72%) 100%); }
+  .fhero__grid { display: grid; gap: var(--space-7); align-items: center; }
+  @media (min-width: 64rem) { .fhero__grid { grid-template-columns: 1.3fr 1fr; gap: var(--space-8); } }
+  .fhero__kw { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-soft); margin-bottom: var(--space-3); line-height: 1.4; }
+  .fhero__big { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; text-wrap: balance; font-size: clamp(2.4rem, 1.7rem + 3.4vw, 4.5rem); line-height: 1; margin-bottom: var(--space-5); }
+  .fhero__lead { font-size: var(--text-lg); max-width: 38rem; }
+  .fhero__trust { list-style: none; padding: 0; margin: var(--space-5) 0; display: grid; grid-template-columns: repeat(2, minmax(0, max-content)); gap: var(--space-2) var(--space-6); }
+  .fhero__trust li { position: relative; padding-left: 1.6rem; font-weight: 600; font-size: var(--text-sm); }
+  .fhero__trust li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 0.9rem; height: 0.5rem; border-left: 3px solid var(--color-accent); border-bottom: 3px solid var(--color-accent); transform: rotate(-45deg); }
+  .fhero__call { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
+  .fhero__call span { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .fhero__btn { font-family: var(--font-heading); font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; padding: var(--space-3) var(--space-6); border-radius: 0; }
+</style>

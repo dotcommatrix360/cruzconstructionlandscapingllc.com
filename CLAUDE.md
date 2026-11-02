@@ -4,7 +4,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 
 ## Business (fill in; facts live in `site.config.json`, client-confirmed only)
 - Name / industry / service area: Cruz Construction & Landscaping LLC · kitchen, bathroom, basement remodeling and finish trades · Holland, MI & West Michigan (area carried over from the client's Canva site; confirm)
-- Primary conversion: call 616-502-1874 or email (no form endpoint yet)
+- Primary conversion: call 616-502-1874 or the estimate form → support@cruzconstructionlandscapingllc.com (owner forwards to the client; set up the mailbox/forward before launch). No form endpoint yet.
 - Brand source: client logo (white/grey on black) + the approved dark concept (concept 1) · Fonts: Barlow Condensed + IBM Plex Sans (self-hosted via @fontsource)
 
 ## How this site is built
@@ -38,6 +38,8 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - Starter blog and permalink routes removed: no blog yet, no WordPress URLs to keep.
 - Estimate form (concept 1, three fields) on home + contact. Until the client picks a destination (GHL/Formspree) it opens the visitor's email app pre-filled to the business email (`EstimateForm.astro`); set `integrations.form` to switch it to the real endpoint.
 - Facts source: the client's Fillout CSV only. The concept presentation (dotcommatrix360.com/cruz/) is for layout/sections; its phone, services and owner name are placeholders.
+- Headings: on every page the H1 is the small keyword line ("Kitchen Remodeling in Holland, MI"); the big display title is a conversion headline (`headline:` in service front matter). Owner's rule.
+- No /services/ overview page (owner's choice): header Services dropdown lists each service page; /services/ 301 → /. Every service and area page has the estimate form in the hero (`FormHero.astro`). Sticky Call / Free estimate bar on all screen sizes.
 - Service-area page: Holland, MI only (`src/content/locations/holland-mi.md`). Add more towns only when the client confirms them.
 
 ## Open TODOs from client

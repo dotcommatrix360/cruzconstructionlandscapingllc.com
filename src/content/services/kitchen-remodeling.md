@@ -2,6 +2,7 @@
 title: "Kitchen Remodeling"
 seoTitle: "Kitchen Remodeling in Holland, MI"
 description: "Kitchen remodeling in Holland, MI and West Michigan: cabinet install, tile backsplash, LVP flooring, drywall, paint and trim from one licensed crew."
+headline: "The kitchen you have been picturing, built right."
 summary: "Cabinets, backsplash, flooring, drywall, paint and trim, handled by one licensed crew."
 order: 1
 image: ../../assets/images/kitchen-remodel-island.jpg
@@ -29,10 +30,10 @@ A kitchen remodel touches almost every trade in the house. Cruz Construction & L
 
 ## One crew, start to finish
 
-Because the same two-person crew handles the cabinets, the tile, the drywall and the paint, the trades are done in the right order and nothing gets lost between contractors. We explain each step as the work happens, so you always know what is next.
+Because our own crew handles the cabinets, the tile, the drywall and the paint, the trades are done in the right order and nothing gets lost between contractors. We explain each step as the work happens, so you always know what is next.
 
 ## Licensed in Michigan
 
 Cruz Construction holds a Michigan Builders License.
 
-Ready to talk through your kitchen? [Request a free estimate](/contact/) or call [616-502-1874](tel:+16165021874).
+Ready to talk through your kitchen? [Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).

@@ -39,7 +39,6 @@ export function localBusiness(): Json {
     knowsAbout: SERVICES,
     hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Remodeling services', itemListElement: SERVICES.map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })) },
     foundingDate: '2025',
-    numberOfEmployees: { '@type': 'QuantitativeValue', value: 2 },
     hasCredential: (business.licenses || []).map((name) => ({ '@type': 'EducationalOccupationalCredential', credentialCategory: 'license', name, recognizedBy: { '@type': 'State', name: 'Michigan' } })),
     openingHoursSpecification: (business.hours || []).filter((h) => h.opens && h.closes).map((h) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: h.days, opens: h.opens, closes: h.closes })),
     sameAs: business.sameAs,

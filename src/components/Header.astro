@@ -3,6 +3,8 @@
 // Mobile: disclosure button (aria-expanded/aria-controls, Esc closes, focus returns). Without JS the
 // menu stays visible (progressive enhancement: the `js` class is set inline in BaseLayout).
 import { config, business } from '../lib/site';
+import { services, entryUrl } from '../lib/content';
+const serviceLinks = (await services()).map((s) => ({ label: s.data.title, url: entryUrl(s) }));
 const path = Astro.url.pathname;
 const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith(url));
 ---
@@ -13,13 +15,23 @@ const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith
       <img src="/mark.png" alt={`${business.name} home`} width="41" height="48" fetchpriority="high" />
       <span class="site-header__wordmark" aria-hidden="true"><span>Cruz Construction</span><small>&amp; Landscaping LLC</small></span>
     </a>
+    <a class="site-header__mcall" href={`tel:${business.phone}`} aria-label={`Call ${business.phoneDisplay}`}>Call</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
       <span class="nav-toggle__bar" aria-hidden="true"></span>
       <span class="visually-hidden">Menu</span>
     </button>
     <nav id="primary-nav" class="site-nav" aria-label="Primary">
       <ul>
-        {config.nav.map((item) => (
+        {config.nav.map((item) => item.label === 'Services' ? (
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false" aria-controls="services-menu" data-sub-toggle aria-current={path.startsWith('/services/') ? 'page' : undefined}>
+              Services <span class="sub-toggle__caret" aria-hidden="true"></span>
+            </button>
+            <ul id="services-menu" class="sub-menu" role="list">
+              {serviceLinks.map((l) => <li><a href={l.url} aria-current={path === l.url ? 'page' : undefined}>{l.label}</a></li>)}
+            </ul>
+          </li>
+        ) : (
           <li><a href={item.url} aria-current={isCurrent(item.url) ? 'page' : undefined}>{item.label}</a></li>
         ))}
       </ul>
@@ -35,6 +47,15 @@ const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith
   // Bundled and deferred by Astro (module script). Tiny on purpose.
   const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
   const nav = document.getElementById('primary-nav');
+  // Services dropdown: click/tap toggles, Esc and outside click close; hover opens on desktop via CSS.
+  const sub = document.querySelector<HTMLButtonElement>('[data-sub-toggle]');
+  if (sub) {
+    const li = sub.closest('.has-sub');
+    const setSub = (open: boolean) => { sub.setAttribute('aria-expanded', String(open)); li?.classList.toggle('is-open', open); };
+    sub.addEventListener('click', () => setSub(sub.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (e) => { if (li && !li.contains(e.target as Node)) setSub(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && sub.getAttribute('aria-expanded') === 'true') { setSub(false); sub.focus(); } });
+  }
   if (toggle && nav) {
     const setOpen = (open: boolean) => { toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('is-open', open); };
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
@@ -59,6 +80,21 @@ const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith
   .site-nav { display: flex; align-items: center; gap: var(--space-5); }
   .site-nav__actions { display: flex; align-items: center; gap: var(--space-4); }
   .site-header__phone { font-weight: 600; color: var(--color-text); text-decoration: none; }
+  .has-sub { position: relative; }
+  .sub-toggle { background: none; border: 0; color: var(--color-text); font-weight: 600; letter-spacing: 0.02em; padding: var(--space-2) 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .sub-toggle:hover, .sub-toggle[aria-current='page'], .has-sub.is-open .sub-toggle { color: var(--color-accent); }
+  .sub-toggle__caret { width: 0.45rem; height: 0.45rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform var(--duration) var(--ease); }
+  .has-sub.is-open .sub-toggle__caret { transform: translateY(1px) rotate(-135deg); }
+  .site-nav .sub-menu { display: none; list-style: none; margin: 0; padding: var(--space-2) 0; }
+  .has-sub.is-open .sub-menu { display: grid; }
+  .site-nav .sub-menu a { display: block; padding: var(--space-2) var(--space-4); font-weight: 400; white-space: nowrap; }
+  .site-nav .sub-menu a:hover, .site-nav .sub-menu a[aria-current='page'] { text-decoration: none; background: rgb(255 255 255 / 6%); }
+  @media (min-width: 60.0625rem) {
+    .site-nav .sub-menu { position: absolute; top: 100%; left: -1rem; min-width: 17rem; background: var(--color-surface); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent); box-shadow: var(--shadow-lg); grid-template-columns: 1fr 1fr; z-index: 60; }
+    .has-sub:hover .sub-menu, .has-sub:focus-within .sub-menu { display: grid; }
+    .site-nav .sub-menu { min-width: 30rem; }
+  }
+  .site-header__mcall { display: none; }
   .nav-toggle { display: none; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; position: relative; }
   .nav-toggle__bar, .nav-toggle__bar::before, .nav-toggle__bar::after { position: absolute; left: 10px; width: 24px; height: 2px; background: var(--color-text); content: ""; transition: transform var(--duration) var(--ease); }
   .nav-toggle__bar { top: 21px; }
@@ -73,5 +109,8 @@ const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith
     .site-nav__actions { flex-direction: column; align-items: stretch; }
     .site-header__inner { flex-wrap: wrap; }
     :global(:not(.js)) .site-nav { width: 100%; padding-bottom: var(--space-4); }
+    :global(.js) .site-nav { max-height: calc(100dvh - var(--header-h)); overflow-y: auto; }
+    .site-header__mcall { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-4); margin-left: auto; background: var(--color-accent); color: var(--color-on-accent); font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+    .site-nav .sub-menu { padding-left: var(--space-4); border-left: 2px solid var(--color-accent); }
   }
 </style>

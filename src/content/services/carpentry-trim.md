@@ -1,28 +1,29 @@
 ---
 title: "Carpentry & Trim"
-seoTitle: "Carpentry, Trim & Doors in Holland, MI"
-description: "Carpentry and trim work, door replacement and cabinet installation in Holland, MI and West Michigan, from a Michigan-licensed builder and his crew."
-summary: "Carpentry and trim work, door replacement and cabinet installation."
-order: 6
-image: ../../assets/images/carpentry-measuring-board.jpg
-imageAlt: "Carpenter measuring a wooden board with a tape measure (stock photo)"
+seoTitle: "Carpentry & Trim Work in Holland, MI"
+description: "Finish carpentry and trim work in Holland, MI and West Michigan: baseboards, casing and finish details installed by a local, licensed builder."
+headline: "The finishing details that make a room feel complete."
+summary: "Baseboards, casing and finish carpentry that make a room look complete."
+order: 11
+image: ../../assets/images/finished-room-trim-windows.jpg
+imageAlt: "Finished living room with white trim around windows and walls (stock photo)"
 faqs:
-  - question: "Do you replace interior doors?"
-    answer: "Yes. Door replacement is one of our services, along with the trim around it."
-  - question: "Do you install cabinets?"
-    answer: "Yes. We install cabinets, most often as part of a kitchen remodel, and also as a single job."
+  - question: "What kind of trim work do you do?"
+    answer: "Finish carpentry and trim work such as baseboards and casing around doors and windows."
+  - question: "Do you do trim as part of a remodel?"
+    answer: "Yes. Trim is usually one of the last steps of a kitchen, bathroom or basement project, and we also take it on as a single job."
 ---
 
-Carpentry is where a room gets its finished look. Cruz Construction does carpentry and trim work, door replacement and cabinet installation for homeowners in Holland and West Michigan.
+Trim is what makes a room look finished. Cruz Construction does carpentry and trim work for homeowners in Holland, MI and West Michigan.
 
 ## What we do
 
-- Carpentry and trim work
-- Door replacement
-- Cabinet installation
+- Baseboards
+- Door and window casing
+- Finish carpentry details
 
-## Where it fits
+## The final layer
 
-Trim, doors and cabinets finish most [kitchen](/services/kitchen-remodeling/) and [basement](/services/basement-finishing/) projects, and they are also good stand-alone upgrades.
+Trim goes on after [drywall](/services/drywall/) and [flooring](/services/tile-lvp-flooring/) and before the last coat of [paint](/services/painting/). It is part of most [basement](/services/basement-finishing/) and remodel projects, and a good upgrade on its own.
 
-[Request a free estimate](/contact/) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
