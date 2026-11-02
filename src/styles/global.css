@@ -22,7 +22,7 @@ h1 { font-size: clamp(2.75rem, 2rem + 4vw, 5rem); line-height: 1; }
 h2 { font-size: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem); line-height: 1.02; }
 h3 { font-size: var(--text-xl); }
 p, ul, ol { margin: 0 0 var(--space-4); }
-a { color: var(--color-accent); text-underline-offset: 0.18em; }
+a { color: var(--color-accent-text); text-underline-offset: 0.18em; }
 a:hover { color: var(--color-accent-hover); }
 :focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: var(--radius-sm); }
 input, select, textarea, button { font: inherit; }
@@ -37,12 +37,44 @@ input, select, textarea, button { font: inherit; }
 .grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
 .measure { max-width: var(--measure); }
 .section-head { max-width: 48rem; margin-bottom: var(--space-6); }
-.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); margin-bottom: var(--space-2); }
+.eyebrow { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-text); margin-bottom: var(--space-2); }
 .lead { font-size: var(--text-lg); color: var(--color-text-muted); }
 .section--inverse .lead { color: inherit; opacity: 0.9; }
 
+/* Light section: re-maps the color tokens, so every component inside adapts automatically. */
+.section--light {
+  --color-bg: var(--light-surface);
+  --color-surface: var(--light-surface);
+  --color-surface-strong: var(--light-bg);
+  --color-text: var(--light-text);
+  --color-text-muted: var(--light-muted);
+  --color-text-faint: var(--light-muted);
+  --color-border: var(--light-border);
+  --color-border-strong: #c9bfa9;
+  --color-accent-soft: var(--light-accent-text);
+  --color-accent-text: var(--light-accent-text);
+  --color-primary: var(--light-text);
+  --color-primary-hover: #000;
+  --shadow-lg: 0 18px 40px rgb(60 45 10 / 14%);
+  background: var(--light-bg); color: var(--light-text);
+}
+.section--light .btn--secondary:hover { background: rgb(0 0 0 / 6%); }
+/* Cards inside light sections: white, soft shadow, lift on hover */
+.section--light :is(.svc__card, .explained__item, .social, .why__list li, .card) { box-shadow: 0 1px 2px rgb(60 45 10 / 8%), 0 8px 24px rgb(60 45 10 / 8%); border-color: transparent; }
+.section--light :is(.svc__card, .social):hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgb(60 45 10 / 10%), 0 18px 36px rgb(60 45 10 / 16%); }
+:is(.svc__card, .social) { transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease), border-color var(--duration) var(--ease); }
+
+/* Tape-measure tick divider (from the concept's header) */
+.ruler { height: 14px; background:
+  repeating-linear-gradient(90deg, var(--color-accent) 0 2px, transparent 2px 60px) bottom left / 100% 14px no-repeat,
+  repeating-linear-gradient(90deg, rgb(242 240 235 / 35%) 0 1px, transparent 1px 12px) bottom left / 100% 7px no-repeat; }
+.section--light .ruler { background:
+  repeating-linear-gradient(90deg, var(--light-accent-text) 0 2px, transparent 2px 60px) bottom left / 100% 14px no-repeat,
+  repeating-linear-gradient(90deg, rgb(21 21 19 / 30%) 0 1px, transparent 1px 12px) bottom left / 100% 7px no-repeat; }
+
 /* Section heading pattern (agency rule): small keyword heading (SEO, location) above a big conversion line.
    <h2 class="sec-kw">Remodeling services in Holland, MI</h2><p class="sec-big">Everything your project needs</p> */
+.sec-kw::before { content: ""; display: block; width: 3rem; height: 4px; background: var(--color-accent); margin-bottom: var(--space-3); }
 .sec-kw { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-soft); line-height: 1.4; margin: 0 0 var(--space-2); text-wrap: pretty; }
 .sec-big { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; font-size: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem); line-height: 1.02; margin: 0 0 var(--space-4); text-wrap: balance; }
 
@@ -86,7 +118,7 @@ input, select, textarea, button { font: inherit; }
 .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; z-index: 70; background: var(--color-bg); box-shadow: 0 -8px 24px rgb(0 0 0 / 45%); }
 .mobile-bar a { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 56px; padding-inline: var(--space-5); font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; }
 .mobile-bar__call { background: var(--color-bg); color: var(--color-text); }
-.mobile-bar__call:hover { color: var(--color-accent); }
+.mobile-bar__call:hover { color: var(--color-accent-text); }
 .mobile-bar__est { background: var(--color-accent); color: var(--color-on-accent); }
 .mobile-bar__est:hover { background: var(--color-accent-hover); color: var(--color-on-accent); }
 @media (max-width: 47.99rem) {

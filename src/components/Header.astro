@@ -76,13 +76,13 @@ const isCurrent = (url: string) => (url === '/' ? path === '/' : path.startsWith
   @media (max-width: 26rem) { .site-header__wordmark span { font-size: 1.2rem; } .site-header__wordmark small { letter-spacing: 0.18em; } }
   .site-nav ul { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-5); list-style: none; margin: 0; padding: 0; }
   .site-nav a:not(.btn) { color: var(--color-text); text-decoration: none; font-weight: 600; letter-spacing: 0.02em; padding-block: var(--space-2); display: inline-block; }
-  .site-nav a:not(.btn):hover, .site-nav a[aria-current='page'] { color: var(--color-accent); text-decoration: underline; text-underline-offset: 6px; }
+  .site-nav a:not(.btn):hover, .site-nav a[aria-current='page'] { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 6px; }
   .site-nav { display: flex; align-items: center; gap: var(--space-5); }
   .site-nav__actions { display: flex; align-items: center; gap: var(--space-4); }
   .site-header__phone { font-weight: 600; color: var(--color-text); text-decoration: none; }
   .has-sub { position: relative; }
   .sub-toggle { background: none; border: 0; color: var(--color-text); font-weight: 600; letter-spacing: 0.02em; padding: var(--space-2) 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
-  .sub-toggle:hover, .sub-toggle[aria-current='page'], .has-sub.is-open .sub-toggle { color: var(--color-accent); }
+  .sub-toggle:hover, .sub-toggle[aria-current='page'], .has-sub.is-open .sub-toggle { color: var(--color-accent-text); }
   .sub-toggle__caret { width: 0.45rem; height: 0.45rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform var(--duration) var(--ease); }
   .has-sub.is-open .sub-toggle__caret { transform: translateY(1px) rotate(-135deg); }
   .site-nav .sub-menu { display: none; list-style: none; margin: 0; padding: var(--space-2) 0; }

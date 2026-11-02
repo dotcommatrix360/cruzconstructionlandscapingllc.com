@@ -72,6 +72,7 @@ const faqs = [
         <li><strong>Local</strong><span>Owner-operated in Holland, MI</span></li>
       </ul>
     </div>
+    <div class="container"><div class="ruler" aria-hidden="true"></div></div>
   </section>
 
   <!-- 2. Our projects: photos filtered by category -->
@@ -91,7 +92,7 @@ const faqs = [
   <BeforeAfter />
 
   <!-- 3. Services (photo cards) -->
-  <section class="section" id="services" aria-labelledby="svc-h">
+  <section class="section section--light" id="services" aria-labelledby="svc-h">
     <div class="container">
       <div class="head-row">
         <div>
@@ -125,7 +126,7 @@ const faqs = [
   </section>
 
   <!-- 4. Why us / about the owner -->
-  <section class="section section--surface" aria-labelledby="about-h">
+  <section class="section" aria-labelledby="about-h">
     <div class="container split">
       <div class="split__media">
         <ResponsiveImage src={sawImg} alt="Carpenter cutting a board with a circular saw" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1400]} />
@@ -160,7 +161,7 @@ const faqs = [
   </section>
 
   <!-- 5. How it works -->
-  <section class="section section--surface" aria-labelledby="how-h">
+  <section class="section section--light" aria-labelledby="how-h">
     <div class="container split split--rev">
       <div class="stack">
         <h2 id="how-h" class="sec-kw">How a remodel with Cruz Construction works in Holland</h2>
@@ -179,7 +180,7 @@ const faqs = [
   </section>
 
   <!-- 6. Reviews (no quotes until the client gives permission to publish them) -->
-  <section class="section" aria-labelledby="rev-h">
+  <section class="section section--surface" aria-labelledby="rev-h">
     <div class="container reviews">
       <div>
         <h2 id="rev-h" class="sec-kw">Reviews from Holland &amp; West Michigan homeowners</h2>
@@ -196,7 +197,7 @@ const faqs = [
   </section>
 
   <!-- 7. Service areas -->
-  <section class="section section--surface" aria-labelledby="area-h">
+  <section class="section section--light" aria-labelledby="area-h">
     <div class="container split">
       <div class="split__media">
         <ResponsiveImage src={kitchenImg} alt="Remodeled kitchen with an island and pendant lights" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960]} />
@@ -256,11 +257,11 @@ const faqs = [
   .eyebrow, .eyebrow--tan { color: var(--color-accent-soft); }
   .chips { list-style: none; padding: 0; margin: var(--space-5) 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .chips a { display: inline-block; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border-strong); background: rgb(13 13 12 / 55%); color: var(--color-text); text-decoration: none; font-size: var(--text-sm); }
-  .chips a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .chips a:hover { border-color: var(--color-accent); color: var(--color-accent-text); }
   .hero__call { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
   .hero__call span { color: var(--color-text-muted); font-size: var(--text-sm); }
   .btn--big { font-family: var(--font-heading); font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; padding: var(--space-3) var(--space-6); border-radius: 0; }
-  .btn--outline { border: 2px solid var(--color-accent); color: var(--color-accent); font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 0; }
+  .btn--outline { border: 2px solid var(--color-accent); color: var(--color-accent-text); font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 0; }
   .btn--outline:hover { background: var(--color-accent); color: var(--color-on-accent); }
   .stats { list-style: none; padding: var(--space-6) 0 0; margin: var(--space-7) 0 0; border-top: 1px solid var(--color-border-strong); display: grid; gap: var(--space-5); grid-template-columns: repeat(2, 1fr); }
   @media (min-width: 48rem) { .stats { grid-template-columns: repeat(4, 1fr); } }
@@ -289,13 +290,13 @@ const faqs = [
   .svc h3 a { color: var(--color-text); text-decoration: none; }
   .svc h3 a::after { content: ""; position: absolute; inset: 0; }
   .svc p { margin: 0; color: var(--color-text-muted); }
-  .svc__go { color: var(--color-accent); font-weight: 600; font-size: var(--text-sm); margin-top: var(--space-2); }
+  .svc__go { color: var(--color-accent-text); font-weight: 600; font-size: var(--text-sm); margin-top: var(--space-2); }
   .svc__card--cta { background: var(--color-accent); border-color: var(--color-accent); justify-content: center; }
   .svc__card--cta .svc__body { gap: var(--space-4); padding: var(--space-6); }
   .svc__card--cta p { color: var(--color-on-accent); }
   .svc__cta-h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem); line-height: 1; }
   .svc__card--cta .btn--primary { background: var(--color-bg); color: var(--color-text); }
-  .svc__card--cta .btn--primary:hover { background: #000; color: var(--color-accent); }
+  .svc__card--cta .btn--primary:hover { background: #000; color: var(--color-accent-text); }
   .svc__alt { color: var(--color-on-accent); font-weight: 600; }
 
   /* Split media + text */
@@ -321,7 +322,7 @@ const faqs = [
   .gallery__item a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgb(13 13 12 / 88%)); }
   .gallery__cap { position: absolute; left: var(--space-5); right: var(--space-5); bottom: var(--space-4); z-index: 1; display: grid; gap: 2px; }
   .gallery__cap strong { font-family: var(--font-heading); font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); text-transform: uppercase; line-height: 1.05; }
-  .gallery__cap small { color: var(--color-accent); font-size: var(--text-sm); font-weight: 600; }
+  .gallery__cap small { color: var(--color-accent-text); font-size: var(--text-sm); font-weight: 600; }
   .gallery__note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-faint); }
 
   /* Photo CTA band */
@@ -335,7 +336,7 @@ const faqs = [
   .estimate-band .photo-cta__bg::after { background: linear-gradient(90deg, rgb(13 13 12 / 94%), rgb(13 13 12 / 84%)); }
   .photo-cta__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-5); }
   .photo-cta__h { margin: 0; font-family: var(--font-heading); font-size: clamp(1.75rem, 1.3rem + 1.8vw, 3rem); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
-  .photo-cta__h a { color: var(--color-accent); text-decoration: none; white-space: nowrap; }
+  .photo-cta__h a { color: var(--color-accent-text); text-decoration: none; white-space: nowrap; }
 
   /* Steps */
   .steps { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: var(--space-4); }
@@ -351,7 +352,7 @@ const faqs = [
   .social { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-5); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); text-decoration: none; }
   .social:hover { border-color: var(--color-accent); }
   .social strong { font-family: var(--font-heading); font-size: 1.75rem; text-transform: uppercase; }
-  .social small { color: var(--color-accent); font-weight: 600; }
+  .social small { color: var(--color-accent-text); font-weight: 600; }
 
   .area-links { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-weight: 600; }
 </style>

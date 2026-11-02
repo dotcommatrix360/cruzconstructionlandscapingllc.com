@@ -21,6 +21,14 @@
   --color-accent-soft: #b9a98a;   /* concept's warm tan for the wordmark and stats */
   --color-overlay: rgb(13 13 12 / 78%);
   --color-focus: #f5b400;
+  --color-accent-text: #f5b400;  /* accent used as TEXT; darker in light sections for contrast */
+  /* Light sections (warm paper) — break up the dark rhythm */
+  --light-bg: #f3efe6;
+  --light-surface: #ffffff;
+  --light-text: #151513;          /* on light-bg 16:1 */
+  --light-muted: #4f4a41;         /* on light-bg 8:1 */
+  --light-border: #ddd5c4;
+  --light-accent-text: #7a5800;   /* on light-bg 6.2:1 */
 
   /* Type: fluid scale (min @ 320px → max @ 1280px) */
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
