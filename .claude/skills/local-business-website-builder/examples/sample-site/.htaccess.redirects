@@ -1,0 +1,4 @@
+# Migrated from the old WordPress site
+Redirect 301 /roof-repair-boise/ /services/roof-repair/
+Redirect 301 /our-services/ /services/
+RedirectMatch 301 ^/category/(.*)$ /blog/

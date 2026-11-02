@@ -1,0 +1,19 @@
+---
+// FICTIONAL sample services hub (selftest fixture).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+<BaseLayout title="Roofing Services in Boise" description="Roof repair and full roof replacement for homes in Boise and Meridian — every job starts with a free inspection and photo report.">
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Services', url: '/services/' }]} />
+      <h1>Roofing services</h1>
+      <p class="lead measure">Every project starts with the same free inspection: we check shingles, flashing, vents, gutters and the attic, then send you a photo report. From there we recommend the smallest job that will actually solve the problem — a targeted repair when the roof has years left, or a full replacement when it doesn't.</p>
+      <p class="measure">We only work on residential asphalt shingle roofs, which lets the sample crew carry the right materials on every truck and finish most repairs in a single visit. If your roof is metal, tile or a low-slope membrane, we will say so up front and point you to a specialist instead of guessing.</p>
+      <ServiceCards headingLevel={2} priorityFirst />
+    </div>
+  </section>
+  <CtaBand title="Get a free roof inspection" text="Most inspections are scheduled within two business days." />
+</BaseLayout>

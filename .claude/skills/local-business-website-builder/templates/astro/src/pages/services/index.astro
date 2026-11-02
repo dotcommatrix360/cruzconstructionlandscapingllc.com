@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+<BaseLayout title="Services" description="TODO: 70–160 character summary of all services the business offers and the area it serves.">
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Services', url: '/services/' }]} />
+      <h1>TODO: Services heading</h1>
+      <p class="lead measure">TODO: short introduction to the services.</p>
+      <ServiceCards headingLevel={2} priorityFirst />
+    </div>
+  </section>
+  <CtaBand title="TODO: call to action" />
+</BaseLayout>

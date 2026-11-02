@@ -1,0 +1,56 @@
+---
+// Homepage. Replace every TODO with the client's real copy (validate.mjs blocks deployment until then).
+// Compose from components; give each client its own section rhythm — don't ship this layout unchanged.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CtaBand from '../components/CtaBand.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { config, business } from '../lib/site';
+import { localBusiness } from '../lib/schema';
+import { locations, entryUrl } from '../lib/content';
+import heroImage from '../assets/images/placeholder-replace-with-client-photo.jpg';
+
+const areas = await locations();
+---
+<BaseLayout title="TODO: Primary service in City, ST" description="TODO: 70–160 character summary of what the business does, where, and why customers should choose it." image={heroImage}>
+  <JsonLd slot="head" data={localBusiness()} />
+
+  <Hero
+    eyebrow="TODO: short positioning line"
+    title="TODO: Benefit-led headline with the primary service and city"
+    lead="TODO: one or two sentences in the client's voice."
+    image={heroImage}
+    imageAlt="TODO: describe the real client photo"
+    primary={config.cta}
+    secondary={business.phone ? { label: `Call ${business.phoneDisplay || business.phone}`, url: `tel:${business.phone}` } : undefined}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>TODO: Services section heading</h2>
+      </div>
+      <ServiceCards />
+    </div>
+  </section>
+
+  <Testimonials />
+
+  {areas.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>Areas we serve</h2>
+        <ul class="area-list">{areas.map((a) => <li><a href={entryUrl(a)}>{a.data.name}</a></li>)}</ul>
+      </div>
+    </section>
+  )}
+
+  <CtaBand title="TODO: Closing call to action" text="TODO: one reassuring sentence (response time, guarantee — only if true)." />
+</BaseLayout>
+<style>
+  .area-list { display: flex; flex-wrap: wrap; gap: var(--space-3); list-style: none; padding: 0; }
+  .area-list a { display: inline-block; padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border); border-radius: 999px; text-decoration: none; }
+</style>

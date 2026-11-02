@@ -1,0 +1,160 @@
+# Deploy production — MANUAL ONLY.
+#
+# Staging is automatic (Cloudflare Pages builds every push to main). Production changes ONLY when the owner,
+# after approving staging, opens Actions → "Deploy production" → Run workflow, types the production domain,
+# and (recommended) a required reviewer approves the `production` environment.
+#
+# Builds the Astro site from main and uploads ONLY the contents of dist/. Source files, .git, node_modules,
+# site.config.json and secrets never leave the runner. No build output is committed, no branches are created.
+#
+# One-time setup (owner) — Settings → Secrets and variables → Actions, and Settings → Environments:
+#   Environment  production            add yourself as required reviewer
+#   Variable     DEPLOY_TARGET         hostinger | wpengine | cloudflare-pages
+#   Variable     PRODUCTION_DOMAIN     www.client.com   (what you type to confirm)
+#   hostinger:        secrets HOSTINGER_SSH_HOST, HOSTINGER_SSH_PORT (65002), HOSTINGER_SSH_USER,
+#                     HOSTINGER_SSH_KEY (private key), HOSTINGER_KNOWN_HOSTS (ssh-keyscan output, verified once),
+#                     variable HOSTINGER_PATH (e.g. domains/client.com/public_html)
+#   wpengine:         secrets WPENGINE_SSH_KEY, WPENGINE_KNOWN_HOSTS; variables WPENGINE_INSTALL (verify on the
+#                     install's STAGING/DEVELOPMENT environment first), WPENGINE_ALLOW_ROOT ("true" only after the
+#                     owner approves replacing the WordPress site and has created a WP Engine backup point)
+#   cloudflare-pages: secrets CLOUDFLARE_PRODUCTION_API_TOKEN (Pages:Edit on the PRODUCTION project only — not
+#                     the staging token), CLOUDFLARE_ACCOUNT_ID; variable CLOUDFLARE_PRODUCTION_PROJECT
+# Full guide: .claude/skills/local-business-website-builder/references/deployment.md
+name: Deploy production
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_domain:
+        description: "Type the production domain to confirm (must equal the PRODUCTION_DOMAIN variable)"
+        required: true
+      dry_run:
+        description: "Build and check only — do not upload"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+    env:
+      DEPLOY_TARGET: ${{ vars.DEPLOY_TARGET }}
+      PRODUCTION_DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
+      CONFIRM_DOMAIN: ${{ inputs.confirm_domain }}
+      SKILL: .claude/skills/local-business-website-builder/scripts
+    steps:
+      - name: Guard — main branch, confirmed domain, known target
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then echo "::error::Production deploys only from main"; exit 1; fi
+          if [ -z "$PRODUCTION_DOMAIN" ] || [ "$CONFIRM_DOMAIN" != "$PRODUCTION_DOMAIN" ]; then echo "::error::Typed domain does not match the PRODUCTION_DOMAIN variable"; exit 1; fi
+          case "$DEPLOY_TARGET" in hostinger|wpengine|cloudflare-pages) ;; *) echo "::error::Set the DEPLOY_TARGET variable to hostinger, wpengine or cloudflare-pages"; exit 1;; esac
+
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Quality gate (same checks as staging)
+        run: |
+          node "$SKILL/validate.mjs"
+          node "$SKILL/check-protection.mjs" --production "$DEPLOY_TARGET"
+
+      # ---------------------------------------------------------------- Hostinger (SSH/rsync)
+      - name: Hostinger — backup current site, then upload dist/
+        if: env.DEPLOY_TARGET == 'hostinger' && !inputs.dry_run
+        env:
+          SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          TARGET: ${{ vars.HOSTINGER_PATH }}
+        run: |
+          set -euo pipefail
+          for v in SSH_HOST SSH_PORT SSH_USER SSH_KEY KNOWN_HOSTS TARGET; do [ -n "${!v}" ] || { echo "::error::Missing $v — see the setup notes at the top of this workflow"; exit 1; }; done
+          case "$TARGET" in *public_html*) ;; *) echo "::error::HOSTINGER_PATH must point at a public_html folder"; exit 1;; esac
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          SSH="ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT -o StrictHostKeyChecking=yes"
+          STAMP=$(date -u +%Y%m%d-%H%M%S)
+          $SSH "$SSH_USER@$SSH_HOST" "mkdir -p ~/deploy-backups && tar -czf ~/deploy-backups/public_html-$STAMP.tar.gz -C '$TARGET' . && ls -1t ~/deploy-backups | tail -n +11 | sed 's#^#$HOME/deploy-backups/#' | xargs -r rm -f"
+          echo "Backup: ~/deploy-backups/public_html-$STAMP.tar.gz (last 10 kept)"
+          rsync -rlptz --delete --delay-updates \
+            --filter='P .well-known/' --filter='P deploy-backups/' \
+            -e "$SSH" dist/ "$SSH_USER@$SSH_HOST:$TARGET/"
+
+      # ---------------------------------------------------------------- WP Engine (SSH Gateway/rsync)
+      # WP Engine is a WordPress host (Nginx; .htaccess is not used). Static files are served when they exist,
+      # but WordPress's index.php can still answer "/" — the verify step fails if the homepage is not this build.
+      # Redirects must be added in the WP Engine User Portal (deploy-settings.mjs --host wpengine prints them).
+      - name: WP Engine — backup, then upload dist/ (never deletes WordPress files)
+        if: env.DEPLOY_TARGET == 'wpengine' && !inputs.dry_run
+        env:
+          SSH_KEY: ${{ secrets.WPENGINE_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.WPENGINE_KNOWN_HOSTS }}
+          INSTALL: ${{ vars.WPENGINE_INSTALL }}
+          ALLOW_ROOT: ${{ vars.WPENGINE_ALLOW_ROOT }}
+        run: |
+          set -euo pipefail
+          for v in SSH_KEY KNOWN_HOSTS INSTALL; do [ -n "${!v}" ] || { echo "::error::Missing $v — see the setup notes at the top of this workflow"; exit 1; }; done
+          if [ "$ALLOW_ROOT" != "true" ]; then echo "::error::WPENGINE_ALLOW_ROOT is not \"true\". Uploading over a WordPress install needs the owner's explicit approval and a WP Engine backup point first (verify on the staging/development environment)."; exit 1; fi
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          HOST="$INSTALL@$INSTALL.ssh.wpengine.net"
+          SSH="ssh -i $HOME/.ssh/deploy_key -o StrictHostKeyChecking=yes"
+          STAMP=$(date -u +%Y%m%d-%H%M%S)
+          $SSH "$HOST" "cd sites/$INSTALL && mkdir -p _static-deploy-backups && tar -czf _static-deploy-backups/$STAMP.tar.gz --exclude=./wp-content/uploads --exclude=./_static-deploy-backups ."
+          echo "Backup: sites/$INSTALL/_static-deploy-backups/$STAMP.tar.gz"
+          # No --delete (it would remove WordPress). Cloudflare/Apache-only files are not uploaded: Nginx would serve them.
+          rsync -rlptz --exclude=_headers --exclude=_redirects --exclude=.htaccess -e "$SSH" dist/ "$HOST:sites/$INSTALL/"
+
+      # ---------------------------------------------------------------- Cloudflare Pages (production project)
+      - name: Cloudflare Pages — upload dist/ to the PRODUCTION project
+        if: env.DEPLOY_TARGET == 'cloudflare-pages' && !inputs.dry_run
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PRODUCTION_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: ${{ vars.CLOUDFLARE_PRODUCTION_PROJECT }}
+          STAGING_PROJECT: ${{ vars.CLOUDFLARE_STAGING_PROJECT }}
+        run: |
+          set -euo pipefail
+          for v in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID PROJECT; do [ -n "${!v}" ] || { echo "::error::Missing $v"; exit 1; }; done
+          if [ -n "$STAGING_PROJECT" ] && [ "$PROJECT" = "$STAGING_PROJECT" ]; then echo "::error::Production project must not be the staging project"; exit 1; fi
+          npx --yes wrangler@4.151.1 pages deploy dist --project-name "$PROJECT" --branch main --commit-dirty=true
+
+      - name: Verify production (read-only)
+        if: ${{ !inputs.dry_run }}
+        env:
+          VERIFY_HOST: ${{ vars.VERIFY_HOST }}   # optional: e.g. the WP Engine environment hostname
+        run: |
+          set -u
+          BASE="https://${VERIFY_HOST:-$PRODUCTION_DOMAIN}"
+          sleep 10
+          fail=0
+          check() { code=$(curl -s -o /dev/null -w '%{http_code}' "$1"); echo "$code $1"; [ "$code" = "$2" ] || fail=1; }
+          check "$BASE/" 200
+          if ! curl -s "$BASE/" | grep -q 'name="generator" content="Astro'; then echo "::error::The homepage is not this Astro build (on WP Engine, WordPress may still be answering /)"; fail=1; fi
+          check "$BASE/lbwb-missing-$(date +%s)/" 404
+          for p in /site.config.json /package.json /.git/config /src/ /node_modules/ /CLAUDE.md /_redirects /_headers /.htaccess; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$BASE$p"); echo "$code $BASE$p"; [ "$code" = "200" ] && fail=1
+          done
+          if curl -sI "$BASE/" | grep -qi '^x-robots-tag:.*noindex'; then echo "::error::Production sends X-Robots-Tag: noindex"; fail=1; fi
+          exit $fail

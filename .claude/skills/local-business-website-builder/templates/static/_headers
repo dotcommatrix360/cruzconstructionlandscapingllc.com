@@ -1,0 +1,14 @@
+# Cloudflare Pages staging only. Hostinger ignores this file (and .htaccess hides it).
+# Host-scoped so it can never noindex the production domain — even if production moves to Cloudflare later.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+# Same security headers Hostinger sends via .htaccess, so staging behaves like production.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

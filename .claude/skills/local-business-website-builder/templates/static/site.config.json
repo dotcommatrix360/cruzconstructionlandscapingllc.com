@@ -1,0 +1,79 @@
+{
+  "$comment": "Single source of truth for this client. Fill only with real, client-confirmed values. Empty strings are omitted from schema/output. See .claude/skills/local-business-website-builder/references/architecture.md",
+  "site": {
+    "url": "https://www.example.com",
+    "name": "TODO: Business Name",
+    "language": "en",
+    "locale": "en_US",
+    "noindex": false,
+    "defaultOgImage": "/assets/images/og-default.jpg"
+  },
+  "business": {
+    "type": "LocalBusiness",
+    "name": "TODO: Business Name",
+    "legalName": "",
+    "description": "",
+    "phone": "",
+    "phoneDisplay": "",
+    "email": "",
+    "logo": "/assets/images/logo.svg",
+    "image": "",
+    "priceRange": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "region": "",
+      "postalCode": "",
+      "country": "US"
+    },
+    "hideAddress": false,
+    "geo": { "lat": "", "lng": "" },
+    "areaServed": [],
+    "hours": [
+      { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "", "closes": "" }
+    ],
+    "sameAs": [],
+    "licenses": []
+  },
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Blog", "url": "/blog/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "cta": { "label": "Get a Free Quote", "url": "/contact/" },
+  "collections": [
+    {
+      "name": "blog",
+      "label": "Blog",
+      "source": "_content/blog",
+      "output": "blog",
+      "itemTemplate": "_templates/article.html",
+      "archiveTemplate": "_templates/archive.html",
+      "perPage": 9,
+      "categories": true,
+      "minCategoryItems": 2,
+      "schemaType": "BlogPosting",
+      "archiveTitle": "Blog",
+      "archiveDescription": "TODO: one-sentence description of the blog."
+    }
+  ],
+  "integrations": {
+    "gtmId": "",
+    "ga4Id": "",
+    "clarityId": "",
+    "googleSiteVerification": "",
+    "ghlFormEmbedScript": false
+  },
+  "deploy": {
+    "$comment": "Optional. Agency default: Cloudflare Pages staging (auto from main) → owner approves → owner clicks Redeploy in Hostinger. Remove \"staging\" (or blank its provider) for other hosts. private/public: extra names to hide, or names that look private but must be served. See references/deployment.md",
+    "production": { "host": "hostinger" },
+    "staging": { "provider": "cloudflare-pages", "url": "", "noindex": true },
+    "private": [],
+    "public": []
+  },
+  "build": {
+    "ignore": ["node_modules", ".git", ".claude", "_originals", "_migration", ".qa", ".lighthouse"],
+    "assetVersioning": true,
+    "sitemap": true
+  }
+}

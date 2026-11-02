@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { business, daysLabel, formatTime } from '../lib/site';
+import { localBusiness } from '../lib/schema';
+const a = business.address;
+const hours = (business.hours || []).filter((h) => h.opens && h.closes);
+---
+<BaseLayout title="Contact Us" description={`Contact ${business.name}: call, email or send a message to request a quote. TODO: replace with a specific 70–160 character description.`}>
+  <JsonLd slot="head" data={localBusiness()} />
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <h1>Contact {business.name}</h1>
+        <p class="lead">TODO: what happens after someone gets in touch (response time — only if true).</p>
+        <ContactForm />
+      </div>
+      <aside class="stack" aria-label="Contact details">
+        {business.phone && <p><strong>Phone</strong><br /><a href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a></p>}
+        {business.email && <p><strong>Email</strong><br /><a href={`mailto:${business.email}`}>{business.email}</a></p>}
+        {!business.hideAddress && a.street && <p><strong>Address</strong><br />{a.street}<br />{a.city}, {a.region} {a.postalCode}</p>}
+        {business.googleMapsUrl && <p><a href={business.googleMapsUrl} rel="noopener" target="_blank">Get directions on Google Maps</a></p>}
+        {hours.length > 0 && <div><strong>Hours</strong><ul>{hours.map((h) => <li>{daysLabel(h.days)}: {formatTime(h.opens)}–{formatTime(h.closes)}</li>)}</ul></div>}
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .contact-grid { display: grid; gap: var(--space-7); }
+  @media (min-width: 60rem) { .contact-grid { grid-template-columns: 2fr 1fr; } }
+</style>

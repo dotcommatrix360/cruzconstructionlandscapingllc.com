@@ -1,0 +1,54 @@
+---
+// One service-area page. Content must be genuinely local (schema requires ≥3 localDetails; validate.mjs
+// flags near-duplicate area pages). Never mass-produce town pages by swapping the town name.
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { config, business } from '../lib/site';
+import { service } from '../lib/schema';
+import { entryUrl, services as getServices, locations } from '../lib/content';
+
+interface Props { entry: CollectionEntry<'locations'> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const url = entryUrl(entry);
+const offered = (await getServices()).filter((s) => !entry.data.services.length || entry.data.services.includes(s.id));
+const nearby = (await locations()).filter((l) => l.id !== entry.id);
+---
+<BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
+  <JsonLd slot="head" data={service({ name: `${business.name} in ${entry.data.name}`, description: entry.data.description, url, areaServed: [entry.data.name] })} />
+  <Hero title={entry.data.title} lead={entry.data.description} image={entry.data.image} imageAlt={entry.data.imageAlt} primary={config.cta} />
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }, { name: entry.data.name, url }]} />
+      <div class="prose"><Content /></div>
+      <h2>Working in {entry.data.name}</h2>
+      <ul class="local-details">{entry.data.localDetails.map((d) => <li>{d}</li>)}</ul>
+      {offered.length > 0 && (
+        <>
+          <h2>Services in {entry.data.name}</h2>
+          <ul>{offered.map((s) => <li><a href={entryUrl(s)}>{s.data.title}</a></li>)}</ul>
+        </>
+      )}
+    </div>
+  </section>
+  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} /></div></section>}
+  {nearby.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2>Nearby areas</h2>
+        <ul class="nearby">{nearby.map((l) => <li><a href={entryUrl(l)}>{l.data.name}</a></li>)}</ul>
+      </div>
+    </section>
+  )}
+  <CtaBand title={`Planning a project in ${entry.data.name}?`} />
+</BaseLayout>
+<style>
+  .local-details { max-width: var(--measure); }
+  .nearby { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); list-style: none; padding: 0; }
+</style>

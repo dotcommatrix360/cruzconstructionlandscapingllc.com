@@ -1,0 +1,33 @@
+# Quality — runs on every push to main. Builds the site and runs the agency checks against dist/.
+# It deploys nothing: staging is Cloudflare Pages' own automatic build; production is "Deploy production".
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SKILL: .claude/skills/local-business-website-builder/scripts
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npm run check:types
+      - name: Build
+        run: npm run build
+      - name: Validate dist/ (SEO, links, images, accessibility basics, sitemap, secrets)
+        run: node "$SKILL/validate.mjs"
+      - name: Protection (private files, staging noindex, deploy workflow rules)
+        run: node "$SKILL/check-protection.mjs"

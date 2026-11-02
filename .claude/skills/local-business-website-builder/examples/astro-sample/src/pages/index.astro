@@ -1,0 +1,57 @@
+---
+// FICTIONAL sample homepage (selftest fixture).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CtaBand from '../components/CtaBand.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { config, business } from '../lib/site';
+import { localBusiness } from '../lib/schema';
+import { locations, posts, entryUrl } from '../lib/content';
+import heroImage from '../assets/images/asphalt-shingle-roof-at-sunset.jpg';
+
+const areas = await locations();
+const latest = (await posts()).slice(0, 3);
+---
+<BaseLayout title="Roof Repair & Replacement in Boise, ID" description="Summit Peak Roofing repairs and replaces residential roofs in Boise and Meridian, with free inspections and photo reports." image={heroImage}>
+  <JsonLd slot="head" data={localBusiness()} />
+  <Hero
+    eyebrow="Boise roofing since this sample began"
+    title="Roof repair and replacement for Boise-area homes"
+    lead="Free inspections with a photo report, honest repair-or-replace advice, and crews that clean up every nail."
+    image={heroImage}
+    imageAlt="Dark asphalt shingle roof against an orange sunset sky"
+    primary={config.cta}
+    secondary={{ label: `Call ${business.phoneDisplay}`, url: `tel:${business.phone}` }}
+  />
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>What we do</h2>
+        <p class="lead">Two services, done carefully: fixing roofs that can be saved and replacing the ones that can't.</p>
+      </div>
+      <ServiceCards />
+    </div>
+  </section>
+  <Testimonials />
+  <section class="section section--surface">
+    <div class="container">
+      <h2>Areas we serve</h2>
+      <p>We work across the Treasure Valley. Each area page explains local permits, HOA rules and the roofs we see most often there.</p>
+      <ul class="area-list">{areas.map((a) => <li><a href={entryUrl(a)}>{a.data.name}</a></li>)}</ul>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>Roofing tips</h2>
+      <ul>{latest.map((p) => <li><a href={entryUrl(p)}>{p.data.title}</a></li>)}</ul>
+    </div>
+  </section>
+  <CtaBand title="Not sure if you need a repair or a new roof?" text="Book a free inspection. You'll get photos of what we find and a plain recommendation." />
+</BaseLayout>
+<style>
+  .area-list { display: flex; flex-wrap: wrap; gap: var(--space-3); list-style: none; padding: 0; }
+  .area-list a { display: inline-block; padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border); border-radius: 999px; text-decoration: none; background: var(--color-bg); }
+</style>

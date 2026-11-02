@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { business } from '../lib/site';
+---
+<BaseLayout title="About Cruz Construction" description="A Michigan-licensed builder serving Holland and West Michigan. Learn how Cruz Construction & Landscaping started and why homeowners trust the crew.">
+  <section class="section">
+    <div class="container about">
+      <div>
+        <Breadcrumbs items={[{ name: 'About', url: '/about/' }]} />
+        <h1>About Cruz Construction</h1>
+        <div class="prose stack">
+          <p class="lead">Learned on rental properties. Sharpened in industrial work.</p>
+          <p>Growing up, I helped remodel and turn over rental properties. In my 20s I moved into industrial work, where I built strong hands-on and troubleshooting skills.</p>
+          <p>In 2025 I decided to earn my Michigan Builder's license and start my own construction company.</p>
+          <h2>Why homeowners trust us</h2>
+          <p>They see the quality of our earlier projects, and they hear how we explain the work as it is being done.</p>
+          <h2>What we do</h2>
+          <p>Kitchen remodeling, bathroom remodeling and basement finishing are the projects we take on most. Behind them is a full list of trades we do ourselves: insulation, drywall hanging and finishing, painting, tile and LVP flooring, custom tile showers and kitchen backsplashes, carpentry and trim work, door replacement, cabinet installation and drop ceiling installation.</p>
+          <p>See the <a href="/services/">full list of services</a>, or <a href="/contact/">contact us</a> about your project.</p>
+          <h2>Where we work</h2>
+          <p>We serve Holland, Michigan and West Michigan. Our working hours are 7am to 5pm. You can call us at <a href="tel:+16165021874">616-502-1874</a> or email <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
+        </div>
+      </div>
+      <aside class="card-facts" aria-label="Business facts">
+        <img src="/logo.png" alt={business.name} width="420" height="250" />
+        <ul role="list">
+          <li><strong>License</strong> Michigan Builders License</li>
+          <li><strong>Crew</strong> 2 people</li>
+          <li><strong>Clients served</strong> 20 so far</li>
+          <li><strong>In business</strong> 1 year</li>
+          <li><strong>Working hours</strong> 7am to 5pm</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+  <CtaBand title="Let's talk about your project" text="Call 616-502-1874 or send us a note." />
+</BaseLayout>
+<style>
+  .about { display: grid; gap: var(--space-7); }
+  @media (min-width: 60rem) { .about { grid-template-columns: 1.4fr 1fr; align-items: start; } }
+  .card-facts { border: 1px solid var(--color-border); background: var(--color-surface); padding: var(--space-6); }
+  .card-facts img { width: min(100%, 18rem); margin: 0 auto var(--space-5); height: auto; }
+  .card-facts ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  .card-facts li { display: grid; border-top: 1px solid var(--color-border); padding-top: var(--space-3); }
+  .card-facts strong { color: var(--color-text-muted); font-weight: 600; font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase; }
+</style>

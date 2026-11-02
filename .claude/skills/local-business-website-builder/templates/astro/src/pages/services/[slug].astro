@@ -1,0 +1,9 @@
+---
+// Static route: one page per service entry without a custom permalink.
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import { services } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await services()).filter((e) => !e.data.permalink).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<ServiceLayout entry={Astro.props.entry} />

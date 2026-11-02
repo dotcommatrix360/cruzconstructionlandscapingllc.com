@@ -1,0 +1,21 @@
+---
+// Analytics load ONLY on the production hostname (site.config.json → site.url). Staging (*.pages.dev),
+// local previews and WP Engine/Cloudflare preview hosts never send data. Empty IDs render nothing.
+// GTM present → configure GA4/Ads/Clarity inside GTM; don't also load them directly (double counting).
+import { config, productionHost } from '../lib/site';
+interface Props { position: 'head' | 'body' }
+const { gtmId, ga4Id, clarityId, googleSiteVerification } = config.integrations;
+const host = JSON.stringify(productionHost);
+const isHome = Astro.url.pathname === '/';
+---
+{Astro.props.position === 'head' && (
+  <>
+    {googleSiteVerification && isHome && <meta name="google-site-verification" content={googleSiteVerification} />}
+    {gtmId && <script is:inline set:html={`if(location.hostname.replace(/^www\\./,'')===${host}){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',${JSON.stringify(gtmId)});}`} />}
+    {!gtmId && ga4Id && <script is:inline set:html={`if(location.hostname.replace(/^www\\./,'')===${host}){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${ga4Id}';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',${JSON.stringify(ga4Id)});}`} />}
+    {!gtmId && clarityId && <script is:inline set:html={`if(location.hostname.replace(/^www\\./,'')===${host}){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(clarityId)});}`} />}
+  </>
+)}
+{Astro.props.position === 'body' && gtmId && (
+  <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+)}

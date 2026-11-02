@@ -1,0 +1,104 @@
+{
+  "$comment": "Single source of truth for this client's facts and hosting. Fill ONLY with real, client-confirmed values; empty strings are omitted from schema and pages. TODO: values fail validate.mjs on purpose. See .claude/skills/local-business-website-builder/references/architecture.md",
+  "site": {
+    "url": "https://www.cruzconstructionlandscapingllc.com",
+    "name": "Cruz Construction & Landscaping LLC",
+    "language": "en",
+    "locale": "en_US",
+    "titleSuffix": "Cruz Construction",
+    "defaultOgImage": "/og.jpg"
+  },
+  "business": {
+    "type": "HomeAndConstructionBusiness",
+    "name": "Cruz Construction & Landscaping LLC",
+    "legalName": "Cruz Construction & Landscaping LLC",
+    "description": "Michigan-licensed builder for kitchen, bathroom and basement remodeling, plus drywall, tile, flooring and carpentry.",
+    "phone": "+16165021874",
+    "phoneDisplay": "616-502-1874",
+    "email": "Cruz_construction@icloud.com",
+    "logo": "/mark.png",
+    "priceRange": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "region": "",
+      "postalCode": "",
+      "country": "US"
+    },
+    "hideAddress": true,
+    "geo": {
+      "lat": "",
+      "lng": ""
+    },
+    "areaServed": [
+      "Holland, MI",
+      "West Michigan"
+    ],
+    "hours": [],
+    "sameAs": [
+      "https://www.facebook.com/share/18ihntLhqo/?mibextid=wwXIfr",
+      "https://www.instagram.com/cruz_construction_llc",
+      "https://www.tiktok.com/@cruz.construction65"
+    ],
+    "licenses": [
+      "Michigan Builders License"
+    ],
+    "googleMapsUrl": ""
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Services",
+      "url": "/services/"
+    },
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "cta": {
+    "label": "Request an estimate",
+    "url": "/contact/"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "TODO: one-sentence description of the blog (70\u2013160 characters).",
+    "perPage": 9
+  },
+  "integrations": {
+    "gtmId": "",
+    "ga4Id": "",
+    "clarityId": "",
+    "googleSiteVerification": "",
+    "form": {
+      "$comment": "provider: ghl | formspree | custom | none. ghl: embedUrl = the GoHighLevel form iframe URL. formspree/custom: action = the https POST endpoint. Never invent an endpoint.",
+      "provider": "none",
+      "embedUrl": "",
+      "action": "",
+      "height": 720
+    }
+  },
+  "redirects": [],
+  "deploy": {
+    "$comment": "staging: Cloudflare Pages builds main automatically (npm run build \u2192 dist). production: manual GitHub Actions workflow 'Deploy production' \u2014 the owner runs it after approving staging. See references/deployment.md",
+    "production": {
+      "host": "hostinger",
+      "domain": ""
+    },
+    "staging": {
+      "provider": "cloudflare-pages",
+      "project": "",
+      "url": "",
+      "noindex": true
+    },
+    "private": [],
+    "public": []
+  }
+}

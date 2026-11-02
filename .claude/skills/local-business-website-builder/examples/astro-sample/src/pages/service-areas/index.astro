@@ -1,0 +1,23 @@
+---
+// FICTIONAL sample service-area hub (selftest fixture).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { locations, entryUrl } from '../../lib/content';
+const areas = await locations();
+---
+<BaseLayout title="Service Areas" description="Summit Peak Roofing serves Boise and Meridian, Idaho. See local permit notes, HOA requirements and common roof issues by area.">
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }]} />
+      <h1>Where we work</h1>
+      <p class="lead measure">Our sample crew works within about 25 minutes of downtown Boise. Each area page covers what is genuinely different there — permits, HOA approvals, the age of the homes and the weather roofs face.</p>
+      <p class="measure">We don't publish a page for a town unless we have real local experience to share there. If your neighborhood isn't listed, call and ask — we would rather tell you honestly that the drive is too far than promise a schedule we can't keep.</p>
+      <ul class="grid areas" role="list">
+        {areas.map((a) => <li class="card"><div class="card__body"><h2><a href={entryUrl(a)}>{a.data.name}</a></h2><p>{a.data.description}</p></div></li>)}
+      </ul>
+    </div>
+  </section>
+  <CtaBand title="Outside these areas?" text="Call us anyway — we'll tell you honestly whether we can help or who to call." />
+</BaseLayout>
+<style>.areas { list-style: none; padding: 0; } .areas h2 { font-size: var(--text-lg); }</style>

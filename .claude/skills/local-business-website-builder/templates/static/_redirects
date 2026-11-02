@@ -1,0 +1,19 @@
+# Cloudflare Pages (staging): hide development files. Cloudflare ignores .htaccess.
+# Hostinger (production) ignores this file — .htaccess protects production. Keep both in sync:
+#   node .claude/skills/local-business-website-builder/scripts/check-protection.mjs
+/.claude/* /404/ 302
+/.claude /404/ 302
+/.git/* /404/ 302
+/.github/* /404/ 302
+/.gitignore /404/ 302
+/.htaccess /404/ 302
+/.lbwb-manifest.json /404/ 302
+/node_modules/* /404/ 302
+/site.config.json /404/ 302
+/package.json /404/ 302
+/package-lock.json /404/ 302
+/CLAUDE.md /404/ 302
+/README.md /404/ 302
+/_* /404/ 302
+
+# Site redirects (also add them to .htaccess for production) go below this line.

@@ -1,0 +1,50 @@
+---
+// One service page. Rendered by /services/[slug]/ and by [...permalink] (old URLs kept from a migration).
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import CtaBand from '../components/CtaBand.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { config } from '../lib/site';
+import { service } from '../lib/schema';
+import { entryUrl, locations } from '../lib/content';
+
+interface Props { entry: CollectionEntry<'services'> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const url = entryUrl(entry);
+const areas = (await locations()).filter((l) => !l.data.services.length || l.data.services.includes(entry.id));
+---
+<BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
+  <JsonLd slot="head" data={service({ name: entry.data.title, description: entry.data.description, url })} />
+  <Hero title={entry.data.title} lead={entry.data.summary} image={entry.data.image} imageAlt={entry.data.imageAlt} primary={config.cta}>
+  </Hero>
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Services', url: '/services/' }, { name: entry.data.title, url }]} />
+      <div class="prose"><Content /></div>
+      {areas.length > 0 && (
+        <aside class="related-areas">
+          <h2>{entry.data.title} near you</h2>
+          <ul>{areas.map((a) => <li><a href={entryUrl(a)}>{entry.data.title} in {a.data.name}</a></li>)}</ul>
+        </aside>
+      )}
+    </div>
+  </section>
+  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} /></div></section>}
+  <section class="section">
+    <div class="container">
+      <h2>Other services</h2>
+      <ServiceCards exclude={entry.id} />
+    </div>
+  </section>
+  <CtaBand title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} />
+</BaseLayout>
+<style>
+  .related-areas { margin-top: var(--space-7); }
+  .related-areas ul { columns: 2 14rem; padding-left: 1.2em; }
+</style>

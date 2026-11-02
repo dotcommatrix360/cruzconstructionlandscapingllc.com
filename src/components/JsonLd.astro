@@ -1,0 +1,6 @@
+---
+// Renders one or more JSON-LD objects. Pass only schema built in src/lib/schema.ts from real data.
+interface Props { data: Record<string, unknown> | (Record<string, unknown> | null)[] | null }
+const items = (Array.isArray(Astro.props.data) ? Astro.props.data : [Astro.props.data]).filter(Boolean);
+---
+{items.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}

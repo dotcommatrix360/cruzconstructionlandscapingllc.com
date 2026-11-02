@@ -1,0 +1,54 @@
+---
+// One blog post. Rendered by /blog/[slug]/ and by [...permalink] (old post URLs kept from a migration).
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import CtaBand from '../components/CtaBand.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { config, formatDate } from '../lib/site';
+import { blogPosting } from '../lib/schema';
+import { entryUrl, posts, readingMinutes } from '../lib/content';
+
+interface Props { entry: CollectionEntry<'blog'> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const url = entryUrl(entry);
+const related = (await posts()).filter((p) => p.id !== entry.id && (!d.category || p.data.category === d.category)).slice(0, 3);
+---
+<BaseLayout title={d.seoTitle || d.title} description={d.description} type="article" published={d.date} modified={d.updated} noindex={d.noindex} image={d.image}>
+  <JsonLd slot="head" data={blogPosting({ title: d.title, description: d.description, url, date: d.date, updated: d.updated, author: d.author, image: d.image?.src })} />
+  <article class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: config.blog.title, url: '/blog/' }, { name: d.title, url }]} />
+      <header class="post-header measure">
+        <h1>{d.title}</h1>
+        <p class="post-meta">
+          <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
+          {d.updated && <> · Updated <time datetime={d.updated.toISOString().slice(0, 10)}>{formatDate(d.updated)}</time></>}
+          {d.author && <> · {d.author}</>} · {readingMinutes(entry.body)} min read
+        </p>
+      </header>
+      {d.image && <ResponsiveImage src={d.image} alt={d.imageAlt ?? ''} priority sizes="(min-width: 72rem) 65ch, 100vw" class="post-image" />}
+      <div class="prose"><Content /></div>
+    </div>
+  </article>
+  {related.length > 0 && (
+    <section class="section section--surface">
+      <div class="container">
+        <h2>Related articles</h2>
+        <ul class="grid related" role="list">{related.map((p) => <li class="card"><div class="card__body"><h3><a href={entryUrl(p)}>{p.data.title}</a></h3><p>{p.data.description}</p></div></li>)}</ul>
+      </div>
+    </section>
+  )}
+  <CtaBand title="Have a question about your project?" />
+</BaseLayout>
+<style>
+  .post-meta { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .post-header { margin-bottom: var(--space-5); }
+  :global(.post-image img) { border-radius: var(--radius-lg); max-width: var(--measure); margin-bottom: var(--space-6); }
+  .related { list-style: none; padding: 0; margin: 0; }
+  .related h3 { font-size: var(--text-lg); }
+</style>

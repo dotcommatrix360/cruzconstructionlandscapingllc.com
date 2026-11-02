@@ -1,0 +1,32 @@
+---
+// FICTIONAL sample contact page (selftest fixture).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { business, daysLabel, formatTime } from '../lib/site';
+import { localBusiness } from '../lib/schema';
+const a = business.address;
+const hours = (business.hours || []).filter((h) => h.opens && h.closes);
+---
+<BaseLayout title="Contact Us" description="Contact Summit Peak Roofing in Boise to book a free roof inspection: call, email or send a message and we'll reply within one business day.">
+  <JsonLd slot="head" data={localBusiness()} />
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <h1>Book a free roof inspection</h1>
+        <p class="lead">Tell us what you've noticed. In this sample, we reply within one business day to schedule a visit.</p>
+        <ContactForm />
+      </div>
+      <aside class="stack" aria-label="Contact details">
+        <p><strong>Phone</strong><br /><a href={`tel:${business.phone}`}>{business.phoneDisplay}</a></p>
+        <p><strong>Email</strong><br /><a href={`mailto:${business.email}`}>{business.email}</a></p>
+        <p><strong>Address</strong><br />{a.street}<br />{a.city}, {a.region} {a.postalCode}</p>
+        <div><strong>Hours</strong><ul>{hours.map((h) => <li>{daysLabel(h.days)}: {formatTime(h.opens)}–{formatTime(h.closes)}</li>)}</ul></div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .contact-grid { display: grid; gap: var(--space-7); }
+  @media (min-width: 60rem) { .contact-grid { grid-template-columns: 2fr 1fr; } }
+</style>

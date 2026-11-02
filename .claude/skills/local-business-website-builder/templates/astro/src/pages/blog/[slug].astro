@@ -1,0 +1,9 @@
+---
+// Static route: one page per blog post without a custom permalink (/blog/<slug>/).
+import PostLayout from '../../layouts/PostLayout.astro';
+import { posts } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await posts()).filter((e) => !e.data.permalink).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<PostLayout entry={Astro.props.entry} />

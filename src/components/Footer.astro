@@ -1,0 +1,49 @@
+---
+// Footer: NAP exactly as in site.config.json (must match Google Business Profile), hours, links, legal.
+import { config, business } from '../lib/site';
+const a = business.address;
+const year = new Date().getFullYear();
+---
+<footer class="site-footer section--inverse">
+  <div class="container site-footer__grid">
+    <div>
+      <img class="site-footer__logo" src="/logo.png" alt={business.name} width="252" height="150" loading="lazy" />
+      {business.description && <p>{business.description}</p>}
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Contact</h2>
+      <address>
+        {!business.hideAddress && a.street && <>{a.street}<br />{a.city}, {a.region} {a.postalCode}<br /></>}
+        {business.phone && <a href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a>}<br />
+        {business.email && <a href={`mailto:${business.email}`}>{business.email}</a>}
+      </address>
+      {business.licenses && business.licenses.length > 0 && <p>{business.licenses.join(' · ')}</p>}
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Hours</h2>
+      <p>Working hours: 7am to 5pm.</p>
+    </div>
+    <nav aria-label="Footer">
+      <h2 class="site-footer__heading">Explore</h2>
+      <ul class="site-footer__list">{config.nav.map((item) => <li><a href={item.url}>{item.label}</a></li>)}</ul>
+    </nav>
+  </div>
+  <div class="container site-footer__legal">
+    <p>&copy; {year} {business.legalName || business.name}. All rights reserved.</p>
+    {business.sameAs && business.sameAs.length > 0 && (
+      <ul class="site-footer__social">{business.sameAs.map((url) => <li><a href={url} rel="noopener" target="_blank">{new URL(url).hostname.replace(/^www\./, '').split('.')[0]}</a></li>)}</ul>
+    )}
+  </div>
+</footer>
+<style>
+  .site-footer { padding-block: var(--space-8) var(--space-5); border-top: 1px solid var(--color-border); }
+  .site-footer :global(a) { color: var(--color-text); }
+  .site-footer :global(a:hover) { color: var(--color-accent); }
+  .site-footer__grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .site-footer__logo { width: 15.75rem; max-width: 100%; height: auto; margin-bottom: var(--space-4); }
+  .site-footer__heading { font-size: 1.25rem; letter-spacing: 0.08em; margin-bottom: var(--space-3); color: var(--color-text-muted); }
+  .site-footer address { font-style: normal; }
+  .site-footer__list, .site-footer__social { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+  .site-footer__social { display: flex; flex-wrap: wrap; gap: var(--space-4); text-transform: capitalize; }
+  .site-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgb(255 255 255 / 20%); font-size: var(--text-sm); }
+</style>

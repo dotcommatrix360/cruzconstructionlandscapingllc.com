@@ -1,0 +1,41 @@
+---
+// Lead form. The destination comes from site.config.json → integrations.form — never invented.
+//   ghl        GoHighLevel iframe embed (lazy, reserved height → no layout shift)
+//   formspree / custom   native accessible form POSTing to an https endpoint, with honeypot
+//   none       visible TODO (validate.mjs blocks deployment until a real destination is set)
+// Always submit one TEST lead on staging and confirm it arrives before production approval.
+import { config, business } from '../lib/site';
+const form = config.integrations.form || { provider: 'none' };
+const height = form.height || 720;
+---
+<div class="contact-form">
+  {form.provider === 'ghl' && form.embedUrl && (
+    <>
+      <iframe src={form.embedUrl} title={`Contact ${business.name}`} loading="lazy" style={`width:100%;border:0;height:${height}px`}></iframe>
+      <script is:inline src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+    </>
+  )}
+  {(form.provider === 'formspree' || form.provider === 'custom') && form.action && (
+    <form method="post" action={form.action} class="form">
+      <div class="field"><label for="cf-name">Name <span aria-hidden="true">*</span></label><input id="cf-name" name="name" autocomplete="name" required /></div>
+      <div class="field"><label for="cf-phone">Phone <span aria-hidden="true">*</span></label><input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required /></div>
+      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" /></div>
+      <div class="field"><label for="cf-message">How can we help?</label><textarea id="cf-message" name="message" rows="5"></textarea></div>
+      <div class="field field--hp" aria-hidden="true"><label for="cf-company">Leave this empty</label><input id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off" /></div>
+      <p class="form__note"><span aria-hidden="true">*</span> Required</p>
+      <button class="btn btn--primary" type="submit">Send message</button>
+    </form>
+  )}
+  {(form.provider === 'none' || (!form.embedUrl && !form.action)) && (
+    <p class="todo">TODO: connect the contact form (site.config.json → integrations.form). Until then, contact us{business.phone && <> at <a href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a></>}.</p>
+  )}
+</div>
+<style>
+  .form { display: grid; gap: var(--space-4); max-width: 36rem; }
+  .field { display: grid; gap: var(--space-1); }
+  .field label { font-weight: 600; }
+  .field input, .field textarea { padding: var(--space-3); border: 1px solid var(--color-text-muted); border-radius: var(--radius); background: var(--color-bg); color: var(--color-text); }
+  .field--hp { position: absolute; left: -9999px; }
+  .form__note { font-size: var(--text-sm); color: var(--color-text-muted); margin: 0; }
+  .todo { padding: var(--space-4); border: 2px dashed var(--color-accent); border-radius: var(--radius); }
+</style>

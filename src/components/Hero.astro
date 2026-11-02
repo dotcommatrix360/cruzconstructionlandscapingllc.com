@@ -1,0 +1,40 @@
+---
+// Page hero: the single H1 + lead + actions + optional image. The image is the LCP element, so it is
+// rendered with priority (eager + fetchpriority=high). One hero per page.
+import type { ImageMetadata } from 'astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+interface Props {
+  title: string;
+  lead?: string;
+  eyebrow?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  primary?: { label: string; url: string };
+  secondary?: { label: string; url: string };
+}
+const { title, lead, eyebrow, image, imageAlt = '', primary, secondary } = Astro.props;
+---
+<section class:list={['hero', { 'hero--image': image }]}>
+  <div class="container hero__grid">
+    <div class="hero__text">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      {(primary || secondary) && (
+        <div class="hero__actions">
+          {primary && <a class="btn btn--primary" href={primary.url}>{primary.label}</a>}
+          {secondary && <a class="btn btn--secondary" href={secondary.url}>{secondary.label}</a>}
+        </div>
+      )}
+      <slot />
+    </div>
+    {image && <ResponsiveImage src={image} alt={imageAlt} priority sizes="(min-width: 60rem) 50vw, 100vw" class="hero__img" />}
+  </div>
+</section>
+<style>
+  .hero { padding-block: clamp(2.5rem, 2rem + 4vw, 5.5rem); background: var(--color-surface); }
+  .hero__grid { display: grid; gap: var(--space-7); align-items: center; }
+  @media (min-width: 60rem) { .hero--image .hero__grid { grid-template-columns: 1.1fr 1fr; } }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+  .hero :global(.hero__img img) { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+</style>

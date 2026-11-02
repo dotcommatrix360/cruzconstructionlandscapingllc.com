@@ -1,0 +1,56 @@
+# .htaccess — Apache / LiteSpeed (Hostinger, SiteGround, cPanel).
+# Review the HOST rule before go-live. Do not change Hostinger panel settings from here.
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Canonical host — uncomment ONE after confirming the client's preferred host.
+  # RewriteCond %{HTTP_HOST} ^example\.com$ [NC]
+  # RewriteRule ^ https://www.example.com%{REQUEST_URI} [L,R=301]
+
+  # Block private/source files from the web (return 404)
+  RewriteRule ^\.well-known/ - [L]
+  RewriteRule (^|/)\. - [R=404,L]
+  RewriteRule (^|/)_ - [R=404,L]
+  RewriteRule ^(site\.config\.json|package(-lock)?\.json|CLAUDE\.md|README\.md|node_modules/) - [R=404,L]
+</IfModule>
+
+# ---- Redirects (one hop, closest equivalent page) ----
+# Redirect 301 /old-page.html /new-page/
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # Enable only after HTTPS works on every hostname:
+  # Header always set Strict-Transport-Security "max-age=31536000"
+  # Start CSP in report-only mode tailored to this site's third parties:
+  # Header always set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https:"
+
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|woff2|webp|avif|jpg|jpeg|png|svg|gif|ico)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml text/plain
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+</IfModule>

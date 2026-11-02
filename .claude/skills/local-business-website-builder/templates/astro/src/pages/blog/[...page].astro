@@ -1,0 +1,46 @@
+---
+// Blog archive with crawlable pagination: /blog/, /blog/2/, /blog/3/ … (self-canonical, plain links).
+import type { GetStaticPaths, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { config, formatDate } from '../../lib/site';
+import { posts, entryUrl } from '../../lib/content';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return paginate((await posts()).filter((p) => !p.data.noindex), { pageSize: config.blog.perPage });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: Page<CollectionEntry<'blog'>> };
+const title = page.currentPage === 1 ? config.blog.title : `${config.blog.title} — Page ${page.currentPage}`;
+---
+<BaseLayout title={title} description={page.currentPage === 1 ? config.blog.description : `${config.blog.description} Page ${page.currentPage} of ${page.lastPage}.`}>
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: config.blog.title, url: '/blog/' }]} />
+      <h1>{title}</h1>
+      <ul class="grid posts" role="list">
+        {page.data.map((p) => (
+          <li class="card"><div class="card__body">
+            <h2><a href={entryUrl(p)}>{p.data.title}</a></h2>
+            <p class="post-date"><time datetime={p.data.date.toISOString().slice(0, 10)}>{formatDate(p.data.date)}</time></p>
+            <p>{p.data.description}</p>
+          </div></li>
+        ))}
+      </ul>
+      {page.lastPage > 1 && (
+        <nav class="pagination" aria-label="Blog pages">
+          {page.url.prev && <a href={page.url.prev.endsWith('/') ? page.url.prev : page.url.prev + '/'} rel="prev">← Newer posts</a>}
+          <span>Page {page.currentPage} of {page.lastPage}</span>
+          {page.url.next && <a href={page.url.next.endsWith('/') ? page.url.next : page.url.next + '/'} rel="next">Older posts →</a>}
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .posts { list-style: none; padding: 0; margin: 0; }
+  .posts h2 { font-size: var(--text-lg); }
+  .post-date { color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; }
+  .pagination { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-7); }
+</style>

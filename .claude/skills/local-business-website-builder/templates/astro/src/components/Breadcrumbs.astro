@@ -1,0 +1,20 @@
+---
+// Visible breadcrumbs + matching BreadcrumbList JSON-LD (rendered together so they never disagree).
+import JsonLd from './JsonLd.astro';
+import { breadcrumbs } from '../lib/schema';
+interface Props { items: { name: string; url: string }[] }
+const items = [{ name: 'Home', url: '/' }, ...Astro.props.items];
+---
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    {items.map((it, i) => (
+      <li>{i < items.length - 1 ? <a href={it.url}>{it.name}</a> : <span aria-current="page">{it.name}</span>}</li>
+    ))}
+  </ol>
+</nav>
+<JsonLd data={breadcrumbs(items)} />
+<style>
+  .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin: 0 0 var(--space-5); font-size: var(--text-sm); }
+  .breadcrumbs li:not(:last-child)::after { content: "/"; margin-left: var(--space-2); opacity: 0.6; }
+  .breadcrumbs a, .breadcrumbs span { color: inherit; }
+</style>

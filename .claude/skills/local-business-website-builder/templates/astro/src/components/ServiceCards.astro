@@ -1,0 +1,23 @@
+---
+// Grid of service cards from the `services` collection. Links use the entry's real URL (permalink-aware).
+import { services as getServices, entryUrl } from '../lib/content';
+import ResponsiveImage from './ResponsiveImage.astro';
+// priorityFirst: set on pages where the grid is above the fold (e.g. /services/), so the first image isn't lazy.
+interface Props { exclude?: string; headingLevel?: 2 | 3; limit?: number; priorityFirst?: boolean }
+const { exclude, headingLevel = 3, limit, priorityFirst = false } = Astro.props;
+const list = (await getServices()).filter((s) => s.id !== exclude).slice(0, limit);
+const H = `h${headingLevel}` as 'h2' | 'h3';
+---
+<ul class="grid service-cards" role="list">
+  {list.map((s, i) => (
+    <li class="card">
+      {s.data.image && <ResponsiveImage src={s.data.image} alt={s.data.imageAlt ?? ''} sizes="(min-width: 72rem) 23rem, (min-width: 40rem) 50vw, 100vw" widths={[480, 960]} priority={priorityFirst && i === 0} />}
+      <div class="card__body">
+        <H>{s.data.title}</H>
+        <p>{s.data.summary}</p>
+        <p><a href={entryUrl(s)}>{s.data.title} details<span class="visually-hidden"> — {s.data.title}</span></a></p>
+      </div>
+    </li>
+  ))}
+</ul>
+<style>.service-cards { list-style: none; padding: 0; margin: 0; }</style>

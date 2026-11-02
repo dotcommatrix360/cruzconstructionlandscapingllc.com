@@ -1,0 +1,22 @@
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="/">
+      <img src="{{site.business.logo}}" alt="{{site.business.name}} home" width="160" height="40">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="primary-nav" class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        {{#each site.nav}}<li><a href="{{url}}">{{label}}</a></li>
+        {{/each}}
+      </ul>
+      <div class="site-nav__actions">
+        {{#if site.business.phone}}<a class="site-phone" href="tel:{{site.business.phone}}">{{site.business.phoneDisplay}}</a>{{/if}}
+        <a class="btn btn--primary" href="{{site.cta.url}}">{{site.cta.label}}</a>
+      </div>
+    </nav>
+  </div>
+</header>

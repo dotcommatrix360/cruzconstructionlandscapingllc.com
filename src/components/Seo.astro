@@ -1,0 +1,41 @@
+---
+// Every page's <title>, description, canonical, robots and Open Graph tags come from here, so they can't be
+// forgotten or diverge. Canonical = this page's own URL on the production domain (never staging).
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+import { site, absoluteUrl } from '../lib/site';
+
+export interface Props {
+  title: string;              // page topic; the brand suffix is added unless `fullTitle` is set
+  description: string;        // 70–160 characters, unique per page
+  fullTitle?: boolean;
+  noindex?: boolean;          // excluded from sitemap.xml automatically
+  image?: ImageMetadata | string; // page photo (cropped to 1200×630 automatically) or a public path; falls back to site.defaultOgImage
+  type?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
+  canonical?: string;         // only to point duplicates at the primary URL
+}
+const { title, description, fullTitle = false, noindex = false, image, type = 'website', published, modified } = Astro.props;
+// Brand suffix only while the whole title stays ≤ 60 characters (search results truncate longer titles).
+const withSuffix = site.titleSuffix ? `${title} | ${site.titleSuffix}` : title;
+const pageTitle = fullTitle || withSuffix.length > 60 ? title : withSuffix;
+const canonical = absoluteUrl(Astro.props.canonical || Astro.url.pathname);
+const ogImage = typeof image === 'object'
+  ? (await getImage({ src: image, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src
+  : image || site.defaultOgImage;
+---
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={site.locale} />
+{ogImage && <meta property="og:image" content={absoluteUrl(ogImage)} />}
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+{published && <meta property="article:published_time" content={published.toISOString()} />}
+{(modified || published) && type === 'article' && <meta property="article:modified_time" content={(modified || published)!.toISOString()} />}

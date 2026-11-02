@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { locations, entryUrl } from '../../lib/content';
+const areas = await locations();
+---
+<BaseLayout title="Service Areas" description="TODO: 70–160 character summary of the towns and regions the business serves.">
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }]} />
+      <h1>TODO: Service areas heading</h1>
+      <p class="lead measure">TODO: describe the service area honestly (travel radius, regions).</p>
+      <ul class="grid areas" role="list">
+        {areas.map((a) => <li class="card"><div class="card__body"><h2><a href={entryUrl(a)}>{a.data.name}</a></h2><p>{a.data.description}</p></div></li>)}
+      </ul>
+    </div>
+  </section>
+  <CtaBand title="TODO: call to action" />
+</BaseLayout>
+<style>.areas { list-style: none; padding: 0; } .areas h2 { font-size: var(--text-lg); }</style>

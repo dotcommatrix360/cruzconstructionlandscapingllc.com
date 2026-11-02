@@ -1,0 +1,35 @@
+---
+// Every page uses this layout: document basics, SEO tags, tracking, header, <main>, footer.
+// Pages pass SEO props; structured data goes in the "head" slot via <JsonLd slot="head" … />.
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import Tracking from '../components/Tracking.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../lib/site';
+
+type Props = import('../components/Seo.astro').Props;
+const seo = Astro.props;
+---
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <Seo {...seo} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <Tracking position="head" />
+    <slot name="head" />
+  </head>
+  <body>
+    <Tracking position="body" />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

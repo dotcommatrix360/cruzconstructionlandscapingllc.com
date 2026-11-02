@@ -1,0 +1,37 @@
+---
+// One way to render content images: AVIF + WebP + fallback, real width/height (no layout shift),
+// lazy by default. Use `priority` ONLY for the single above-the-fold hero/LCP image on a page.
+// Images must be imported from src/assets/ so Astro can optimize them. Fallback for old browsers is JPEG
+// (PNG only for PNG/SVG sources — a PNG fallback of a photo can be 10× larger). alt is required:
+// describe what is shown (or alt="" if purely decorative). Never present an AI-generated or stock
+// image as the client's own project.
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes?: string;
+  widths?: number[];
+  priority?: boolean;
+  class?: string;
+}
+const { src, alt, sizes = '(min-width: 72rem) 72rem, 100vw', priority = false } = Astro.props;
+// Never upscale; always include the photo's own width when it is inside the requested range
+// (a 953px photo gets 480w + 953w, not just 480w).
+const wanted = Astro.props.widths || [480, 960, 1440, 1920];
+const widths = wanted.filter((w) => w < src.width);
+if (src.width <= Math.max(...wanted) || !widths.length) widths.push(src.width);
+---
+<Picture
+  src={src}
+  alt={alt}
+  widths={widths}
+  sizes={sizes}
+  formats={['avif', 'webp']}
+  fallbackFormat={src.format === 'png' || src.format === 'svg' ? 'png' : 'jpg'}
+  loading={priority ? 'eager' : 'lazy'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  decoding="async"
+  class={Astro.props.class}
+/>

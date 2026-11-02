@@ -1,0 +1,15 @@
+---
+// Real 404 page (dist/404.html). Hostinger: ErrorDocument in .htaccess. Cloudflare Pages: served with HTTP 404
+// automatically — without it Pages would return the homepage with 200 for every unknown URL (soft 404s).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { config } from '../lib/site';
+---
+<BaseLayout title="Page not found" description="The page you were looking for could not be found. Use the links below to find what you need." noindex>
+  <section class="section">
+    <div class="container measure">
+      <h1>Page not found</h1>
+      <p class="lead">The page may have moved. Try one of these instead:</p>
+      <ul>{config.nav.map((item) => <li><a href={item.url}>{item.label}</a></li>)}</ul>
+    </div>
+  </section>
+</BaseLayout>

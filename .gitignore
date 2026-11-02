@@ -1,0 +1,15 @@
+# Build output is generated on every build (Cloudflare staging, GitHub Actions production). Never commit it.
+dist/
+.astro/
+node_modules/
+
+# Secrets live in GitHub Actions secrets / the host's dashboard, never in the repo.
+.env
+.env.*
+!.env.example
+
+# Local QA output
+.qa/
+.lighthouse/
+*.log
+.DS_Store

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | TODO: Business Name</title>
+  <meta name="description" content="TODO: Contact description with phone, area served and how quickly you respond.">
+  <link rel="canonical" href="https://www.example.com/contact/">
+  <!-- @include meta:robots --><!-- @endinclude -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact TODO: Business Name">
+  <meta property="og:description" content="TODO: Short social description.">
+  <meta property="og:url" content="https://www.example.com/contact/">
+  <meta property="og:image" content="https://www.example.com/assets/images/og-default.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js" defer></script>
+  <!-- @include head-tracking --><!-- @endinclude -->
+</head>
+<body>
+  <!-- @include body-tracking --><!-- @endinclude -->
+  <!-- @include header --><!-- @endinclude -->
+  <main id="main" class="section">
+    <div class="container split">
+      <div class="prose">
+        <h1>Contact us</h1>
+        <p>TODO: Response time, service area, what to include in a request.</p>
+      </div>
+      <!-- Replace with the client's real form provider embed (GHL, etc.). Never invent an endpoint. -->
+      <form class="form" action="TODO:form-endpoint" method="post">
+        <div class="field">
+          <label for="name">Name <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone <span aria-hidden="true">*</span></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">How can we help?</label>
+          <textarea id="message" name="message" rows="5"></textarea>
+        </div>
+        <div class="field field--hp" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="form__note">* Required</p>
+        <button class="btn btn--primary" type="submit">Send request</button>
+      </form>
+    </div>
+  </main>
+  <!-- @include footer --><!-- @endinclude -->
+</body>
+</html>

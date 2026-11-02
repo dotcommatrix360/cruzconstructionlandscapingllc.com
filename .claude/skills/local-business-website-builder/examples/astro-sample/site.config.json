@@ -1,0 +1,137 @@
+{
+  "$comment": "FICTIONAL sample for the skill's selftest — not a real business. Never copy into a client site.",
+  "site": {
+    "url": "https://www.summitpeakroofing-example.com",
+    "name": "Summit Peak Roofing",
+    "language": "en",
+    "locale": "en_US",
+    "titleSuffix": "Summit Peak Roofing",
+    "defaultOgImage": "/og-default.jpg"
+  },
+  "business": {
+    "type": "RoofingContractor",
+    "name": "Summit Peak Roofing",
+    "legalName": "Summit Peak Roofing LLC",
+    "description": "Residential roof repair and replacement in Boise and the Treasure Valley.",
+    "phone": "+12085550142",
+    "phoneDisplay": "(208) 555-0142",
+    "email": "hello@summitpeakroofing-example.com",
+    "logo": "/logo.svg",
+    "priceRange": "$$",
+    "address": {
+      "street": "1200 W Example St",
+      "city": "Boise",
+      "region": "ID",
+      "postalCode": "83702",
+      "country": "US"
+    },
+    "hideAddress": false,
+    "geo": {
+      "lat": "",
+      "lng": ""
+    },
+    "areaServed": [
+      "Boise",
+      "Meridian"
+    ],
+    "hours": [
+      {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      {
+        "days": [
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "13:00"
+      }
+    ],
+    "sameAs": [],
+    "licenses": [
+      "Idaho Contractor Reg. #RCE-00000 (example)"
+    ],
+    "googleMapsUrl": ""
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Services",
+      "url": "/services/"
+    },
+    {
+      "label": "Service Areas",
+      "url": "/service-areas/"
+    },
+    {
+      "label": "Blog",
+      "url": "/blog/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "cta": {
+    "label": "Get a Free Inspection",
+    "url": "/contact/"
+  },
+  "blog": {
+    "title": "Roofing Tips",
+    "description": "Practical advice on roof repair, hail damage and shingle choices for Boise-area homeowners from Summit Peak Roofing.",
+    "perPage": 2
+  },
+  "integrations": {
+    "gtmId": "",
+    "ga4Id": "",
+    "clarityId": "",
+    "googleSiteVerification": "",
+    "form": {
+      "provider": "formspree",
+      "embedUrl": "",
+      "action": "https://formspree.io/f/example-sample",
+      "height": 720
+    }
+  },
+  "redirects": [
+    {
+      "from": "/roof-repair-boise/",
+      "to": "/services/roof-repair/",
+      "status": 301
+    },
+    {
+      "from": "/blog/choosing-shingle-colors/",
+      "to": "/choosing-shingle-colors/",
+      "status": 301
+    },
+    {
+      "from": "/category/news/*",
+      "to": "/blog/",
+      "status": 301
+    }
+  ],
+  "deploy": {
+    "production": {
+      "host": "hostinger",
+      "domain": "www.summitpeakroofing-example.com"
+    },
+    "staging": {
+      "provider": "cloudflare-pages",
+      "project": "summit-peak-roofing",
+      "url": "https://summit-peak-roofing.pages.dev",
+      "noindex": true
+    },
+    "private": [],
+    "public": []
+  }
+}

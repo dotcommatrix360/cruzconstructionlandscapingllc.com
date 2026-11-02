@@ -1,0 +1,64 @@
+{
+  "site": {
+    "url": "https://www.summitpeakroofing-example.com",
+    "name": "Summit Peak Roofing",
+    "language": "en",
+    "locale": "en_US",
+    "noindex": false,
+    "defaultOgImage": "/assets/images/og-default.jpg"
+  },
+  "business": {
+    "type": "RoofingContractor",
+    "name": "Summit Peak Roofing",
+    "legalName": "Summit Peak Roofing LLC",
+    "description": "Residential roof repair and replacement in Boise and the Treasure Valley.",
+    "phone": "+1-208-555-0142",
+    "phoneDisplay": "(208) 555-0142",
+    "email": "hello@summitpeakroofing-example.com",
+    "logo": "/assets/images/logo.svg",
+    "image": "",
+    "priceRange": "$$",
+    "address": { "street": "1200 W Example St", "city": "Boise", "region": "ID", "postalCode": "83702", "country": "US" },
+    "hideAddress": false,
+    "geo": { "lat": "", "lng": "" },
+    "areaServed": ["Boise", "Meridian", "Nampa"],
+    "hours": [
+      { "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "17:00" },
+      { "days": ["Saturday"], "opens": "09:00", "closes": "13:00" }
+    ],
+    "sameAs": [],
+    "licenses": ["Idaho Contractor Reg. #RCE-00000 (example)"]
+  },
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Services", "url": "/services/" },
+    { "label": "Blog", "url": "/blog/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "cta": { "label": "Get a Free Inspection", "url": "/contact/" },
+  "collections": [
+    {
+      "name": "blog",
+      "label": "Blog",
+      "source": "_content/blog",
+      "output": "blog",
+      "itemTemplate": "_templates/article.html",
+      "archiveTemplate": "_templates/archive.html",
+      "perPage": 2,
+      "categories": true,
+      "minCategoryItems": 2,
+      "schemaType": "BlogPosting",
+      "archiveTitle": "Roofing Tips & News",
+      "archiveDescription": "Practical advice on roof repair, replacement and maintenance for Treasure Valley homeowners."
+    }
+  ],
+  "integrations": { "gtmId": "", "ga4Id": "", "clarityId": "", "googleSiteVerification": "", "ghlFormEmbedScript": false },
+  "deploy": {
+    "$comment": "Optional. Agency default: Cloudflare Pages staging (auto from main) → owner approves → owner clicks Redeploy in Hostinger. Remove \"staging\" (or blank its provider) for other hosts. private/public: extra names to hide, or names that look private but must be served. See references/deployment.md",
+    "production": { "host": "hostinger" },
+    "staging": { "provider": "cloudflare-pages", "url": "https://summit-peak-roofing.pages.dev", "noindex": true },
+    "private": [],
+    "public": []
+  },
+  "build": { "ignore": ["_raw-images"], "assetVersioning": true, "sitemap": true }
+}

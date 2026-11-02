@@ -1,0 +1,28 @@
+{
+  "name": "cruzconstructionlandscapingllc-com",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "node .claude/skills/local-business-website-builder/scripts/serve.mjs",
+    "check:types": "astro check",
+    "validate": "node .claude/skills/local-business-website-builder/scripts/validate.mjs",
+    "check:protection": "node .claude/skills/local-business-website-builder/scripts/check-protection.mjs",
+    "check:browser": "node .claude/skills/local-business-website-builder/scripts/browser-check.mjs",
+    "qa": "npm run build && npm run validate && npm run check:protection"
+  },
+  "dependencies": {
+    "@fontsource/barlow-condensed": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "astro": "7.4.0",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,34 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__name">{{site.business.name}}</p>
+      {{#unless site.business.hideAddress}}{{#if site.business.address.street}}
+      <address>
+        {{site.business.address.street}}<br>
+        {{site.business.address.city}}, {{site.business.address.region}} {{site.business.address.postalCode}}
+      </address>
+      {{/if}}{{/unless}}
+      {{#if site.business.phone}}<p><a href="tel:{{site.business.phone}}">{{site.business.phoneDisplay}}</a></p>{{/if}}
+      {{#if site.business.email}}<p><a href="mailto:{{site.business.email}}">{{site.business.email}}</a></p>{{/if}}
+      {{#each site.business.licenses}}<p class="site-footer__license">{{this}}</p>{{/each}}
+    </div>
+    <nav aria-label="Footer">
+      <ul class="site-footer__links">
+        {{#each site.nav}}<li><a href="{{url}}">{{label}}</a></li>
+        {{/each}}
+      </ul>
+    </nav>
+    {{#if site.business.hours}}
+    <div>
+      <p class="site-footer__heading">Hours</p>
+      <ul class="site-footer__hours">
+        {{#each site.business.hours}}{{#if opens}}<li>{{daysLabel}}: {{opens}}–{{closes}}</li>{{/if}}
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}
+  </div>
+  <div class="container site-footer__legal">
+    <p>&copy; {{year}} {{site.business.name}}. All rights reserved.</p>
+  </div>
+</footer>

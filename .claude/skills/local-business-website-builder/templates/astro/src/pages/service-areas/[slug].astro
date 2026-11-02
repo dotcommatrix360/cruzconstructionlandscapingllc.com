@@ -1,0 +1,9 @@
+---
+// Static route: one page per location entry (static generation, no server).
+import LocationLayout from '../../layouts/LocationLayout.astro';
+import { locations } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await locations()).filter((e) => !e.data.permalink).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+---
+<LocationLayout entry={Astro.props.entry} />

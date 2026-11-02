@@ -1,0 +1,23 @@
+---
+// Keeps old URLs exactly during migrations: any blog post, service or location with `permalink: /old-path/`
+// in its front matter is built at that path (e.g. WordPress root-level posts). Nothing else is generated here.
+import PostLayout from '../layouts/PostLayout.astro';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import LocationLayout from '../layouts/LocationLayout.astro';
+import { posts, services, locations } from '../lib/content';
+
+export async function getStaticPaths() {
+  const entries = [...(await posts()), ...(await services()), ...(await locations())].filter((e) => e.data.permalink);
+  const seen = new Map<string, string>();
+  return entries.map((entry) => {
+    const p = entry.data.permalink!.replace(/^\/|\/$/g, '');
+    if (seen.has(p)) throw new Error(`Duplicate permalink /${p}/ (${seen.get(p)} and ${entry.collection}/${entry.id})`);
+    seen.set(p, `${entry.collection}/${entry.id}`);
+    return { params: { permalink: p }, props: { entry } };
+  });
+}
+const { entry } = Astro.props;
+---
+{entry.collection === 'blog' && <PostLayout entry={entry} />}
+{entry.collection === 'services' && <ServiceLayout entry={entry} />}
+{entry.collection === 'locations' && <LocationLayout entry={entry} />}

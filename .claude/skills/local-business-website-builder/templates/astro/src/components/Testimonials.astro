@@ -1,0 +1,29 @@
+---
+// Real testimonials only (testimonials collection requires source + permission). Renders nothing when
+// there are none — never fill this with invented quotes. No review/aggregateRating schema on purpose.
+import { getCollection } from 'astro:content';
+interface Props { title?: string; limit?: number }
+const { title = 'What our customers say', limit = 3 } = Astro.props;
+const items = (await getCollection('testimonials')).slice(0, limit);
+---
+{items.length > 0 && (
+  <section class="section section--surface">
+    <div class="container">
+      <h2>{title}</h2>
+      <ul class="grid testimonials" role="list">
+        {items.map((t) => (
+          <li class="card"><figure class="card__body">
+            <blockquote><p>“{t.data.quote}”</p></blockquote>
+            <figcaption>— {t.data.author}{t.data.location && `, ${t.data.location}`}{t.data.sourceUrl ? <> · <a href={t.data.sourceUrl} rel="noopener" target="_blank">{t.data.source} review</a></> : ` · ${t.data.source}`}</figcaption>
+          </figure></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+<style>
+  .testimonials { list-style: none; padding: 0; margin: 0; }
+  blockquote { margin: 0; font-size: var(--text-lg); }
+  figure { margin: 0; }
+  figcaption { color: var(--color-text-muted); font-size: var(--text-sm); }
+</style>

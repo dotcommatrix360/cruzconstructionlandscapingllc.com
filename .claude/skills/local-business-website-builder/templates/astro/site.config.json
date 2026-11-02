@@ -1,0 +1,72 @@
+{
+  "$comment": "Single source of truth for this client's facts and hosting. Fill ONLY with real, client-confirmed values; empty strings are omitted from schema and pages. TODO: values fail validate.mjs on purpose. See .claude/skills/local-business-website-builder/references/architecture.md",
+  "site": {
+    "url": "https://www.example.com",
+    "name": "TODO: Business Name",
+    "language": "en",
+    "locale": "en_US",
+    "titleSuffix": "TODO: Business Name",
+    "defaultOgImage": ""
+  },
+  "business": {
+    "type": "LocalBusiness",
+    "name": "TODO: Business Name",
+    "legalName": "",
+    "description": "",
+    "phone": "",
+    "phoneDisplay": "",
+    "email": "",
+    "logo": "/logo.svg",
+    "priceRange": "",
+    "address": {
+      "street": "",
+      "city": "",
+      "region": "",
+      "postalCode": "",
+      "country": "US"
+    },
+    "hideAddress": false,
+    "geo": { "lat": "", "lng": "" },
+    "areaServed": [],
+    "hours": [],
+    "sameAs": [],
+    "licenses": [],
+    "googleMapsUrl": ""
+  },
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Services", "url": "/services/" },
+    { "label": "Service Areas", "url": "/service-areas/" },
+    { "label": "Blog", "url": "/blog/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "cta": { "label": "TODO: primary call to action", "url": "/contact/" },
+  "blog": {
+    "title": "Blog",
+    "description": "TODO: one-sentence description of the blog (70–160 characters).",
+    "perPage": 9
+  },
+  "integrations": {
+    "gtmId": "",
+    "ga4Id": "",
+    "clarityId": "",
+    "googleSiteVerification": "",
+    "form": {
+      "$comment": "provider: ghl | formspree | custom | none. ghl: embedUrl = the GoHighLevel form iframe URL. formspree/custom: action = the https POST endpoint. Never invent an endpoint.",
+      "provider": "none",
+      "embedUrl": "",
+      "action": "",
+      "height": 720
+    }
+  },
+  "redirects": [
+    { "$comment": "One source of truth. The build writes these to dist/_redirects (Cloudflare) and dist/.htaccess (Hostinger). WP Engine: add them in the User Portal (deploy-settings.mjs --host wpengine prints them).", "from": "", "to": "", "status": 301 }
+  ],
+  "deploy": {
+    "$comment": "staging: Cloudflare Pages builds main automatically (npm run build → dist). production: manual GitHub Actions workflow 'Deploy production' — the owner runs it after approving staging. See references/deployment.md",
+    "production": { "host": "hostinger", "domain": "" },
+    "staging": { "provider": "cloudflare-pages", "project": "", "url": "", "noindex": true },
+    "private": [],
+    "public": []
+  }
+}
