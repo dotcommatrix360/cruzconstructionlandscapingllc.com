@@ -2,10 +2,10 @@
 // Conversion band: one primary action (from site.config.json → cta) + tap-to-call.
 import { config, business } from '../lib/site';
 // kw = keyword heading (small, SEO); title = big conversion line. Without kw, title is the heading.
-interface Props { title: string; text?: string; kw?: string }
-const { title, text, kw } = Astro.props;
+interface Props { title: string; text?: string; kw?: string; strip?: boolean }
+const { title, text, kw, strip = false } = Astro.props;
 ---
-<section class="section section--inverse cta-band">
+<section class:list={["section", strip ? "strip" : "section--inverse", "cta-band"]}>
   <div class="container cta-band__inner">
     <div>
       {kw ? <><h2 class="sec-kw">{kw}</h2><p class="sec-big">{title}</p></> : <h2>{title}</h2>}

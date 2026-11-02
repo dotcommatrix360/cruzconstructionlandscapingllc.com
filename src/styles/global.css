@@ -72,6 +72,15 @@ input, select, textarea, button { font: inherit; }
   repeating-linear-gradient(90deg, var(--light-accent-text) 0 2px, transparent 2px 60px) bottom left / 100% 14px no-repeat,
   repeating-linear-gradient(90deg, rgb(21 21 19 / 30%) 0 1px, transparent 1px 12px) bottom left / 100% 7px no-repeat; }
 
+/* Amber strip: one per page at most (a CTA band). */
+.strip { background: var(--color-accent); color: var(--color-on-accent); padding-block: clamp(2.5rem, 2rem + 3vw, 4rem); --color-accent-text: var(--color-on-accent); --color-accent-soft: var(--color-on-accent); --color-text-muted: #2b2a26; }
+.strip .sec-kw::before { background: var(--color-on-accent); }
+.strip .lead { color: #2b2a26; }
+.strip .btn--primary { background: var(--color-bg); color: var(--color-text); }
+.strip .btn--primary:hover { background: #000; color: var(--color-accent); }
+.strip .btn--secondary { color: var(--color-on-accent); border-color: var(--color-on-accent); }
+.strip .btn--secondary:hover { background: rgb(0 0 0 / 8%); color: var(--color-on-accent); }
+
 /* Section heading pattern (agency rule): small keyword heading (SEO, location) above a big conversion line.
    <h2 class="sec-kw">Remodeling services in Holland, MI</h2><p class="sec-big">Everything your project needs</p> */
 .sec-kw::before { content: ""; display: block; width: 3rem; height: 4px; background: var(--color-accent); margin-bottom: var(--space-3); }

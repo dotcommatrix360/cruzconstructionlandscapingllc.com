@@ -36,12 +36,12 @@ const steps = [
 <BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
   <JsonLd slot="head" data={service({ name: entry.data.title, description: entry.data.description, url })} />
   {faqSchema && <JsonLd slot="head" data={faqSchema} />}
-  <FormHero title={`${entry.data.title} in Holland, MI`} headline={entry.data.headline} lead={`${entry.data.summary} Local and owner-operated in Holland, MI.`} image={entry.data.image} formTitle={`Free ${entry.data.title.toLowerCase()} estimate`}>
+  <FormHero title={`${entry.data.title} in Holland, MI`} headline={entry.data.headline} lead={entry.data.summary} image={entry.data.image} formTitle={`Free ${entry.data.title.toLowerCase()} estimate`}>
     <Breadcrumbs slot="before" items={[{ name: entry.data.title, url }]} />
   </FormHero>
 
 
-  <section class="section section--light">
+  <section class="section">
     <div class="container svc-page">
       <div class="prose"><Content /></div>
       <aside class="svc-aside" aria-label="Contact">
@@ -57,19 +57,19 @@ const steps = [
   </section>
 
   {cat && (
-    <section class="section" aria-labelledby="pp-h">
+    <section class="section section--surface" aria-labelledby="pp-h">
       <div class="container">
-        <h2 id="pp-h" class="sec-kw">{name} projects in Holland, MI</h2>
+        <h2 id="pp-h" class="sec-kw">{name} projects</h2>
         <p class="sec-big">See the kind of work we build</p>
         <ProjectPhotos only={cat} />
       </div>
     </section>
   )}
 
-  <section class="section section--light" aria-labelledby="why-h">
+  <section class="section" aria-labelledby="why-h">
     <div class="container why">
       <div>
-        <h2 id="why-h" class="sec-kw">Why Holland homeowners choose Cruz Construction for {lower}</h2>
+        <h2 id="why-h" class="sec-kw">Why homeowners choose us</h2>
         <p class="sec-big">One local crew you can talk to</p>
         <p class="lead">You deal with the owner from the first call to the final walkthrough, not a sales rep and a chain of subcontractors.</p>
       </div>
@@ -84,7 +84,7 @@ const steps = [
 
   <section class="section section--surface" aria-labelledby="how-h">
     <div class="container">
-      <h2 id="how-h" class="sec-kw">How {lower} works with Cruz Construction in Holland</h2>
+      <h2 id="how-h" class="sec-kw">How it works</h2>
       <p class="sec-big">From free estimate to finished project</p>
       <ol class="steps" role="list">
         {steps.map((st, i) => <li><span class="steps__n" aria-hidden="true">{i + 1}</span><div><h3>{st.t}</h3><p>{st.d}</p></div></li>)}
@@ -94,9 +94,9 @@ const steps = [
   </section>
 
   {faqs.length > 0 && (
-    <section class="section section--light" aria-labelledby="exp-h">
+    <section class="section" aria-labelledby="exp-h">
       <div class="container">
-        <h2 id="exp-h" class="sec-kw">{name} in Holland, MI, explained</h2>
+        <h2 id="exp-h" class="sec-kw">{name}, explained</h2>
         <p class="sec-big">Honest answers before you start</p>
         <div class="explained">
           {faqs.map((f) => (
@@ -115,11 +115,11 @@ const steps = [
   <section class="section section--surface" aria-labelledby="area-h">
     <div class="container why">
       <div>
-        <h2 id="area-h" class="sec-kw">{name} in Holland, MI &amp; West Michigan</h2>
+        <h2 id="area-h" class="sec-kw">Service area</h2>
         <p class="sec-big">Proudly serving Holland and surrounding areas</p>
       </div>
       <div class="stack">
-        <p>Cruz Construction &amp; Landscaping is based in the Holland area and does {lower} across West Michigan, on both the Ottawa County and Allegan County sides of Holland. Every project gets the same licensed, owner-led crew.</p>
+        <p>We are based in the Holland area and work across West Michigan, on both the Ottawa County and Allegan County sides of town. Every project gets the same licensed, owner-led crew.</p>
         <ul class="area-list" role="list">
           {areas.map((a) => <li><a href={entryUrl(a)}>Remodeling in {a.data.name} &rarr;</a></li>)}
           <li><a href="/service-areas/">All service areas &rarr;</a></li>
@@ -129,9 +129,9 @@ const steps = [
     </div>
   </section>
 
-  <section class="section section--light">
+  <section class="section">
     <div class="container">
-      <h2 class="sec-kw">More home remodeling services in Holland &amp; West Michigan</h2>
+      <h2 class="sec-kw">More services</h2>
       <p class="sec-big">Planning more than one project?</p>
       <ul class="others" role="list">
         {others.map((s) => (
@@ -145,7 +145,7 @@ const steps = [
       </ul>
     </div>
   </section>
-  <CtaBand kw={`Free ${entry.data.title.toLowerCase()} estimate in Holland, MI`} title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
+  <CtaBand strip kw="Free estimate" title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
 </BaseLayout>
 <style>
   .svc-page { display: grid; gap: var(--space-7); }

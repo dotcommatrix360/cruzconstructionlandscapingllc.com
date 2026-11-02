@@ -9,7 +9,7 @@ order: 1
 image: ../../assets/images/kitchen-remodel-island.jpg
 imageAlt: "A remodeled kitchen with an island, pendant lights and tile backsplash"
 faqs:
-  - question: "How long does a kitchen remodel take in Holland?"
+  - question: "How long does a kitchen remodel take?"
     answer: "It depends on the scope: what is being replaced, whether walls or layout change, and when materials arrive."
     points:
       - "Cosmetic updates (backsplash, paint, trim, new flooring) sit at the short end"
@@ -26,7 +26,7 @@ faqs:
       - "Painting"
       - "Carpentry, trim work and door replacement"
     takeaway: "One crew covers the whole list, so the trades happen in the right order and nothing falls between contractors."
-  - question: "What does a kitchen remodel cost in Holland, MI?"
+  - question: "What does a kitchen remodel cost?"
     answer: "Kitchen costs vary with size, the cabinets and materials you choose, and how much of the room changes, so we do not quote a flat number online."
     points:
       - "A backsplash or flooring update costs far less than a full remodel"

@@ -14,7 +14,6 @@ import heroImg from '../assets/images/hero-carpentry-job-site.jpg';
 import kitchenImg from '../assets/images/kitchen-remodel-island.jpg';
 import bathImg from '../assets/images/bathroom-tile-shower.jpg';
 import carpentryImg from '../assets/images/carpentry-measuring-board.jpg';
-import drywallImg from '../assets/images/interior-paint-roller.jpg';
 import sawImg from '../assets/images/carpenter-circular-saw.jpg';
 
 const list = await services();
@@ -80,7 +79,7 @@ const faqs = [
     <div class="container">
       <div class="head-row">
         <div>
-          <h2 id="work-h" class="sec-kw">Remodeling projects in Holland, MI</h2>
+          <h2 id="work-h" class="sec-kw">Our projects</h2>
           <p class="sec-big">Dream homes, built one project at a time</p>
         </div>
         <a class="btn btn--outline" href="#estimate">Start your project</a>
@@ -92,11 +91,11 @@ const faqs = [
   <BeforeAfter />
 
   <!-- 3. Services (photo cards) -->
-  <section class="section section--light" id="services" aria-labelledby="svc-h">
+  <section class="section section--surface" id="services" aria-labelledby="svc-h">
     <div class="container">
       <div class="head-row">
         <div>
-          <h2 id="svc-h" class="sec-kw">Home remodeling services in Holland &amp; West Michigan</h2>
+          <h2 id="svc-h" class="sec-kw">Remodeling services in Holland, MI</h2>
           <p class="sec-big">Everything your project needs, from one crew</p>
           <p class="lead">Kitchens, bathrooms and basements, and every trade behind them, done by our own crew.</p>
         </div>
@@ -133,7 +132,7 @@ const faqs = [
         <div class="badge"><strong>Licensed</strong><span>Michigan Builders License</span></div>
       </div>
       <div class="stack">
-        <h2 id="about-h" class="sec-kw">Licensed, local remodeling contractor in Holland, MI</h2>
+        <h2 id="about-h" class="sec-kw">Why homeowners choose us</h2>
         <p class="sec-big">Learned on rental properties. Sharpened in industrial work.</p>
         <p>Growing up, I helped remodel and turn over rental properties. In my 20s I got into industrial work, where I gained great hands-on and troubleshooting skills. In 2025 I decided to pursue my Michigan Builder's license and start my own construction company.</p>
         <ul class="checks" role="list">
@@ -152,8 +151,7 @@ const faqs = [
   </section>
 
   <!-- CTA band with photo -->
-  <section class="photo-cta" aria-label="Call for a free estimate">
-    <div class="photo-cta__bg" aria-hidden="true"><ResponsiveImage src={drywallImg} alt="" sizes="100vw" widths={[640, 1400]} /></div>
+  <section class="strip" aria-label="Call for a free estimate">
     <div class="container photo-cta__inner">
       <p class="photo-cta__h">Have a project in mind? Call <a href={tel}>{business.phoneDisplay}</a></p>
       <a class="btn btn--primary btn--big" href="#estimate">Get a free estimate</a>
@@ -161,10 +159,10 @@ const faqs = [
   </section>
 
   <!-- 5. How it works -->
-  <section class="section section--light" aria-labelledby="how-h">
+  <section class="section section--surface" aria-labelledby="how-h">
     <div class="container split split--rev">
       <div class="stack">
-        <h2 id="how-h" class="sec-kw">How a remodel with Cruz Construction works in Holland</h2>
+        <h2 id="how-h" class="sec-kw">How it works</h2>
         <p class="sec-big">From free estimate to finished project</p>
         <ol class="steps" role="list">
           {steps.map((s, i) => (
@@ -180,10 +178,10 @@ const faqs = [
   </section>
 
   <!-- 6. Reviews (no quotes until the client gives permission to publish them) -->
-  <section class="section section--surface" aria-labelledby="rev-h">
+  <section class="section" aria-labelledby="rev-h">
     <div class="container reviews">
       <div>
-        <h2 id="rev-h" class="sec-kw">Reviews from Holland &amp; West Michigan homeowners</h2>
+        <h2 id="rev-h" class="sec-kw">Customer reviews</h2>
         <p class="sec-big">See what homeowners say</p>
         <p class="lead">20+ projects completed. Read homeowner reviews and see recent projects on our Facebook page.</p>
       </div>
@@ -197,13 +195,13 @@ const faqs = [
   </section>
 
   <!-- 7. Service areas -->
-  <section class="section section--light" aria-labelledby="area-h">
+  <section class="section section--surface" aria-labelledby="area-h">
     <div class="container split">
       <div class="split__media">
         <ResponsiveImage src={kitchenImg} alt="Remodeled kitchen with an island and pendant lights" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960]} />
       </div>
       <div class="stack">
-        <h2 id="area-h" class="sec-kw">Service areas: Holland, MI, Ottawa &amp; Allegan County</h2>
+        <h2 id="area-h" class="sec-kw">Service areas</h2>
         <p class="sec-big">Local to Holland. Ready for your project.</p>
         <p>We are based in the Holland area and work in Holland and across West Michigan, on both the Ottawa County and Allegan County sides of town. Not sure we come to you? Call <a href={tel}>{business.phoneDisplay}</a> and ask.</p>
         <ul class="area-links" role="list">
@@ -217,18 +215,18 @@ const faqs = [
   <!-- 8. FAQ -->
   <section class="section" aria-labelledby="faq-h">
     <div class="container">
-      <FaqList faqs={faqs} title="Remodeling FAQs for Holland, MI homeowners" headline="Questions before you start?" />
+      <FaqList faqs={faqs} title="Frequently asked questions" headline="Questions before you start?" />
     </div>
   </section>
 
   <!-- 9. Request an estimate (photo background) -->
-  <section class="estimate-band" aria-label="Free remodeling estimates in Holland, MI">
+  <section class="estimate-band" aria-label="Free estimates">
     <div class="photo-cta__bg" aria-hidden="true"><ResponsiveImage src={bathImg} alt="" sizes="100vw" widths={[640, 1400]} /></div>
     <div class="container split">
       <div class="stack">
-        <h2 class="sec-kw">Free remodeling estimates in Holland, MI</h2>
+        <h2 class="sec-kw">Free estimates</h2>
         <p class="sec-big">Tell us what you are building</p>
-        <p class="lead">Free estimates for kitchen, bathroom and basement remodeling and finish trades in Holland, MI and West Michigan.</p>
+        <p class="lead">Kitchens, bathrooms, basements and the finish trades behind them. Tell us about your project and we get back to you.</p>
         <ul class="checks" role="list">
           <li><strong>Free estimate,</strong> no obligation</li>
           <li><strong>Licensed</strong> Michigan builder</li>
@@ -327,7 +325,6 @@ const faqs = [
 
   /* Photo CTA band */
   .photo-cta, .estimate-band { position: relative; isolation: isolate; overflow: hidden; }
-  .photo-cta { padding-block: clamp(3rem, 2rem + 4vw, 5.5rem); }
   .estimate-band { padding-block: var(--section-y); }
   .photo-cta__bg { position: absolute; inset: 0; z-index: -1; }
   .photo-cta__bg :global(picture) { display: block; height: 100%; }
@@ -336,7 +333,7 @@ const faqs = [
   .estimate-band .photo-cta__bg::after { background: linear-gradient(90deg, rgb(13 13 12 / 94%), rgb(13 13 12 / 84%)); }
   .photo-cta__inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-5); }
   .photo-cta__h { margin: 0; font-family: var(--font-heading); font-size: clamp(1.75rem, 1.3rem + 1.8vw, 3rem); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
-  .photo-cta__h a { color: var(--color-accent-text); text-decoration: none; white-space: nowrap; }
+  .photo-cta__h a { color: inherit; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; white-space: nowrap; }
 
   /* Steps */
   .steps { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: var(--space-4); }

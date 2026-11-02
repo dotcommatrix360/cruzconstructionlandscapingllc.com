@@ -25,7 +25,7 @@ faqs:
       - "Painting"
       - "Carpentry, trim work and door replacement"
     takeaway: "One crew for the whole bathroom, so the shower, floor and walls are planned together."
-  - question: "What does a bathroom remodel cost in Holland, MI?"
+  - question: "What does a bathroom remodel cost?"
     answer: "It depends on the size of the room, the tile and materials you choose, and how much changes, so we do not publish a flat price."
     points:
       - "A new floor or fresh paint costs far less than a full remodel"

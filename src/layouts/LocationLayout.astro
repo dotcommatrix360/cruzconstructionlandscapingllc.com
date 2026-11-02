@@ -47,7 +47,7 @@ const nearby = (await locations()).filter((l) => l.id !== entry.id);
       </div>
     </section>
   )}
-  <CtaBand kw={`Free remodeling estimate in ${entry.data.name}`} title={`Planning a project in ${entry.data.name}?`} />
+  <CtaBand strip kw="Free estimate" title={`Planning a project in ${entry.data.name}?`} />
 </BaseLayout>
 <style>
   .local-details { max-width: var(--measure); }
