@@ -45,5 +45,8 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 ## Reviews
 - Two Facebook recommendations (Denise L., Madeline L.) in `src/content/testimonials/testimonials.json`, provided by the owner 2026-11-02; shown as section 2 on home and after the hero on every service page. Facebook shows recommendations, not stars: never claim a star rating. A third (Tony N.) was left out because it says he had not seen the work yet. "Satisfaction guaranteed" only if the client confirms the guarantee and its terms.
 
+## Business cards
+- Print files in /home/user/cruz-business-cards (outside the repo). Their reviews QR points at https://cruzconstructionlandscapingllc.com/reviews, a 302 in `site.config.json` → redirects, currently to the Facebook page. Once the Google Business Profile is verified, change that target to the Google review link: printed cards keep working.
+
 ## Open TODOs from client
 - Real project photos (none supplied; per owner instruction 2026-11-02 the site uses stock photos for now, unlabelled at the owner's request — sources in `src/assets/images/CREDITS.md`, replace when real photos arrive) · business address · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host

@@ -94,6 +94,11 @@
       "from": "/services/",
       "to": "/",
       "status": 301
+    },
+    {
+      "from": "/reviews",
+      "to": "https://www.facebook.com/share/18ihntLhqo/",
+      "status": 302
     }
   ],
   "deploy": {
