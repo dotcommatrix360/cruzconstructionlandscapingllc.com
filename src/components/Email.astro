@@ -1,0 +1,10 @@
+---
+// Email link that wraps cleanly: the only break point is right after "@" (never mid-word).
+import { business } from '../lib/site';
+interface Props { class?: string; subject?: string }
+const email = business.email || '';
+const [user, domain] = email.split('@');
+const href = `mailto:${email}${Astro.props.subject ? `?subject=${encodeURIComponent(Astro.props.subject)}` : ''}`;
+---
+{email && <a class:list={['email', Astro.props.class]} href={href}>{user}@<wbr />{domain}</a>}
+<style>.email { overflow-wrap: normal; word-break: normal; hyphens: none; }</style>

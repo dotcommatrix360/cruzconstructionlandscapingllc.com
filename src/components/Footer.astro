@@ -1,12 +1,22 @@
 ---
 // Footer: NAP exactly as in site.config.json (must match Google Business Profile), hours, links, legal.
-import { config, business } from '../lib/site';
+import { business } from '../lib/site';
+import { services, entryUrl } from '../lib/content';
+import Email from './Email.astro';
 const a = business.address;
 const year = new Date().getFullYear();
+const serviceLinks = (await services()).map((s) => ({ label: s.data.title, url: entryUrl(s) }));
+const company = [
+  { label: 'Home', url: '/' },
+  { label: 'Service Areas', url: '/service-areas/' },
+  { label: 'About', url: '/about/' },
+  { label: 'Contact', url: '/contact/' },
+];
+const socialName = (u: string) => (u.includes('facebook') ? 'Facebook' : u.includes('instagram') ? 'Instagram' : u.includes('tiktok') ? 'TikTok' : new URL(u).hostname);
 ---
-<footer class="site-footer section--inverse">
+<footer class="site-footer">
   <div class="container site-footer__grid">
-    <div>
+    <div class="site-footer__brand">
       <img class="site-footer__logo" src="/logo.png" alt={business.name} width="252" height="150" decoding="async" />
       {business.description && <p>{business.description}</p>}
     </div>
@@ -14,36 +24,49 @@ const year = new Date().getFullYear();
       <h2 class="site-footer__heading">Contact</h2>
       <address>
         {!business.hideAddress && a.street && <>{a.street}<br />{a.city}, {a.region} {a.postalCode}<br /></>}
-        {business.phone && <a href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a>}<br />
-        {business.email && <a href={`mailto:${business.email}`}>{business.email}</a>}
+        {business.phone && <p><a class="site-footer__phone" href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a></p>}
+        <p><Email /></p>
       </address>
-      {business.licenses && business.licenses.length > 0 && <p>{business.licenses.join(' · ')}</p>}
+      <p class="site-footer__muted">Working hours: 7am to 5pm</p>
+      {business.licenses && business.licenses.length > 0 && <p class="site-footer__muted">{business.licenses.join(' · ')}</p>}
     </div>
-    <div>
-      <h2 class="site-footer__heading">Hours</h2>
-      <p>Working hours: 7am to 5pm.</p>
-    </div>
-    <nav aria-label="Footer">
-      <h2 class="site-footer__heading">Explore</h2>
-      <ul class="site-footer__list">{config.nav.map((item) => <li><a href={item.url}>{item.label}</a></li>)}</ul>
+    <nav aria-label="Services">
+      <h2 class="site-footer__heading">Services</h2>
+      <ul class="site-footer__list site-footer__list--2">{serviceLinks.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
+    </nav>
+    <nav aria-label="Company">
+      <h2 class="site-footer__heading">Company</h2>
+      <ul class="site-footer__list">{company.map((l) => <li><a href={l.url}>{l.label}</a></li>)}</ul>
     </nav>
   </div>
   <div class="container site-footer__legal">
     <p>&copy; {year} {business.legalName || business.name}. All rights reserved.</p>
-    {business.sameAs && business.sameAs.length > 0 && (
-      <ul class="site-footer__social">{business.sameAs.map((url) => <li><a href={url} rel="noopener" target="_blank">{new URL(url).hostname.replace(/^www\./, '').split('.')[0]}</a></li>)}</ul>
-    )}
+    <ul class="site-footer__inline">
+      <li><a href="/privacy-policy/">Privacy Policy</a></li>
+      <li><a href="/terms-of-service/">Terms of Service</a></li>
+      {(business.sameAs || []).map((url) => <li><a href={url} rel="noopener" target="_blank">{socialName(url)}</a></li>)}
+    </ul>
   </div>
 </footer>
 <style>
-  .site-footer { padding-block: var(--space-8) var(--space-5); border-top: 1px solid var(--color-border); }
-  .site-footer :global(a) { color: var(--color-text); }
-  .site-footer :global(a:hover) { color: var(--color-accent-text); }
-  .site-footer__grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
-  .site-footer__logo { width: 15.75rem; max-width: 100%; height: auto; margin-bottom: var(--space-4); }
-  .site-footer__heading { font-size: 1.25rem; letter-spacing: 0.08em; margin-bottom: var(--space-3); color: var(--color-text-muted); }
-  .site-footer address { font-style: normal; overflow-wrap: anywhere; }
-  .site-footer__list, .site-footer__social { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
-  .site-footer__social { display: flex; flex-wrap: wrap; gap: var(--space-4); text-transform: capitalize; }
-  .site-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid rgb(255 255 255 / 20%); font-size: var(--text-sm); }
+  .site-footer { padding-block: var(--space-8) var(--space-5); border-top: 4px solid var(--color-accent); background: var(--color-surface-strong); }
+  .site-footer :global(a) { color: var(--color-text); text-decoration: none; transition: color var(--duration) var(--ease); }
+  .site-footer :global(a:hover), .site-footer :global(a:focus-visible) { color: var(--color-accent); }
+  .site-footer p { margin: 0 0 var(--space-2); }
+  .site-footer__grid { display: grid; gap: var(--space-7); grid-template-columns: 1fr; }
+  @media (min-width: 40rem) { .site-footer__grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 72rem) { .site-footer__grid { grid-template-columns: 0.9fr 1.25fr 2fr 0.7fr; gap: var(--space-6); } .site-footer__list--2 li { white-space: nowrap; } }
+  .site-footer__brand p { color: var(--color-text-muted); max-width: 32ch; font-size: var(--text-sm); }
+  .site-footer__logo { width: 13rem; max-width: 100%; height: auto; margin-bottom: var(--space-4); }
+  .site-footer__heading { font-size: 1.15rem; letter-spacing: 0.1em; margin-bottom: var(--space-4); color: var(--color-accent-soft); }
+  .site-footer address { font-style: normal; }
+  .site-footer__phone { font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; letter-spacing: 0.02em; }
+  .site-footer__muted { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .site-footer__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-size: var(--text-sm); }
+  .site-footer__list--2 { grid-template-columns: 1fr; }
+  @media (min-width: 30rem) { .site-footer__list--2 { grid-template-columns: 1fr 1fr; column-gap: var(--space-5); } }
+  .site-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-4); margin-top: var(--space-7); padding-top: var(--space-5); border-top: 1px solid var(--color-border); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .site-footer__legal p { margin: 0; }
+  .site-footer__inline { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+  .site-footer__inline :global(a) { color: var(--color-text-muted); }
 </style>

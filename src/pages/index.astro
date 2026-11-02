@@ -5,6 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import EstimateForm from '../components/EstimateForm.astro';
 import FaqList from '../components/FaqList.astro';
+import Email from '../components/Email.astro';
+import Testimonials from '../components/Testimonials.astro';
 import ProjectPhotos from '../components/ProjectPhotos.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
 import { business } from '../lib/site';
@@ -74,7 +76,10 @@ const faqs = [
     <div class="container"><div class="ruler" aria-hidden="true"></div></div>
   </section>
 
-  <!-- 2. Our projects: photos filtered by category -->
+  <!-- 2. Reviews (real Facebook recommendations) -->
+  <Testimonials />
+
+  <!-- 3. Our projects: photos filtered by category -->
   <section class="section" id="projects" aria-labelledby="work-h">
     <div class="container">
       <div class="head-row">
@@ -159,7 +164,7 @@ const faqs = [
   </section>
 
   <!-- 5. How it works -->
-  <section class="section section--surface" aria-labelledby="how-h">
+  <section class="section" aria-labelledby="how-h">
     <div class="container split split--rev">
       <div class="stack">
         <h2 id="how-h" class="sec-kw">How it works</h2>
@@ -173,23 +178,6 @@ const faqs = [
       </div>
       <div class="split__media">
         <ResponsiveImage src={carpentryImg} alt="Carpenter measuring a board before cutting" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1200]} />
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Reviews (no quotes until the client gives permission to publish them) -->
-  <section class="section" aria-labelledby="rev-h">
-    <div class="container reviews">
-      <div>
-        <h2 id="rev-h" class="sec-kw">Customer reviews</h2>
-        <p class="sec-big">See what homeowners say</p>
-        <p class="lead">20+ projects completed. Read homeowner reviews and see recent projects on our Facebook page.</p>
-      </div>
-      <div class="reviews__links">
-        {(business.sameAs || []).map((u) => {
-          const name = u.includes('facebook') ? 'Facebook' : u.includes('instagram') ? 'Instagram' : 'TikTok';
-          return <a class="social" href={u} target="_blank" rel="noopener"><strong>{name}</strong><small>{name === 'Facebook' ? 'Reviews & recent projects' : 'Recent projects'} &rarr;</small></a>;
-        })}
       </div>
     </div>
   </section>
@@ -233,7 +221,7 @@ const faqs = [
           <li><strong>Local,</strong> owner-operated in Holland</li>
         </ul>
         <p><a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a></p>
-        <p>Or email <a href={`mailto:${business.email}`}>{business.email}</a></p>
+        <p>Or email <Email /></p>
       </div>
       <EstimateForm id="estimate" title="Get a free estimate" headingLevel={3} />
     </div>

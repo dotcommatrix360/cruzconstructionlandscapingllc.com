@@ -12,6 +12,7 @@ import { business } from '../lib/site';
 import { service, faqPage } from '../lib/schema';
 import { entryUrl, services, locations } from '../lib/content';
 import ProjectPhotos from '../components/ProjectPhotos.astro';
+import Testimonials from '../components/Testimonials.astro';
 import { serviceCategory } from '../lib/projects';
 
 interface Props { entry: CollectionEntry<'services'> }
@@ -39,6 +40,8 @@ const steps = [
   <FormHero title={`${entry.data.title} in Holland, MI`} headline={entry.data.headline} lead={entry.data.summary} image={entry.data.image} formTitle={`Free ${entry.data.title.toLowerCase()} estimate`}>
     <Breadcrumbs slot="before" items={[{ name: entry.data.title, url }]} />
   </FormHero>
+
+  <Testimonials headline="What homeowners say" />
 
 
   <section class="section">

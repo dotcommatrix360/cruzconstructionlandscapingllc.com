@@ -1,0 +1,23 @@
+---
+// Plain legal page (privacy, terms): breadcrumbs, H1, last-updated date, long-form prose.
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+interface Props { title: string; description: string; url: string; updated: string }
+const { title, description, url, updated } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: title, url }]} />
+      <h1>{title}</h1>
+      <p class="legal__updated">Last updated: {updated}</p>
+      <div class="prose legal"><slot /></div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .legal__updated { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .legal :global(h2) { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem); margin-top: var(--space-7); }
+  .legal :global(p), .legal :global(li) { color: var(--color-text-muted); }
+  .legal :global(strong) { color: var(--color-text); }
+</style>

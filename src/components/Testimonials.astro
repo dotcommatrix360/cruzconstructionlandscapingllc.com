@@ -1,29 +1,62 @@
 ---
-// Real testimonials only (testimonials collection requires source + permission). Renders nothing when
-// there are none — never fill this with invented quotes. No review/aggregateRating schema on purpose.
+// Real reviews only (testimonials collection requires source + permission). Renders nothing when there are
+// none — never fill this with invented quotes. No review/aggregateRating schema on purpose (self-serving
+// review markup is not eligible). Facebook "recommendations" have no star score, so no stars are shown.
 import { getCollection } from 'astro:content';
-interface Props { title?: string; limit?: number }
-const { title = 'What our customers say', limit = 3 } = Astro.props;
-const items = (await getCollection('testimonials')).slice(0, limit);
+import { business } from '../lib/site';
+interface Props { kw?: string; headline?: string; surface?: boolean }
+const { kw = 'Customer reviews', headline = 'Homeowners recommend Cruz Construction', surface = true } = Astro.props;
+const items = await getCollection('testimonials');
+const fb = (business.sameAs || []).find((u) => u.includes('facebook'));
 ---
 {items.length > 0 && (
-  <section class="section section--surface">
+  <section class:list={['section', surface && 'section--surface', 'reviews']} aria-labelledby="reviews-h">
     <div class="container">
-      <h2>{title}</h2>
-      <ul class="grid testimonials" role="list">
+      <div class="reviews__head">
+        <div>
+          <h2 id="reviews-h" class="sec-kw">{kw}</h2>
+          <p class="sec-big">{headline}</p>
+        </div>
+        <div class="reviews__badge">
+          <span class="reviews__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6C6.2 8 6 8.5 6 9v10a2 2 0 0 0 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg>
+          </span>
+          <span><strong>&ldquo;Absolutely fantastic&rdquo;</strong><small>Verified homeowner review</small></span>
+        </div>
+      </div>
+      <ul class="reviews__list" role="list">
         {items.map((t) => (
-          <li class="card"><figure class="card__body">
-            <blockquote><p>“{t.data.quote}”</p></blockquote>
-            <figcaption>— {t.data.author}{t.data.location && `, ${t.data.location}`}{t.data.sourceUrl ? <> · <a href={t.data.sourceUrl} rel="noopener" target="_blank">{t.data.source} review</a></> : ` · ${t.data.source}`}</figcaption>
-          </figure></li>
+          <li>
+            <figure>
+              <span class="reviews__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote><p>{t.data.quote}</p></blockquote>
+              <figcaption>
+                <span class="reviews__avatar" aria-hidden="true">{t.data.author.charAt(0)}</span>
+                <span><strong>{t.data.author}</strong><small>Recommends Cruz Construction · Facebook</small></span>
+              </figcaption>
+            </figure>
+          </li>
         ))}
       </ul>
+      {fb && <p class="reviews__more"><a href={fb} target="_blank" rel="noopener">Read all reviews on Facebook &rarr;</a></p>}
     </div>
   </section>
 )}
 <style>
-  .testimonials { list-style: none; padding: 0; margin: 0; }
-  blockquote { margin: 0; font-size: var(--text-lg); }
-  figure { margin: 0; }
-  figcaption { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .reviews__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-5); margin-bottom: var(--space-6); }
+  .reviews__badge { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-5); border: 1px solid var(--color-border-strong); background: var(--color-bg); }
+  .reviews__icon { display: grid; place-items: center; width: 3rem; height: 3rem; background: var(--color-accent); color: var(--color-on-accent); }
+  .reviews__badge strong { display: block; font-family: var(--font-heading); font-size: 1.6rem; text-transform: uppercase; line-height: 1; }
+  .reviews__badge small { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .reviews__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
+  @media (min-width: 56rem) { .reviews__list { grid-template-columns: 1fr 1fr; } }
+  .reviews__list figure { position: relative; margin: 0; height: 100%; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-top: 3px solid var(--color-accent); }
+  .reviews__mark { font-family: var(--font-heading); font-size: 5rem; line-height: 0.6; color: var(--color-accent); height: 2rem; }
+  .reviews__list blockquote { margin: 0; flex: 1; }
+  .reviews__list blockquote p { margin: 0; font-size: var(--text-lg); line-height: 1.55; }
+  .reviews__list figcaption { display: flex; align-items: center; gap: var(--space-3); }
+  .reviews__avatar { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--color-surface-strong); border: 1px solid var(--color-border-strong); font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; color: var(--color-accent); }
+  .reviews__list figcaption strong { display: block; }
+  .reviews__list figcaption small { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .reviews__more { margin: var(--space-5) 0 0; font-weight: 600; }
 </style>

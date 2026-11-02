@@ -19,7 +19,7 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
     <div class="field"><label for={`${id}-project`}>Tell us more about your project</label><textarea id={`${id}-project`} name="message" rows="4" placeholder="Kitchen, bathroom, basement, tile, drywall…" required></textarea></div>
     {posts && <div class="field field--hp" aria-hidden="true"><label for={`${id}-hp`}>Leave this empty</label><input id={`${id}-hp`} name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
     <button class="btn btn--primary btn--block" type="submit">Request my estimate</button>
-    <p class="estimate-form__note" data-form-note>
+    <p class="estimate-form__note" data-form-note>By sending, you agree to our <a href="/privacy-policy/">Privacy Policy</a>. 
       Free estimate, no obligation. Prefer to talk? Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a>.
     </p>
   </form>

@@ -1,0 +1,42 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import Email from '../components/Email.astro';
+import { business, site } from '../lib/site';
+const name = business.legalName || business.name;
+---
+<LegalLayout title="Terms of Service" url="/terms-of-service/" updated="November 2, 2026" description="The terms that apply when you use the Cruz Construction & Landscaping LLC website, including estimates, content and limits of liability.">
+  <p>These Terms of Service govern your use of {site.url.replace('https://', '')} (the "Site"), operated by {name} ("we", "us"). By using the Site you agree to these terms.</p>
+
+  <h2>Information on the Site</h2>
+  <p>The Site describes our services in general terms. It is provided for information only and is not an offer, quote or contract. Photos on the Site illustrate the types of work we do.</p>
+
+  <h2>Estimates and contracts</h2>
+  <p>Requesting an estimate through the Site, by phone or by email does not create a contract. Any work is governed only by a separate written agreement between you and {name}, which sets out the scope, price, schedule and other terms. Estimates are based on the information available at the time and may change if the scope or conditions change.</p>
+
+  <h2>Your submissions</h2>
+  <p>When you send us information through the Site, you confirm that it is accurate and that you have the right to share it. We handle it as described in our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+
+  <h2>Acceptable use</h2>
+  <p>You agree not to misuse the Site, including by attempting to interfere with its operation, gain unauthorized access, or send spam or unlawful content through it.</p>
+
+  <h2>Intellectual property</h2>
+  <p>The Site's content, including text, logo and design, belongs to {name} or its licensors and may not be copied or reused without permission.</p>
+
+  <h2>Third-party links</h2>
+  <p>The Site links to third-party websites such as social media pages. We are not responsible for their content or practices.</p>
+
+  <h2>No warranties</h2>
+  <p>The Site is provided "as is". We work to keep it accurate and available, but we do not guarantee that it is error-free or uninterrupted.</p>
+
+  <h2>Limitation of liability</h2>
+  <p>To the fullest extent permitted by law, {name} is not liable for any indirect or consequential damages arising from your use of the Site. Nothing in these terms limits rights you have under a written contract with us or under applicable law.</p>
+
+  <h2>Governing law</h2>
+  <p>These terms are governed by the laws of the State of Michigan.</p>
+
+  <h2>Changes</h2>
+  <p>We may update these terms from time to time. The "Last updated" date above shows when they last changed.</p>
+
+  <h2>Contact us</h2>
+  <p>{name}<br />Phone: <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a><br />Email: <Email /></p>
+</LegalLayout>

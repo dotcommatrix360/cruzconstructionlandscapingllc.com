@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "denise-lemmen-facebook",
+    "quote": "Had a small project of drywall ceiling in a back room. Miguel stayed in contact for all aspects. Very friendly and fit me in his schedule of bigger projects.",
+    "author": "Denise L.",
+    "source": "facebook",
+    "sourceUrl": "https://www.facebook.com/share/18ihntLhqo/?mibextid=wwXIfr",
+    "permission": true
+  },
+  {
+    "id": "madeline-lowry-facebook",
+    "quote": "Miguel and his team are absolutely fantastic. Miguel stepped in near the end of my renovation to help with the bigger projects I wasn't ready to tackle myself.",
+    "author": "Madeline L.",
+    "source": "facebook",
+    "sourceUrl": "https://www.facebook.com/share/18ihntLhqo/?mibextid=wwXIfr",
+    "permission": true
+  }
+]
