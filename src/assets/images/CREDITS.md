@@ -1,7 +1,7 @@
 # Image sources (stock — temporary, replace with real Cruz project photos)
 
 These are stock photos used on the owner's instruction until the client supplies real project photos.
-The site labels them as example photos; never caption them as Cruz Construction projects.
+Per the owner (2026-11-02) they are shown without an "example" label. Replace them with the client's real project photos before launch.
 
 | File | Source |
 |---|---|

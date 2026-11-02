@@ -1,4 +1,4 @@
-// Project photos by category. STOCK for now (owner's instruction) and always labelled as example photos.
+// Project photos by category. STOCK for now (owner's instruction, shown without a label).
 // Replace each entry with real Cruz Construction project photos as they arrive (keep the categories).
 import type { ImageMetadata } from 'astro';
 import kitchenImg from '../assets/images/kitchen-remodel-island.jpg';

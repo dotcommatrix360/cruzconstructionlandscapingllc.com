@@ -17,13 +17,12 @@ const label = (c: Category) => categories.find((x) => x.id === c)!.label;
   {list.map((p) => (
     <li class="pp__item" data-cat={p.cat}>
       <figure>
-        <ResponsiveImage src={p.img} alt={`${p.alt} (example photo)`} sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 50vw, 100vw" widths={[480, 960]} />
+        <ResponsiveImage src={p.img} alt={p.alt} sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 50vw, 100vw" widths={[480, 960]} />
         <figcaption><small>{label(p.cat)}</small><strong>{p.title}</strong></figcaption>
       </figure>
     </li>
   ))}
 </ul>
-<p class="pp__note">Example photos. Cruz Construction project photos coming soon.</p>
 {tabs && (
   <script>
     const tabs = document.querySelector<HTMLElement>('[data-tabs]');
@@ -56,5 +55,4 @@ const label = (c: Category) => categories.find((x) => x.id === c)!.label;
   .pp figcaption { position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-3); z-index: 1; display: grid; }
   .pp figcaption small { color: var(--color-accent); font-size: var(--text-sm); font-weight: 600; }
   .pp figcaption strong { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; line-height: 1.1; }
-  .pp__note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-faint); }
 </style>

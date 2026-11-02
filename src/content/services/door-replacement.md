@@ -7,7 +7,7 @@ inShort: "Cruz Construction replaces interior doors in Holland, MI homes and tri
 summary: "Doors replaced and trimmed out so they fit, close and look right."
 order: 12
 image: ../../assets/images/carpentry-measuring-board.jpg
-imageAlt: "Carpenter measuring a board with a tape measure (stock photo)"
+imageAlt: "Carpenter measuring a board with a tape measure"
 faqs:
   - question: "Signs it is time to replace a door"
     answer: "Common reasons homeowners call us about doors."

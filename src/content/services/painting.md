@@ -7,7 +7,7 @@ inShort: "Cruz Construction paints interior walls, ceilings, trim and doors in H
 summary: "Walls, ceilings and trim painted clean, for one room or a whole remodel."
 order: 7
 image: ../../assets/images/interior-paint-roller.jpg
-imageAlt: "Paint roller applying fresh color to a smooth wall (stock photo)"
+imageAlt: "Paint roller applying fresh color to a smooth wall"
 faqs:
   - question: "What is included in an interior paint job?"
     answer: "Paint is only as good as the prep under it."

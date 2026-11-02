@@ -7,7 +7,7 @@ inShort: "Cruz Construction installs insulation in Holland, MI homes, mostly in 
 summary: "Insulation for basements, remodels and new rooms, installed before the walls close up."
 order: 4
 image: ../../assets/images/carpenter-circular-saw.jpg
-imageAlt: "Carpenter cutting framing lumber with a circular saw (stock photo)"
+imageAlt: "Carpenter cutting framing lumber with a circular saw"
 faqs:
   - question: "Why does insulation matter so much in West Michigan?"
     answer: "Holland winters are long and cold and summers are humid, so walls that are insulated before they are closed up make a finished room far more comfortable."

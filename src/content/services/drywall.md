@@ -7,7 +7,7 @@ inShort: "Cruz Construction hangs, tapes and finishes drywall in Holland, MI hom
 summary: "Drywall hung, taped and finished smooth, ready for paint."
 order: 6
 image: ../../assets/images/hero-carpentry-job-site.jpg
-imageAlt: "Builder working on a job site with tools on the workbench (stock photo)"
+imageAlt: "Builder working on a job site with tools on the workbench"
 faqs:
   - question: "What are the steps in a drywall job?"
     answer: "Drywall is a sequence, and each step affects how the paint looks at the end."

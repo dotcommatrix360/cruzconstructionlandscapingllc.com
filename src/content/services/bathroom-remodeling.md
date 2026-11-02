@@ -7,7 +7,7 @@ inShort: "Cruz Construction remodels bathrooms in Holland, MI with its own crew:
 summary: "Custom tile showers, new floors, drywall, paint and trim, done by one crew."
 order: 2
 image: ../../assets/images/bathroom-tile-shower.jpg
-imageAlt: "Example of a remodeled bathroom with a glass tile shower and double vanity (stock photo)"
+imageAlt: "A remodeled bathroom with a glass tile shower and double vanity"
 faqs:
   - question: "How long does a bathroom remodel take?"
     answer: "It depends on the scope and the materials you pick."

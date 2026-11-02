@@ -7,7 +7,7 @@ inShort: "Cruz Construction does finish carpentry and trim in Holland, MI homes:
 summary: "Baseboards, casing and finish carpentry that make a room look complete."
 order: 11
 image: ../../assets/images/finished-room-trim-windows.jpg
-imageAlt: "Finished living room with white trim around windows and walls (stock photo)"
+imageAlt: "Finished living room with white trim around windows and walls"
 faqs:
   - question: "When does trim go in during a remodel?"
     answer: "Trim is one of the last steps, because it covers the joints between walls, floors, doors and windows."

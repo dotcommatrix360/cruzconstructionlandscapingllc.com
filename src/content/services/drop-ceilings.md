@@ -7,7 +7,7 @@ inShort: "Cruz Construction installs drop ceilings in Holland, MI basements and 
 summary: "Suspended ceilings that look clean and keep pipes, wiring and ductwork reachable."
 order: 5
 image: ../../assets/images/finished-living-space.jpg
-imageAlt: "Finished lower-level living space with a clean ceiling and wood-look floor (stock photo)"
+imageAlt: "Finished lower-level living space with a clean ceiling and wood-look floor"
 faqs:
   - question: "What goes above a drop ceiling?"
     answer: "Usually the things you still need to reach in a basement."

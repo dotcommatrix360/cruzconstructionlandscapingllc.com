@@ -7,7 +7,7 @@ inShort: "Cruz Construction installs tile and LVP (luxury vinyl plank) floors in
 summary: "Tile and luxury vinyl plank floors for kitchens, bathrooms and basements."
 order: 8
 image: ../../assets/images/lvp-flooring-room.jpg
-imageAlt: "Bright room with wood-look plank flooring (stock photo)"
+imageAlt: "Bright room with wood-look plank flooring"
 faqs:
   - question: "Where does each flooring type work best?"
     answer: "Both are good choices; the room decides."

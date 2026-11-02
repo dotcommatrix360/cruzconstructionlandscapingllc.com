@@ -7,7 +7,7 @@ inShort: "Cruz Construction installs kitchen cabinets and bathroom vanities in H
 summary: "Kitchen and bathroom cabinets installed level, secure and ready for counters."
 order: 13
 image: ../../assets/images/kitchen-white-cabinets.jpg
-imageAlt: "Kitchen with white cabinets and a stone counter (stock photo)"
+imageAlt: "Kitchen with white cabinets and a stone counter"
 faqs:
   - question: "What happens when cabinets are installed?"
     answer: "A good install is mostly about getting everything level and secure."

@@ -7,7 +7,7 @@ inShort: "Cruz Construction remodels kitchens in Holland, MI with its own crew: 
 summary: "Cabinets, backsplash, flooring, drywall, paint and trim, handled by one licensed crew."
 order: 1
 image: ../../assets/images/kitchen-remodel-island.jpg
-imageAlt: "Example of a remodeled kitchen with an island, pendant lights and tile backsplash (stock photo)"
+imageAlt: "A remodeled kitchen with an island, pendant lights and tile backsplash"
 faqs:
   - question: "How long does a kitchen remodel take in Holland?"
     answer: "It depends on the scope: what is being replaced, whether walls or layout change, and when materials arrive."

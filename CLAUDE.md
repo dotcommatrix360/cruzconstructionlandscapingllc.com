@@ -43,4 +43,4 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - Service-area page: Holland, MI only (`src/content/locations/holland-mi.md`). Add more towns only when the client confirms them.
 
 ## Open TODOs from client
-- Real project photos (none supplied; per owner instruction 2026-11-02 the site uses labelled stock photos for now — sources in `src/assets/images/CREDITS.md`, replace when real photos arrive) · reviews with permission · business address · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host
+- Real project photos (none supplied; per owner instruction 2026-11-02 the site uses stock photos for now, unlabelled at the owner's request — sources in `src/assets/images/CREDITS.md`, replace when real photos arrive) · reviews with permission · business address · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host

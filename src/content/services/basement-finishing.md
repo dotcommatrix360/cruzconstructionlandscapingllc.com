@@ -7,7 +7,7 @@ inShort: "Cruz Construction finishes basements in Holland, MI with its own crew,
 summary: "Insulation, drywall, drop ceilings, flooring and paint to turn a basement into usable space."
 order: 3
 image: ../../assets/images/finished-living-space.jpg
-imageAlt: "Example of a finished living space with wood-look flooring and a wood accent wall (stock photo)"
+imageAlt: "A finished living space with wood-look flooring and a wood accent wall"
 faqs:
   - question: "How long does it take to finish a basement?"
     answer: "It depends on the size of the space and how many rooms you want."

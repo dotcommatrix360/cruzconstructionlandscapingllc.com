@@ -7,7 +7,7 @@ inShort: "Cruz Construction installs tile backsplashes in Holland, MI kitchens, 
 summary: "Tile backsplashes that update a kitchen fast, on their own or with a full remodel."
 order: 10
 image: ../../assets/images/tile-subway-backsplash.jpg
-imageAlt: "White subway tile backsplash behind a kitchen faucet (stock photo)"
+imageAlt: "White subway tile backsplash behind a kitchen faucet"
 faqs:
   - question: "Where does a backsplash go?"
     answer: "Anywhere the wall meets the counter and takes splashes."
