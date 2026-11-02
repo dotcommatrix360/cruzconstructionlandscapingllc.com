@@ -69,7 +69,7 @@
   },
   "blog": {
     "title": "Blog",
-    "description": "TODO: one-sentence description of the blog (70\u2013160 characters).",
+    "description": "TODO: one-sentence description of the blog (70–160 characters).",
     "perPage": 9
   },
   "integrations": {
@@ -87,15 +87,15 @@
   },
   "redirects": [],
   "deploy": {
-    "$comment": "staging: Cloudflare Pages builds main automatically (npm run build \u2192 dist). production: manual GitHub Actions workflow 'Deploy production' \u2014 the owner runs it after approving staging. See references/deployment.md",
+    "$comment": "staging: Cloudflare Pages builds main automatically (npm run build → dist). production: manual GitHub Actions workflow 'Deploy production' — the owner runs it after approving staging. See references/deployment.md",
     "production": {
       "host": "hostinger",
       "domain": ""
     },
     "staging": {
       "provider": "cloudflare-pages",
-      "project": "",
-      "url": "",
+      "project": "cruzconstructionlandscapingllc",
+      "url": "https://cruzconstructionlandscapingllc.pages.dev",
       "noindex": true
     },
     "private": [],

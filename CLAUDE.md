@@ -19,7 +19,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 ## Workflow (one repo, one branch: `main`)
 1. Edit sources → `npm run build` → `npm run validate` → `npm run check:protection` (zero errors) → `npm run check:browser`.
 2. Commit directly to `main` and push. No other branches.
-3. **Staging (automatic):** Cloudflare Pages builds `main` (framework Astro, `npm run build`, output `dist`, Node from `.node-version`). TODO: https://<project>.pages.dev — noindexed by `public/_headers`.
+3. **Staging (automatic):** Cloudflare Pages builds `main` (framework Astro, `npm run build`, output `dist`, Node from `.node-version`). https://cruzconstructionlandscapingllc.pages.dev (project `cruzconstructionlandscapingllc`, `NODE_VERSION=22.22.0`, preview deployments off) — noindexed by `public/_headers`.
    Claude may manage this staging project with `cloudflare-pages.mjs` (detect/create/configure/status/logs/retry/verify).
 4. Claude reports "Ready for production approval" with test evidence.
 5. **Production (manual, owner-approved):** Actions → "Deploy production" → Run workflow (type the domain). Uploads only `dist/`. Target: TODO (hostinger | wpengine | cloudflare-pages).
@@ -27,7 +27,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 
 ## Hosting
 - Production host: TODO · path/project: TODO
-- Staging: TODO
+- Staging: Cloudflare Pages project `cruzconstructionlandscapingllc` → https://cruzconstructionlandscapingllc.pages.dev (GitHub `main`, `npm run build` → `dist`)
 - GitHub environment `production` with required reviewer: TODO (yes/no)
 
 ## Integrations
