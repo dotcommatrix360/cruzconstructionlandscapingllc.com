@@ -3,11 +3,20 @@ title: "Drywall Hanging & Finishing"
 seoTitle: "Drywall Hanging & Finishing in Holland, MI"
 description: "Drywall hanging, taping and finishing in Holland, MI and West Michigan for basements, remodels, new rooms and repairs, by a local licensed builder."
 headline: "Smooth, straight walls, ready for paint."
+inShort: "Cruz Construction hangs, tapes and finishes drywall in Holland, MI homes, for basements, remodels and new rooms, and can paint it afterward with the same crew."
 summary: "Drywall hung, taped and finished smooth, ready for paint."
 order: 6
 image: ../../assets/images/hero-carpentry-job-site.jpg
 imageAlt: "Builder working on a job site with tools on the workbench (stock photo)"
 faqs:
+  - question: "What are the steps in a drywall job?"
+    answer: "Drywall is a sequence, and each step affects how the paint looks at the end."
+    points:
+      - "Hang the sheets on the framing"
+      - "Tape and mud the seams and screws"
+      - "Sand smooth between coats"
+      - "Prime and paint"
+    takeaway: "Because we also paint, one crew takes the wall from bare studs to the final coat."
   - question: "Do you finish the drywall or only hang it?"
     answer: "Both. We hang, tape and finish drywall so the walls are smooth and ready for paint."
   - question: "Do you do drywall repairs?"

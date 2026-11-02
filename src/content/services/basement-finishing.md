@@ -3,17 +3,44 @@ title: "Basement Finishing"
 seoTitle: "Basement Finishing in Holland, MI"
 description: "Basement finishing and remodeling in Holland, MI and West Michigan: insulation, drywall, drop ceilings, LVP flooring and paint from a licensed builder."
 headline: "Turn your basement into real living space."
+inShort: "Cruz Construction finishes basements in Holland, MI with its own crew, in the right order: insulation, drywall, drop ceilings, tile or LVP floors, paint, trim and doors. Licensed in Michigan, local and owner-operated, with free estimates."
 summary: "Insulation, drywall, drop ceilings, flooring and paint to turn a basement into usable space."
 order: 3
 image: ../../assets/images/finished-living-space.jpg
 imageAlt: "Example of a finished living space with wood-look flooring and a wood accent wall (stock photo)"
 faqs:
-  - question: "What does basement finishing include?"
-    answer: "Insulation, drywall hanging and finishing, drop ceiling installation, tile and LVP flooring, painting, carpentry, trim work and door installation."
-  - question: "Do you install drop ceilings in basements?"
-    answer: "Yes. Drop ceilings are a common choice in basements because they keep pipes, wiring and ductwork reachable."
-  - question: "Do you finish basements in Holland, MI?"
+  - question: "How long does it take to finish a basement?"
+    answer: "It depends on the size of the space and how many rooms you want."
+    points:
+      - "One open room is quicker than several rooms with doors"
+      - "Insulation and drywall are the biggest steps"
+      - "Flooring and trim finish the job"
+    takeaway: "We give you a timeline for your basement at the free estimate."
+  - question: "What is included in a Cruz Construction basement finish?"
+    answer: "Every step from bare walls to a finished room."
+    points:
+      - "Insulation"
+      - "Drywall hanging and finishing"
+      - "Drop ceiling installation"
+      - "Tile and LVP flooring"
+      - "Painting"
+      - "Carpentry, trim work and doors"
+    takeaway: "We do these in the right order with one crew, so you are not coordinating trades."
+  - question: "Drop ceiling or drywall ceiling in a basement?"
+    answer: "Both work. A drop ceiling keeps pipes, wiring and ductwork reachable; drywall gives a smooth, seamless look."
+    points:
+      - "Drop ceiling: easy access for future repairs"
+      - "Drywall ceiling: cleaner look, but access means cutting in"
+    takeaway: "We talk through which fits your basement during the estimate."
+  - question: "Which flooring is best for a basement in West Michigan?"
+    answer: "Tile and LVP (luxury vinyl plank) both handle moisture well, which matters with humid Michigan summers."
+    points:
+      - "LVP is warmer underfoot and has a wood look"
+      - "Tile is the most durable"
+    takeaway: "We help you pick at the estimate based on how you will use the space."
+  - question: "Do you finish basements outside Holland?"
     answer: "Yes. We serve Holland, MI and West Michigan."
+    takeaway: "Call 616-502-1874 to check your town."
 ---
 
 Finishing a basement is mostly a sequence of trades done in the right order: insulation first, then walls, ceiling, floors and paint. Cruz Construction covers the whole sequence with its own crew for homeowners in Holland and West Michigan.

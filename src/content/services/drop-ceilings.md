@@ -3,11 +3,19 @@ title: "Drop Ceilings"
 seoTitle: "Drop Ceiling Installation in Holland, MI"
 description: "Drop ceiling installation in Holland, MI and West Michigan. A clean ceiling that keeps pipes, wiring and ductwork reachable, ideal for finished basements."
 headline: "A clean finished ceiling, with everything still in reach."
+inShort: "Cruz Construction installs drop ceilings in Holland, MI basements and utility spaces. They look finished and keep pipes, wiring and ductwork reachable for future repairs."
 summary: "Suspended ceilings that look clean and keep pipes, wiring and ductwork reachable."
 order: 5
 image: ../../assets/images/finished-living-space.jpg
 imageAlt: "Finished lower-level living space with a clean ceiling and wood-look floor (stock photo)"
 faqs:
+  - question: "What goes above a drop ceiling?"
+    answer: "Usually the things you still need to reach in a basement."
+    points:
+      - "Water lines and drains"
+      - "Electrical wiring"
+      - "Heating and cooling ductwork"
+    takeaway: "When something above needs service, a tile lifts out instead of cutting into drywall."
   - question: "Why choose a drop ceiling in a basement?"
     answer: "A drop ceiling hides pipes, wiring and ductwork but keeps them reachable. If something needs service later, a tile lifts out instead of cutting into drywall."
   - question: "Can you install a drop ceiling as a single job?"

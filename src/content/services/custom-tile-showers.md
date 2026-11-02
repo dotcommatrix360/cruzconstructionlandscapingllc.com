@@ -3,11 +3,19 @@ title: "Custom Tile Showers"
 seoTitle: "Custom Tile Showers in Holland, MI"
 description: "Custom tile shower installation in Holland, MI and West Michigan, built as part of a bathroom remodel or on its own by a local licensed builder."
 headline: "The shower you have been wanting, built to fit."
+inShort: "Cruz Construction builds custom tile showers in Holland, MI bathrooms, on their own or as part of a full bathroom remodel, with matching tile or LVP floors."
 summary: "Tile showers built to fit your bathroom, as part of a remodel or on their own."
 order: 9
 image: ../../assets/images/bathroom-grey-tile-vanity.jpg
 imageAlt: "Bathroom with large grey wall tile and a modern vanity (stock photo)"
 faqs:
+  - question: "What goes into a custom tile shower?"
+    answer: "A tile shower is planned around your bathroom, not picked off a shelf."
+    points:
+      - "Sizing the shower to the space"
+      - "Tile for the walls"
+      - "Matching tile or LVP for the bathroom floor"
+    takeaway: "Tell us what you have in mind and we will plan the shower around your room."
   - question: "Can you replace just the shower?"
     answer: "Yes. We build custom tile showers on their own as well as part of a full bathroom remodel."
   - question: "Do you do the bathroom floor too?"

@@ -3,11 +3,19 @@ title: "Door Replacement"
 seoTitle: "Door Replacement in Holland, MI"
 description: "Interior door replacement in Holland, MI and West Michigan, with the trim around it, installed by a local, owner-operated, Michigan-licensed builder."
 headline: "Doors that fit, close and look right."
+inShort: "Cruz Construction replaces interior doors in Holland, MI homes and trims them out, measuring the opening first so the new door fits, closes and latches the first time."
 summary: "Doors replaced and trimmed out so they fit, close and look right."
 order: 12
 image: ../../assets/images/carpentry-measuring-board.jpg
 imageAlt: "Carpenter measuring a board with a tape measure (stock photo)"
 faqs:
+  - question: "Signs it is time to replace a door"
+    answer: "Common reasons homeowners call us about doors."
+    points:
+      - "It sticks, rubs or will not latch"
+      - "It is damaged or dated"
+      - "A newly finished room needs a door"
+    takeaway: "We measure first, then replace the door and the casing around it."
   - question: "Do you install the trim around new doors?"
     answer: "Yes. We replace the door and the casing around it, so it looks finished."
   - question: "Can you replace doors during a remodel?"

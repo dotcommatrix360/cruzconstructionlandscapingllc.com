@@ -3,11 +3,19 @@ title: "Carpentry & Trim"
 seoTitle: "Carpentry & Trim Work in Holland, MI"
 description: "Finish carpentry and trim work in Holland, MI and West Michigan: baseboards, casing and finish details installed by a local, licensed builder."
 headline: "The finishing details that make a room feel complete."
+inShort: "Cruz Construction does finish carpentry and trim in Holland, MI homes: baseboards, door and window casing, and the details that make a room look complete."
 summary: "Baseboards, casing and finish carpentry that make a room look complete."
 order: 11
 image: ../../assets/images/finished-room-trim-windows.jpg
 imageAlt: "Finished living room with white trim around windows and walls (stock photo)"
 faqs:
+  - question: "When does trim go in during a remodel?"
+    answer: "Trim is one of the last steps, because it covers the joints between walls, floors, doors and windows."
+    points:
+      - "After drywall is finished"
+      - "After the new floor is down"
+      - "Before the final coat of paint"
+    takeaway: "Good trim hides the transitions and makes the whole room look finished."
   - question: "What kind of trim work do you do?"
     answer: "Finish carpentry and trim work such as baseboards and casing around doors and windows."
   - question: "Do you do trim as part of a remodel?"

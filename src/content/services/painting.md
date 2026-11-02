@@ -3,11 +3,19 @@ title: "Interior Painting"
 seoTitle: "Interior Painting in Holland, MI"
 description: "Interior painting in Holland, MI and West Michigan: walls, ceilings and trim for single rooms or full remodels, by a local, owner-operated crew."
 headline: "Fresh walls that make the whole room feel new."
+inShort: "Cruz Construction paints interior walls, ceilings, trim and doors in Holland, MI homes, as a single job or as the finish of a remodel, and preps the surface itself first."
 summary: "Walls, ceilings and trim painted clean, for one room or a whole remodel."
 order: 7
 image: ../../assets/images/interior-paint-roller.jpg
 imageAlt: "Paint roller applying fresh color to a smooth wall (stock photo)"
 faqs:
+  - question: "What is included in an interior paint job?"
+    answer: "Paint is only as good as the prep under it."
+    points:
+      - "Patching and sanding the surface"
+      - "Painting walls and ceilings"
+      - "Painting trim and doors"
+    takeaway: "We do drywall and trim too, so we fix the surface ourselves before painting."
   - question: "Do you paint single rooms?"
     answer: "Yes. We paint single rooms as well as whole remodels."
   - question: "Do you paint after drywall work?"

@@ -9,7 +9,7 @@ const description = z.string().min(70, 'Meta description: 70–160 characters').
 const seoTitle = z.string().max(60, 'seoTitle: ≤ 60 characters').optional();
 /** Root-relative URL to keep an old (e.g. WordPress) address exactly: "/old-post-slug/". */
 const permalink = z.string().regex(/^\/[a-z0-9/-]*\/$/, 'permalink must look like /some-path/').optional();
-const faq = z.object({ question: z.string().min(5), answer: z.string().min(20) });
+const faq = z.object({ question: z.string().min(5), answer: z.string().min(20), points: z.array(z.string()).default([]), takeaway: z.string().optional() });
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
@@ -39,6 +39,8 @@ const services = defineCollection({
     summary: z.string().min(20),
     /** Big conversion headline shown above the fold; the H1 carries the keyword. */
     headline: z.string().optional(),
+    /** One-paragraph answer shown right under the hero ("In short"). */
+    inShort: z.string().optional(),
     order: z.number().default(100),
     image: image().optional(),
     imageAlt: z.string().optional(),

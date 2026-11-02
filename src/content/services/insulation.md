@@ -3,11 +3,19 @@ title: "Insulation"
 seoTitle: "Insulation Installation in Holland, MI"
 description: "Insulation installation in Holland, MI and West Michigan for basements, remodels and new rooms, installed by a local, Michigan-licensed builder."
 headline: "A warmer, more comfortable home starts inside the walls."
+inShort: "Cruz Construction installs insulation in Holland, MI homes, mostly in basements and remodels, after framing and before drywall. It is one of the first steps in every basement we finish."
 summary: "Insulation for basements, remodels and new rooms, installed before the walls close up."
 order: 4
 image: ../../assets/images/carpenter-circular-saw.jpg
 imageAlt: "Carpenter cutting framing lumber with a circular saw (stock photo)"
 faqs:
+  - question: "Why does insulation matter so much in West Michigan?"
+    answer: "Holland winters are long and cold and summers are humid, so walls that are insulated before they are closed up make a finished room far more comfortable."
+    points:
+      - "It goes in after framing and before drywall"
+      - "Skipping it is expensive to fix once walls are finished"
+      - "It is standard in every basement we finish"
+    takeaway: "Get the insulation right before the walls close, and the finished room stays comfortable."
   - question: "When is insulation installed in a remodel?"
     answer: "Insulation goes in after framing and before drywall, so it is usually one of the first trades in a basement or remodel."
   - question: "Do you insulate basements?"
