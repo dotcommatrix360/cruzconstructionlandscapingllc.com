@@ -1,50 +1,124 @@
 ---
-// Review us: where the business card and thank-you card QR codes land (they point straight at /review-us/). Hidden from Google:
-// it is for customers, not for ranking. Every visitor gets the same review buttons (no review gating: Google
-// forbids sending only happy customers to Google). Buttons come from site.config.json → business.reviewLinks.
+// Review us: where the business card and thank-you card QR codes land (they point straight at /review-us/).
+// Flow from the agency presentation: "What was your experience like?" → 4–5 stars: thank you + open the public
+// review page (Google once business.reviewLinks.google is set, else Facebook); 1–3 stars: a private feedback form so
+// Miguel can make it right. Every screen keeps a public review link: Google forbids review gating (sending only
+// happy customers to Google), so nobody is ever blocked from leaving a public review. noindex: not for ranking.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { business } from '../lib/site';
+import { config, business } from '../lib/site';
 const links = business.reviewLinks || {};
-const first = 'Miguel';
+const reviewUrl = links.google || links.facebook || '';
+const reviewSite = links.google ? 'Google' : 'Facebook';
+const form = config.integrations.form || { provider: 'none' };
+const posts = (form.provider === 'formspree' || form.provider === 'custom') && form.action;
 ---
-<BaseLayout title="Review Us" description="Thanks for choosing Cruz Construction & Landscaping. Leave a quick review on Google or Facebook to help a small local business." noindex>
+<BaseLayout title="Review Us" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did and leave a quick review to help a small local business." noindex>
   <section class="review">
     <div class="container review__inner">
       <img class="review__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
-      <h1 class="sec-kw">Review Cruz Construction</h1>
-      <p class="sec-big">Thank you for choosing us!</p>
-      <p class="lead">A quick review helps a small local business more than you know, and helps your neighbors find a contractor they can trust. It takes about 30 seconds.</p>
-      <div class="review__buttons">
-        {links.google && (
-          <a class="review__btn review__btn--google" href={links.google} target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>
-            Review us on Google
-          </a>
-        )}
-        {links.facebook && (
-          <a class="review__btn review__btn--facebook" href={links.facebook} target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg>
-            Review us on Facebook
-          </a>
-        )}
+
+      <!-- 1. Rating -->
+      <div class="review__card" data-step="rate">
+        <h1 class="review__q">What was your experience like working with Cruz Construction?</h1>
+        <div class="stars" role="radiogroup" aria-label="Your rating, 1 to 5 stars">
+          {[1, 2, 3, 4, 5].map((n) => (
+            <button type="button" class="star" role="radio" aria-checked="false" aria-label={`${n} star${n === 1 ? '' : 's'}`} data-star={n}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z" /></svg>
+            </button>
+          ))}
+        </div>
+        <p class="review__sub">Thanks for your business! Your feedback helps us improve our service.</p>
       </div>
-      <p class="review__note">Something not right? Call or text {first} at <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> and we'll make it right.</p>
+
+      <!-- 2a. Happy: thank you + public review -->
+      <div class="review__card" data-step="happy" hidden>
+        <p class="review__q">Thank you!</p>
+        <p class="review__sub">We are taking you to {reviewSite} so you can share your review. If it does not open, use the button below.</p>
+        {reviewUrl && <a class="review__btn" href={reviewUrl} target="_blank" rel="noopener" data-review-link>Open {reviewSite} review</a>}
+      </div>
+
+      <!-- 2b. Not happy: private feedback (public review stays available) -->
+      <div class="review__card" data-step="sorry" hidden>
+        <p class="review__q">We are sorry we missed the mark.</p>
+        <p class="review__sub">Tell us what happened and Miguel will reach out personally to make it right.</p>
+        <form class="review__form" method={posts ? 'post' : undefined} action={posts ? form.action : undefined} data-mailto={posts ? undefined : business.email}>
+          <input type="hidden" name="rating" data-rating-field />
+          <div class="field"><label for="fb-name">Your name</label><input id="fb-name" name="name" autocomplete="name" required /></div>
+          <div class="field"><label for="fb-email">Email address</label><input id="fb-email" name="email" type="email" autocomplete="email" /></div>
+          <div class="field"><label for="fb-phone">Phone number</label><input id="fb-phone" name="phone" type="tel" autocomplete="tel" required /></div>
+          <div class="field"><label for="fb-msg">What went wrong?</label><textarea id="fb-msg" name="message" rows="4" required></textarea></div>
+          {posts && <div class="field field--hp" aria-hidden="true"><label for="fb-hp">Leave this empty</label><input id="fb-hp" name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
+          <button class="review__btn" type="submit">Send feedback</button>
+        </form>
+        {reviewUrl && <p class="review__public">Prefer to post a public review? <a href={reviewUrl} target="_blank" rel="noopener">Review us on {reviewSite}</a></p>}
+      </div>
+
+      <!-- 3. Feedback sent -->
+      <div class="review__card" data-step="sent" hidden>
+        <p class="review__q">Thank you for telling us.</p>
+        <p class="review__sub">Your feedback goes straight to Miguel. He will reach out to you to make it right.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const steps = document.querySelectorAll<HTMLElement>('[data-step]');
+  const show = (name: string) => steps.forEach((s) => { s.hidden = s.dataset.step !== name; });
+  const stars = [...document.querySelectorAll<HTMLButtonElement>('[data-star]')];
+  const reviewLink = document.querySelector<HTMLAnchorElement>('[data-review-link]');
+  const ratingField = document.querySelector<HTMLInputElement>('[data-rating-field]');
+  const paint = (n: number) => stars.forEach((s) => s.classList.toggle('is-on', Number(s.dataset.star) <= n));
+
+  stars.forEach((s) => {
+    const n = Number(s.dataset.star);
+    s.addEventListener('mouseenter', () => paint(n));
+    s.addEventListener('mouseleave', () => paint(Number(ratingField?.value || 0)));
+    s.addEventListener('click', () => {
+      stars.forEach((x) => x.setAttribute('aria-checked', String(x === s)));
+      if (ratingField) ratingField.value = String(n);
+      paint(n);
+      setTimeout(() => {
+        if (n >= 4) {
+          show('happy');
+          if (reviewLink) setTimeout(() => { location.href = reviewLink.href; }, 1500); // the button stays as a fallback
+        } else show('sorry');
+      }, 250);
+    });
+  });
+
+  // Feedback form: posts to the form endpoint when one is set; until then it hands the message to the email app.
+  const form = document.querySelector<HTMLFormElement>('.review__form');
+  form?.addEventListener('submit', (e) => {
+    if (!form.dataset.mailto) return; // real endpoint: normal submit
+    e.preventDefault();
+    const d = new FormData(form);
+    const body = `Rating: ${d.get('rating')} of 5\nName: ${d.get('name')}\nPhone: ${d.get('phone')}\nEmail: ${d.get('email')}\n\nWhat went wrong:\n${d.get('message')}`;
+    location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent('Customer feedback from the website')}&body=${encodeURIComponent(body)}`;
+    show('sent');
+  });
+</script>
+
 <style>
-  .review { padding-block: clamp(2.5rem, 2rem + 4vw, 5rem) clamp(3rem, 2rem + 5vw, 6rem); background: radial-gradient(120% 80% at 50% 0%, var(--color-surface-strong), var(--color-bg) 70%); }
-  .review__inner { max-width: 36rem; text-align: center; display: grid; justify-items: center; }
-  .review__logo { width: min(15rem, 70%); height: auto; margin-bottom: var(--space-6); }
-  .review .sec-kw::before { margin-inline: auto; }
-  .review .lead { max-width: 32rem; }
-  .review__buttons { display: grid; gap: var(--space-3); width: 100%; max-width: 24rem; margin-top: var(--space-5); }
-  .review__btn { display: flex; align-items: center; justify-content: center; gap: var(--space-3); min-height: 60px; padding: var(--space-3) var(--space-5); font-family: var(--font-heading); font-weight: 700; font-size: 1.35rem; text-transform: uppercase; letter-spacing: .03em; text-decoration: none; border-radius: var(--radius); transition: transform var(--duration) var(--ease), background-color var(--duration) var(--ease); }
-  .review__btn:hover { transform: translateY(-2px); }
-  .review__btn--google { background: #ffffff; color: #1f1f1f; }
-  .review__btn--google:hover { background: #f1f1f1; color: #1f1f1f; }
-  .review__btn--facebook { background: #1877f2; color: #ffffff; }
-  .review__btn--facebook:hover { background: #166fe5; color: #ffffff; }
-  .review__note { margin-top: var(--space-7); font-size: var(--text-sm); color: var(--color-text-muted); }
-  .review__note a { white-space: nowrap; }
+  .review { padding-block: clamp(2rem, 1.5rem + 3vw, 4rem) clamp(3rem, 2rem + 5vw, 6rem); background: radial-gradient(120% 80% at 50% 0%, var(--color-surface-strong), var(--color-bg) 70%); }
+  .review__inner { max-width: 34rem; display: grid; justify-items: center; }
+  .review__logo { width: min(13rem, 60%); height: auto; margin-bottom: var(--space-6); }
+  .review__card { width: 100%; min-width: 0; background: var(--color-surface); border: 1px solid var(--color-border); border-top: 4px solid var(--color-accent); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); text-align: center; display: grid; gap: var(--space-4); box-shadow: var(--shadow-lg); }
+  .review__card[hidden] { display: none; }
+  .review__q { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.2rem); line-height: 1.05; margin: 0; text-wrap: balance; }
+  .review__sub { color: var(--color-text-muted); margin: 0; }
+  .stars { display: flex; justify-content: center; gap: clamp(2px, 1vw, var(--space-2)); }
+  .star { width: clamp(40px, 11vw, 52px); height: clamp(40px, 11vw, 52px); padding: 3px; border: 0; background: none; cursor: pointer; color: var(--color-border-strong); transition: transform var(--duration) var(--ease), color var(--duration) var(--ease); }
+  .star svg { width: 100%; height: 100%; fill: currentColor; }
+  .star.is-on { color: var(--color-accent); }
+  .star:hover { transform: scale(1.12); }
+  .review__btn { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: var(--space-3) var(--space-5); background: var(--color-accent); color: var(--color-on-accent); border: 0; border-radius: var(--radius); font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .03em; text-decoration: none; cursor: pointer; width: 100%; }
+  .review__btn:hover { background: var(--color-accent-hover); color: var(--color-on-accent); }
+  .review__form { display: grid; gap: var(--space-3); text-align: left; }
+  .field { display: grid; gap: var(--space-1); }
+  .field label { font-size: var(--text-sm); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); }
+  .field input, .field textarea { padding: var(--space-3); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-bg); color: var(--color-text); font: inherit; width: 100%; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent); }
+  .field--hp { position: absolute; left: -9999px; }
+  .review__public { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
 </style>
