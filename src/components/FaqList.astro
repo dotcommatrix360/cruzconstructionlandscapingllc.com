@@ -2,13 +2,14 @@
 // Visible FAQ (native <details>, keyboard accessible) + FAQPage JSON-LD for exactly the same Q&As.
 import JsonLd from './JsonLd.astro';
 import { faqPage } from '../lib/schema';
-interface Props { faqs: { question: string; answer: string }[]; title?: string; headingLevel?: 2 | 3 }
-const { faqs, title = 'Frequently asked questions', headingLevel = 2 } = Astro.props;
+// title = the heading (keyword + location). headline = optional big conversion line shown under it.
+interface Props { faqs: { question: string; answer: string }[]; title?: string; headline?: string; headingLevel?: 2 | 3 }
+const { faqs, title = 'Frequently asked questions', headline, headingLevel = 2 } = Astro.props;
 const H = `h${headingLevel}` as 'h2' | 'h3';
 ---
 {faqs.length > 0 && (
   <section class="faq" aria-label={title}>
-    <H>{title}</H>
+    {headline ? <><H class="sec-kw">{title}</H><p class="sec-big">{headline}</p></> : <H>{title}</H>}
     {faqs.map((f) => (
       <details>
         <summary>{f.question}</summary>

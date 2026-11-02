@@ -5,49 +5,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import EstimateForm from '../components/EstimateForm.astro';
 import FaqList from '../components/FaqList.astro';
+import ProjectPhotos from '../components/ProjectPhotos.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
 import { business } from '../lib/site';
 import { services, locations, entryUrl } from '../lib/content';
 
 import heroImg from '../assets/images/hero-carpentry-job-site.jpg';
 import kitchenImg from '../assets/images/kitchen-remodel-island.jpg';
 import bathImg from '../assets/images/bathroom-tile-shower.jpg';
-import basementImg from '../assets/images/finished-living-space.jpg';
-import tileImg from '../assets/images/tile-subway-backsplash.jpg';
 import carpentryImg from '../assets/images/carpentry-measuring-board.jpg';
 import drywallImg from '../assets/images/interior-paint-roller.jpg';
 import sawImg from '../assets/images/carpenter-circular-saw.jpg';
-import kitchen2Img from '../assets/images/kitchen-white-cabinets.jpg';
-import tubImg from '../assets/images/bathroom-freestanding-tub.jpg';
-import greyBathImg from '../assets/images/bathroom-grey-tile-vanity.jpg';
-import roomImg from '../assets/images/finished-room-trim-windows.jpg';
-import lvpImg from '../assets/images/lvp-flooring-room.jpg';
 
 const list = await services();
 const areas = await locations();
 const tel = `tel:${business.phone}`;
-const facebook = (business.sameAs || []).find((u) => u.includes('facebook'));
 
-// Project photos by category (stock for now, labelled as examples; swap in real Cruz photos per category).
-const categories = [
-  { id: 'kitchen', label: 'Kitchen remodeling', url: '/services/kitchen-remodeling/' },
-  { id: 'bathroom', label: 'Bathroom remodeling', url: '/services/bathroom-remodeling/' },
-  { id: 'basement', label: 'Basement finishing', url: '/services/basement-finishing/' },
-  { id: 'finish', label: 'Drywall, paint & trim', url: '/services/drywall/' },
-];
-const projects = [
-  { cat: 'kitchen', img: kitchenImg, alt: 'Remodeled kitchen with an island, pendant lights and tile backsplash', title: 'Kitchen with island' },
-  { cat: 'kitchen', img: kitchen2Img, alt: 'Bright kitchen with white cabinets and a stone counter', title: 'White cabinet kitchen' },
-  { cat: 'kitchen', img: tileImg, alt: 'White subway tile backsplash behind a kitchen faucet', title: 'Subway tile backsplash' },
-  { cat: 'bathroom', img: bathImg, alt: 'Bathroom with a glass tile shower and double vanity', title: 'Glass tile shower' },
-  { cat: 'bathroom', img: tubImg, alt: 'Bathroom with a freestanding tub and vessel sink', title: 'Freestanding tub bathroom' },
-  { cat: 'bathroom', img: greyBathImg, alt: 'Bathroom with large grey tile walls and floor', title: 'Grey tile bathroom' },
-  { cat: 'basement', img: basementImg, alt: 'Finished lower-level living space with wood-look flooring', title: 'Finished living space' },
-  { cat: 'basement', img: lvpImg, alt: 'Bright finished room with wood-look plank flooring', title: 'LVP flooring' },
-  { cat: 'basement', img: roomImg, alt: 'Finished room with white trim around the windows', title: 'Finished room with trim' },
-  { cat: 'finish', img: drywallImg, alt: 'Paint roller applying fresh color to a smooth wall', title: 'Interior painting' },
-  { cat: 'finish', img: carpentryImg, alt: 'Carpenter measuring a board before cutting', title: 'Trim carpentry' },
-  { cat: 'finish', img: sawImg, alt: 'Carpenter cutting a board with a circular saw', title: 'Framing and carpentry' },
-];
 
 
 
@@ -106,54 +79,25 @@ const faqs = [
     <div class="container">
       <div class="head-row">
         <div>
-          <p class="eyebrow">Our projects</p>
-          <h2 id="work-h">Dream homes, built one project at a time</h2>
+          <h2 id="work-h" class="sec-kw">Remodeling projects in Holland, MI</h2>
+          <p class="sec-big">Dream homes, built one project at a time</p>
         </div>
         <a class="btn btn--outline" href="#estimate">Start your project</a>
       </div>
-      <div class="tabs" role="group" aria-label="Filter projects" data-tabs hidden>
-        <button type="button" aria-pressed="true" data-filter="all">All projects</button>
-        {categories.map((c) => <button type="button" aria-pressed="false" data-filter={c.id}>{c.label}</button>)}
-      </div>
-      <ul class="projects" role="list" data-projects>
-        {projects.map((p, i) => {
-          const c = categories.find((x) => x.id === p.cat)!;
-          return (
-            <li class="projects__item" data-cat={p.cat}>
-              <a href={c.url}>
-                <ResponsiveImage src={p.img} alt={`${p.alt} (example photo)`} sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 50vw, 100vw" widths={[480, 960]} />
-                <span class="projects__cap"><small>{c.label}</small><strong>{p.title}</strong></span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-      <p class="gallery__note">Example photos. Cruz Construction project photos coming soon. See recent work on {facebook ? <a href={facebook} target="_blank" rel="noopener">Facebook</a> : 'social media'}.</p>
+      <ProjectPhotos tabs />
     </div>
   </section>
-  <script>
-    const tabs = document.querySelector<HTMLElement>('[data-tabs]');
-    const items = document.querySelectorAll<HTMLElement>('[data-projects] [data-cat]');
-    if (tabs) {
-      tabs.hidden = false;
-      tabs.addEventListener('click', (e) => {
-        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
-        if (!btn) return;
-        for (const b of tabs.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b === btn));
-        const f = btn.dataset.filter;
-        for (const it of items) it.hidden = f !== 'all' && it.dataset.cat !== f;
-      });
-    }
-  </script>
+
+  <BeforeAfter />
 
   <!-- 3. Services (photo cards) -->
   <section class="section" id="services" aria-labelledby="svc-h">
     <div class="container">
       <div class="head-row">
         <div>
-          <p class="eyebrow">What we build</p>
-          <h2 id="svc-h">Remodeling services in Holland, MI</h2>
-          <p class="lead">Three projects we do most, and every trade behind them, done by our own crew.</p>
+          <h2 id="svc-h" class="sec-kw">Home remodeling services in Holland &amp; West Michigan</h2>
+          <p class="sec-big">Everything your project needs, from one crew</p>
+          <p class="lead">Kitchens, bathrooms and basements, and every trade behind them, done by our own crew.</p>
         </div>
         <a class="btn btn--outline" href="#estimate">Get a free estimate</a>
       </div>
@@ -188,8 +132,8 @@ const faqs = [
         <div class="badge"><strong>Licensed</strong><span>Michigan Builders License</span></div>
       </div>
       <div class="stack">
-        <p class="eyebrow">Why homeowners choose us</p>
-        <h2 id="about-h">Learned on rental properties. Sharpened in industrial work.</h2>
+        <h2 id="about-h" class="sec-kw">Licensed, local remodeling contractor in Holland, MI</h2>
+        <p class="sec-big">Learned on rental properties. Sharpened in industrial work.</p>
         <p>Growing up, I helped remodel and turn over rental properties. In my 20s I got into industrial work, where I gained great hands-on and troubleshooting skills. In 2025 I decided to pursue my Michigan Builder's license and start my own construction company.</p>
         <ul class="checks" role="list">
           <li><strong>Quality you can see.</strong> Homeowners trust us because of the work in our previous projects.</li>
@@ -219,8 +163,8 @@ const faqs = [
   <section class="section section--surface" aria-labelledby="how-h">
     <div class="container split split--rev">
       <div class="stack">
-        <p class="eyebrow">How it works</p>
-        <h2 id="how-h">From free estimate to finished project</h2>
+        <h2 id="how-h" class="sec-kw">How a remodel with Cruz Construction works in Holland</h2>
+        <p class="sec-big">From free estimate to finished project</p>
         <ol class="steps" role="list">
           {steps.map((s, i) => (
             <li><span class="steps__n" aria-hidden="true">{i + 1}</span><div><h3>{s.t}</h3><p>{s.d}</p></div></li>
@@ -238,8 +182,8 @@ const faqs = [
   <section class="section" aria-labelledby="rev-h">
     <div class="container reviews">
       <div>
-        <p class="eyebrow">Customer reviews</p>
-        <h2 id="rev-h">See what homeowners say</h2>
+        <h2 id="rev-h" class="sec-kw">Reviews from Holland &amp; West Michigan homeowners</h2>
+        <p class="sec-big">See what homeowners say</p>
         <p class="lead">20+ projects completed. Read homeowner reviews and see recent projects on our Facebook page.</p>
       </div>
       <div class="reviews__links">
@@ -258,8 +202,8 @@ const faqs = [
         <ResponsiveImage src={kitchenImg} alt="Remodeled kitchen with an island and pendant lights (example photo)" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960]} />
       </div>
       <div class="stack">
-        <p class="eyebrow">Service areas</p>
-        <h2 id="area-h">Holland, MI &amp; West Michigan</h2>
+        <h2 id="area-h" class="sec-kw">Service areas: Holland, MI, Ottawa &amp; Allegan County</h2>
+        <p class="sec-big">Local to Holland. Ready for your project.</p>
         <p>We are based in the Holland area and work in Holland and across West Michigan, on both the Ottawa County and Allegan County sides of town. Not sure we come to you? Call <a href={tel}>{business.phoneDisplay}</a> and ask.</p>
         <ul class="area-links" role="list">
           {areas.map((a) => <li><a href={entryUrl(a)}>Remodeling in {a.data.name} &rarr;</a></li>)}
@@ -272,18 +216,17 @@ const faqs = [
   <!-- 8. FAQ -->
   <section class="section" aria-labelledby="faq-h">
     <div class="container">
-      <p class="eyebrow">FAQ</p>
-      <FaqList faqs={faqs} title="Questions homeowners ask" />
+      <FaqList faqs={faqs} title="Remodeling FAQs for Holland, MI homeowners" headline="Questions before you start?" />
     </div>
   </section>
 
   <!-- 9. Request an estimate (photo background) -->
-  <section class="estimate-band" aria-label="Request an estimate">
+  <section class="estimate-band" aria-label="Free remodeling estimates in Holland, MI">
     <div class="photo-cta__bg" aria-hidden="true"><ResponsiveImage src={bathImg} alt="" sizes="100vw" widths={[640, 1400]} /></div>
     <div class="container split">
       <div class="stack">
-        <p class="eyebrow">Request an estimate</p>
-        <p class="estimate-band__h">Tell us what you are building</p>
+        <h2 class="sec-kw">Free remodeling estimates in Holland, MI</h2>
+        <p class="sec-big">Tell us what you are building</p>
         <p class="lead">Free estimates for kitchen, bathroom and basement remodeling and finish trades in Holland, MI and West Michigan.</p>
         <ul class="checks" role="list">
           <li><strong>Free estimate,</strong> no obligation</li>
@@ -293,7 +236,7 @@ const faqs = [
         <p><a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a></p>
         <p>Or email <a href={`mailto:${business.email}`}>{business.email}</a></p>
       </div>
-      <EstimateForm id="estimate" title="Get a free estimate" />
+      <EstimateForm id="estimate" title="Get a free estimate" headingLevel={3} />
     </div>
   </section>
 </BaseLayout>
@@ -327,7 +270,7 @@ const faqs = [
 
   /* Section heads */
   .head-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-5); margin-bottom: var(--space-6); }
-  .head-row h2 { max-width: 24ch; }
+  .head-row .sec-big { max-width: 22ch; }
   .head-row .lead { margin: 0; }
   .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
 
@@ -366,24 +309,6 @@ const faqs = [
   .checks { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
   .checks li { padding-left: 2rem; position: relative; }
   .checks li::before { content: ""; position: absolute; left: 0; top: 0.35em; width: 1.1rem; height: 0.6rem; border-left: 3px solid var(--color-accent); border-bottom: 3px solid var(--color-accent); transform: rotate(-45deg); }
-
-  /* Projects (filterable) */
-  .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); }
-  .tabs[hidden] { display: none; }
-  .tabs button { font: inherit; font-weight: 600; font-size: var(--text-sm); padding: var(--space-2) var(--space-4); min-height: 44px; border: 1px solid var(--color-border-strong); background: var(--color-surface); color: var(--color-text); cursor: pointer; }
-  .tabs button:hover { border-color: var(--color-accent); color: var(--color-accent); }
-  .tabs button[aria-pressed='true'] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }
-  .projects { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
-  @media (min-width: 40rem) { .projects { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 64rem) { .projects { grid-template-columns: repeat(3, 1fr); } }
-  .projects__item[hidden] { display: none; }
-  .projects__item a { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; color: var(--color-text); text-decoration: none; }
-  .projects__item :global(picture), .projects__item :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease); }
-  .projects__item a:hover :global(img) { transform: scale(1.05); }
-  .projects__item a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgb(13 13 12 / 88%)); }
-  .projects__cap { position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-3); z-index: 1; display: grid; }
-  .projects__cap small { color: var(--color-accent); font-size: var(--text-sm); font-weight: 600; }
-  .projects__cap strong { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; line-height: 1.1; }
 
   /* Gallery */
   .gallery { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: 1fr; grid-auto-rows: 16rem; }
@@ -429,5 +354,4 @@ const faqs = [
   .social small { color: var(--color-accent); font-weight: 600; }
 
   .area-links { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-weight: 600; }
-  .estimate-band__h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem); line-height: 1.02; margin: 0; }
 </style>

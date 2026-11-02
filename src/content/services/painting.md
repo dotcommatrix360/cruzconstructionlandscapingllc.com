@@ -16,7 +16,7 @@ faqs:
 
 Paint is the finish everyone sees first. Cruz Construction paints interiors for homeowners in Holland, MI and West Michigan, either as its own job or as the last step of a remodel.
 
-## What we paint
+## Interior painting services in Holland, MI
 
 - Walls and ceilings
 - Trim and doors

@@ -16,7 +16,7 @@ faqs:
 
 Trim is what makes a room look finished. Cruz Construction does carpentry and trim work for homeowners in Holland, MI and West Michigan.
 
-## What we do
+## Trim carpentry services in Holland, MI
 
 - Baseboards
 - Door and window casing

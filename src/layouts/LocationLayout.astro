@@ -38,7 +38,7 @@ const nearby = (await locations()).filter((l) => l.id !== entry.id);
       )}
     </div>
   </section>
-  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} /></div></section>}
+  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} title={`Remodeling FAQs: ${entry.data.name}`} headline="Questions before you start?" /></div></section>}
   {nearby.length > 0 && (
     <section class="section">
       <div class="container">
@@ -47,7 +47,7 @@ const nearby = (await locations()).filter((l) => l.id !== entry.id);
       </div>
     </section>
   )}
-  <CtaBand title={`Planning a project in ${entry.data.name}?`} />
+  <CtaBand kw={`Free remodeling estimate in ${entry.data.name}`} title={`Planning a project in ${entry.data.name}?`} />
 </BaseLayout>
 <style>
   .local-details { max-width: var(--measure); }

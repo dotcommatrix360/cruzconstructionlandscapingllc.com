@@ -18,7 +18,7 @@ faqs:
 
 Finishing a basement is mostly a sequence of trades done in the right order: insulation first, then walls, ceiling, floors and paint. Cruz Construction covers the whole sequence with its own crew for homeowners in Holland and West Michigan.
 
-## What a basement project can include
+## Basement finishing services in Holland, MI
 
 - Insulation
 - Drywall hanging and finishing

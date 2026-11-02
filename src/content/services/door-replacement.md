@@ -16,7 +16,7 @@ faqs:
 
 An old or sticking door drags down a whole room. Cruz Construction replaces doors for homeowners in Holland, MI and West Michigan, and trims them out so they fit, close and look right.
 
-## What we do
+## Interior door replacement in Holland, MI
 
 - Door replacement
 - New casing and [trim](/services/carpentry-trim/) around the door

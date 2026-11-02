@@ -16,7 +16,7 @@ faqs:
 
 Insulation is one of the most important parts of a room, and one of the few you never see once the job is done. Cruz Construction & Landscaping installs insulation for homeowners in Holland, MI and West Michigan, mostly as part of a basement or remodel.
 
-## Where we install insulation
+## Insulation installation in Holland, MI
 
 - Basement walls before they are finished
 - Walls opened up during a kitchen or bathroom remodel

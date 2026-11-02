@@ -16,7 +16,7 @@ faqs:
 
 A tile shower is the centerpiece of most bathroom remodels. Cruz Construction builds custom tile showers for homeowners in Holland, MI and West Michigan.
 
-## What we build
+## Custom tile shower installation in Holland, MI
 
 - Custom tile showers sized to your bathroom
 - Tile walls around the shower

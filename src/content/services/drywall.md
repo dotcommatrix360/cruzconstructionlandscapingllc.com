@@ -16,7 +16,7 @@ faqs:
 
 Smooth walls are the base of every finished room, and drywall is where a remodel starts to look like a home again. Cruz Construction hangs and finishes drywall for homeowners in Holland, MI and West Michigan.
 
-## What we do
+## Drywall installation and finishing in Holland, MI
 
 - Hanging drywall on new framing
 - Taping, mudding and sanding to a smooth finish

@@ -16,7 +16,7 @@ faqs:
 
 Cabinets set the layout of a kitchen, and a crooked install shows in every door and drawer. Cruz Construction installs cabinets for homeowners in Holland, MI and West Michigan.
 
-## What we install
+## Cabinet installation in Holland & West Michigan
 
 - Kitchen cabinets
 - Bathroom vanities and cabinets

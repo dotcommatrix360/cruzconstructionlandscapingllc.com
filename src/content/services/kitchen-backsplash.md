@@ -16,7 +16,7 @@ faqs:
 
 A new backsplash is one of the quickest ways to change how a kitchen looks. Cruz Construction installs kitchen tile backsplashes for homeowners in Holland, MI and West Michigan.
 
-## What we install
+## Tile backsplash installation in Holland, MI
 
 - Tile backsplashes behind counters, sinks and ranges
 - Backsplashes as a single upgrade

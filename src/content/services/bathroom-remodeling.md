@@ -18,7 +18,7 @@ faqs:
 
 A bathroom is a small room with a lot of detail. Tile, drywall, paint and trim all have to fit together, and Cruz Construction does each of those trades with its own crew for homeowners in Holland and West Michigan.
 
-## What a bathroom project can include
+## Bathroom remodeling services in Holland, MI
 
 - Custom tile showers
 - Tile and LVP flooring

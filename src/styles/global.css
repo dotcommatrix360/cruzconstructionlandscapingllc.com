@@ -41,6 +41,11 @@ input, select, textarea, button { font: inherit; }
 .lead { font-size: var(--text-lg); color: var(--color-text-muted); }
 .section--inverse .lead { color: inherit; opacity: 0.9; }
 
+/* Section heading pattern (agency rule): small keyword heading (SEO, location) above a big conversion line.
+   <h2 class="sec-kw">Remodeling services in Holland, MI</h2><p class="sec-big">Everything your project needs</p> */
+.sec-kw { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-soft); line-height: 1.4; margin: 0 0 var(--space-2); text-wrap: pretty; }
+.sec-big { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; font-size: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem); line-height: 1.02; margin: 0 0 var(--space-4); text-wrap: balance; }
+
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);

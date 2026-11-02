@@ -18,7 +18,7 @@ faqs:
 
 A kitchen remodel touches almost every trade in the house. Cruz Construction & Landscaping does that work itself, so homeowners in Holland and West Michigan deal with one crew instead of juggling several contractors.
 
-## What a kitchen project can include
+## Kitchen remodeling services in Holland, MI
 
 - Cabinet installation
 - Custom tile backsplash

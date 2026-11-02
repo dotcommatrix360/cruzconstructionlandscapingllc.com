@@ -16,7 +16,7 @@ faqs:
 
 Basement ceilings are full of things you still need to reach: water lines, drains, wiring and ductwork. A drop ceiling covers all of it with a clean, finished look and keeps every one of those within reach. Cruz Construction installs drop ceilings for homeowners in Holland, MI and West Michigan.
 
-## When a drop ceiling makes sense
+## Basement drop ceilings in Holland, MI
 
 - Finished basements with plumbing or ductwork overhead
 - Utility and laundry areas you want to look finished

@@ -16,7 +16,7 @@ faqs:
 
 The floor takes more wear than any other surface in the house. Cruz Construction installs tile and LVP (luxury vinyl plank) flooring for homeowners in Holland, MI and West Michigan.
 
-## What we install
+## Tile and LVP flooring installation in Holland, MI
 
 - Tile floors for bathrooms, kitchens and entries
 - LVP flooring for basements, kitchens and living areas

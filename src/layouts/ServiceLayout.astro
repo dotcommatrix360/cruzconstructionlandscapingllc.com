@@ -12,12 +12,23 @@ import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { business } from '../lib/site';
 import { service } from '../lib/schema';
 import { entryUrl, services } from '../lib/content';
+import ProjectPhotos from '../components/ProjectPhotos.astro';
+import { serviceCategory } from '../lib/projects';
 
 interface Props { entry: CollectionEntry<'services'> }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const url = entryUrl(entry);
 const others = (await services()).filter((s) => s.id !== entry.id);
+const name = entry.data.title;
+const lower = name.toLowerCase();
+const cat = serviceCategory[entry.id];
+const steps = [
+  { t: 'Call or send the form', d: `Tell us about your ${lower} project. Call ${business.phoneDisplay} or send the three-field form above.` },
+  { t: 'Free estimate', d: 'We talk through the space, the scope and the look you want, and give you a free estimate with no obligation.' },
+  { t: 'Our crew does the work', d: 'The owner and our own crew do the work, and we explain each step as it happens.' },
+  { t: 'Final walkthrough', d: 'We walk through the finished work with you before we call the job done.' },
+];
 ---
 <BaseLayout title={entry.data.seoTitle || entry.data.title} description={entry.data.description} image={entry.data.image}>
   <JsonLd slot="head" data={service({ name: entry.data.title, description: entry.data.description, url })} />
@@ -40,11 +51,49 @@ const others = (await services()).filter((s) => s.id !== entry.id);
     </div>
   </section>
 
-  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} title={`${entry.data.title} questions`} /></div></section>}
+  {cat && (
+    <section class="section section--surface" aria-labelledby="pp-h">
+      <div class="container">
+        <h2 id="pp-h" class="sec-kw">{name} projects in Holland, MI</h2>
+        <p class="sec-big">See the kind of work we build</p>
+        <ProjectPhotos only={cat} />
+      </div>
+    </section>
+  )}
+
+  <section class="section" aria-labelledby="why-h">
+    <div class="container why">
+      <div>
+        <h2 id="why-h" class="sec-kw">Why Holland homeowners choose Cruz Construction for {lower}</h2>
+        <p class="sec-big">One local crew you can talk to</p>
+        <p class="lead">You deal with the owner from the first call to the final walkthrough, not a sales rep and a chain of subcontractors.</p>
+      </div>
+      <ul class="why__list" role="list">
+        <li><strong>Licensed in Michigan</strong><span>Cruz Construction &amp; Landscaping LLC holds a Michigan Builders License.</span></li>
+        <li><strong>Local &amp; owner-operated</strong><span>Based in the Holland area and serving West Michigan.</span></li>
+        <li><strong>20+ projects completed</strong><span>Homeowners trust the quality they see in our previous projects.</span></li>
+        <li><strong>We explain as we go</strong><span>You know what is being done and why, at every step.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" aria-labelledby="how-h">
+    <div class="container">
+      <h2 id="how-h" class="sec-kw">How {lower} works with Cruz Construction in Holland</h2>
+      <p class="sec-big">From free estimate to finished {lower}</p>
+      <ol class="steps" role="list">
+        {steps.map((st, i) => <li><span class="steps__n" aria-hidden="true">{i + 1}</span><div><h3>{st.t}</h3><p>{st.d}</p></div></li>)}
+      </ol>
+      <p class="steps__cta"><a class="btn btn--primary" href="#estimate">Get your free {lower} estimate</a> <a class="btn btn--secondary" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a></p>
+    </div>
+  </section>
+
+  {entry.data.faqs.length > 0 && <section class="section section--surface"><div class="container"><FaqList faqs={entry.data.faqs} title={`${entry.data.title} FAQs: Holland, MI`} headline="Questions before you start?" /></div></section>}
 
   <section class="section">
     <div class="container">
-      <h2>More services in Holland, MI</h2>
+      <h2 class="sec-kw">More home remodeling services in Holland &amp; West Michigan</h2>
+      <p class="sec-big">Planning more than one project?</p>
       <ul class="others" role="list">
         {others.map((s) => (
           <li>
@@ -57,7 +106,7 @@ const others = (await services()).filter((s) => s.id !== entry.id);
       </ul>
     </div>
   </section>
-  <CtaBand title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
+  <CtaBand kw={`Free ${entry.data.title.toLowerCase()} estimate in Holland, MI`} title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
 </BaseLayout>
 <style>
   .svc-page { display: grid; gap: var(--space-7); }
@@ -67,6 +116,18 @@ const others = (await services()).filter((s) => s.id !== entry.id);
   .svc-aside__body { padding: var(--space-5); display: grid; gap: var(--space-3); }
   .svc-aside__body p { margin: 0; color: var(--color-text-muted); }
   .svc-aside__h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 1.75rem; color: var(--color-text) !important; }
+  .why { display: grid; gap: var(--space-6); }
+  @media (min-width: 60rem) { .why { grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: start; } }
+  .why__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+  .why__list li { display: grid; gap: 2px; padding: var(--space-4) var(--space-5); border: 1px solid var(--color-border); border-left: 4px solid var(--color-accent); background: var(--color-surface); }
+  .why__list strong { font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; }
+  .why__list span { color: var(--color-text-muted); }
+  .steps { list-style: none; padding: 0; margin: var(--space-5) 0 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .steps li { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; }
+  .steps__n { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; background: var(--color-accent); color: var(--color-on-accent); }
+  .steps h3 { margin: 0 0 var(--space-1); font-size: 1.4rem; }
+  .steps p { margin: 0; color: var(--color-text-muted); }
+  .steps__cta { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
   .others { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr)); }
   .others a { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; color: var(--color-text); text-decoration: none; border: 1px solid var(--color-border); }
   .others :global(picture), .others :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }

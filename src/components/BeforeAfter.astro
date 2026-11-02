@@ -1,0 +1,36 @@
+---
+// Before & after pairs from src/lib/projects.ts → beforeAfter. Renders nothing until real pairs exist.
+import ResponsiveImage from './ResponsiveImage.astro';
+import { beforeAfter } from '../lib/projects';
+interface Props { kw?: string; headline?: string }
+const { kw = 'Before and after remodeling projects in Holland, MI', headline = 'See the difference' } = Astro.props;
+---
+{beforeAfter.length > 0 && (
+  <section class="section" aria-labelledby="ba-h">
+    <div class="container">
+      <h2 id="ba-h" class="sec-kw">{kw}</h2>
+      <p class="sec-big">{headline}</p>
+      <ul class="ba" role="list">
+        {beforeAfter.map((p) => (
+          <li>
+            <div class="ba__pair">
+              <figure><ResponsiveImage src={p.before} alt={p.beforeAlt} sizes="(min-width: 64rem) 30rem, 50vw" widths={[480, 960]} /><figcaption>Before</figcaption></figure>
+              <figure><ResponsiveImage src={p.after} alt={p.afterAlt} sizes="(min-width: 64rem) 30rem, 50vw" widths={[480, 960]} /><figcaption>After</figcaption></figure>
+            </div>
+            <p class="ba__t">{p.title}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+<style>
+  .ba { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-6); }
+  @media (min-width: 64rem) { .ba { grid-template-columns: 1fr 1fr; } }
+  .ba__pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+  .ba figure { position: relative; margin: 0; aspect-ratio: 4 / 3; overflow: hidden; }
+  .ba :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ba figcaption { position: absolute; left: var(--space-3); top: var(--space-3); background: var(--color-bg); padding: 2px var(--space-3); font-weight: 700; text-transform: uppercase; font-size: var(--text-sm); }
+  .ba figure + figure figcaption { background: var(--color-accent); color: var(--color-on-accent); }
+  .ba__t { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; margin: var(--space-3) 0 0; }
+</style>
