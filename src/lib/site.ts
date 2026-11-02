@@ -14,6 +14,7 @@ export interface SiteConfig {
     address: { street?: string; city?: string; region?: string; postalCode?: string; country?: string };
     hideAddress?: boolean; geo?: { lat?: string; lng?: string };
     areaServed?: string[]; hours?: Hours[]; sameAs?: string[]; licenses?: string[]; googleMapsUrl?: string;
+    reviewLinks?: { google?: string; facebook?: string };
   };
   nav: NavItem[];
   cta: { label: string; url: string };

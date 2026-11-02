@@ -43,7 +43,12 @@
     "licenses": [
       "Michigan Builders License"
     ],
-    "googleMapsUrl": ""
+    "googleMapsUrl": "",
+    "reviewLinks": {
+      "$comment": "Where /review-us/ sends customers. google = the 'Ask for reviews' link from Google Business Profile (empty until the profile is verified: the button is hidden).",
+      "google": "",
+      "facebook": "https://www.facebook.com/share/18ihntLhqo/"
+    }
   },
   "nav": [
     {
@@ -94,11 +99,6 @@
       "from": "/services/",
       "to": "/",
       "status": 301
-    },
-    {
-      "from": "/reviews",
-      "to": "https://www.facebook.com/share/18ihntLhqo/",
-      "status": 302
     },
     {
       "from": "/offer",
