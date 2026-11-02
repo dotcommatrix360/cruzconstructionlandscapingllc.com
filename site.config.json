@@ -1,7 +1,7 @@
 {
   "$comment": "Single source of truth for this client's facts and hosting. Fill ONLY with real, client-confirmed values; empty strings are omitted from schema and pages. TODO: values fail validate.mjs on purpose. See .claude/skills/local-business-website-builder/references/architecture.md",
   "site": {
-    "url": "https://www.cruzconstructionlandscapingllc.com",
+    "url": "https://cruzconstructionlandscapingllc.com",
     "name": "Cruz Construction & Landscaping LLC",
     "language": "en",
     "locale": "en_US",
@@ -97,10 +97,10 @@
     }
   ],
   "deploy": {
-    "$comment": "staging: Cloudflare Pages builds main automatically (npm run build → dist). production: manual GitHub Actions workflow 'Deploy production' — the owner runs it after approving staging. See references/deployment.md",
+    "$comment": "production: Cloudflare Pages project cruzconstructionlandscapingllc serves cruzconstructionlandscapingllc.com (www 301s to it); every push to main deploys live. pages.dev hosts stay noindexed via public/_headers. Owner approved go-live 2026-11-02.",
     "production": {
-      "host": "hostinger",
-      "domain": ""
+      "host": "cloudflare-pages",
+      "domain": "cruzconstructionlandscapingllc.com"
     },
     "staging": {
       "provider": "cloudflare-pages",

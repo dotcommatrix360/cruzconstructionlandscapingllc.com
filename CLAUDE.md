@@ -22,11 +22,11 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 3. **Staging (automatic):** Cloudflare Pages builds `main` (framework Astro, `npm run build`, output `dist`, Node from `.node-version`). https://cruzconstructionlandscapingllc.pages.dev (project `cruzconstructionlandscapingllc`, `NODE_VERSION=22.22.0`, preview deployments off) — noindexed by `public/_headers`.
    Claude may manage this staging project with `cloudflare-pages.mjs` (detect/create/configure/status/logs/retry/verify).
 4. Claude reports "Ready for production approval" with test evidence.
-5. **Production (manual, owner-approved):** Actions → "Deploy production" → Run workflow (type the domain). Uploads only `dist/`. Target: TODO (hostinger | wpengine | cloudflare-pages).
+5. **Production (manual, owner-approved):** Actions → "Deploy production" → Run workflow (type the domain). Uploads only `dist/`. Target: cloudflare-pages (pushes to `main` deploy live; the Hostinger workflow is not used).
    Claude never runs it, and never changes DNS, domains, hosting panels or production settings, without the owner's explicit approval in the conversation.
 
 ## Hosting
-- Production host: TODO · path/project: TODO
+- Production host: Cloudflare Pages, same project as staging (`cruzconstructionlandscapingllc`) → https://cruzconstructionlandscapingllc.com (bare domain primary; www 301 → bare). Owner approved go-live and DNS change 2026-11-02. **Every push to `main` now deploys live.** Previous DNS: apex A 54.149.79.189 and 34.216.117.25 (old site), no www.
 - Staging: Cloudflare Pages project `cruzconstructionlandscapingllc` → https://cruzconstructionlandscapingllc.pages.dev (GitHub `main`, `npm run build` → `dist`)
 - GitHub environment `production` with required reviewer: TODO (yes/no)
 
