@@ -46,7 +46,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - Two Facebook recommendations (Denise L., Madeline L.) in `src/content/testimonials/testimonials.json`, provided by the owner 2026-11-02; shown as section 2 on home and after the hero on every service page. Facebook shows recommendations, not stars: never claim a star rating. A third (Tony N.) was left out because it says he had not seen the work yet. "Satisfaction guaranteed" only if the client confirms the guarantee and its terms.
 
 ## Business cards
-- Print files in /home/user/cruz-business-cards (outside the repo). Their reviews QR points straight at https://cruzconstructionlandscapingllc.com/review-us/ (the Review us page, noindex). Its buttons come from `site.config.json` → business.reviewLinks: add the Google review link once the Business Profile is verified and the Google button appears; printed cards keep working.
+- Print files in /home/user/cruz-business-cards (outside the repo). Their reviews QR points straight at https://cruzconstructionlandscapingllc.com/feedback/ ("How did we do?" feedback page, noindex; 4-5 stars go to the review site, 1-3 stars to a private form with no public review link, owner's choice 2026-11-02, a Google review-gating risk). Its buttons come from `site.config.json` → business.reviewLinks: add the Google review link once the Business Profile is verified and the Google button appears; printed cards keep working.
 - The "10% off your remodel" QR points at /offer (302 → /#estimate for now). Point it at the GHL offer page once it exists. The 10% offer comes from the agency presentation: the client must confirm it before printing. No review incentives (Google/Facebook/FTC rules).
 
 ## Open TODOs from client

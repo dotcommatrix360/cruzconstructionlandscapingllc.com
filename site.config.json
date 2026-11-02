@@ -45,7 +45,7 @@
     ],
     "googleMapsUrl": "",
     "reviewLinks": {
-      "$comment": "Where /review-us/ sends customers. google = the 'Ask for reviews' link from Google Business Profile (empty until the profile is verified: the button is hidden).",
+      "$comment": "Where /feedback/ sends happy customers. google = the 'Ask for reviews' link from Google Business Profile (empty until the profile is verified: the button is hidden).",
       "google": "",
       "facebook": "https://www.facebook.com/share/18ihntLhqo/"
     }

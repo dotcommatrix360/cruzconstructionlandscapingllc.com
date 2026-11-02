@@ -1,9 +1,9 @@
 ---
-// Review us: where the business card and thank-you card QR codes land (they point straight at /review-us/).
+// Feedback ("How did we do?"): where the business card and thank-you card QR codes land (/feedback/).
 // Flow from the agency presentation: "What was your experience like?" → 4–5 stars: thank you + open the public
 // review page (Google once business.reviewLinks.google is set, else Facebook); 1–3 stars: a private feedback form so
-// Miguel can make it right. Every screen keeps a public review link: Google forbids review gating (sending only
-// happy customers to Google), so nobody is ever blocked from leaving a public review. noindex: not for ranking.
+// Miguel can make it right. Owner's choice (2026-11-02): the low-rating screen has no public review link. Note: Google
+// prohibits review gating, which can get reviews removed; add the link back if that becomes a concern. noindex.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { config, business } from '../lib/site';
 const links = business.reviewLinks || {};
@@ -12,13 +12,14 @@ const reviewSite = links.google ? 'Google' : 'Facebook';
 const form = config.integrations.form || { provider: 'none' };
 const posts = (form.provider === 'formspree' || form.provider === 'custom') && form.action;
 ---
-<BaseLayout title="Review Us" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did and leave a quick review to help a small local business." noindex>
+<BaseLayout title="Share Your Experience" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did: your feedback helps a small local business." noindex>
   <section class="review">
     <div class="container review__inner">
       <img class="review__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
 
       <!-- 1. Rating -->
       <div class="review__card" data-step="rate">
+        <p class="review__eyebrow">How did we do?</p>
         <h1 class="review__q">What was your experience like working with Cruz Construction?</h1>
         <div class="stars" role="radiogroup" aria-label="Your rating, 1 to 5 stars">
           {[1, 2, 3, 4, 5].map((n) => (
@@ -30,14 +31,14 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
         <p class="review__sub">Thanks for your business! Your feedback helps us improve our service.</p>
       </div>
 
-      <!-- 2a. Happy: thank you + public review -->
+      <!-- 2a. Happy: thank you + the review site -->
       <div class="review__card" data-step="happy" hidden>
         <p class="review__q">Thank you!</p>
-        <p class="review__sub">We are taking you to {reviewSite} so you can share your review. If it does not open, use the button below.</p>
-        {reviewUrl && <a class="review__btn" href={reviewUrl} target="_blank" rel="noopener" data-review-link>Open {reviewSite} review</a>}
+        <p class="review__sub">We are taking you to {reviewSite} so you can share your experience. If it does not open, use the button below.</p>
+        {reviewUrl && <a class="review__btn" href={reviewUrl} target="_blank" rel="noopener" data-review-link>Share on {reviewSite}</a>}
       </div>
 
-      <!-- 2b. Not happy: private feedback (public review stays available) -->
+      <!-- 2b. Not happy: private feedback form -->
       <div class="review__card" data-step="sorry" hidden>
         <p class="review__q">We are sorry we missed the mark.</p>
         <p class="review__sub">Tell us what happened and Miguel will reach out personally to make it right.</p>
@@ -50,7 +51,6 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
           {posts && <div class="field field--hp" aria-hidden="true"><label for="fb-hp">Leave this empty</label><input id="fb-hp" name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
           <button class="review__btn" type="submit">Send feedback</button>
         </form>
-        {reviewUrl && <p class="review__public">Prefer to post a public review? <a href={reviewUrl} target="_blank" rel="noopener">Review us on {reviewSite}</a></p>}
       </div>
 
       <!-- 3. Feedback sent -->
@@ -120,5 +120,5 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
   .field input, .field textarea { padding: var(--space-3); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-bg); color: var(--color-text); font: inherit; width: 100%; }
   .field input:focus, .field textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent); }
   .field--hp { position: absolute; left: -9999px; }
-  .review__public { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .review__eyebrow { margin: 0; font-size: var(--text-sm); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-soft); }
 </style>
