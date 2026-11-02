@@ -40,11 +40,6 @@ const steps = [
     <Breadcrumbs slot="before" items={[{ name: entry.data.title, url }]} />
   </FormHero>
 
-  {entry.data.inShort && (
-    <section class="in-short" aria-label={`${name} in Holland, MI in short`}>
-      <div class="container"><p><strong>In short:</strong> {entry.data.inShort}</p></div>
-    </section>
-  )}
 
   <section class="section section--light">
     <div class="container svc-page">
@@ -160,8 +155,6 @@ const steps = [
   .svc-aside__body { padding: var(--space-5); display: grid; gap: var(--space-3); }
   .svc-aside__body p { margin: 0; color: var(--color-text-muted); }
   .svc-aside__h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: 1.75rem; color: var(--color-text) !important; }
-  .in-short { background: var(--color-accent); color: var(--color-on-accent); padding-block: var(--space-5); }
-  .in-short p { margin: 0; max-width: 62rem; font-size: var(--text-lg); }
   .explained { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
   @media (min-width: 60rem) { .explained { grid-template-columns: 1fr 1fr; } }
   .explained__item { border: 1px solid var(--color-border); background: var(--color-surface); padding: var(--space-5) var(--space-6); }
