@@ -6,7 +6,9 @@ import Seo from '../components/Seo.astro';
 import Tracking from '../components/Tracking.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { site } from '../lib/site';
+import { localBusiness } from '../lib/schema';
 
 type Props = import('../components/Seo.astro').Props;
 const seo = Astro.props;
@@ -22,6 +24,7 @@ const seo = Astro.props;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap.xml" />
     <Tracking position="head" />
+    <JsonLd data={localBusiness()} />
     <slot name="head" />
   </head>
   <body>

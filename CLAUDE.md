@@ -35,8 +35,10 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 
 ## Deviations from the standard
 - `@fontsource/barlow-condensed` and `@fontsource/ibm-plex-sans` added (self-hosted fonts, no Google Fonts request).
-- Starter blog, service-area and permalink routes removed: no blog yet, no WordPress URLs to keep, no real local-area content.
-- No contact form until the client picks a destination; the contact page uses tap-to-call and email.
+- Starter blog and permalink routes removed: no blog yet, no WordPress URLs to keep.
+- Estimate form (concept 1, three fields) on home + contact. Until the client picks a destination (GHL/Formspree) it opens the visitor's email app pre-filled to the business email (`EstimateForm.astro`); set `integrations.form` to switch it to the real endpoint.
+- Facts source: the client's Fillout CSV only. The concept presentation (dotcommatrix360.com/cruz/) is for layout/sections; its phone, services and owner name are placeholders.
+- Service-area page: Holland, MI only (`src/content/locations/holland-mi.md`). Add more towns only when the client confirms them.
 
 ## Open TODOs from client
-- Real project photos (none supplied; the site shows none rather than stock images) · reviews with permission · business address · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host
+- Real project photos (none supplied; per owner instruction 2026-11-02 the site uses labelled stock photos for now — sources in `src/assets/images/CREDITS.md`, replace when real photos arrive) · reviews with permission · business address · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host

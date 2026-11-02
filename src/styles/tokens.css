@@ -16,6 +16,10 @@
   --color-accent: #f5b400;
   --color-accent-hover: #ffc72d;
   --color-border: #2e2c28;
+  --color-border-strong: #4a463e;
+  --color-text-faint: #8f887a;    /* placeholders on bg 5.6:1 */
+  --color-accent-soft: #b9a98a;   /* concept's warm tan for the wordmark and stats */
+  --color-overlay: rgb(13 13 12 / 78%);
   --color-focus: #f5b400;
 
   /* Type: fluid scale (min @ 320px → max @ 1280px) */

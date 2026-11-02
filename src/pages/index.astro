@@ -1,143 +1,294 @@
 ---
+// Home: follows the approved Concept 1 (dark) section order. Facts only from the client's Fillout intake.
+// Photos are stock (owner's instruction, until real project photos arrive) and are labelled as examples.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import JsonLd from '../components/JsonLd.astro';
-import CtaBand from '../components/CtaBand.astro';
-import { config, business } from '../lib/site';
-import { localBusiness } from '../lib/schema';
-import { services, entryUrl } from '../lib/content';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import FaqList from '../components/FaqList.astro';
+import { business } from '../lib/site';
+import { services, locations, entryUrl } from '../lib/content';
 
-const featured = await services();
-const more = [
-  'Insulation', 'Drywall hanging & finishing', 'Painting', 'Tile & LVP flooring',
-  'Custom tile showers', 'Kitchen backsplash', 'Carpentry & trim work', 'Door replacement',
-  'Cabinet install', 'Drop ceiling install',
+import heroImg from '../assets/images/hero-carpentry-job-site.jpg';
+import kitchenImg from '../assets/images/kitchen-remodel-island.jpg';
+import bathImg from '../assets/images/bathroom-tile-shower.jpg';
+import basementImg from '../assets/images/finished-living-space.jpg';
+import tileImg from '../assets/images/tile-subway-backsplash.jpg';
+import carpentryImg from '../assets/images/carpentry-measuring-board.jpg';
+import drywallImg from '../assets/images/drywall-drill.jpg';
+
+const list = await services();
+const areas = await locations();
+const tel = `tel:${business.phone}`;
+const facebook = (business.sameAs || []).find((u) => u.includes('facebook'));
+
+const gallery = [
+  { img: kitchenImg, title: 'Kitchen Remodeling', url: '/services/kitchen-remodeling/', alt: 'Remodeled kitchen with an island and pendant lights', span: 'wide' },
+  { img: bathImg, title: 'Bathroom Remodeling', url: '/services/bathroom-remodeling/', alt: 'Bathroom with a glass tile shower and double vanity', span: '' },
+  { img: basementImg, title: 'Basement Finishing', url: '/services/basement-finishing/', alt: 'Finished living space with wood-look flooring', span: '' },
+  { img: tileImg, title: 'Tile & Backsplash', url: '/services/tile-flooring/', alt: 'White subway tile backsplash behind a kitchen faucet', span: '' },
+  { img: carpentryImg, title: 'Carpentry & Trim', url: '/services/carpentry-trim/', alt: 'Carpenter measuring a wooden board', span: '' },
+  { img: drywallImg, title: 'Drywall & Painting', url: '/services/drywall-painting/', alt: 'Cordless drill on a drywall-dusted surface', span: 'wide' },
 ];
-const social = (business.sameAs || []).map((url) => {
-  const host = new URL(url).hostname.replace(/^www\./, '');
-  return { url, name: host.startsWith('facebook') ? 'Facebook' : host.startsWith('instagram') ? 'Instagram' : 'TikTok' };
-});
----
-<BaseLayout fullTitle title="Cruz Construction | Kitchen, Bath & Basement Remodeling" description="Michigan-licensed builder serving Holland and West Michigan. Kitchen, bathroom and basement remodeling plus drywall, tile, flooring and carpentry.">
-  <JsonLd slot="head" data={localBusiness()} />
 
-  <section class="hero">
+const steps = [
+  { t: 'Call or send the form', d: `Tell us what you want built or fixed. Call ${business.phoneDisplay} or send the three-field form.` },
+  { t: 'We talk through the project', d: 'We go over the space, the scope and what you want it to look like, and give you a free estimate.' },
+  { t: 'One crew does the work', d: 'The same two-person crew handles the trades and explains each step as it happens.' },
+  { t: 'Final walkthrough', d: 'We walk the finished project with you before we call it done.' },
+];
+
+const faqs = [
+  { question: 'Are you licensed?', answer: 'Yes. Cruz Construction & Landscaping LLC holds a Michigan Builders License.' },
+  { question: 'Where do you work?', answer: 'We serve Holland, MI and West Michigan. If you are not sure we cover your town, call 616-502-1874 and ask.' },
+  { question: 'What services do you offer?', answer: 'Kitchen remodeling, bathroom remodeling and basement finishing, plus insulation, drywall hanging and finishing, painting, tile and LVP flooring, custom tile showers and kitchen backsplashes, carpentry and trim work, door replacement, cabinet installation and drop ceiling installation.' },
+  { question: 'Do you take smaller jobs?', answer: 'Yes. Along with full remodels we take on single trades, such as one tile shower, a backsplash, new flooring, a run of trim or a drop ceiling.' },
+  { question: 'Who does the work?', answer: 'Our own two-person crew, led by the owner. We do not hand your project off to a chain of subcontractors.' },
+  { question: 'What are your working hours?', answer: 'We work 7am to 5pm.' },
+  { question: 'How do I get an estimate?', answer: `Call ${business.phoneDisplay}, email ${business.email}, or send the estimate form on this page. Estimates are free.` },
+];
+---
+<BaseLayout fullTitle title="Remodeling Contractor in Holland, MI | Cruz Construction" description="Kitchen, bathroom and basement remodeling in Holland, MI and West Michigan. Licensed Michigan builder for drywall, tile, LVP flooring and carpentry.">
+
+  <!-- 1. Hero + estimate form + trust bar -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero__bg" aria-hidden="true">
+      <ResponsiveImage src={heroImg} alt="" priority sizes="100vw" widths={[640, 960, 1300]} />
+    </div>
     <div class="container hero__grid">
-      <div>
+      <div class="hero__text">
         <p class="eyebrow">Serving Holland, MI &amp; West Michigan</p>
-        <h1>Kitchens, bathrooms and basements, built right.</h1>
-        <p class="lead">Cruz Construction &amp; Landscaping is a Michigan-licensed builder. One small crew handles the carpentry, drywall, tile and paint, and explains the work as it happens.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href={config.cta.url}>{config.cta.label}</a>
-          <a class="btn btn--secondary" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+        <h1 id="hero-h">Kitchen, bath &amp; basement remodeling in Holland, MI</h1>
+        <p class="hero__lead">Your dream home or dream project can be a reality. From the first cut to the final walkthrough, one licensed crew handles it. Tell us what you are building and we get back to you.</p>
+        <ul class="chips" role="list">
+          {list.map((s) => <li><a href={entryUrl(s)}>{s.data.title}</a></li>)}
+        </ul>
+        <div class="hero__call">
+          <a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a>
+          <span>or send the form and we will get back to you</span>
         </div>
       </div>
-      <aside class="estimate" aria-labelledby="est-h">
-        <h2 id="est-h">Tell us what you are building</h2>
-        <p>Call or email with your project. We will get back to you.</p>
-        <a class="btn btn--primary" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
-        <a class="btn btn--secondary" href={`mailto:${business.email}?subject=Estimate%20request`}>Send us an email</a>
-        <p class="estimate__hours">Working hours: 7am to 5pm</p>
-      </aside>
+      <EstimateForm id="hero-estimate" />
     </div>
-  </section>
-
-  <section class="facts" aria-label="At a glance">
-    <div class="container facts__grid">
-      <p><strong>Licensed</strong><span>Michigan Builders License</span></p>
-      <p><strong>20</strong><span>clients served so far</span></p>
-      <p><strong>2</strong><span>person crew, hands-on</span></p>
-      <p><strong>1 yr</strong><span>in business as Cruz Construction</span></p>
-    </div>
-  </section>
-
-  <section class="section">
     <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">What we build</p>
-        <h2>Three projects we do most</h2>
-      </div>
-      <ol class="feature-list" role="list">
-        {featured.map((s, i) => (
-          <li>
-            <span class="feature-list__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <h3><a href={entryUrl(s)}>{s.data.title}</a></h3>
-              <p>{s.data.summary}</p>
-            </div>
-            <a class="feature-list__go" href={entryUrl(s)} aria-label={`${s.data.title} details`}>View &rarr;</a>
-          </li>
-        ))}
-      </ol>
-      <h3 class="more-h">Also on the crew's list</h3>
-      <ul class="chips" role="list">{more.map((m) => <li>{m}</li>)}</ul>
-    </div>
-  </section>
-
-  <section class="section section--surface">
-    <div class="container story">
-      <div>
-        <p class="eyebrow">Our story</p>
-        <h2>Learned on rental properties. Sharpened in industrial work.</h2>
-      </div>
-      <div class="stack">
-        <p>Growing up, I helped remodel and turn over rental properties. In my 20s I moved into industrial work, where I built strong hands-on and troubleshooting skills.</p>
-        <p>In 2025 I earned my Michigan Builder's license and started Cruz Construction &amp; Landscaping LLC.</p>
-        <p>Homeowners trust us because they can see the quality of our earlier projects, and because we explain the work as it is being done.</p>
-        <p><a class="btn btn--secondary" href="/about/">More about us</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow">Our work</p>
-        <h2>See recent projects</h2>
-        <p class="lead">We post our projects on social media. Have a look at the work before you call.</p>
-      </div>
-      <ul class="social" role="list">
-        {social.map((s) => <li><a href={s.url} target="_blank" rel="noopener"><span>{s.name}</span><small>Recent projects &rarr;</small></a></li>)}
+      <ul class="stats" role="list" aria-label="At a glance">
+        <li><strong>Licensed</strong><span>Michigan Builders License</span></li>
+        <li><strong>20</strong><span>Clients served so far</span></li>
+        <li><strong>2</strong><span>Person crew, owner on site</span></li>
+        <li><strong>7am–5pm</strong><span>Working hours</span></li>
       </ul>
     </div>
   </section>
 
-  <CtaBand title="Have a project in mind?" text="Call 616-502-1874 or send us a note and tell us what you want built." />
+  <!-- 2. Our work (gallery) -->
+  <section class="section" aria-labelledby="work-h">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <p class="eyebrow eyebrow--tan">Our work</p>
+          <h2 id="work-h">Dream homes, built one project at a time</h2>
+          <p class="lead">Kitchens, bathrooms, basements and the trades behind them.</p>
+        </div>
+        <a class="btn btn--outline" href="#estimate">Start your project</a>
+      </div>
+      <ul class="gallery" role="list">
+        {gallery.map((g) => (
+          <li class:list={['gallery__item', g.span && `gallery__item--${g.span}`]}>
+            <a href={g.url}>
+              <ResponsiveImage src={g.img} alt={`${g.alt} (example photo)`} sizes="(min-width: 60rem) 40vw, 100vw" widths={[480, 960]} />
+              <span class="gallery__cap"><strong>{g.title}</strong><small>View service &rarr;</small></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="gallery__note">Example photos. Cruz Construction project photos coming soon. See recent work on {facebook ? <a href={facebook} target="_blank" rel="noopener">Facebook</a> : 'social media'}.</p>
+      <div class="call-row">
+        <p>Have a project in mind? Call <a href={tel}>{business.phoneDisplay}</a></p>
+        <a class="btn btn--primary btn--big" href="#estimate">Get a free estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Services -->
+  <section class="section section--surface" aria-labelledby="svc-h">
+    <div class="container">
+      <p class="eyebrow eyebrow--tan">Services</p>
+      <h2 id="svc-h">Remodeling services in Holland, MI</h2>
+      <p class="lead measure">Three projects we do most, and every trade behind them, done by our own crew.</p>
+      <ol class="svc" role="list">
+        {list.map((s, i) => (
+          <li>
+            <span class="svc__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3><a href={entryUrl(s)}>{s.data.title}</a></h3>
+            <p>{s.data.summary}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. About -->
+  <section class="section" aria-labelledby="about-h">
+    <div class="container about">
+      <div>
+        <p class="eyebrow eyebrow--tan">About the owner</p>
+        <h2 id="about-h">Learned on rental properties. Sharpened in industrial work.</h2>
+      </div>
+      <div class="stack">
+        <p>Growing up, I helped remodel and turn over rental properties. In my 20s I got into industrial work, where I gained great hands-on and troubleshooting skills.</p>
+        <p>In 2025 I decided to pursue my Michigan Builder's license and start my own construction company: Cruz Construction &amp; Landscaping LLC.</p>
+        <p><strong>Why homeowners trust us:</strong> they see the quality of the work in our previous projects, and we explain the process of the work as it is being done.</p>
+        <p><a class="btn btn--outline" href="/about/">More about us</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. How it works -->
+  <section class="section section--surface" aria-labelledby="how-h">
+    <div class="container">
+      <p class="eyebrow eyebrow--tan">How it works</p>
+      <h2 id="how-h">From free estimate to finished project</h2>
+      <ol class="steps" role="list">
+        {steps.map((s, i) => (
+          <li><span class="steps__n" aria-hidden="true">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. Reviews (no quotes until the client gives permission to publish them) -->
+  <section class="section" aria-labelledby="rev-h">
+    <div class="container reviews">
+      <div>
+        <p class="eyebrow eyebrow--tan">Customer reviews</p>
+        <h2 id="rev-h">See what homeowners say</h2>
+        <p class="lead">We have worked with 20 clients so far. Read their reviews and see recent projects on our Facebook page.</p>
+      </div>
+      <div class="reviews__links">
+        {(business.sameAs || []).map((u) => {
+          const name = u.includes('facebook') ? 'Facebook' : u.includes('instagram') ? 'Instagram' : 'TikTok';
+          return <a class="social" href={u} target="_blank" rel="noopener"><strong>{name}</strong><small>{name === 'Facebook' ? 'Reviews & recent projects' : 'Recent projects'} &rarr;</small></a>;
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Service areas -->
+  <section class="section section--surface" aria-labelledby="area-h">
+    <div class="container about">
+      <div>
+        <p class="eyebrow eyebrow--tan">Service areas</p>
+        <h2 id="area-h">Holland, MI &amp; West Michigan</h2>
+      </div>
+      <div class="stack">
+        <p>We are based in the Holland area and work in Holland and across West Michigan, in both the Ottawa County and Allegan County sides of town. Not sure we come to you? Call <a href={tel}>{business.phoneDisplay}</a> and ask.</p>
+        <ul class="area-links" role="list">
+          {areas.map((a) => <li><a href={entryUrl(a)}>Remodeling in {a.data.name} &rarr;</a></li>)}
+          <li><a href="/service-areas/">All service areas &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="section" aria-labelledby="faq-h">
+    <div class="container">
+      <p class="eyebrow eyebrow--tan">FAQ</p>
+      <FaqList faqs={faqs} title="Questions homeowners ask" />
+    </div>
+  </section>
+
+  <!-- 10. Request an estimate -->
+  <section class="section section--surface estimate-band" aria-label="Request an estimate">
+    <div class="container about">
+      <div class="stack">
+        <p class="eyebrow eyebrow--tan">Request an estimate</p>
+        <p class="estimate-band__h">Tell us what you are building</p>
+        <p class="lead">Free estimates for kitchen, bathroom and basement remodeling and finish trades in Holland, MI and West Michigan.</p>
+        <p><a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a></p>
+        <p>Or email <a href={`mailto:${business.email}`}>{business.email}</a></p>
+      </div>
+      <EstimateForm id="estimate" title="Get a free estimate" />
+    </div>
+  </section>
 </BaseLayout>
+
 <style>
-  .hero { padding-block: clamp(2.5rem, 2rem + 4vw, 6rem); background:
-    linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px) 0 0 / 48px 48px,
-    linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px) 0 0 / 48px 48px,
-    var(--color-bg); border-bottom: 1px solid var(--color-border); }
-  .hero__grid { display: grid; gap: var(--space-7); align-items: center; }
-  @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1.25fr 1fr; } }
-  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
-  .estimate { background: var(--color-surface); border: 1px solid var(--color-border); border-top: 4px solid var(--color-accent); padding: var(--space-6); display: grid; gap: var(--space-4); box-shadow: var(--shadow-lg); }
-  .estimate h2 { font-size: 2rem; margin: 0; }
-  .estimate p { margin: 0; color: var(--color-text-muted); }
-  .estimate .btn { overflow-wrap: anywhere; text-align: center; }
-  .estimate__hours { font-size: var(--text-sm); }
-  .facts { background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
-  .facts__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--space-5); padding-block: var(--space-6); }
-  .facts p { margin: 0; display: grid; gap: 2px; }
-  .facts strong { font-family: var(--font-heading); font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem); line-height: 1; text-transform: uppercase; color: var(--color-accent); }
-  .facts span { color: var(--color-text-muted); font-size: var(--text-sm); }
-  .feature-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--color-border); }
-  .feature-list li { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-5); align-items: center; padding-block: var(--space-6); border-bottom: 1px solid var(--color-border); }
-  .feature-list__n { font-family: var(--font-heading); font-size: clamp(2.5rem, 2rem + 2vw, 4rem); color: var(--color-accent); line-height: 1; }
-  .feature-list h3 { margin: 0 0 var(--space-2); font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem); }
-  .feature-list h3 a { color: var(--color-text); text-decoration: none; }
-  .feature-list h3 a:hover { color: var(--color-accent); }
-  .feature-list p { margin: 0; color: var(--color-text-muted); max-width: 52ch; }
-  .feature-list__go { font-weight: 600; white-space: nowrap; }
-  @media (max-width: 40rem) { .feature-list li { grid-template-columns: auto 1fr; } .feature-list__go { grid-column: 2; } }
-  .more-h { margin-top: var(--space-7); font-size: 1.25rem; letter-spacing: 0.08em; color: var(--color-text-muted); }
-  .chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-3); }
-  .chips li { border: 1px solid var(--color-border); padding: var(--space-2) var(--space-4); border-radius: 999px; background: var(--color-surface); }
-  .story { display: grid; gap: var(--space-6); }
-  @media (min-width: 60rem) { .story { grid-template-columns: 1fr 1.1fr; gap: var(--space-8); } }
-  .social { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
-  .social a { display: grid; gap: var(--space-2); padding: var(--space-6); border: 1px solid var(--color-border); background: var(--color-surface); text-decoration: none; color: var(--color-text); transition: border-color var(--duration) var(--ease); }
-  .social a:hover { border-color: var(--color-accent); }
-  .social span { font-family: var(--font-heading); font-size: 2rem; text-transform: uppercase; font-weight: 700; }
-  .social small { color: var(--color-accent); font-size: var(--text-sm); }
+  /* Hero */
+  .hero { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(2.5rem, 2rem + 4vw, 5.5rem) var(--space-6); }
+  .hero__bg { position: absolute; inset: 0; z-index: -1; }
+  .hero__bg :global(picture) { display: block; height: 100%; }
+  .hero__bg :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(13 13 12 / 92%) 0%, rgb(13 13 12 / 80%) 55%, rgb(13 13 12 / 70%) 100%); }
+  .hero__grid { display: grid; gap: var(--space-7); align-items: start; }
+  @media (min-width: 64rem) { .hero__grid { grid-template-columns: 1.35fr 1fr; gap: var(--space-8); } }
+  .hero h1 { font-size: clamp(2.6rem, 1.8rem + 4vw, 5rem); line-height: 0.98; margin-block: var(--space-4) var(--space-5); }
+  .hero__lead { font-size: var(--text-lg); max-width: 38rem; color: var(--color-text); opacity: 0.92; }
+  .eyebrow, .eyebrow--tan { color: var(--color-accent-soft); }
+  .chips { list-style: none; padding: 0; margin: var(--space-5) 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .chips a { display: inline-block; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border-strong); background: rgb(13 13 12 / 55%); color: var(--color-text); text-decoration: none; font-size: var(--text-sm); }
+  .chips a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .hero__call { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
+  .hero__call span { color: var(--color-text-muted); font-size: var(--text-sm); }
+  .btn--big { font-family: var(--font-heading); font-size: 1.35rem; text-transform: uppercase; letter-spacing: 0.04em; padding: var(--space-3) var(--space-6); border-radius: 0; }
+  .btn--outline { border: 2px solid var(--color-accent); color: var(--color-accent); font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 0; }
+  .btn--outline:hover { background: var(--color-accent); color: var(--color-on-accent); }
+  .stats { list-style: none; padding: var(--space-6) 0 0; margin: var(--space-7) 0 0; border-top: 1px solid var(--color-border-strong); display: grid; gap: var(--space-5); grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 48rem) { .stats { grid-template-columns: repeat(4, 1fr); } }
+  .stats li { display: grid; gap: 2px; }
+  .stats strong { font-family: var(--font-heading); font-size: clamp(2.25rem, 1.8rem + 1.6vw, 3rem); line-height: 1; color: var(--color-accent-soft); }
+  .stats span { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+  /* Gallery */
+  .head-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: var(--space-5); margin-bottom: var(--space-6); }
+  .head-row h2 { max-width: 16ch; }
+  .head-row .lead { margin: 0; }
+  .gallery { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: 1fr; grid-auto-rows: 16rem; }
+  @media (min-width: 40rem) { .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 17rem; } }
+  @media (min-width: 64rem) { .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 19rem; } .gallery__item--wide { grid-column: span 2; } }
+  .gallery__item a { position: relative; display: block; overflow: hidden; height: 100%; color: var(--color-text); text-decoration: none; }
+  .gallery__item :global(picture) { display: block; height: 100%; }
+  .gallery__item :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease); }
+  .gallery__item a:hover :global(img) { transform: scale(1.04); }
+  .gallery__item a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgb(13 13 12 / 88%)); }
+  .gallery__cap { position: absolute; left: var(--space-5); right: var(--space-5); bottom: var(--space-4); z-index: 1; display: grid; gap: 2px; }
+  .gallery__cap strong { font-family: var(--font-heading); font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); text-transform: uppercase; line-height: 1.05; }
+  .gallery__cap small { color: var(--color-accent); font-size: var(--text-sm); font-weight: 600; }
+  .gallery__note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-faint); }
+  .call-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
+  .call-row p { margin: 0; font-family: var(--font-heading); font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem); font-weight: 700; text-transform: uppercase; }
+  .call-row a:not(.btn) { color: var(--color-accent); text-decoration: none; }
+
+  /* Services */
+  .svc { list-style: none; padding: 0; margin: var(--space-6) 0 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+  .svc li { border: 1px solid var(--color-border); background: var(--color-bg); padding: var(--space-6); position: relative; }
+  .svc li:hover { border-color: var(--color-accent); }
+  .svc__n { font-family: var(--font-heading); font-size: 1rem; color: var(--color-accent); font-weight: 700; letter-spacing: 0.1em; }
+  .svc h3 { font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.9rem); margin: var(--space-2) 0; }
+  .svc h3 a { color: var(--color-text); text-decoration: none; }
+  .svc h3 a::after { content: ""; position: absolute; inset: 0; }
+  .svc p { margin: 0; color: var(--color-text-muted); }
+
+  /* About / two-column */
+  .about { display: grid; gap: var(--space-6); }
+  @media (min-width: 60rem) { .about { grid-template-columns: 1fr 1.1fr; gap: var(--space-8); align-items: start; } }
+
+  /* Steps */
+  .steps { list-style: none; padding: 0; margin: var(--space-6) 0 0; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); counter-reset: s; }
+  .steps li { border-top: 3px solid var(--color-accent); padding-top: var(--space-5); }
+  .steps__n { font-family: var(--font-heading); font-size: 3rem; line-height: 1; color: var(--color-accent-soft); font-weight: 700; }
+  .steps h3 { margin: var(--space-3) 0 var(--space-2); }
+  .steps p { color: var(--color-text-muted); margin: 0; }
+
+  /* Reviews */
+  .reviews { display: grid; gap: var(--space-6); }
+  @media (min-width: 60rem) { .reviews { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .reviews__links { display: grid; gap: var(--space-3); }
+  .social { display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-5); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); text-decoration: none; }
+  .social:hover { border-color: var(--color-accent); }
+  .social strong { font-family: var(--font-heading); font-size: 1.75rem; text-transform: uppercase; }
+  .social small { color: var(--color-accent); font-weight: 600; }
+
+  .area-links { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); font-weight: 600; }
+
+  .estimate-band__h { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2.125rem, 1.6rem + 2.6vw, 3.5rem); line-height: 1.02; margin: 0; }
 </style>

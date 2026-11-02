@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 <footer class="site-footer section--inverse">
   <div class="container site-footer__grid">
     <div>
-      <img class="site-footer__logo" src="/logo.png" alt={business.name} width="252" height="150" loading="lazy" />
+      <img class="site-footer__logo" src="/logo.png" alt={business.name} width="252" height="150" decoding="async" />
       {business.description && <p>{business.description}</p>}
     </div>
     <div>

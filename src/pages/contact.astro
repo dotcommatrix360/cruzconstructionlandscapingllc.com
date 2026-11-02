@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import JsonLd from '../components/JsonLd.astro';
+import EstimateForm from '../components/EstimateForm.astro';
 import { business } from '../lib/site';
-import { localBusiness } from '../lib/schema';
 ---
-<BaseLayout title="Contact Us" description="Call or email Cruz Construction & Landscaping to request an estimate for kitchen, bathroom or basement remodeling in Holland and West Michigan.">
-  <JsonLd slot="head" data={localBusiness()} />
+<BaseLayout title="Free Estimate | Contact Cruz Construction" description="Request a free estimate for kitchen, bathroom or basement remodeling in Holland, MI. Call 616-502-1874, email, or send the three-field form.">
   <section class="section">
     <div class="container">
-      <h1>Request an estimate</h1>
-      <p class="lead measure">Tell us what you are building or fixing. Call or email and we will get back to you.</p>
+      <h1>Request a free estimate</h1>
+      <p class="lead measure">Tell us what you are building or fixing in Holland or West Michigan. Call, email or send the form and we will get back to you.</p>
+      <div class="form-wrap"><EstimateForm id="estimate" title="Send your project" /></div>
       <div class="ways">
         <a class="way way--main" href={`tel:${business.phone}`}><small>Call</small><span>{business.phoneDisplay}</span></a>
         <a class="way" href={`mailto:${business.email}?subject=Estimate%20request`}><small>Email</small><span>{business.email}</span></a>
@@ -32,6 +31,7 @@ import { localBusiness } from '../lib/schema';
   .way--main small { color: var(--color-on-accent); }
   .way:hover:not(.way--main) { border-color: var(--color-accent); }
   .way--main:hover { background: var(--color-accent-hover); }
+  .form-wrap { max-width: 36rem; margin-top: var(--space-6); }
   .info { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
   .info p { margin: 0; }
 </style>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { locations, entryUrl } from '../../lib/content';
+const areas = await locations();
+---
+<BaseLayout title="Service Areas: Holland, MI & West Michigan" description="Cruz Construction & Landscaping serves Holland, MI and West Michigan with kitchen, bathroom and basement remodeling and finish trades.">
+  <section class="section">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }]} />
+      <h1>Service areas</h1>
+      <p class="lead measure">We are based in the Holland area and work in Holland, MI and across West Michigan. Not sure if we come to you? Call 616-502-1874 and ask.</p>
+      <ul class="grid areas" role="list">
+        {areas.map((a) => <li class="card"><div class="card__body"><h2><a href={entryUrl(a)}>{a.data.name}</a></h2><p>{a.data.description}</p></div></li>)}
+        <li class="card"><div class="card__body"><h2>West Michigan</h2><p>Outside Holland? We also take projects across West Michigan. Call or send the estimate form with your town.</p></div></li>
+      </ul>
+      <div class="prose area-more">
+        <h2>What we do across the area</h2>
+        <p>Wherever the project is, it is the same two-person crew and the same Michigan Builders License. We take on <a href="/services/kitchen-remodeling/">kitchen remodeling</a>, <a href="/services/bathroom-remodeling/">bathroom remodeling</a> and <a href="/services/basement-finishing/">basement finishing</a>, and single trades like <a href="/services/drywall-painting/">drywall and painting</a>, <a href="/services/tile-flooring/">tile and LVP flooring</a>, <a href="/services/carpentry-trim/">carpentry, trim and doors</a>, and <a href="/services/insulation-drop-ceilings/">insulation and drop ceilings</a>.</p>
+        <p>Holland spans Ottawa and Allegan counties, and many homes sit in the surrounding townships. Let us know the address when you ask for an estimate and we will confirm we cover it. Our working hours are 7am to 5pm.</p>
+      </div>
+    </div>
+  </section>
+  <CtaBand title="Planning a project near Holland?" text="Call 616-502-1874 or request a free estimate." />
+</BaseLayout>
+<style>.area-more { margin-top: var(--space-7); } .areas { list-style: none; padding: 0; } .areas h2 { font-size: var(--text-xl); } .areas h2 a { color: var(--color-text); }</style>

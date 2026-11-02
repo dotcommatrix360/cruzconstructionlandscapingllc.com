@@ -35,9 +35,25 @@ export function localBusiness(): Json {
     priceRange: business.priceRange,
     address: business.hideAddress ? undefined : { '@type': 'PostalAddress', streetAddress: a.street, addressLocality: a.city, addressRegion: a.region, postalCode: a.postalCode, addressCountry: a.country },
     geo: business.geo?.lat && business.geo?.lng ? { '@type': 'GeoCoordinates', latitude: business.geo.lat, longitude: business.geo.lng } : undefined,
-    areaServed: (business.areaServed || []).map((name) => ({ '@type': 'Place', name })),
+    areaServed: areaServed(business.areaServed || []),
+    knowsAbout: SERVICES,
+    hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Remodeling services', itemListElement: SERVICES.map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })) },
+    foundingDate: '2025',
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: 2 },
+    hasCredential: (business.licenses || []).map((name) => ({ '@type': 'EducationalOccupationalCredential', credentialCategory: 'license', name, recognizedBy: { '@type': 'State', name: 'Michigan' } })),
     openingHoursSpecification: (business.hours || []).filter((h) => h.opens && h.closes).map((h) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: h.days, opens: h.opens, closes: h.closes })),
     sameAs: business.sameAs,
+  });
+}
+
+/** Services from the client's intake (Fillout CSV). */
+const SERVICES = ['Kitchen remodeling', 'Bathroom remodeling', 'Basement finishing', 'Insulation', 'Drywall hanging and finishing', 'Painting', 'Tile and LVP flooring', 'Custom tile showers', 'Kitchen backsplash', 'Carpentry and trim work', 'Door replacement', 'Cabinet installation', 'Drop ceiling installation'];
+
+/** "Holland, MI" → City in Michigan; anything else → AdministrativeArea. */
+function areaServed(names: string[]): Json[] {
+  return names.map((name) => {
+    const m = name.match(/^(.+),\s*MI$/);
+    return m ? { '@type': 'City', name: m[1], containedInPlace: { '@type': 'State', name: 'Michigan' } } : { '@type': 'AdministrativeArea', name };
   });
 }
 
@@ -49,7 +65,8 @@ export function service(opts: { name: string; description: string; url: string; 
     description: opts.description,
     url: absoluteUrl(opts.url),
     provider: { '@id': BUSINESS_ID },
-    areaServed: (opts.areaServed || business.areaServed || []).map((name) => ({ '@type': 'Place', name })),
+    serviceType: opts.name,
+    areaServed: areaServed(opts.areaServed || business.areaServed || []),
   });
 }
 

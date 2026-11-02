@@ -1,24 +1,38 @@
 ---
 title: "Kitchen Remodeling"
-seoTitle: "Kitchen Remodeling in West Michigan"
-description: "Kitchen remodeling in Holland and West Michigan: cabinet install, tile backsplash, flooring, drywall, paint and trim from one Michigan-licensed builder."
+seoTitle: "Kitchen Remodeling in Holland, MI"
+description: "Kitchen remodeling in Holland, MI and West Michigan: cabinet install, tile backsplash, LVP flooring, drywall, paint and trim from one licensed crew."
 summary: "Cabinets, backsplash, flooring, drywall, paint and trim, handled by one licensed crew."
 order: 1
+image: ../../assets/images/kitchen-remodel-island.jpg
+imageAlt: "Example of a remodeled kitchen with an island, pendant lights and tile backsplash (stock photo)"
+faqs:
+  - question: "What does a kitchen remodel with Cruz Construction include?"
+    answer: "Cabinet installation, tile backsplash, tile or LVP flooring, drywall hanging and finishing, painting, carpentry and trim, and door replacement. We do these trades with our own crew."
+  - question: "Do you remodel kitchens in Holland, MI?"
+    answer: "Yes. We are based in the Holland area and serve Holland, MI and West Michigan."
+  - question: "Can you do just part of a kitchen, like the backsplash or cabinets?"
+    answer: "Yes. Individual jobs like a new tile backsplash, a cabinet install or new flooring are welcome as well as full remodels."
 ---
 
-A kitchen remodel touches almost every trade in the house. Cruz Construction does the work itself, so you deal with one crew instead of juggling several contractors.
+A kitchen remodel touches almost every trade in the house. Cruz Construction & Landscaping does that work itself, so homeowners in Holland and West Michigan deal with one crew instead of juggling several contractors.
 
 ## What a kitchen project can include
 
 - Cabinet installation
-- Tile backsplash and floors, including tile and LVP flooring
+- Custom tile backsplash
+- Tile and LVP flooring
 - Drywall hanging and finishing
 - Painting
 - Carpentry and trim work
 - Door replacement
 
-## Why homeowners hire us
+## One crew, start to finish
 
-Homeowners tell us they trust the work they see in our earlier projects, and that we explain what is being done and why. We explain the process as the work is done.
+Because the same two-person crew handles the cabinets, the tile, the drywall and the paint, the trades are done in the right order and nothing gets lost between contractors. We explain each step as the work happens, so you always know what is next.
 
-Ready to talk through your kitchen? [Request an estimate](/contact/) or call 616-502-1874.
+## Licensed in Michigan
+
+Cruz Construction holds a Michigan Builders License.
+
+Ready to talk through your kitchen? [Request a free estimate](/contact/) or call [616-502-1874](tel:+16165021874).
