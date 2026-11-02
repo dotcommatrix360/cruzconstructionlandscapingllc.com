@@ -99,6 +99,11 @@
       "from": "/reviews",
       "to": "https://www.facebook.com/share/18ihntLhqo/",
       "status": 302
+    },
+    {
+      "from": "/offer",
+      "to": "/#estimate",
+      "status": 302
     }
   ],
   "deploy": {
