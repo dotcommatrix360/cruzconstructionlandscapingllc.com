@@ -21,6 +21,7 @@ export interface SiteConfig {
   blog: { title: string; description: string; perPage: number };
   integrations: {
     gtmId?: string; ga4Id?: string; clarityId?: string; googleSiteVerification?: string;
+    chatWidget?: { provider: 'leadconnector'; widgetId?: string };
     form?: { provider: 'ghl' | 'formspree' | 'custom' | 'none'; embedUrl?: string; action?: string; height?: number };
   };
   redirects?: Redirect[];

@@ -26,7 +26,7 @@ const tel = `tel:${business.phone}`;
 
 
 const steps = [
-  { t: 'Call or send the form', d: `Tell us what you want built or fixed. Call ${business.phoneDisplay} or send the three-field form.` },
+  { t: 'Call or message us', d: `Tell us what you want built or fixed. Call ${business.phoneDisplay} or message us in the chat.` },
   { t: 'We talk through the project', d: 'We go over the space, the scope and what you want it to look like, and give you a free estimate.' },
   { t: 'One crew does the work', d: 'Our own crew handles the trades, start to finish, and explains each step as it happens.' },
   { t: 'Final walkthrough', d: 'We walk the finished project with you before we call it done.' },
@@ -39,12 +39,12 @@ const faqs = [
   { question: 'Do you take smaller jobs?', answer: 'Yes. Along with full remodels we take on single trades, such as one tile shower, a backsplash, new flooring, a run of trim or a drop ceiling.' },
   { question: 'Who does the work?', answer: 'Our own crew, led by the owner. We do not hand your project off to a chain of subcontractors.' },
   { question: 'What are your working hours?', answer: 'We work 7am to 5pm.' },
-  { question: 'How do I get an estimate?', answer: `Call ${business.phoneDisplay}, email ${business.email}, or send the estimate form on this page. Estimates are free.` },
+  { question: 'How do I get an estimate?', answer: `Call ${business.phoneDisplay}, email ${business.email}, or message us in the chat on this page. Estimates are free.` },
 ];
 ---
 <BaseLayout fullTitle title="Remodeling Contractor in Holland, MI | Cruz Construction" description="Kitchen, bathroom and basement remodeling in Holland, MI and West Michigan. Licensed Michigan builder for drywall, tile, LVP flooring and carpentry.">
 
-  <!-- 1. Hero + estimate form + trust bar -->
+  <!-- 1. Hero + estimate panel (chat) + trust bar -->
   <section class="hero" aria-labelledby="hero-h">
     <div class="hero__bg" aria-hidden="true">
       <ResponsiveImage src={heroImg} alt="" priority sizes="100vw" widths={[640, 960, 1300]} />
@@ -60,7 +60,7 @@ const faqs = [
         </ul>
         <div class="hero__call">
           <a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a>
-          <span>or send the form and we will get back to you</span>
+          <span>or message us in the chat and we will get back to you</span>
         </div>
       </div>
       <EstimateForm id="estimate" />
@@ -122,7 +122,7 @@ const faqs = [
             <p class="svc__cta-h">Not sure where to start?</p>
             <p>Tell us what you want built or fixed. The estimate is free.</p>
             <a class="btn btn--primary btn--big" href={tel}>Call {business.phoneDisplay}</a>
-            <a class="svc__alt" href="#estimate">or send the 3-field form &rarr;</a>
+            <a class="svc__alt" href="#estimate">or message us in the chat &rarr;</a>
           </div>
         </li>
       </ul>
@@ -207,7 +207,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 9. Final call to action: buttons only (the form lives in the hero) -->
+  <!-- 9. Final call to action: buttons only (the chat panel lives in the hero) -->
   <section class="estimate-band" aria-label="Free estimates">
     <div class="photo-cta__bg" aria-hidden="true"><ResponsiveImage src={bathImg} alt="" sizes="100vw" widths={[640, 1400]} /></div>
     <div class="container end-cta">

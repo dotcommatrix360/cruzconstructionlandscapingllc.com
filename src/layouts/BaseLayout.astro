@@ -7,6 +7,7 @@ import Tracking from '../components/Tracking.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLd from '../components/JsonLd.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import { site, business } from '../lib/site';
 import { localBusiness } from '../lib/schema';
 
@@ -39,8 +40,9 @@ const seo = Astro.props;
       <a class="mobile-bar__est" href="/contact/#estimate" data-estimate-link>Free estimate</a>
     </div>
     <script>
-      // On pages with the estimate form, jump to it in place instead of going to the contact page.
+      // On pages with the estimate panel, jump to it in place instead of going to the contact page.
       if (document.getElementById('estimate')) for (const a of document.querySelectorAll<HTMLAnchorElement>('[data-estimate-link]')) a.href = '#estimate';
     </script>
+    <ChatWidget />
   </body>
 </html>

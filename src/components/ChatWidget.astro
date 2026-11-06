@@ -1,0 +1,24 @@
+---
+// LeadConnector (GoHighLevel) chat widget, loaded on every page from BaseLayout.
+// It is the only place on the site that collects phone numbers (SMS opt-in for A2P 10DLC):
+// do not add other forms with a phone field. Config: site.config.json → integrations.chatWidget.
+// Any link to #estimate or element with [data-open-chat] opens the chat window once the widget is ready;
+// before that (or if it fails to load) the link falls back to its normal target.
+import { config } from '../lib/site';
+const w = config.integrations.chatWidget;
+const id = w?.provider === 'leadconnector' ? w.widgetId : '';
+---
+{id && (
+  <>
+    <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id={id} data-source="WEB_USER" defer></script>
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest && e.target.closest('[data-open-chat], a[href="#estimate"], a[href$="/#estimate"]');
+        var cw = window.leadConnector && window.leadConnector.chatWidget;
+        if (!el || !cw || typeof cw.openWidget !== 'function') return;
+        e.preventDefault();
+        cw.openWidget();
+      });
+    </script>
+  </>
+)}

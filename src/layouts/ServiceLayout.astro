@@ -1,5 +1,5 @@
 ---
-// One service page: photo hero with the estimate form, the service copy, FAQs, related services, CTA.
+// One service page: photo hero with the estimate panel, the service copy, FAQs, related services, CTA.
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
@@ -28,7 +28,7 @@ const faqs = entry.data.faqs;
 // FAQPage JSON-LD mirrors exactly what is visible: answer + points + takeaway.
 const faqSchema = faqPage(faqs.map((f) => ({ question: f.question, answer: [f.answer, ...f.points, f.takeaway].filter(Boolean).join(' ') })));
 const steps = [
-  { t: 'Call or send the form', d: `Tell us about your ${lower} project. Call ${business.phoneDisplay} or send the three-field form above.` },
+  { t: 'Call or message us', d: `Tell us about your ${lower} project. Call ${business.phoneDisplay} or message us in the chat.` },
   { t: 'Free estimate', d: 'We talk through the space, the scope and the look you want, and give you a free estimate with no obligation.' },
   { t: 'Our crew does the work', d: 'The owner and our own crew do the work, and we explain each step as it happens.' },
   { t: 'Final walkthrough', d: 'We walk through the finished work with you before we call the job done.' },
@@ -53,7 +53,7 @@ const steps = [
           <p class="svc-aside__h">Talk to the owner</p>
           <p>Local, owner-operated and licensed in Michigan. Free estimates, 7am to 5pm.</p>
           <a class="btn btn--primary" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
-          <a class="btn btn--secondary" href="#estimate">Send the estimate form</a>
+          <a class="btn btn--secondary" href="#estimate">Message us in the chat</a>
         </div>
       </aside>
     </div>
@@ -148,7 +148,7 @@ const steps = [
       </ul>
     </div>
   </section>
-  <CtaBand strip kw="Free estimate" title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or send the three-field form." />
+  <CtaBand strip kw="Free estimate" title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or message us in the chat." />
 </BaseLayout>
 <style>
   .svc-page { display: grid; gap: var(--space-7); }

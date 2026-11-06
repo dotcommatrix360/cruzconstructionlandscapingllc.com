@@ -86,6 +86,11 @@
     "ga4Id": "",
     "clarityId": "",
     "googleSiteVerification": "",
+    "chatWidget": {
+      "$comment": "LeadConnector (GoHighLevel) chat widget: the ONLY form on the site that collects phone numbers (A2P 10DLC SMS opt-in). Loads on every page. Empty widgetId = no widget.",
+      "provider": "leadconnector",
+      "widgetId": "6aea53351c331ac14f028074"
+    },
     "form": {
       "$comment": "provider: ghl | formspree | custom | none. ghl: embedUrl = the GoHighLevel form iframe URL. formspree/custom: action = the https POST endpoint. Never invent an endpoint.",
       "provider": "none",

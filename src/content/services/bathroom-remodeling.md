@@ -30,7 +30,7 @@ faqs:
     points:
       - "A new floor or fresh paint costs far less than a full remodel"
       - "Custom tile showers are usually the biggest part of the budget"
-    takeaway: "Get a free, project-specific estimate: call 616-502-1874 or send the form."
+    takeaway: "Get a free, project-specific estimate: call 616-502-1874 or message us in the chat."
   - question: "Can you replace just the shower?"
     answer: "Yes. We build custom tile showers on their own or as part of a full bathroom remodel."
     takeaway: "Tell us what you want to change and we will tell you what makes sense to do at the same time."

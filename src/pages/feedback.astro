@@ -48,8 +48,8 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
         <form class="review__form" method={posts ? 'post' : undefined} action={posts ? form.action : undefined} data-mailto={posts ? undefined : business.email}>
           <input type="hidden" name="rating" data-rating-field />
           <div class="field"><label for="fb-name">Your name</label><input id="fb-name" name="name" autocomplete="name" required /></div>
-          <div class="field"><label for="fb-email">Email address</label><input id="fb-email" name="email" type="email" autocomplete="email" /></div>
-          <div class="field"><label for="fb-phone">Phone number</label><input id="fb-phone" name="phone" type="tel" autocomplete="tel" required /></div>
+          <div class="field"><label for="fb-email">Email address</label><input id="fb-email" name="email" type="email" autocomplete="email" required /></div>
+          <!-- No phone field: the chat widget must be the only phone/SMS opt-in on the site (A2P 10DLC). -->
           <div class="field"><label for="fb-msg">What went wrong?</label><textarea id="fb-msg" name="message" rows="4" required></textarea></div>
           {posts && <div class="field field--hp" aria-hidden="true"><label for="fb-hp">Leave this empty</label><input id="fb-hp" name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
           <button class="review__btn" type="submit">Send feedback</button>
@@ -96,7 +96,7 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
     if (!form.dataset.mailto) return; // real endpoint: normal submit
     e.preventDefault();
     const d = new FormData(form);
-    const body = `Rating: ${d.get('rating')} of 5\nName: ${d.get('name')}\nPhone: ${d.get('phone')}\nEmail: ${d.get('email')}\n\nWhat went wrong:\n${d.get('message')}`;
+    const body = `Rating: ${d.get('rating')} of 5\nName: ${d.get('name')}\nEmail: ${d.get('email')}\n\nWhat went wrong:\n${d.get('message')}`;
     location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent('Customer feedback from the website')}&body=${encodeURIComponent(body)}`;
     show('sent');
   });

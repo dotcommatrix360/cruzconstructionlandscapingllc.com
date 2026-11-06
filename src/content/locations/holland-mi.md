@@ -19,7 +19,7 @@ faqs:
   - question: "What are your working hours?"
     answer: "Our working hours are 7am to 5pm."
   - question: "How do I get an estimate in Holland?"
-    answer: "Call 616-502-1874, email support@cruzconstructionlandscapingllc.com, or send the estimate form on this website."
+    answer: "Call 616-502-1874, email support@cruzconstructionlandscapingllc.com, or message us in the chat on this website."
 ---
 
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder working in Holland, MI. The owner grew up remodeling and turning over rental properties, then spent years in industrial work, and in 2025 earned his Michigan Builder's license and started the company.

@@ -1,5 +1,5 @@
 ---
-// Photo hero with the H1, call button and the same three-field estimate form as the home page.
+// Photo hero with the H1, call button and the estimate panel (opens the chat widget).
 // Used on every service and service-area page so each one converts on its own.
 import type { ImageMetadata } from 'astro';
 import ResponsiveImage from './ResponsiveImage.astro';
@@ -22,7 +22,7 @@ const { title, headline = 'Your dream home or dream project can be a reality.', 
       </ul>
       <div class="fhero__call">
         <a class="btn btn--primary fhero__btn" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
-        <span>or send the form and we will get back to you</span>
+        <span>or message us in the chat and we will get back to you</span>
       </div>
     </div>
     <EstimateForm id="estimate" title={formTitle} />

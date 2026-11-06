@@ -32,7 +32,7 @@ faqs:
       - "A backsplash or flooring update costs far less than a full remodel"
       - "Cabinets are usually the biggest line item"
       - "Changing the layout adds work for every trade"
-    takeaway: "Call 616-502-1874 or send the form for a free, project-specific estimate."
+    takeaway: "Call 616-502-1874 or message us in the chat for a free, project-specific estimate."
   - question: "Can I do just part of my kitchen?"
     answer: "Yes. Single jobs are welcome."
     points:

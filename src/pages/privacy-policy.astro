@@ -4,13 +4,14 @@ import Email from '../components/Email.astro';
 import { business, site } from '../lib/site';
 const name = business.legalName || business.name;
 ---
-<LegalLayout title="Privacy Policy" url="/privacy-policy/" updated="November 2, 2026" description="How Cruz Construction & Landscaping LLC collects, uses and protects the information you share through this website and the estimate form.">
+<LegalLayout title="Privacy Policy" url="/privacy-policy/" updated="November 6, 2026" description="How Cruz Construction & Landscaping LLC collects, uses and protects the information you share through this website, the chat and text messages.">
   <p>This Privacy Policy explains how {name} ("we", "us") handles information collected through {site.url.replace('https://', '')} (the "Site"). By using the Site you agree to this policy.</p>
 
   <h2>Information we collect</h2>
   <p>We only collect information you choose to give us:</p>
   <ul>
-    <li><strong>Estimate form:</strong> your name, phone number and the description of your project.</li>
+    <li><strong>Website chat:</strong> your name, phone number, your message about your project and, if you check the consent box, your consent to receive text messages.</li>
+    <li><strong>Feedback page:</strong> your name, email address and the feedback you choose to send.</li>
     <li><strong>Email and phone:</strong> anything you include when you email or call us.</li>
   </ul>
   <p>Our hosting provider (Cloudflare) automatically processes basic technical data, such as IP address, browser type and the pages requested, to deliver the Site and protect it from abuse. We do not use this data to identify you.</p>
@@ -24,13 +25,15 @@ const name = business.legalName || business.name;
   <p>We do not sell, rent or trade your personal information.</p>
 
   <h2>Sharing</h2>
-  <p>We share information only with service providers that help us run the Site and our business (for example web hosting and email), and only as needed for those services, or when required by law.</p>
+  <p>We share information only with service providers that help us run the Site and our business (for example web hosting, email, and the chat and text messaging platform), and only as needed for those services, or when required by law.</p>
+  <p><strong>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</strong> All of the categories above exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
 
   <h2>Cookies and analytics</h2>
-  <p>The Site does not currently use advertising or analytics cookies. If we add analytics tools in the future, we will update this policy.</p>
+  <p>The Site does not currently use advertising or analytics cookies. The website chat, provided by LeadConnector, may store small files in your browser so the conversation keeps working while you move between pages. If we add analytics tools in the future, we will update this policy.</p>
 
   <h2>Text messages</h2>
-  <p>If you give us your phone number, we may call or text you about your request. Message and data rates may apply. You can ask us at any time to stop contacting you by text, and we will honor that request.</p>
+  <p>If you give us your phone number in the website chat and check the consent box, you agree to receive text messages from {name} about your request, estimates, scheduling and project updates, and promotional offers. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply.</p>
+  <p>Reply <strong>STOP</strong> at any time to stop receiving text messages, and <strong>HELP</strong> for help. You can also contact us using the details below. See our <a href="/terms-of-service/#text-messages">Terms of Service</a> for the full text messaging terms.</p>
 
   <h2>How long we keep information</h2>
   <p>We keep your information as long as needed to respond to you, complete your project and meet legal or record-keeping obligations, and then delete it.</p>

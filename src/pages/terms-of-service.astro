@@ -4,7 +4,7 @@ import Email from '../components/Email.astro';
 import { business, site } from '../lib/site';
 const name = business.legalName || business.name;
 ---
-<LegalLayout title="Terms of Service" url="/terms-of-service/" updated="November 2, 2026" description="The terms that apply when you use the Cruz Construction & Landscaping LLC website, including estimates, content and limits of liability.">
+<LegalLayout title="Terms of Service" url="/terms-of-service/" updated="November 6, 2026" description="The terms that apply when you use the Cruz Construction & Landscaping LLC website, including estimates, text messages, content and limits of liability.">
   <p>These Terms of Service govern your use of {site.url.replace('https://', '')} (the "Site"), operated by {name} ("we", "us"). By using the Site you agree to these terms.</p>
 
   <h2>Information on the Site</h2>
@@ -21,6 +21,18 @@ const name = business.legalName || business.name;
 
   <h2>Intellectual property</h2>
   <p>The Site's content, including text, logo and design, belongs to {name} or its licensors and may not be copied or reused without permission.</p>
+
+  <h2 id="text-messages">Text messaging terms</h2>
+  <p><strong>Program:</strong> {name} text messages. When you give us your phone number in the website chat and check the consent box, you agree to receive text messages from {name} at that number about your request, estimates, scheduling and project updates, and promotional offers. Some messages may be sent using automated technology.</p>
+  <ul>
+    <li><strong>Consent is optional:</strong> it is not a condition of any purchase.</li>
+    <li><strong>Message frequency varies</strong> depending on your request and project.</li>
+    <li><strong>Message and data rates may apply</strong> according to your mobile plan.</li>
+    <li><strong>To stop:</strong> reply <strong>STOP</strong> at any time. We will send one message to confirm, and then no more text messages unless you sign up again.</li>
+    <li><strong>For help:</strong> reply <strong>HELP</strong>, call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a> or email <Email />.</li>
+    <li>Mobile carriers are not liable for delayed or undelivered messages.</li>
+  </ul>
+  <p>We do not share your mobile number or text messaging consent with third parties or affiliates for marketing or promotional purposes. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
 
   <h2>Third-party links</h2>
   <p>The Site links to third-party websites such as social media pages. We are not responsible for their content or practices.</p>
