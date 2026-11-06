@@ -14,7 +14,7 @@ const reviewSite = links.google ? 'Google' : 'Facebook';
 const form = config.integrations.form || { provider: 'none' };
 const posts = (form.provider === 'formspree' || form.provider === 'custom') && form.action;
 ---
-<BaseLayout title="Share Your Experience" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did: your feedback helps a small local business." noindex>
+<BaseLayout title="Share Your Experience" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did: your feedback helps a small local business." noindex noChat>
   <section class="review">
     <div class="review__bg" aria-hidden="true"><ResponsiveImage src={bgImg} alt="" priority sizes="100vw" widths={[640, 960, 1400]} /></div>
     <div class="container review__inner">

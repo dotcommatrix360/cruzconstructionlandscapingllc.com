@@ -11,8 +11,9 @@ import ChatWidget from '../components/ChatWidget.astro';
 import { site, business } from '../lib/site';
 import { localBusiness } from '../lib/schema';
 
-type Props = import('../components/Seo.astro').Props;
-const seo = Astro.props;
+// noChat: leave the chat widget off a page that has its own form (the widget must be the only opt-in where it loads).
+type Props = import('../components/Seo.astro').Props & { noChat?: boolean };
+const { noChat, ...seo } = Astro.props;
 ---
 <!doctype html>
 <html lang={site.language}>
@@ -43,6 +44,6 @@ const seo = Astro.props;
       // On pages with the estimate panel, jump to it in place instead of going to the contact page.
       if (document.getElementById('estimate')) for (const a of document.querySelectorAll<HTMLAnchorElement>('[data-estimate-link]')) a.href = '#estimate';
     </script>
-    <ChatWidget />
+    {!noChat && <ChatWidget />}
   </body>
 </html>
