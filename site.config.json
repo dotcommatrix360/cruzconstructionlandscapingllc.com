@@ -19,13 +19,13 @@
     "logo": "/mark.png",
     "priceRange": "",
     "address": {
-      "street": "",
-      "city": "",
-      "region": "",
-      "postalCode": "",
+      "street": "2725 Kragspough Court",
+      "city": "Holland",
+      "region": "MI",
+      "postalCode": "49424",
       "country": "US"
     },
-    "hideAddress": true,
+    "hideAddress": false,
     "geo": {
       "lat": "",
       "lng": ""

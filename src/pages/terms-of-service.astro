@@ -50,5 +50,5 @@ const name = business.legalName || business.name;
   <p>We may update these terms from time to time. The "Last updated" date above shows when they last changed.</p>
 
   <h2>Contact us</h2>
-  <p>{name}<br />Phone: <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a><br />Email: <Email /></p>
+  <p>{name}{!business.hideAddress && business.address.street && <><br />{business.address.street}, {business.address.city}, {business.address.region} {business.address.postalCode}</>}<br />Phone: <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a><br />Email: <Email /></p>
 </LegalLayout>

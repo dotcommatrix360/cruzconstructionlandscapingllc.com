@@ -15,6 +15,7 @@ const [emailUser = '', emailDomain = ''] = (business.email || '').split('@');
         <a class="way" href={`mailto:${business.email}?subject=Estimate%20request`}><small>Email</small><span class="way__email">{emailUser}@<wbr />{emailDomain}</span></a>
       </div>
       <div class="info">
+        {!business.hideAddress && business.address.street && <p><strong>Business address</strong><br />{business.address.street}<br />{business.address.city}, {business.address.region} {business.address.postalCode}</p>}
         <p><strong>Working hours</strong><br />7am to 5pm</p>
         <p><strong>Service area</strong><br />Holland, MI &amp; West Michigan</p>
         <p><strong>License</strong><br />Michigan Builders License</p>
