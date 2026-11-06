@@ -8,24 +8,24 @@ interface Props { id?: string; title?: string; headingLevel?: 2 | 3 }
 const { id = 'estimate', title = 'Get a free estimate', headingLevel = 2 } = Astro.props;
 const H = `h${headingLevel}` as 'h2' | 'h3';
 ---
-<div class="estimate-form" id={id}>
-  <H class="estimate-form__title">{title}</H>
-  <p class="estimate-form__sub">Send us a quick message in the chat: your name, phone and what you want built or fixed. We get right back to you.</p>
-  <ol class="estimate-form__steps">
+<div class="estimate-panel" id={id}>
+  <H class="estimate-panel__title">{title}</H>
+  <p class="estimate-panel__sub">Open the chat and tell us what you want built or fixed. We get right back to you.</p>
+  <ol class="estimate-panel__steps">
     <li>Open the chat</li>
     <li>Tell us about your project</li>
     <li>Get your free estimate</li>
   </ol>
   <a class="btn btn--primary btn--block" href={`tel:${business.phone}`} data-open-chat>Message us now</a>
-  <p class="estimate-form__note">Free estimate, no obligation. Prefer to talk? Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a>.</p>
+  <p class="estimate-panel__note">Free estimate, no obligation. Prefer to talk? Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a>.</p>
 </div>
 <style>
-  .estimate-form { display: grid; gap: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); box-shadow: var(--shadow-lg); }
-  .estimate-form__title { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); margin: 0; }
-  .estimate-form__sub { color: var(--color-text-muted); margin: 0; }
-  .estimate-form__steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
-  .estimate-form__steps li { counter-increment: s; display: flex; align-items: center; gap: var(--space-3); font-weight: 600; }
-  .estimate-form__steps li::before { content: counter(s); display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border: 2px solid var(--color-accent); color: var(--color-accent); font-family: var(--font-heading); font-weight: 700; }
+  .estimate-panel { display: grid; gap: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); box-shadow: var(--shadow-lg); }
+  .estimate-panel__title { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); margin: 0; }
+  .estimate-panel__sub { color: var(--color-text-muted); margin: 0; }
+  .estimate-panel__steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+  .estimate-panel__steps li { counter-increment: s; display: flex; align-items: center; gap: var(--space-3); font-weight: 600; }
+  .estimate-panel__steps li::before { content: counter(s); display: grid; place-items: center; flex: none; width: 2rem; height: 2rem; border: 2px solid var(--color-accent); color: var(--color-accent); font-family: var(--font-heading); font-weight: 700; }
   .btn--block { width: 100%; text-align: center; font-family: var(--font-heading); font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .estimate-form__note { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .estimate-panel__note { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
 </style>

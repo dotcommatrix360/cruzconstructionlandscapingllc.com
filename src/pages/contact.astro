@@ -9,7 +9,7 @@ const [emailUser = '', emailDomain = ''] = (business.email || '').split('@');
     <div class="container">
       <h1>Get a free remodeling estimate in Holland, MI</h1>
       <p class="lead measure">Tell us what you are building or fixing in Holland or West Michigan. Call, email or message us in the chat and we will get back to you.</p>
-      <div class="form-wrap"><EstimateForm id="estimate" title="Send your project" /></div>
+      <div class="panel-wrap"><EstimateForm id="estimate" title="Send your project" /></div>
       <div class="ways">
         <a class="way way--main" href={`tel:${business.phone}`}><small>Call</small><span>{business.phoneDisplay}</span></a>
         <a class="way" href={`mailto:${business.email}?subject=Estimate%20request`}><small>Email</small><span class="way__email">{emailUser}@<wbr />{emailDomain}</span></a>
@@ -34,7 +34,7 @@ const [emailUser = '', emailDomain = ''] = (business.email || '').split('@');
   .way--main small { color: var(--color-on-accent); }
   .way:hover:not(.way--main) { border-color: var(--color-accent); }
   .way--main:hover { background: var(--color-accent-hover); }
-  .form-wrap { max-width: 36rem; margin-top: var(--space-6); }
+  .panel-wrap { max-width: 36rem; margin-top: var(--space-6); }
   .info { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
   .info p { margin: 0; }
 </style>
