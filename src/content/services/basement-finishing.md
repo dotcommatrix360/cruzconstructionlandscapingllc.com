@@ -6,8 +6,8 @@ headline: "Turn your basement into real living space."
 inShort: "Cruz Construction finishes basements in Holland, MI with its own crew, in the right order: insulation, drywall, drop ceilings, tile or LVP floors, paint, trim and doors. Licensed in Michigan, local and owner-operated, with free estimates."
 summary: "Insulation, drywall, drop ceilings, flooring and paint to turn a basement into usable space."
 order: 3
-image: ../../assets/images/finished-living-space.jpg
-imageAlt: "A finished living space with wood-look flooring and a wood accent wall"
+image: ../../assets/images/finished-basement-lvp-drop-ceiling.jpg
+imageAlt: "Finished basement with a drop ceiling, green walls and wood-look LVP flooring"
 faqs:
   - question: "How long does it take to finish a basement?"
     answer: "It depends on the size of the space and how many rooms you want."

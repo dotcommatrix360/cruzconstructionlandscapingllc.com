@@ -101,3 +101,18 @@ export function faqPage(faqs: { question: string; answer: string }[]): Json | nu
     mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
   };
 }
+
+/** VideoObject for a self-hosted project video. uploadDate = the day it was published on this site. */
+export function videoObject(opts: { name: string; description: string; contentUrl: string; thumbnailUrl: string; duration: string; uploadDate: string }): Json {
+  return clean({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: opts.name,
+    description: opts.description,
+    contentUrl: absoluteUrl(opts.contentUrl),
+    thumbnailUrl: absoluteUrl(opts.thumbnailUrl),
+    duration: opts.duration,
+    uploadDate: opts.uploadDate,
+    publisher: { '@id': BUSINESS_ID },
+  });
+}

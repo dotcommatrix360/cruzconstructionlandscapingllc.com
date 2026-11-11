@@ -6,8 +6,8 @@ headline: "Fresh walls that make the whole room feel new."
 inShort: "Cruz Construction paints interior walls, ceilings, trim and doors in Holland, MI homes, as a single job or as the finish of a remodel, and preps the surface itself first."
 summary: "Walls, ceilings and trim painted clean, for one room or a whole remodel."
 order: 7
-image: ../../assets/images/interior-paint-roller.jpg
-imageAlt: "Paint roller applying fresh color to a smooth wall"
+image: ../../assets/images/staircase-white-railing-carpet.jpg
+imageAlt: "Freshly painted stairwell with white railings and a chandelier"
 faqs:
   - question: "What is included in an interior paint job?"
     answer: "Paint is only as good as the prep under it."

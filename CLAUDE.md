@@ -42,6 +42,13 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - No /services/ overview page (owner's choice): header Services dropdown lists each service page; /services/ 301 → /. Every service and area page has the estimate panel (opens the chat) in the hero (`FormHero.astro`). Sticky Call / Free estimate bar on all screen sizes.
 - Service-area page: Holland, MI only (`src/content/locations/holland-mi.md`). Add more towns only when the client confirms them.
 
+## Project videos & real photos (2026-11-11)
+- Source: the client's Google Drive folder "Cruz Construction" (7 vertical phone videos, 720×1280). Re-encoded for the web (H.264, faststart, ~1 Mbps) into `public/videos/`; data in `src/lib/videos.ts` (title, description, poster frame, which service pages show it); rendered by `ProjectVideos.astro` (click to play, `preload="none"`, no autoplay, VideoObject JSON-LD; swipeable row on phones).
+- Shown on the home page ("Project videos") and on each matching service page. Kitchen, backsplash and cabinet pages have no video yet.
+- Two clips (`two-story-home-flooring-paint-trim`, `bedroom-remodel-framing-to-finish`) had xHE-AAC audio that Firefox/most Chrome builds cannot play, so they are published without sound. The other five keep their original audio: it was not reviewed by ear, so confirm with the client it contains no licensed music before it is a problem.
+- All non-kitchen photos are frames from these videos (sharpest frame near each chosen moment); the home "See the difference" section uses real before/after pairs of the same room. Never pair different rooms. Frames with the burned-in "Before…/After" text were not used.
+- Large files: keep each video well under Cloudflare Pages' 25 MiB per-file limit.
+
 ## Reviews
 - Two Facebook recommendations (Denise L., Madeline L.) in `src/content/testimonials/testimonials.json`, provided by the owner 2026-11-02; shown as section 2 on home and after the hero on every service page. Facebook shows recommendations, not stars: never claim a star rating. A third (Tony N.) was left out because it says he had not seen the work yet. "Satisfaction guaranteed" only if the client confirms the guarantee and its terms.
 
@@ -50,4 +57,4 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - The "10% off your remodel" QR points at /offer (302 → /#estimate for now). Point it at the GHL offer page once it exists. The 10% offer comes from the agency presentation: the client must confirm it before printing. No review incentives (Google/Facebook/FTC rules).
 
 ## Open TODOs from client
-- Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real project photos (none supplied; per owner instruction 2026-11-02 the site uses stock photos for now, unlabelled at the owner's request — sources in `src/assets/images/CREDITS.md`, replace when real photos arrive) · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host
+- Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · license number · owner name · working days · confirm service area · form destination (GHL/Formspree) · GA4/GTM IDs · production domain/host

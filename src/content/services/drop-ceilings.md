@@ -6,8 +6,8 @@ headline: "A clean finished ceiling, with everything still in reach."
 inShort: "Cruz Construction installs drop ceilings in Holland, MI basements and utility spaces. They look finished and keep pipes, wiring and ductwork reachable for future repairs."
 summary: "Suspended ceilings that look clean and keep pipes, wiring and ductwork reachable."
 order: 5
-image: ../../assets/images/finished-living-space.jpg
-imageAlt: "Finished lower-level living space with a clean ceiling and wood-look floor"
+image: ../../assets/images/basement-drop-ceiling-green-walls.jpg
+imageAlt: "New drop ceiling with a light panel in a finished basement"
 faqs:
   - question: "What goes above a drop ceiling?"
     answer: "Usually the things you still need to reach in a basement."

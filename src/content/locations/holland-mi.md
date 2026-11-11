@@ -4,8 +4,8 @@ title: "Your Local Remodeling Contractor in Holland, MI"
 seoTitle: "Kitchen, Bath & Basement Remodeling in Holland, MI"
 description: "Kitchen, bathroom and basement remodeling in Holland, MI, plus drywall, tile, flooring and carpentry from a Michigan-licensed local crew."
 region: "Ottawa & Allegan County, Michigan"
-image: ../../assets/images/hero-carpentry-job-site.jpg
-imageAlt: "Carpenter in a hard hat cutting lumber on a job site"
+image: ../../assets/images/great-room-after-ceiling-repair.jpg
+imageAlt: "Great room with a new ceiling, wood floors and tall windows"
 localDetails:
   - "Holland sits on Lake Macatawa, a few miles from Lake Michigan, so winters bring lake-effect snow and summers are humid. That is why insulation and moisture-tolerant flooring like tile and LVP come first when we finish a basement here."
   - "The city of Holland spans two counties, Ottawa and Allegan, and many homes sit in the surrounding townships. Which office issues the permit depends on where the house is, so it is worth checking at the start of a project."

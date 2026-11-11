@@ -1,17 +1,30 @@
-# Image sources (stock — temporary, replace with real Cruz project photos)
+# Image sources
 
-These are stock photos used on the owner's instruction until the client supplies real project photos.
-Per the owner (2026-11-02) they are shown without an "example" label. Replace them with the client's real project photos before launch.
+## Real Cruz Construction project photos (2026-11-11)
+
+Every image below is a still frame taken from the client's own job-site walkthrough videos (Google Drive folder
+"Cruz Construction", 7 vertical phone videos at 720×1280). For each one the sharpest frame within ±0.7 s of the
+chosen moment was kept. The videos themselves are published in `public/videos/` (see `src/lib/videos.ts`).
+Frames are 720×1280, so they are fine for cards, galleries and darkened hero backgrounds but soft when shown large;
+ask the client for the original phone files (1080p/4K) or still photos to sharpen them.
+
+| File | Source video |
+|---|---|
+| hallway-white-panel-doors.jpg, interior-framing-in-progress.jpg | Whole-home interior remodel (`whole-home-interior-remodel.mp4`) |
+| living-room-lvp-staircase.jpg, staircase-white-railing-carpet.jpg, dining-room-columns-lvp-flooring.jpg, french-doors-and-entry-door.jpg | Two-story home: flooring, paint and trim (`two-story-home-flooring-paint-trim.mp4`) |
+| crew-replacing-kitchen-ceiling-drywall.jpg, kitchen-ceiling-opened-before.jpg, kitchen-after-ceiling-drywall.jpg, great-room-after-ceiling-repair.jpg | Kitchen and great room ceiling replacement (`kitchen-great-room-ceiling-drywall.mp4`) |
+| basement-unfinished-before.jpg, finished-basement-lvp-drop-ceiling.jpg, basement-drop-ceiling-green-walls.jpg | Basement finishing (`basement-finishing-drop-ceiling.mp4`) |
+| tile-shower-dark-subway-pony-wall.jpg, tile-shower-basketweave-floor-niche.jpg | Custom tile shower (`custom-tile-shower.mp4`) |
+| bathroom-tub-framing-before.jpg, bathroom-tub-surround-subway-tile.jpg, bathroom-vanity-slate-tile-floor.jpg | Bathroom tub surround remodel (`bathroom-tub-surround-remodel.mp4`) |
+| bedroom-framing-insulation-before.jpg, bedroom-finished-lvp.jpg, wall-insulation-before-drywall.jpg | Bedroom remodel, framing to finish (`bedroom-remodel-framing-to-finish.mp4`) |
+
+## Stock (temporary, kitchen pages only)
+
+No kitchen, backsplash or cabinet footage yet. Per the owner (2026-11-02) these stock photos are shown without an
+"example" label. Replace them with real Cruz kitchen photos as soon as the client sends some.
 
 | File | Source |
 |---|---|
-| hero-carpentry-job-site.jpg, carpentry-measuring-board.jpg, tile-subway-backsplash.jpg, lvp-flooring-room.jpg, interior-paint-roller.jpg | Stock images from the agency concept presentation (dotcommatrix360.com/cruz/) |
+| tile-subway-backsplash.jpg | Stock image from the agency concept presentation (dotcommatrix360.com/cruz/) |
 | kitchen-remodel-island.jpg | Unsplash photo-1565538810643-b5bdb714032a (Unsplash License) |
-| bathroom-tile-shower.jpg | Unsplash photo-1584622650111-993a426fbf0a (Unsplash License) |
-| finished-living-space.jpg | Unsplash photo-1600607687939-ce8a6c25118c (Unsplash License) |
-| interior-paint-roller.jpg | Unsplash photo-1562259949-e8e7689d7828 (Unsplash License) |
-| carpenter-circular-saw.jpg | Unsplash photo-1513467535987-fd81bc7d62f8 (Unsplash License) |
 | kitchen-white-cabinets.jpg | Unsplash photo-1556911220-bff31c812dba (Unsplash License) |
-| bathroom-freestanding-tub.jpg | Unsplash photo-1620626011761-996317b8d101 (Unsplash License) |
-| bathroom-grey-tile-vanity.jpg | Unsplash photo-1604709177225-055f99402ea3 (Unsplash License) |
-| finished-room-trim-windows.jpg | Unsplash photo-1599619351208-3e6c839d6828 (Unsplash License) |

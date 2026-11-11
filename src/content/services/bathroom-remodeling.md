@@ -6,8 +6,8 @@ headline: "A bathroom you will love walking into."
 inShort: "Cruz Construction remodels bathrooms in Holland, MI with its own crew: custom tile showers, tile and LVP floors, drywall, paint, trim and doors. Licensed in Michigan, local and owner-operated, with free estimates."
 summary: "Custom tile showers, new floors, drywall, paint and trim, done by one crew."
 order: 2
-image: ../../assets/images/bathroom-tile-shower.jpg
-imageAlt: "A remodeled bathroom with a glass tile shower and double vanity"
+image: ../../assets/images/bathroom-tub-surround-subway-tile.jpg
+imageAlt: "A remodeled bathroom with a new tub surround trimmed in grey subway tile"
 faqs:
   - question: "How long does a bathroom remodel take?"
     answer: "It depends on the scope and the materials you pick."

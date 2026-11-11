@@ -1,6 +1,6 @@
 ---
 // Home: follows the approved Concept 1 (dark) section order. Facts only from the client's Fillout intake.
-// Photos are stock (owner's instruction, until real project photos arrive) and are labelled as examples.
+// Photos are frames from the client's real project videos (src/lib/projects.ts, src/lib/videos.ts); kitchen photos are still stock.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import EstimateForm from '../components/EstimateForm.astro';
@@ -9,14 +9,16 @@ import Email from '../components/Email.astro';
 import Testimonials from '../components/Testimonials.astro';
 import ProjectPhotos from '../components/ProjectPhotos.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
+import ProjectVideos from '../components/ProjectVideos.astro';
+import { videos } from '../lib/videos';
 import { business } from '../lib/site';
 import { services, locations, entryUrl } from '../lib/content';
 
-import heroImg from '../assets/images/hero-carpentry-job-site.jpg';
-import kitchenImg from '../assets/images/kitchen-remodel-island.jpg';
-import bathImg from '../assets/images/bathroom-tile-shower.jpg';
-import carpentryImg from '../assets/images/carpentry-measuring-board.jpg';
-import sawImg from '../assets/images/carpenter-circular-saw.jpg';
+import heroImg from '../assets/images/living-room-lvp-staircase.jpg';
+import areaImg from '../assets/images/great-room-after-ceiling-repair.jpg';
+import bathImg from '../assets/images/tile-shower-dark-subway-pony-wall.jpg';
+import framingImg from '../assets/images/interior-framing-in-progress.jpg';
+import crewImg from '../assets/images/crew-replacing-kitchen-ceiling-drywall.jpg';
 
 const list = await services();
 const areas = await locations();
@@ -93,6 +95,21 @@ const faqs = [
     </div>
   </section>
 
+  <!-- Project videos: real walkthroughs from the client -->
+  <section class="section section--surface" id="videos" aria-labelledby="vid-h">
+    <div class="container">
+      <div class="head-row">
+        <div>
+          <h2 id="vid-h" class="sec-kw">Project videos</h2>
+          <p class="sec-big">Watch our work, start to finish</p>
+          <p class="lead">Real jobs by our crew, filmed on site: from open framing to the final walkthrough.</p>
+        </div>
+        <a class="btn btn--outline" href="#estimate">Get a free estimate</a>
+      </div>
+      <ProjectVideos list={videos} />
+    </div>
+  </section>
+
   <BeforeAfter />
 
   <!-- 3. Services (photo cards) -->
@@ -133,7 +150,7 @@ const faqs = [
   <section class="section" aria-labelledby="about-h">
     <div class="container split">
       <div class="split__media">
-        <ResponsiveImage src={sawImg} alt="Carpenter cutting a board with a circular saw" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1400]} />
+        <ResponsiveImage src={crewImg} alt="Our crew on ladders replacing a kitchen ceiling" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1400]} />
         <div class="badge"><strong>Licensed</strong><span>Michigan Builders License</span></div>
       </div>
       <div class="stack">
@@ -177,7 +194,7 @@ const faqs = [
         <div class="actions"><a class="btn btn--primary btn--big" href="#estimate">Start with step 1</a></div>
       </div>
       <div class="split__media">
-        <ResponsiveImage src={carpentryImg} alt="Carpenter measuring a board before cutting" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1200]} />
+        <ResponsiveImage src={framingImg} alt="New interior framing and a door opening during a remodel" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960, 1200]} />
       </div>
     </div>
   </section>
@@ -186,7 +203,7 @@ const faqs = [
   <section class="section section--surface" aria-labelledby="area-h">
     <div class="container split">
       <div class="split__media">
-        <ResponsiveImage src={kitchenImg} alt="Remodeled kitchen with an island and pendant lights" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960]} />
+        <ResponsiveImage src={areaImg} alt="Great room with a new ceiling, wood floors and tall windows" sizes="(min-width: 60rem) 45vw, 100vw" widths={[480, 960]} />
       </div>
       <div class="stack">
         <h2 id="area-h" class="sec-kw">Service areas</h2>

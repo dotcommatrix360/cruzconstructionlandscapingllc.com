@@ -14,6 +14,8 @@ import { entryUrl, services, locations } from '../lib/content';
 import ProjectPhotos from '../components/ProjectPhotos.astro';
 import Testimonials from '../components/Testimonials.astro';
 import { serviceCategory } from '../lib/projects';
+import ProjectVideos from '../components/ProjectVideos.astro';
+import { videosForService } from '../lib/videos';
 
 interface Props { entry: CollectionEntry<'services'> }
 const { entry } = Astro.props;
@@ -23,6 +25,7 @@ const others = (await services()).filter((s) => s.id !== entry.id);
 const name = entry.data.title;
 const lower = name.toLowerCase();
 const cat = serviceCategory[entry.id];
+const vids = videosForService(entry.id);
 const areas = await locations();
 const faqs = entry.data.faqs;
 // FAQPage JSON-LD mirrors exactly what is visible: answer + points + takeaway.
@@ -59,8 +62,19 @@ const steps = [
     </div>
   </section>
 
+  {vids.length > 0 && (
+    <section class="section section--surface" aria-labelledby="pv-h">
+      <div class="container">
+        <h2 id="pv-h" class="sec-kw">{name} project videos</h2>
+        <p class="sec-big">Watch the work, start to finish</p>
+        <p class="lead pv-lead">Real jobs by our crew, filmed on site. Press play to walk through each project.</p>
+        <ProjectVideos list={vids} />
+      </div>
+    </section>
+  )}
+
   {cat && (
-    <section class="section section--surface" aria-labelledby="pp-h">
+    <section class:list={['section', vids.length === 0 && 'section--surface']} aria-labelledby="pp-h">
       <div class="container">
         <h2 id="pp-h" class="sec-kw">{name} projects</h2>
         <p class="sec-big">See the kind of work we build</p>
@@ -151,6 +165,7 @@ const steps = [
   <CtaBand strip kw="Free estimate" title={`Ready to talk about ${entry.data.title.toLowerCase()}?`} text="Free estimate, no obligation. Call or message us in the chat." />
 </BaseLayout>
 <style>
+  .pv-lead { margin-bottom: var(--space-6); }
   .svc-page { display: grid; gap: var(--space-7); }
   @media (min-width: 60rem) { .svc-page { grid-template-columns: 1fr 22rem; align-items: start; } .svc-aside { position: sticky; top: calc(var(--header-h) + var(--space-5)); } }
   .svc-aside { border: 1px solid var(--color-border); background: var(--color-surface); }

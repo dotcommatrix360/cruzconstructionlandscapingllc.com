@@ -6,8 +6,8 @@ headline: "Smooth, straight walls, ready for paint."
 inShort: "Cruz Construction hangs, tapes and finishes drywall in Holland, MI homes, for basements, remodels and new rooms, and can paint it afterward with the same crew."
 summary: "Drywall hung, taped and finished smooth, ready for paint."
 order: 6
-image: ../../assets/images/hero-carpentry-job-site.jpg
-imageAlt: "Builder working on a job site with tools on the workbench"
+image: ../../assets/images/crew-replacing-kitchen-ceiling-drywall.jpg
+imageAlt: "Our crew on ladders replacing a kitchen ceiling"
 faqs:
   - question: "What are the steps in a drywall job?"
     answer: "Drywall is a sequence, and each step affects how the paint looks at the end."

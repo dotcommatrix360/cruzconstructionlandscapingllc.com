@@ -1,0 +1,48 @@
+---
+// Real project walkthrough videos (src/lib/videos.ts). Vertical phone video, click to play:
+// preload="none" so nothing but the poster downloads until a visitor presses play; no autoplay.
+// Emits one VideoObject JSON-LD per video shown.
+import { getImage } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
+import { videoObject } from '../lib/schema';
+import { VIDEOS_PUBLISHED, type ProjectVideo } from '../lib/videos';
+interface Props { list: ProjectVideo[]; schema?: boolean }
+const { list, schema = true } = Astro.props;
+const items = await Promise.all(list.map(async (v) => ({
+  ...v,
+  posterUrl: (await getImage({ src: v.poster, width: 720, format: 'webp', quality: 72 })).src,
+  thumbUrl: (await getImage({ src: v.poster, width: 720, format: 'jpg' })).src,
+})));
+const one = items.length === 1;
+---
+<ul class:list={['pv', one && 'pv--one']} role="list">
+  {items.map((v) => (
+    <li>
+      <figure class="pv__item">
+        <video class="pv__video" controls preload="none" playsinline poster={v.posterUrl} width="720" height="1280" aria-describedby={`pv-${v.id}`}>
+          <source src={v.src} type="video/mp4" />
+          <a href={v.src}>Watch the {v.title.toLowerCase()} video</a>
+        </video>
+        <figcaption id={`pv-${v.id}`}>
+          <strong>{v.title}</strong>
+          <span>{v.description}{!v.audio && ' (No sound.)'}</span>
+        </figcaption>
+      </figure>
+    </li>
+  ))}
+</ul>
+{schema && <JsonLd data={items.map((v) => videoObject({ name: v.title, description: v.description, contentUrl: v.src, thumbnailUrl: v.thumbUrl, duration: v.duration, uploadDate: VIDEOS_PUBLISHED }))} />}
+<style>
+  .pv { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+  .pv--one { grid-template-columns: minmax(0, 22rem); }
+  /* Phones: a swipeable row instead of a very long stack of tall videos (the next one peeks in at the edge). */
+  @media (max-width: 39.99rem) {
+    .pv:not(.pv--one) { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding-bottom: var(--space-3); }
+    .pv:not(.pv--one) > li { scroll-snap-align: start; }
+  }
+  .pv__item { margin: 0; display: grid; gap: var(--space-3); align-content: start; }
+  .pv__video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; background: #000; border: 1px solid var(--color-border); }
+  .pv figcaption { display: grid; gap: var(--space-1); }
+  .pv figcaption strong { font-family: var(--font-heading); font-size: 1.35rem; text-transform: uppercase; line-height: 1.1; }
+  .pv figcaption span { color: var(--color-text-muted); font-size: var(--text-sm); }
+</style>

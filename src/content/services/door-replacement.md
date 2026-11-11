@@ -6,8 +6,8 @@ headline: "Doors that fit, close and look right."
 inShort: "Cruz Construction replaces interior doors in Holland, MI homes and trims them out, measuring the opening first so the new door fits, closes and latches the first time."
 summary: "Doors replaced and trimmed out so they fit, close and look right."
 order: 12
-image: ../../assets/images/carpentry-measuring-board.jpg
-imageAlt: "Carpenter measuring a board with a tape measure"
+image: ../../assets/images/french-doors-and-entry-door.jpg
+imageAlt: "Glass-panel French doors and a front entry door with sidelights after a remodel"
 faqs:
   - question: "Signs it is time to replace a door"
     answer: "Common reasons homeowners call us about doors."
