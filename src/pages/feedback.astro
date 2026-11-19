@@ -83,10 +83,11 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
       paint(n);
       setTimeout(() => {
         if (n >= 4) {
-          show('happy');
-          if (reviewLink) setTimeout(() => { location.href = reviewLink.href; }, 1500); // the button stays as a fallback
+          // Owner's choice (2026-11-19): go straight to the review site, no "we are taking you to Google" screen.
+          if (reviewLink) location.href = reviewLink.href;
+          else show('happy');
         } else show('sorry');
-      }, 250);
+      }, 150);
     });
   });
 
