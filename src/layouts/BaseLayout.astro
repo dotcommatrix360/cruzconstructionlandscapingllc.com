@@ -41,7 +41,7 @@ const { noChat, ...seo } = Astro.props;
       <a class="mobile-bar__est" href="/contact/#estimate" data-estimate-link>Free estimate</a>
     </div>
     <script>
-      // On pages with the estimate panel, jump to it in place instead of going to the contact page.
+      // On pages with the estimate form, jump to it in place instead of going to the contact page.
       if (document.getElementById('estimate')) for (const a of document.querySelectorAll<HTMLAnchorElement>('[data-estimate-link]')) a.href = '#estimate';
     </script>
     {!noChat && <ChatWidget />}

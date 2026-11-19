@@ -87,7 +87,7 @@
     "clarityId": "",
     "googleSiteVerification": "",
     "chatWidget": {
-      "$comment": "LeadConnector (GoHighLevel) chat widget: the ONLY form on the site that collects phone numbers (A2P 10DLC SMS opt-in). Loads on every page except /feedback/ (that page keeps its private feedback form). Empty widgetId = no widget.",
+      "$comment": "LeadConnector (GoHighLevel) chat widget: the site's only SMS opt-in (A2P 10DLC campaign approved on it; the estimate form has no SMS consent). Loads on every page except /feedback/ (that page keeps its private feedback form). Empty widgetId = no widget.",
       "provider": "leadconnector",
       "widgetId": "6aee01265c2083470fab4e73"
     },

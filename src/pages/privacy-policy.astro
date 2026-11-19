@@ -4,12 +4,13 @@ import Email from '../components/Email.astro';
 import { business, site } from '../lib/site';
 const name = business.legalName || business.name;
 ---
-<LegalLayout title="Privacy Policy" url="/privacy-policy/" updated="November 6, 2026" description="How Cruz Construction & Landscaping LLC collects, uses and protects the information you share through this website, the chat and text messages.">
+<LegalLayout title="Privacy Policy" url="/privacy-policy/" updated="November 19, 2026" description="How Cruz Construction & Landscaping LLC collects, uses and protects the information you share through this website, the chat and text messages.">
   <p>This Privacy Policy explains how {name} ("we", "us") handles information collected through {site.url.replace('https://', '')} (the "Site"). By using the Site you agree to this policy.</p>
 
   <h2>Information we collect</h2>
   <p>We only collect information you choose to give us:</p>
   <ul>
+    <li><strong>Estimate form:</strong> your name, phone number and your message about your project, sent to us by email so we can call you back about your estimate. The estimate form does not sign you up for text messages.</li>
     <li><strong>Website chat:</strong> your name, phone number, your message about your project and, if you check the consent box, your consent to receive text messages.</li>
     <li><strong>Feedback page:</strong> your name, email address and the feedback you choose to send.</li>
     <li><strong>Email and phone:</strong> anything you include when you email or call us.</li>
