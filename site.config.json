@@ -119,7 +119,7 @@
     },
     {
       "from": "/offer",
-      "to": "/#estimate",
+      "to": "/get-your-discount/",
       "status": 302
     }
   ],
