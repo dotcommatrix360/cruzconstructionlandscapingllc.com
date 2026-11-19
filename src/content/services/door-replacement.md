@@ -34,4 +34,4 @@ An old or sticking door drags down a whole room. Cruz Construction replaces door
 
 A door that is a little off never closes right. We measure the opening first, so the new door fits the first time.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

@@ -34,4 +34,4 @@ A tile shower is the centerpiece of most bathroom remodels. Cruz Construction bu
 
 A shower touches the walls, floor and trim around it. Because we also do [drywall](/services/drywall/), [painting](/services/painting/) and [trim](/services/carpentry-trim/), a shower can grow into a full [bathroom remodel](/services/bathroom-remodeling/) without bringing in other contractors.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

@@ -30,13 +30,13 @@ faqs:
     points:
       - "A new floor or fresh paint costs far less than a full remodel"
       - "Custom tile showers are usually the biggest part of the budget"
-    takeaway: "Get a free, project-specific estimate: call 616-502-1874 or send the form."
+    takeaway: "Get a free, project-specific estimate: call 616-344-5421 or send the form."
   - question: "Can you replace just the shower?"
     answer: "Yes. We build custom tile showers on their own or as part of a full bathroom remodel."
     takeaway: "Tell us what you want to change and we will tell you what makes sense to do at the same time."
   - question: "Do you remodel bathrooms outside Holland?"
     answer: "Yes. We serve Holland, MI and West Michigan."
-    takeaway: "Call 616-502-1874 to check your town."
+    takeaway: "Call 616-344-5421 to check your town."
 ---
 
 A bathroom is a small room with a lot of detail. Tile, drywall, paint and trim all have to fit together, and Cruz Construction does each of those trades with its own crew for homeowners in Holland and West Michigan.
@@ -54,4 +54,4 @@ A bathroom is a small room with a lot of detail. Tile, drywall, paint and trim a
 
 We explain each step of the work as it happens, so you know what is coming next and why. Homeowners tell us that is one of the reasons they trust us, along with the quality they see in our earlier projects.
 
-Planning a bathroom? [Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+Planning a bathroom? [Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

@@ -32,7 +32,7 @@ faqs:
       - "A backsplash or flooring update costs far less than a full remodel"
       - "Cabinets are usually the biggest line item"
       - "Changing the layout adds work for every trade"
-    takeaway: "Call 616-502-1874 or send the form for a free, project-specific estimate."
+    takeaway: "Call 616-344-5421 or send the form for a free, project-specific estimate."
   - question: "Can I do just part of my kitchen?"
     answer: "Yes. Single jobs are welcome."
     points:
@@ -66,4 +66,4 @@ Because our own crew handles the cabinets, the tile, the drywall and the paint, 
 
 Cruz Construction holds a Michigan Builders License.
 
-Ready to talk through your kitchen? [Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+Ready to talk through your kitchen? [Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

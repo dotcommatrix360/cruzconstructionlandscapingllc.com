@@ -34,4 +34,4 @@ Trim is what makes a room look finished. Cruz Construction does carpentry and tr
 
 Trim goes on after [drywall](/services/drywall/) and [flooring](/services/tile-lvp-flooring/) and before the last coat of [paint](/services/painting/). It is part of most [basement](/services/basement-finishing/) and remodel projects, and a good upgrade on its own.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

@@ -10,7 +10,7 @@ const areas = await locations();
     <div class="container">
       <Breadcrumbs items={[{ name: 'Service Areas', url: '/service-areas/' }]} />
       <h1>Remodeling contractor serving Holland, MI &amp; West Michigan</h1>
-      <p class="lead measure">We are based in the Holland area and work in Holland, MI and across West Michigan. Not sure if we come to you? Call 616-502-1874 and ask.</p>
+      <p class="lead measure">We are based in the Holland area and work in Holland, MI and across West Michigan. Not sure if we come to you? Call 616-344-5421 and ask.</p>
       <ul class="grid areas" role="list">
         {areas.map((a) => <li class="card"><div class="card__body"><h2><a href={entryUrl(a)}>{a.data.name}</a></h2><p>{a.data.description}</p></div></li>)}
         <li class="card"><div class="card__body"><h2>West Michigan</h2><p>Outside Holland? We also take projects across West Michigan. Call or send the estimate form with your town.</p></div></li>
@@ -22,6 +22,6 @@ const areas = await locations();
       </div>
     </div>
   </section>
-  <CtaBand kw="Free remodeling estimates in West Michigan" title="Planning a project near Holland?" text="Call 616-502-1874 or request a free estimate." />
+  <CtaBand kw="Free remodeling estimates in West Michigan" title="Planning a project near Holland?" text="Call 616-344-5421 or request a free estimate." />
 </BaseLayout>
 <style>.area-more { margin-top: var(--space-7); } .areas { list-style: none; padding: 0; } .areas h2 { font-size: var(--text-xl); } .areas h2 a { color: var(--color-text); }</style>

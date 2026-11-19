@@ -34,4 +34,4 @@ Insulation is one of the most important parts of a room, and one of the few you 
 
 West Michigan winters are long and cold. Insulation goes in after framing and before [drywall](/services/drywall/), so getting it right at the start is what makes a finished room comfortable later. It is a standard step in every [basement finishing](/services/basement-finishing/) project we take on.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

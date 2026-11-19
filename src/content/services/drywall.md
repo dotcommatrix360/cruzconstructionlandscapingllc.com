@@ -35,4 +35,4 @@ Smooth walls are the base of every finished room, and drywall is where a remodel
 
 Because we also do [painting](/services/painting/), the same crew can take a wall from bare studs to the final coat. Drywall is part of almost every [kitchen](/services/kitchen-remodeling/), [bathroom](/services/bathroom-remodeling/) and [basement](/services/basement-finishing/) project we build.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

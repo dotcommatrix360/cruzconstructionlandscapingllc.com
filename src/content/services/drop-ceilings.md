@@ -34,4 +34,4 @@ Basement ceilings are full of things you still need to reach: water lines, drain
 
 Most of the drop ceilings we install are part of [basement finishing](/services/basement-finishing/), after [insulation](/services/insulation/) and [drywall](/services/drywall/) and before [flooring](/services/tile-lvp-flooring/).
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

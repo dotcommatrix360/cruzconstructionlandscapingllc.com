@@ -34,4 +34,4 @@ A new backsplash is one of the quickest ways to change how a kitchen looks. Cruz
 
 New [cabinets](/services/cabinet-installation/), [flooring](/services/tile-lvp-flooring/) and [paint](/services/painting/), or go all the way with a [kitchen remodel](/services/kitchen-remodeling/).
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

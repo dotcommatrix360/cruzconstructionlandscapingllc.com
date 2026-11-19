@@ -34,4 +34,4 @@ Cabinets set the layout of a kitchen, and a crooked install shows in every door 
 
 After the cabinets go in, we can add a [tile backsplash](/services/kitchen-backsplash/), [flooring](/services/tile-lvp-flooring/) and [trim](/services/carpentry-trim/), or handle the whole [kitchen remodel](/services/kitchen-remodeling/).
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

@@ -33,4 +33,4 @@ The floor takes more wear than any other surface in the house. Cruz Construction
 
 New flooring is often part of a [bathroom remodel](/services/bathroom-remodeling/), [kitchen remodel](/services/kitchen-remodeling/) or [basement finishing](/services/basement-finishing/), and we also install it as a single job.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

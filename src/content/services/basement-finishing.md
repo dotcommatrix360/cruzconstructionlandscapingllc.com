@@ -40,7 +40,7 @@ faqs:
     takeaway: "We help you pick at the estimate based on how you will use the space."
   - question: "Do you finish basements outside Holland?"
     answer: "Yes. We serve Holland, MI and West Michigan."
-    takeaway: "Call 616-502-1874 to check your town."
+    takeaway: "Call 616-344-5421 to check your town."
 ---
 
 Finishing a basement is mostly a sequence of trades done in the right order: insulation first, then walls, ceiling, floors and paint. Cruz Construction covers the whole sequence with its own crew for homeowners in Holland and West Michigan.
@@ -62,4 +62,4 @@ West Michigan basements deal with cold winters and humid summers. Insulation and
 
 Tell us how you want to use the space and we will talk through the scope with you.
 
-[Get a free estimate](#estimate) or call [616-502-1874](tel:+16165021874).
+[Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

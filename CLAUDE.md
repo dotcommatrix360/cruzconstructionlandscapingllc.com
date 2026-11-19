@@ -4,7 +4,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 
 ## Business (fill in; facts live in `site.config.json`, client-confirmed only)
 - Name / industry / service area: Cruz Construction & Landscaping LLC · kitchen, bathroom, basement remodeling and finish trades · Holland, MI & West Michigan (area carried over from the client's Canva site; confirm)
-- Primary conversion: call 616-502-1874 or the estimate form (GoHighLevel "Website Form" 8W8Q7JOUkFQHxrIhMbgy, embedded inline, since 2026-11-19).
+- Primary conversion: call 616-344-5421 (GoHighLevel number, owner-confirmed business line 2026-11-19; replaced 616-502-1874) or the estimate form (GoHighLevel "Website Form" 8W8Q7JOUkFQHxrIhMbgy, embedded inline, since 2026-11-19).
 - Brand source: client logo (white/grey on black) + the approved dark concept (concept 1) · Fonts: Barlow Condensed + IBM Plex Sans (self-hosted via @fontsource)
 
 ## How this site is built
