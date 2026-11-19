@@ -1,0 +1,31 @@
+---
+// Inline GoHighLevel (LeadConnector) form embed. form_embed.js sizes the iframe to the form; the min-height
+// reserves the space first so the page does not jump. The iframe id must stay "inline-<formId>" (form_embed.js
+// looks it up by id), so use each form at most once per page. The script tag is repeated per embed only if a
+// page ever holds two different forms; the browser caches it.
+interface Props { formId: string; formName: string; height?: number }
+const { formId, formName, height = 620 } = Astro.props;
+const id = `inline-${formId}`;
+---
+<iframe
+  class="ghl-form"
+  src={`https://api.leadconnectorhq.com/widget/form/${formId}`}
+  style={`width:100%;height:${height}px;min-height:${height}px;border:none;border-radius:4px`}
+  id={id}
+  data-layout="{'id':'INLINE'}"
+  data-trigger-type="alwaysShow"
+  data-trigger-value=""
+  data-activation-type="alwaysActivated"
+  data-activation-value=""
+  data-deactivation-type="neverDeactivate"
+  data-deactivation-value=""
+  data-form-name={formName}
+  data-height={String(height)}
+  data-layout-iframe-id={id}
+  data-form-id={formId}
+  title={formName}
+></iframe>
+<script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>
+<style>
+  .ghl-form { display: block; background: transparent; }
+</style>

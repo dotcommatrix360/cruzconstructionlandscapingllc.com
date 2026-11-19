@@ -45,8 +45,8 @@
     ],
     "googleMapsUrl": "",
     "reviewLinks": {
-      "$comment": "Where /feedback/ sends happy customers. google = the 'Ask for reviews' link from Google Business Profile (empty until the profile is verified: the button is hidden).",
-      "google": "",
+      "$comment": "Where /feedback/ (and /review/, which redirects there) sends 4-5 star customers: google when set, else facebook. google = the Google Business Profile 'Ask for reviews' link (owner 2026-11-19).",
+      "google": "https://g.page/r/CWSNv0deXH9mEAI/review",
       "facebook": "https://www.facebook.com/share/18ihntLhqo/"
     }
   },
@@ -87,22 +87,34 @@
     "clarityId": "",
     "googleSiteVerification": "",
     "chatWidget": {
-      "$comment": "LeadConnector (GoHighLevel) chat widget: the site's only SMS opt-in (A2P 10DLC campaign approved on it; the estimate form has no SMS consent). Loads on every page except /feedback/ (that page keeps its private feedback form). Empty widgetId = no widget.",
+      "$comment": "LeadConnector (GoHighLevel) chat widget: SMS opt-in via its consent box (A2P 10DLC campaign approved on it). The GHL Website Form (EstimateForm.astro) also carries the A2P SMS consent checkboxes. Loads on every page except /feedback/ and /marketing-form/. Empty widgetId = no widget.",
       "provider": "leadconnector",
       "widgetId": "6aee01265c2083470fab4e73"
     },
     "form": {
       "$comment": "provider: ghl | formspree | custom | none. ghl: embedUrl = the GoHighLevel form iframe URL. formspree/custom: action = the https POST endpoint. Never invent an endpoint.",
-      "provider": "none",
-      "embedUrl": "",
+      "provider": "ghl",
+      "formId": "8W8Q7JOUkFQHxrIhMbgy",
+      "formName": "Website Form",
+      "embedUrl": "https://api.leadconnectorhq.com/widget/form/8W8Q7JOUkFQHxrIhMbgy",
       "action": "",
-      "height": 720
+      "height": 620
     }
   },
   "redirects": [
     {
       "from": "/services/",
       "to": "/",
+      "status": 301
+    },
+    {
+      "from": "/review",
+      "to": "/feedback/",
+      "status": 301
+    },
+    {
+      "from": "/review/",
+      "to": "/feedback/",
       "status": 301
     },
     {

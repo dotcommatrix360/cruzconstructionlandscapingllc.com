@@ -11,9 +11,10 @@ import ChatWidget from '../components/ChatWidget.astro';
 import { site, business } from '../lib/site';
 import { localBusiness } from '../lib/schema';
 
-// noChat: leave the chat widget off a page that has its own form (the widget must be the only opt-in where it loads).
-type Props = import('../components/Seo.astro').Props & { noChat?: boolean };
-const { noChat, ...seo } = Astro.props;
+// noChat: leave the chat widget off a focused page (feedback, internal forms).
+// minimal: no header nav, footer or sticky call bar (internal pages like /marketing-form/).
+type Props = import('../components/Seo.astro').Props & { noChat?: boolean; minimal?: boolean };
+const { noChat, minimal, ...seo } = Astro.props;
 ---
 <!doctype html>
 <html lang={site.language}>
@@ -31,15 +32,17 @@ const { noChat, ...seo } = Astro.props;
   </head>
   <body>
     <Tracking position="body" />
-    <Header />
+    {!minimal && <Header />}
     <main id="main">
       <slot />
     </main>
-    <Footer />
-    <div class="mobile-bar" aria-label="Quick contact">
-      <a class="mobile-bar__call" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
-      <a class="mobile-bar__est" href="/contact/#estimate" data-estimate-link>Free estimate</a>
-    </div>
+    {!minimal && <Footer />}
+    {!minimal && (
+      <div class="mobile-bar" aria-label="Quick contact">
+        <a class="mobile-bar__call" href={`tel:${business.phone}`}>Call {business.phoneDisplay}</a>
+        <a class="mobile-bar__est" href="/contact/#estimate" data-estimate-link>Free estimate</a>
+      </div>
+    )}
     <script>
       // On pages with the estimate form, jump to it in place instead of going to the contact page.
       if (document.getElementById('estimate')) for (const a of document.querySelectorAll<HTMLAnchorElement>('[data-estimate-link]')) a.href = '#estimate';

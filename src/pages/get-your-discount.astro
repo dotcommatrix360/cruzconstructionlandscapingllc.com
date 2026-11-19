@@ -1,0 +1,33 @@
+---
+// Past-customer discount page (/get-your-discount/): GHL "Discount Form". The discount amount is shown in the
+// form itself; do not state a number on the page. noindex, not in the nav or sitemap.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import GhlForm from '../components/GhlForm.astro';
+import bgImg from '../assets/images/living-room-lvp-staircase.jpg';
+---
+<BaseLayout title="Your Past-Customer Discount" description="A thank-you discount for past Cruz Construction & Landscaping customers in Holland, MI. Fill in the short form to claim it." noindex>
+  <section class="disc">
+    <div class="disc__bg" aria-hidden="true"><ResponsiveImage src={bgImg} alt="" priority sizes="100vw" widths={[640, 960, 1400]} /></div>
+    <div class="container disc__inner">
+      <p class="disc__eyebrow">Thank you for choosing Cruz</p>
+      <h1 class="disc__title">Your past-customer discount</h1>
+      <p class="disc__lead">You trusted us with your home once. Fill in the form to claim your discount on your next project.</p>
+      <div class="disc__card">
+        <GhlForm formId="pMf6jdupF57gjqrXKOJQ" formName="Discount Form" height={600} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .disc { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(2.5rem, 2rem + 3vw, 5rem); background: var(--color-bg); }
+  .disc__bg { position: absolute; inset: 0; z-index: -1; }
+  .disc__bg :global(picture) { display: block; height: 100%; }
+  .disc__bg :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .disc__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(13 13 12 / 80%) 0%, rgb(13 13 12 / 92%) 45%, rgb(13 13 12 / 98%) 100%); }
+  .disc__inner { max-width: 40rem; text-align: center; }
+  .disc__eyebrow { margin: 0 0 var(--space-3); font-size: var(--text-sm); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-soft); }
+  .disc__title { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2.4rem, 1.7rem + 3.4vw, 4.25rem); line-height: 1; margin: 0 0 var(--space-4); text-wrap: balance; }
+  .disc__lead { font-size: var(--text-lg); color: var(--color-text-muted); margin: 0 auto var(--space-6); max-width: 34rem; }
+  .disc__card { background: var(--color-surface); border: 1px solid var(--color-border); border-top: 4px solid var(--color-accent); padding: clamp(1rem, 0.75rem + 1.5vw, 1.75rem); box-shadow: var(--shadow-lg); text-align: left; }
+</style>

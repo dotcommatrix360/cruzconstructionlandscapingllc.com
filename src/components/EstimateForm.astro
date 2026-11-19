@@ -1,50 +1,21 @@
 ---
-// Three-field estimate form from the approved concept (name, phone, project).
-// Destination: site.config.json → integrations.form. Until the client picks one (GHL or Formspree — open TODO),
-// the form has no action and a small script opens the visitor's email app with the request pre-filled to
-// the business email. Nothing is sent anywhere else. Swap to the real endpoint as soon as it exists.
+// Estimate form: the GoHighLevel "Website Form" (site.config.json → integrations.form), embedded inline.
+// Submissions go straight into GHL. The form carries its own A2P 10DLC SMS consent checkboxes, so no consent
+// text is added here. Keeps the card wrapper and title so the home, contact and FormHero layouts are unchanged.
+import GhlForm from './GhlForm.astro';
 import { config, business } from '../lib/site';
 interface Props { id?: string; title?: string; headingLevel?: 2 | 3 }
 const { id = 'estimate', title = 'Get a free estimate', headingLevel = 2 } = Astro.props;
 const H = `h${headingLevel}` as 'h2' | 'h3';
-const form = config.integrations.form || { provider: 'none' };
-const posts = (form.provider === 'formspree' || form.provider === 'custom') && form.action;
+const form = config.integrations.form as { formId?: string; formName?: string; height?: number };
 ---
 <div class="estimate-form" id={id}>
   <H class="estimate-form__title">{title}</H>
-  <p class="estimate-form__sub">Three quick fields. No obligation.</p>
-  <form class="form" method={posts ? 'post' : undefined} action={posts ? form.action : undefined} data-mailto={posts ? undefined : business.email}>
-    <div class="field"><label for={`${id}-name`}>Name</label><input id={`${id}-name`} name="name" autocomplete="name" placeholder="Your full name" required /></div>
-    <div class="field"><label for={`${id}-phone`}>Phone number</label><input id={`${id}-phone`} name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(616) 555-0123" required /></div>
-    <div class="field"><label for={`${id}-project`}>Tell us more about your project</label><textarea id={`${id}-project`} name="message" rows="4" placeholder="Kitchen, bathroom, basement, tile, drywall…" required></textarea></div>
-    {posts && <div class="field field--hp" aria-hidden="true"><label for={`${id}-hp`}>Leave this empty</label><input id={`${id}-hp`} name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
-    <button class="btn btn--primary btn--block" type="submit">Request my estimate</button>
-    <p class="estimate-form__note" data-form-note>By sending, you agree to our <a href="/privacy-policy/">Privacy Policy</a>. 
-      Free estimate, no obligation. Prefer to talk? Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a>.
-    </p>
-  </form>
+  <p class="estimate-form__sub">Free estimate, no obligation. Prefer to talk? Call <a href={`tel:${business.phone}`}>{business.phoneDisplay}</a>.</p>
+  <GhlForm formId={form.formId || '8W8Q7JOUkFQHxrIhMbgy'} formName={form.formName || 'Website Form'} height={form.height || 620} />
 </div>
-<script>
-  for (const f of document.querySelectorAll<HTMLFormElement>('form[data-mailto]')) {
-    f.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const d = new FormData(f);
-      const body = `Name: ${d.get('name')}\nPhone: ${d.get('phone')}\n\nProject:\n${d.get('message')}`;
-      location.href = `mailto:${f.dataset.mailto}?subject=${encodeURIComponent('Estimate request from the website')}&body=${encodeURIComponent(body)}`;
-    });
-  }
-</script>
 <style>
-  .estimate-form { background: var(--color-surface); border: 1px solid var(--color-border); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); box-shadow: var(--shadow-lg); }
+  .estimate-form { background: var(--color-surface); border: 1px solid var(--color-border); padding: clamp(1.5rem, 1rem + 2vw, 2.25rem); box-shadow: var(--shadow-lg); min-width: 0; }
   .estimate-form__title { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); margin-bottom: var(--space-1); }
   .estimate-form__sub { color: var(--color-text-muted); margin-bottom: var(--space-5); font-size: var(--text-sm); }
-  .form { display: grid; gap: var(--space-4); }
-  .field { display: grid; gap: var(--space-2); }
-  .field label { font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); }
-  .field input, .field textarea { padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-bg); color: var(--color-text); width: 100%; }
-  .field input::placeholder, .field textarea::placeholder { color: var(--color-text-faint); }
-  .field input:focus, .field textarea:focus { border-color: var(--color-accent); outline: none; box-shadow: 0 0 0 2px var(--color-accent); }
-  .field--hp { position: absolute; left: -9999px; }
-  .btn--block { width: 100%; font-family: var(--font-heading); font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .estimate-form__note { margin: 0; font-size: var(--text-sm); color: var(--color-text-muted); }
 </style>

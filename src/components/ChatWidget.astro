@@ -1,7 +1,7 @@
 ---
-// LeadConnector (GoHighLevel) chat widget, loaded from BaseLayout on every page except those passing noChat (/feedback/).
-// It is the site's only SMS opt-in (the consent box in the chat; the A2P 10DLC campaign was approved on it).
-// The estimate form (EstimateForm.astro) collects a phone number for a call-back but has no SMS consent.
+// LeadConnector (GoHighLevel) chat widget, loaded from BaseLayout on every page except those passing noChat
+// (/feedback/, /marketing-form/). SMS opt-in happens in its consent box (the A2P 10DLC campaign was approved on it)
+// and, since 2026-11-19, also in the GHL Website Form (EstimateForm.astro), which carries the A2P consent checkboxes.
 // Config: site.config.json → integrations.chatWidget.
 // Elements with [data-open-chat] open the chat window once the widget is ready; #estimate links go to the form.
 import { config } from '../lib/site';
