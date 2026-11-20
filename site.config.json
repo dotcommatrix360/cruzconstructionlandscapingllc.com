@@ -121,6 +121,16 @@
       "from": "/offer",
       "to": "/get-your-discount/",
       "status": 302
+    },
+    {
+      "from": "/reviews",
+      "to": "/feedback/",
+      "status": 301
+    },
+    {
+      "from": "/reviews/",
+      "to": "/feedback/",
+      "status": 301
     }
   ],
   "deploy": {
