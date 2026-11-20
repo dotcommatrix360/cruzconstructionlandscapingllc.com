@@ -28,6 +28,44 @@ const steps = [
   ['No job card?', 'Use <a href="/marketing-form/">the customer form</a> instead.'],
   ['1 to 3 stars', 'It does NOT go to Google. You get an alert. <strong>Call them that day.</strong>'],
 ];
+
+const textGroups = [
+  { title: 'Missed call', when: 'Someone calls and you miss it.', on: true, msgs: [
+    ['1 minute later', "Hey, sorry I missed your call! I'm probably on a job site right now, but I'll get back to you as soon as I can. If you want to send me a few details about the project in the meantime, you can do that here: cruzconstructionlandscapingllc.com/contact - Miguel from Cruz Construction & Landscaping LLC"],
+    ['2 minutes later', "Looking forward to hearing from you! In the meantime, are there any quick questions I can answer for you here?"],
+  ], you: 'Missed call: [name] [phone]. We texted them you\'ll call back.' },
+  { title: 'Website form', when: 'Someone asks for a quote on your website.', on: true, msgs: [
+    ['Right away', "Hey [first name]! Just got your quote request, thanks for reaching out. I'll be in touch shortly to go over the details. - Miguel from Cruz Construction & Landscaping LLC"],
+    ['Right after', "If you have any photos of the space, feel free to send them here. It helps me give you a more accurate quote. Talk soon!"],
+  ], you: 'New website form lead: [name] [phone] + their message.' },
+  { title: 'Website chat', when: 'Someone uses the chat bubble on your website.', on: true, msgs: [
+    ['Right away', "Hey [first name]! Just got your message through the website, thanks for reaching out :) I'll get back to you as soon as I'm free. - Miguel from Cruz Construction & Landscaping LLC"],
+    ['Right after', "By the way, if you have any other questions in the meantime, feel free to text me right here!"],
+  ], you: 'New chat lead: [name] [phone] + their message.' },
+  { title: 'Facebook / Instagram message', when: 'Someone messages your page (after you connect them).', on: true, msgs: [
+    ['Right away', "Hey [first name]! Thanks for contacting us here at Cruz Construction & Landscaping LLC. I'm a little slow to respond via social media, but I will get back to you as soon as I can. If you ever want to text me directly at 616-344-5421, that would be awesome. PS: This is an automated txt but I will read it and get back to you as soon as I have a free second:)! Talk soon! - Miguel"],
+  ], you: 'New Facebook message: [name] + their message.' },
+  { title: 'Discount request', when: 'Someone fills in the 10% discount form.', on: true, msgs: [
+    ['Right away', "Hey [first name]! Just got your discounted job request! I'll be in touch shortly and get you that discount!"],
+  ], you: '10% discount lead: [name] [phone] + their message.' },
+  { title: 'Review request', when: 'You move a job to Completed - Send Review (or use the customer form). Stops as soon as they tap the link.', on: true, msgs: [
+    ['Right away', "Hey [first name], this is Miguel from Cruz Construction & Landscaping LLC! I hope you had a great experience with us. We donate a meal to someone in need for every customer who takes 10 seconds to leave a review. Here's the link: [review link]"],
+    ['If no review', "Hey [first name]! Just following up since I saw you haven't had a chance to leave a review yet. For every review we get, we donate a meal to someone in need, so if you've got 10 seconds it really goes a long way. Here's the link: [review link] P.S. Just reply \"stop\" if you'd rather I don't text you about this."],
+    ['If no review', "Hey [first name], little reminder in case you got busy this week! We still give a free meal to someone in need for every new review. Here's the link again: [review link]"],
+    ['Last one', "Hey [first name]! This is the last time I'll ask, I promise :) If you have a sec to leave a review, we'll donate a meal to someone in need. Thanks so much either way, it was great working with you! [review link]"],
+  ], you: '1 to 3 stars: Unhappy customer: [name] [phone] + their feedback. It does NOT go to Google.' },
+  { title: 'Past customers: 1-year follow-up', when: 'Starts about 1 month after a finished job, then about every 3 months. 10% off, link to your discount page.', on: true, msgs: [
+    ['~1 month', "Hey [first name]! I'm running a season special this week and giving 10% off. It's only for the first three people, so if you're interested (or know someone who might be), just tap this link: cruzconstructionlandscapingllc.com/get-your-discount - Miguel from Cruz Construction & Landscaping LLC"],
+    ['8 weeks later', "Hey [first name], hope all's well! I'm running a customer anniversary special for the next 6 days and giving 10% off. If you've got a project in mind (or know someone who does), here's the link: cruzconstructionlandscapingllc.com/get-your-discount - Miguel from Cruz Construction & Landscaping LLC"],
+    ['~3 months later', "Hey [first name]! Quick one, I'm doing a loyalty special this week for past customers: 10% off. Only taking the first three people, so if you're thinking about anything around the house (or know someone who is), tap here: cruzconstructionlandscapingllc.com/get-your-discount - Miguel"],
+    ['~3 months later', "Hey [first name], it's Miguel! We've got a few openings coming up, so I'm giving 10% off to the first four people this week. If you've been putting off a project (or a friend has), now's a good time: cruzconstructionlandscapingllc.com/get-your-discount"],
+    ['~3 months later', "Hey [first name]! It's been a while, hope you're still loving the work we did. I'm running an anniversary special for the next 6 days, 10% off. If you or someone you know needs anything, just tap here: cruzconstructionlandscapingllc.com/get-your-discount - Miguel"],
+  ], you: 'If they reply, you get a text with their answer and their number.' },
+  { title: 'Old customer list (one-time blast)', when: 'OFF. Only when you say go, to your whole past customer list.', on: false, msgs: [
+    ['Day 1', "Hey [first name], it's Miguel from Cruz Construction & Landscaping LLC. Wanted to reach out because my team and I are running a special this week and giving up to $1,000 off remodeling projects. Only catch is we can only take on 3 clients, so I thought of you first. Let me know if you're interested, no worries either way!"],
+    ['Next day, if no reply', "Hey [first name], did you get my text yesterday? We've only got 2 spots left for the up to $1,000 off. Just reply \"yes\" or \"no\" so I know whether to save you a spot. Have a great day!"],
+  ], you: '' },
+];
 ---
 <BaseLayout title="Owner Guide" description="Owner guide for Cruz Construction: how to use the app, the inbox, the pipeline and review requests." noindex noChat minimal>
   <section class="og">
@@ -80,6 +118,21 @@ const steps = [
         </dl>
       </section>
 
+      <section id="texts" class="og__card">
+        <h2>Your automatic texts</h2>
+        <p class="og__vhint">What customers get, word for word, from your business number. Want different wording? Tell Visar.</p>
+        {textGroups.map((g, gi) => (
+          <div class="og__tg">
+            <h3>{gi + 1}. {g.title} {!g.on && <span class="og__off">OFF</span>}</h3>
+            <p class="og__when">{g.when}</p>
+            <ol class="og__msgs">
+              {g.msgs.map(([t, m]) => (<li><span class="og__t">{t}</span><span class="og__m">"{m}"</span></li>))}
+            </ol>
+            {g.you && <p class="og__you"><strong>You get:</strong> {g.you}</p>}
+          </div>
+        ))}
+      </section>
+
 
     </div>
   </section>
@@ -119,4 +172,13 @@ const steps = [
   .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1rem; margin: var(--space-2) 0 var(--space-1); }
   .og__vhint { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
   .og__video p { display: none; }
+  .og__tg { padding: var(--space-3) 0; border-top: 1px solid var(--color-border); }
+  .og__tg h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.15rem; margin: 0 0 4px; }
+  .og__off { font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: #d92d20; color: #fff; vertical-align: middle; }
+  .og__when { margin: 0 0 var(--space-2) !important; color: var(--color-text-muted); font-size: var(--text-sm); }
+  .og__msgs { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .og__msgs li { display: grid; gap: 2px; padding: 10px 12px; background: var(--color-bg); border-left: 3px solid var(--color-accent); }
+  .og__t { font-size: var(--text-sm); font-weight: 700; color: var(--color-accent); }
+  .og__m { line-height: 1.45; overflow-wrap: anywhere; }
+  .og__you { margin: var(--space-2) 0 0 !important; font-size: var(--text-sm); color: var(--color-text-muted); }
 </style>
