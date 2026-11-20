@@ -6,14 +6,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const videos = [
-  { slug: 'calls-texts-email', title: 'Calls, texts and email in the app', ready: false,
+  { slug: 'calls-texts-email', title: 'Calls, texts and email in the app', ready: true,
     what: 'Call a customer, reply to a text, and switch the reply box from SMS to email in the Conversations inbox.' },
-  { slug: 'add-customer', title: 'Add a customer and notes', ready: false,
+  { slug: 'add-customer', title: 'Add a customer and notes', ready: true,
     what: 'Create a contact, add their phone and address, and write a note after a site visit.' },
-  { slug: 'move-jobs', title: 'Move a job through the pipeline', ready: false,
-    what: 'Open Opportunities, add a job, and drag it from stage to stage until "Completed - Send Review".' },
-  { slug: 'review-request', title: 'Send a review request', ready: false,
-    what: 'Two ways: drag the job to "Completed - Send Review", or fill in the customer form on your phone.' },
+  { slug: 'move-jobs', title: 'Move a job through the pipeline', ready: true,
+    what: 'Open Opportunities, tap a job and change its stage as the work moves forward (on a computer you can drag the cards).' },
+  { slug: 'review-request', title: 'Send a review request', ready: true,
+    what: 'Two ways: move the job to "Completed - Send Review", or fill in the customer form on your phone.' },
 ];
 
 const steps = [
@@ -67,7 +67,7 @@ const steps = [
           {videos.map((v) => (
             <article class="og__video">
               {v.ready
-                ? <video controls preload="none" playsinline src={`/videos/owner/${v.slug}.mp4`} />
+                ? <video controls preload="none" playsinline poster={`/videos/owner/${v.slug}.jpg`} src={`/videos/owner/${v.slug}.mp4`} width="390" height="924" />
                 : <div class="og__soon" aria-hidden="true">Video coming soon</div>}
               <h3>{v.title}</h3>
               <p>{v.what}</p>
@@ -107,7 +107,7 @@ const steps = [
   .og__card a { color: var(--color-accent); }
   .og__num { display: inline-grid; place-items: center; width: 2rem; height: 2rem; flex: none; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); font-size: 1.1rem; }
   .og__videos { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
-  .og__video video { width: 100%; aspect-ratio: 9 / 16; max-height: 26rem; background: #0d0d0c; border: 1px solid var(--color-border); }
+  .og__video video { display: block; width: 100%; height: auto; aspect-ratio: 390 / 924; max-height: 34rem; object-fit: contain; background: #0d0d0c; border: 1px solid var(--color-border); }
   .og__soon { width: 100%; height: 4.5rem; background: #0d0d0c; border: 1px dashed var(--color-border); }
   .og__soon { display: grid; place-items: center; color: var(--color-text-muted); font-size: var(--text-sm); }
   .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.15rem; margin: var(--space-2) 0 var(--space-1); }
