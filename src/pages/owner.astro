@@ -18,53 +18,25 @@ const videos = [
 ];
 
 const steps = [
-  { id: 'app', title: 'Your app', body: [
-    'Install the <strong>LeadConnector</strong> app (App Store / Google Play) and log in with the email we sent you.',
-    'Everything lands in <strong>Conversations</strong>: texts, calls, website chat, Facebook and Instagram messages. Reply from there and it goes out from your business number, 616-344-5421.',
-    'To send an email instead of a text, tap the channel switch above the reply box and pick <strong>Email</strong>.',
-  ]},
-  { id: 'lead', title: 'A new lead comes in', body: [
-    'Someone fills out the website form or chat: they get a text right away saying you got their message.',
-    'You get a text alert with their name and number. <strong>Call them as soon as you can</strong>, same day if possible. Speed wins the job.',
-  ]},
-  { id: 'missed', title: 'You miss a call', body: [
-    'The caller automatically gets a friendly text that you are on a job and will call back.',
-    'You get an alert. Call or text them back from the app when you are free.',
-  ]},
-  { id: 'pipeline', title: 'Keep your jobs moving', body: [
-    'Open <strong>Opportunities</strong> → <strong>Jobs Pipeline</strong>. Each card is a job. Drag it as it moves:',
-    'New Lead → Contacted → Estimate Scheduled → Estimate Sent → Job Won → Job In Progress → <strong>Completed - Send Review</strong> → Lost / Not a Fit.',
-  ]},
-  { id: 'review', title: 'A job is finished: get the review', body: [
-    'Drag the job to <strong>Completed - Send Review</strong>. That is it: the customer gets the review texts, and a year of friendly check-ins for repeat work and referrals.',
-    'No job card? Use the form instead: <a href="/marketing-form/">Add a finished customer</a> (save it to your home screen).',
-    'Your review link, if you ever want to send it yourself: <a href="/feedback/">cruzconstructionlandscapingllc.com/review</a>',
-  ]},
-  { id: 'unhappy', title: 'An unhappy customer', body: [
-    'If someone rates 1 to 3 stars, it does not go to Google. You get an alert with what went wrong. <strong>Call them that day</strong> and make it right.',
-  ]},
-  { id: 'past', title: 'Your past customers', body: [
-    'Send us your list of past customers (name and phone). We load it once and the system reaches out with your 10% offer over the year.',
-  ]},
+  ['New lead (form or chat)', 'They get an instant text. You get an alert. <strong>Call them same day.</strong>'],
+  ['Missed call', 'They get an auto text. You get an alert. Call back when free.'],
+  ['New text', 'You get an alert. Reply in the app.'],
+  ['Job moves forward', 'Change its stage in <strong>Opportunities</strong>.'],
+  ['Job finished', 'Move it to <strong>Completed - Send Review</strong>. Reviews + 1-year follow-up start on their own.'],
+  ['No job card?', 'Use <a href="/marketing-form/">the customer form</a> instead.'],
+  ['1 to 3 stars', 'It does NOT go to Google. You get an alert. <strong>Call them that day.</strong>'],
 ];
 ---
 <BaseLayout title="Owner Guide" description="Owner guide for Cruz Construction: how to use the app, the inbox, the pipeline and review requests." noindex noChat minimal>
   <section class="og">
     <div class="container og__inner">
       <img class="og__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
-      <p class="og__eyebrow">Owner guide</p>
-      <h1 class="og__title">How your system works</h1>
-      <p class="og__lead">Everything you need, in one place. Most of it runs on its own; these are the few things you do.</p>
-
-      <nav class="og__toc" aria-label="On this page">
-        <a href="#videos">Videos</a>
-        {steps.map((s) => <a href={`#${s.id}`}>{s.title}</a>)}
-        <a href="#help">Help</a>
-      </nav>
+      <h1 class="og__title">Owner guide</h1>
+      <a class="og__help" href="sms:+18882773619">Need help? Text Visar: <strong>(888) 277-3619</strong></a>
 
       <section id="videos" class="og__card">
         <h2>What do you want to do?</h2>
-        <p class="og__vhint">Tap the one you need. Each video is 10 to 20 seconds.</p>
+        <p class="og__vhint">Tap the one you need. 10 to 20 seconds each.</p>
         <div class="og__videos">
           {videos.map((v) => (
             <article class="og__video">
@@ -78,16 +50,11 @@ const steps = [
         </div>
       </section>
 
-      {steps.map((s, i) => (
-        <section id={s.id} class="og__card">
-          <h2><span class="og__num">{i + 1}</span>{s.title}</h2>
-          {s.body.map((p) => <p set:html={p} />)}
-        </section>
-      ))}
-
-      <section id="help" class="og__card">
-        <h2>Need help or a change?</h2>
-        <p>Text us any time and we will handle it for you. Every Friday we will also text you a quick reminder to request reviews for the jobs you finished that week.</p>
+      <section id="how" class="og__card">
+        <h2>How it works</h2>
+        <dl class="og__how">
+          {steps.map(([t, d]) => (<><dt>{t}</dt><dd set:html={d} /></>))}
+        </dl>
       </section>
     </div>
   </section>
@@ -98,6 +65,13 @@ const steps = [
   .og__logo { width: min(10rem, 45%); height: auto; justify-self: center; }
   .og__eyebrow { margin: 0; text-align: center; font-size: var(--text-sm); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-soft); }
   .og__title { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); line-height: 1; margin: 0; text-align: center; }
+  .og__help { justify-self: center; text-align: center; padding: 10px 18px; border: 2px solid var(--color-accent); border-radius: 999px; color: var(--color-text); text-decoration: none; }
+  .og__help strong { color: var(--color-accent); white-space: nowrap; }
+  .og__how { margin: 0; display: grid; grid-template-columns: minmax(8rem, 11rem) 1fr; gap: 10px 16px; }
+  .og__how dt { font-weight: 700; }
+  .og__how dd { margin: 0; color: var(--color-text-muted); }
+  .og__how dd a { color: var(--color-accent); }
+  @media (max-width: 480px) { .og__how { grid-template-columns: 1fr; gap: 2px; } .og__how dd { margin-bottom: 10px; } }
   .og__lead { margin: 0; text-align: center; color: var(--color-text-muted); }
   .og__toc { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
   .og__toc a { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 999px; font-size: var(--text-sm); text-decoration: none; color: var(--color-text); }
@@ -108,11 +82,11 @@ const steps = [
   .og__card p:last-child { margin-bottom: 0; }
   .og__card a { color: var(--color-accent); }
   .og__num { display: inline-grid; place-items: center; width: 2rem; height: 2rem; flex: none; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); font-size: 1.1rem; }
-  .og__videos { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .og__videos { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); }
   .og__video video { display: block; width: 100%; height: auto; aspect-ratio: 390 / 924; max-height: 34rem; object-fit: contain; background: #0d0d0c; border: 1px solid var(--color-border); }
   .og__soon { width: 100%; height: 4.5rem; background: #0d0d0c; border: 1px dashed var(--color-border); }
   .og__soon { display: grid; place-items: center; color: var(--color-text-muted); font-size: var(--text-sm); }
-  .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.15rem; margin: var(--space-2) 0 var(--space-1); }
+  .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1rem; margin: var(--space-2) 0 var(--space-1); }
   .og__vhint { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
-  .og__video p { margin: 0; color: var(--color-text-muted); font-size: var(--text-sm); }
+  .og__video p { display: none; }
 </style>
