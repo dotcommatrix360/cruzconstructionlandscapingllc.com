@@ -48,6 +48,14 @@ const steps = [
         </ul>
       </section>
 
+      <!-- TEMPORARY: remove this section once Miguel has connected Facebook + Instagram. -->
+      <section id="connect-social" class="og__card og__todo">
+        <h2>One-time setup: connect Facebook &amp; Instagram</h2>
+        <p>Do this once on a <strong>computer</strong> so your Facebook and Instagram messages show up in your app with your texts. Takes about 2 minutes.</p>
+        <video controls preload="none" playsinline poster="/videos/owner/connect-fb-ig.jpg" src="/videos/owner/connect-fb-ig.mp4" width="1568" height="798"></video>
+        <p class="og__vhint">After you connect them, this section will be removed.</p>
+      </section>
+
       <section id="videos" class="og__card">
         <h2>What do you want to do?</h2>
         <p class="og__vhint">Tap the one you need. 10 to 20 seconds each.</p>
@@ -88,6 +96,8 @@ const steps = [
   .og__how dd { margin: 0; color: var(--color-text-muted); }
   .og__how dd a { color: var(--color-accent); }
   @media (max-width: 480px) { .og__how { grid-template-columns: 1fr; gap: 2px; } .og__how dd { margin-bottom: 10px; } }
+  .og__todo { border-top-color: #2e90fa; }
+  .og__todo video { display: block; width: 100%; height: auto; margin: var(--space-3) 0; background: #0d0d0c; border: 1px solid var(--color-border); }
   .og__warn { border-top-color: #d92d20; }
   .og__warn ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; }
   .og__lead { margin: 0; text-align: center; color: var(--color-text-muted); }
