@@ -2,17 +2,19 @@
 // Feedback ("How did we do?"): where the business card and thank-you card QR codes land (/feedback/; /review 301s here).
 // Flow from the agency presentation: "What was your experience like?" → 4–5 stars: thank you + open the public
 // review page (Google once business.reviewLinks.google is set, else Facebook); 1–3 stars: a private feedback form so
-// Miguel can make it right. Owner's choice (2026-11-02): the low-rating screen has no public review link. Note: Google
-// prohibits review gating, which can get reviews removed; add the link back if that becomes a concern. noindex.
+// Miguel can make it right. That form is the inline GHL form "Review Feedback" (wG85iAiNw4md1OMBOTa9: first name,
+// phone, email, "What went wrong?"); a submission triggers the GHL "Negative Feedback Received" workflow alert to
+// Miguel, and GHL shows its own thank-you. Its phone field is fine (A2P approved; owner's call 2026-11-19).
+// Owner's choice (2026-11-02): the low-rating screen has no public review link. Note: Google prohibits review gating,
+// which can get reviews removed; add the link back if that becomes a concern. noindex.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
+import GhlForm from '../components/GhlForm.astro';
 import bgImg from '../assets/images/dining-room-columns-lvp-flooring.jpg';
-import { config, business } from '../lib/site';
+import { business } from '../lib/site';
 const links = business.reviewLinks || {};
 const reviewUrl = links.google || links.facebook || '';
 const reviewSite = links.google ? 'Google' : 'Facebook';
-const form = config.integrations.form || { provider: 'none' };
-const posts = (form.provider === 'formspree' || form.provider === 'custom') && form.action;
 ---
 <BaseLayout title="Share Your Experience" description="Thanks for choosing Cruz Construction & Landscaping. Tell us how we did: your feedback helps a small local business." noindex noChat>
   <section class="review">
@@ -45,21 +47,7 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
       <div class="review__card" data-step="sorry" hidden>
         <p class="review__q">We are sorry we missed the mark.</p>
         <p class="review__sub">Tell us what happened and Miguel will reach out personally to make it right.</p>
-        <form class="review__form" method={posts ? 'post' : undefined} action={posts ? form.action : undefined} data-mailto={posts ? undefined : business.email}>
-          <input type="hidden" name="rating" data-rating-field />
-          <div class="field"><label for="fb-name">Your name</label><input id="fb-name" name="name" autocomplete="name" required /></div>
-          <div class="field"><label for="fb-email">Email address</label><input id="fb-email" name="email" type="email" autocomplete="email" required /></div>
-          <!-- No phone field: the chat widget must be the only phone/SMS opt-in on the site (A2P 10DLC). -->
-          <div class="field"><label for="fb-msg">What went wrong?</label><textarea id="fb-msg" name="message" rows="4" required></textarea></div>
-          {posts && <div class="field field--hp" aria-hidden="true"><label for="fb-hp">Leave this empty</label><input id="fb-hp" name="_gotcha" tabindex="-1" autocomplete="off" /></div>}
-          <button class="review__btn" type="submit">Send feedback</button>
-        </form>
-      </div>
-
-      <!-- 3. Feedback sent -->
-      <div class="review__card" data-step="sent" hidden>
-        <p class="review__q">Thank you for telling us.</p>
-        <p class="review__sub">Your feedback goes straight to Miguel. He will reach out to you to make it right.</p>
+        <GhlForm formId="wG85iAiNw4md1OMBOTa9" formName="Review Feedback" height={520} />
       </div>
     </div>
   </section>
@@ -70,16 +58,16 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
   const show = (name: string) => steps.forEach((s) => { s.hidden = s.dataset.step !== name; });
   const stars = [...document.querySelectorAll<HTMLButtonElement>('[data-star]')];
   const reviewLink = document.querySelector<HTMLAnchorElement>('[data-review-link]');
-  const ratingField = document.querySelector<HTMLInputElement>('[data-rating-field]');
+  let rating = 0;
   const paint = (n: number) => stars.forEach((s) => s.classList.toggle('is-on', Number(s.dataset.star) <= n));
 
   stars.forEach((s) => {
     const n = Number(s.dataset.star);
     s.addEventListener('mouseenter', () => paint(n));
-    s.addEventListener('mouseleave', () => paint(Number(ratingField?.value || 0)));
+    s.addEventListener('mouseleave', () => paint(rating));
     s.addEventListener('click', () => {
       stars.forEach((x) => x.setAttribute('aria-checked', String(x === s)));
-      if (ratingField) ratingField.value = String(n);
+      rating = n;
       paint(n);
       setTimeout(() => {
         if (n >= 4) {
@@ -91,16 +79,6 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
     });
   });
 
-  // Feedback form: posts to the form endpoint when one is set; until then it hands the message to the email app.
-  const form = document.querySelector<HTMLFormElement>('.review__form');
-  form?.addEventListener('submit', (e) => {
-    if (!form.dataset.mailto) return; // real endpoint: normal submit
-    e.preventDefault();
-    const d = new FormData(form);
-    const body = `Rating: ${d.get('rating')} of 5\nName: ${d.get('name')}\nEmail: ${d.get('email')}\n\nWhat went wrong:\n${d.get('message')}`;
-    location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent('Customer feedback from the website')}&body=${encodeURIComponent(body)}`;
-    show('sent');
-  });
 </script>
 
 <style>
@@ -122,11 +100,5 @@ const posts = (form.provider === 'formspree' || form.provider === 'custom') && f
   .star:hover { transform: scale(1.12); }
   .review__btn { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: var(--space-3) var(--space-5); background: var(--color-accent); color: var(--color-on-accent); border: 0; border-radius: var(--radius); font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .03em; text-decoration: none; cursor: pointer; width: 100%; }
   .review__btn:hover { background: var(--color-accent-hover); color: var(--color-on-accent); }
-  .review__form { display: grid; gap: var(--space-3); text-align: left; }
-  .field { display: grid; gap: var(--space-1); }
-  .field label { font-size: var(--text-sm); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); }
-  .field input, .field textarea { padding: var(--space-3); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: var(--color-bg); color: var(--color-text); font: inherit; width: 100%; }
-  .field input:focus, .field textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent); }
-  .field--hp { position: absolute; left: -9999px; }
   .review__eyebrow { margin: 0; font-size: var(--text-sm); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-soft); }
 </style>
