@@ -18,7 +18,7 @@ const [emailUser = '', emailDomain = ''] = (business.email || '').split('@');
         {!business.hideAddress && business.address.street && <p><strong>Business address</strong><br />{business.address.street}<br />{business.address.city}, {business.address.region} {business.address.postalCode}</p>}
         <p><strong>Working hours</strong><br />Mon–Fri, 7am to 5pm<br />Weekend work when needed; calls welcome</p>
         <p><strong>Service area</strong><br />Holland, MI &amp; West Michigan</p>
-        <p><strong>License</strong><br />Michigan Builders License</p>
+        <p><strong>License</strong><br />Michigan Residential Builder #262500681</p>
         <p><strong>Follow our work</strong><br />{(business.sameAs || []).map((u, i) => <><a href={u} target="_blank" rel="noopener">{u.includes('facebook') ? 'Facebook' : u.includes('instagram') ? 'Instagram' : 'TikTok'}</a>{i < (business.sameAs || []).length - 1 ? ' · ' : ''}</>)}</p>
       </div>
     </div>

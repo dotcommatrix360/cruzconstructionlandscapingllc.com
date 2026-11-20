@@ -60,8 +60,11 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - /get-your-discount/: past-customer discount, GHL "Discount Form" pMf6jdupF57gjqrXKOJQ (discount amount lives in the form, never on the page).
 - /marketing-form/: internal, for Miguel to add a finished customer (GHL form XlcBPFO1AcZMCQbV5int → review request + 1-year follow-up). `minimal` layout, no chat.
 
+## License (verified on LARA Accela 2026-11-19)
+- Company: Residential Builder Company #262500681, Cruz Construction & Landscaping LLC, Holland 49424, expires 05/31/2028 (shown on site). Individual: Miguel Angel Cruz, Residential Builder Individual #242501082, issued 07/22/2025, expires 05/31/2028.
+
 ## From the onboarding call (tl;dv, 2026-11-03)
 - Service area: West Michigan, ~50-minute radius from Holland (Holland, Grand Rapids). Hours: 7am to 5pm, weekends every other week if needed, takes weekend calls (site shows Mon–Fri 7–5). Owner photo: not for now. Past-customer offer: 10% off, no conditions, applied at the estimate. Review incentive: $1 meal donation per review. Before 2025 he worked industrial (not used on site).
 
 ## Open TODOs from client
-- Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · license number (owner said 262-500-681 on the 2026-11-03 call; 9 digits, verify on Michigan LARA before publishing) · GA4/GTM IDs · production domain/host
+- Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · GA4/GTM IDs · production domain/host

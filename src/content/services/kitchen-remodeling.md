@@ -64,6 +64,6 @@ Because our own crew handles the cabinets, the tile, the drywall and the paint, 
 
 ## Licensed in Michigan
 
-Cruz Construction holds a Michigan Builders License.
+Cruz Construction holds Michigan Residential Builder License #262500681.
 
 Ready to talk through your kitchen? [Get a free estimate](#estimate) or call [616-344-5421](tel:+16163445421).

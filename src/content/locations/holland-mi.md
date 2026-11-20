@@ -13,7 +13,7 @@ localDetails:
 services: []
 faqs:
   - question: "Are you a local Holland, MI contractor?"
-    answer: "Yes. Cruz Construction & Landscaping LLC serves Holland, MI and West Michigan, and holds a Michigan Builders License."
+    answer: "Yes. Cruz Construction & Landscaping LLC serves Holland, MI and West Michigan, and holds Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Holland?"
     answer: "Kitchen remodeling, bathroom remodeling and basement finishing, plus insulation, drywall, painting, tile and LVP flooring, custom tile showers, backsplashes, carpentry and trim, door replacement, cabinet installation and drop ceilings."
   - question: "What are your working hours?"
