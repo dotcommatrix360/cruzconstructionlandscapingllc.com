@@ -1,0 +1,114 @@
+---
+// Owner guide for Miguel: how to use the system (app, inbox, CRM, pipeline, review requests).
+// noindex, minimal layout, no chat, not linked anywhere, not in the sitemap, NOT listed in robots.txt
+// (that file is public and would reveal the path). Password later via Cloudflare Access on /owner*.
+// Videos: drop MP4s in public/videos/owner/<slug>.mp4 and set `ready: true` below.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const videos = [
+  { slug: 'calls-texts-email', title: 'Calls, texts and email in the app', ready: false,
+    what: 'Call a customer, reply to a text, and switch the reply box from SMS to email in the Conversations inbox.' },
+  { slug: 'add-customer', title: 'Add a customer and notes', ready: false,
+    what: 'Create a contact, add their phone and address, and write a note after a site visit.' },
+  { slug: 'move-jobs', title: 'Move a job through the pipeline', ready: false,
+    what: 'Open Opportunities, add a job, and drag it from stage to stage until "Completed - Send Review".' },
+  { slug: 'review-request', title: 'Send a review request', ready: false,
+    what: 'Two ways: drag the job to "Completed - Send Review", or fill in the customer form on your phone.' },
+];
+
+const steps = [
+  { id: 'app', title: 'Your app', body: [
+    'Install the <strong>LeadConnector</strong> app (App Store / Google Play) and log in with the email we sent you.',
+    'Everything lands in <strong>Conversations</strong>: texts, calls, website chat, Facebook and Instagram messages. Reply from there and it goes out from your business number, 616-344-5421.',
+    'To send an email instead of a text, tap the channel switch above the reply box and pick <strong>Email</strong>.',
+  ]},
+  { id: 'lead', title: 'A new lead comes in', body: [
+    'Someone fills out the website form or chat: they get a text right away saying you got their message.',
+    'You get a text alert with their name and number. <strong>Call them as soon as you can</strong>, same day if possible. Speed wins the job.',
+  ]},
+  { id: 'missed', title: 'You miss a call', body: [
+    'The caller automatically gets a friendly text that you are on a job and will call back.',
+    'You get an alert. Call or text them back from the app when you are free.',
+  ]},
+  { id: 'pipeline', title: 'Keep your jobs moving', body: [
+    'Open <strong>Opportunities</strong> → <strong>Jobs Pipeline</strong>. Each card is a job. Drag it as it moves:',
+    'New Lead → Contacted → Estimate Scheduled → Estimate Sent → Job Won → Job In Progress → <strong>Completed - Send Review</strong> → Lost / Not a Fit.',
+  ]},
+  { id: 'review', title: 'A job is finished: get the review', body: [
+    'Drag the job to <strong>Completed - Send Review</strong>. That is it: the customer gets the review texts, and a year of friendly check-ins for repeat work and referrals.',
+    'No job card? Use the form instead: <a href="/marketing-form/">Add a finished customer</a> (save it to your home screen).',
+    'Your review link, if you ever want to send it yourself: <a href="/feedback/">cruzconstructionlandscapingllc.com/review</a>',
+  ]},
+  { id: 'unhappy', title: 'An unhappy customer', body: [
+    'If someone rates 1 to 3 stars, it does not go to Google. You get an alert with what went wrong. <strong>Call them that day</strong> and make it right.',
+  ]},
+  { id: 'past', title: 'Your past customers', body: [
+    'Send us your list of past customers (name and phone). We load it once and the system reaches out with your 10% offer over the year.',
+  ]},
+];
+---
+<BaseLayout title="Owner Guide" description="Owner guide for Cruz Construction: how to use the app, the inbox, the pipeline and review requests." noindex noChat minimal>
+  <section class="og">
+    <div class="container og__inner">
+      <img class="og__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
+      <p class="og__eyebrow">Owner guide</p>
+      <h1 class="og__title">How your system works</h1>
+      <p class="og__lead">Everything you need, in one place. Most of it runs on its own; these are the few things you do.</p>
+
+      <nav class="og__toc" aria-label="On this page">
+        <a href="#videos">Videos</a>
+        {steps.map((s) => <a href={`#${s.id}`}>{s.title}</a>)}
+        <a href="#help">Help</a>
+      </nav>
+
+      <section id="videos" class="og__card">
+        <h2>Short videos</h2>
+        <div class="og__videos">
+          {videos.map((v) => (
+            <article class="og__video">
+              {v.ready
+                ? <video controls preload="none" playsinline src={`/videos/owner/${v.slug}.mp4`} />
+                : <div class="og__soon" aria-hidden="true">Video coming soon</div>}
+              <h3>{v.title}</h3>
+              <p>{v.what}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {steps.map((s, i) => (
+        <section id={s.id} class="og__card">
+          <h2><span class="og__num">{i + 1}</span>{s.title}</h2>
+          {s.body.map((p) => <p set:html={p} />)}
+        </section>
+      ))}
+
+      <section id="help" class="og__card">
+        <h2>Need help or a change?</h2>
+        <p>Text us any time and we will handle it for you. Every Friday we will also text you a quick reminder to request reviews for the jobs you finished that week.</p>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .og { padding-block: clamp(2rem, 1.5rem + 3vw, 4rem); background: var(--color-bg); min-height: 100dvh; }
+  .og__inner { max-width: 46rem; display: grid; gap: var(--space-5); }
+  .og__logo { width: min(10rem, 45%); height: auto; justify-self: center; }
+  .og__eyebrow { margin: 0; text-align: center; font-size: var(--text-sm); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-soft); }
+  .og__title { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); line-height: 1; margin: 0; text-align: center; }
+  .og__lead { margin: 0; text-align: center; color: var(--color-text-muted); }
+  .og__toc { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+  .og__toc a { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 999px; font-size: var(--text-sm); text-decoration: none; color: var(--color-text); }
+  .og__toc a:hover { border-color: var(--color-accent); }
+  .og__card { background: var(--color-surface); border: 1px solid var(--color-border); border-top: 4px solid var(--color-accent); padding: clamp(1.25rem, 1rem + 1.5vw, 2rem); scroll-margin-top: 1rem; }
+  .og__card h2 { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem); line-height: 1.05; margin: 0 0 var(--space-3); display: flex; align-items: center; gap: var(--space-3); }
+  .og__card p { margin: 0 0 var(--space-3); }
+  .og__card p:last-child { margin-bottom: 0; }
+  .og__card a { color: var(--color-accent); }
+  .og__num { display: inline-grid; place-items: center; width: 2rem; height: 2rem; flex: none; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); font-size: 1.1rem; }
+  .og__videos { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .og__video video, .og__soon { width: 100%; aspect-ratio: 9 / 16; max-height: 26rem; background: #0d0d0c; border: 1px solid var(--color-border); }
+  .og__soon { display: grid; place-items: center; color: var(--color-text-muted); font-size: var(--text-sm); }
+  .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.15rem; margin: var(--space-2) 0 var(--space-1); }
+  .og__video p { margin: 0; color: var(--color-text-muted); font-size: var(--text-sm); }
+</style>

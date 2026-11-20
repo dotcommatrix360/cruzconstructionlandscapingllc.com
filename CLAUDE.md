@@ -57,6 +57,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - The "10% off your remodel" QR points at /offer (302 → /get-your-discount/ since 2026-11-19). The 10% offer comes from the agency presentation: the client must confirm it before printing. No review incentives (Google/Facebook/FTC rules).
 
 ## GHL pages (2026-11-19, all noindex, out of the sitemap, not in the nav)
+- /owner/: owner guide for Miguel (app, inbox, pipeline, review requests, 4 video slots in `src/pages/owner.astro`; videos go in public/videos/owner/<slug>.mp4 then set ready: true). Not in robots.txt on purpose (public file). Password later via Cloudflare Access.
 - /get-your-discount/: past-customer discount, GHL "Discount Form" pMf6jdupF57gjqrXKOJQ (discount amount lives in the form, never on the page).
 - /marketing-form/: internal, for Miguel to add a finished customer (GHL form XlcBPFO1AcZMCQbV5int → review request + 1-year follow-up). `minimal` layout, no chat.
 
