@@ -27,7 +27,7 @@ const socialName = (u: string) => (u.includes('facebook') ? 'Facebook' : u.inclu
         {business.phone && <p><a class="site-footer__phone" href={`tel:${business.phone}`}>{business.phoneDisplay || business.phone}</a></p>}
         <p><Email /></p>
       </address>
-      <p class="site-footer__muted">Working hours: 7am to 5pm</p>
+      <p class="site-footer__muted">Mon–Fri, 7am to 5pm · weekend calls welcome</p>
       {business.licenses && business.licenses.length > 0 && <p class="site-footer__muted">{business.licenses.join(' · ')}</p>}
     </div>
     <nav aria-label="Services">

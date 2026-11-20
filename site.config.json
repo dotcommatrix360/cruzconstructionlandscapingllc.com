@@ -32,9 +32,22 @@
     },
     "areaServed": [
       "Holland, MI",
+      "Grand Rapids, MI",
       "West Michigan"
     ],
-    "hours": [],
+    "hours": [
+      {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "07:00",
+        "closes": "17:00"
+      }
+    ],
     "sameAs": [
       "https://www.facebook.com/share/18ihntLhqo/?mibextid=wwXIfr",
       "https://www.instagram.com/cruz_construction_llc",
