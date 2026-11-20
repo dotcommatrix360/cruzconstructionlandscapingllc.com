@@ -6,17 +6,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const videos = [
-  { slug: 'find-your-way', title: 'Find my way around the app', ready: true, what: 'Home, the bottom bar, where everything is.' },
-  { slug: 'reply-text', title: 'Reply to a text', ready: true, what: 'Answer a customer from your business number.' },
-  { slug: 'send-email', title: 'Send an email', ready: true, what: 'Switch the reply box from SMS to Email.' },
-  { slug: 'call-customer', title: 'Call a customer', ready: true, what: 'Call from the app with your business number.' },
-  { slug: 'add-customer', title: 'Add a new customer', ready: true, what: 'Name, phone, address, save.' },
-  { slug: 'add-note', title: 'Add a note to a customer', ready: true, what: 'Write down what you saw on a site visit.' },
-  { slug: 'edit-contact', title: 'Edit a contact', ready: true, what: 'Fix a name, phone or address.' },
-  { slug: 'move-job', title: 'Move a job to the next step', ready: true, what: 'Change the stage of a job in your Jobs Pipeline.' },
-  { slug: 'review-pipeline', title: 'Ask for a review (finished job)', ready: true, what: 'Move the job to "Completed - Send Review".' },
-  { slug: 'review-form', title: 'Ask for a review (no job card)', ready: true, what: 'Fill in name and phone on your customer form.' },
-  { slug: 'block-spam', title: 'Stop a spammer (DND)', ready: true, what: 'Turn on Do Not Disturb for a spam number.' },
+  { slug: 'find-your-way', group: 'start', title: 'Find my way around the app', ready: true, what: 'Home, the bottom bar, where everything is.' },
+  { slug: 'reply-text', group: 'inbox', title: 'Reply to a text', ready: true, what: 'Answer a customer from your business number.' },
+  { slug: 'send-email', group: 'inbox', title: 'Send an email', ready: true, what: 'Switch the reply box from SMS to Email.' },
+  { slug: 'call-customer', group: 'inbox', title: 'Call a customer', ready: true, what: 'Call from the app with your business number.' },
+  { slug: 'add-customer', group: 'contacts', title: 'Add a new customer', ready: true, what: 'Name, phone, address, save.' },
+  { slug: 'add-note', group: 'contacts', title: 'Add a note to a customer', ready: true, what: 'Write down what you saw on a site visit.' },
+  { slug: 'edit-contact', group: 'contacts', title: 'Edit a contact', ready: true, what: 'Fix a name, phone or address.' },
+  { slug: 'move-job', group: 'jobs', title: 'Move a job to the next step', ready: true, what: 'Change the stage of a job in your Jobs Pipeline.' },
+  { slug: 'review-pipeline', group: 'reviews', title: 'Ask for a review (finished job)', ready: true, what: 'Move the job to "Completed - Send Review".' },
+  { slug: 'review-form', group: 'reviews', title: 'Ask for a review (no job card)', ready: true, what: 'Fill in name and phone on your customer form.' },
+  { slug: 'block-spam', group: 'contacts', title: 'Stop a spammer (DND)', ready: true, what: 'Turn on Do Not Disturb for a spam number.' },
+];
+
+const videoGroups = [
+  { key: 'start', title: 'Start here', what: 'A quick tour of the app.' },
+  { key: 'inbox', title: 'Talk to customers', what: 'Texts, emails and calls from your business number. All in Conversations.' },
+  { key: 'contacts', title: 'Your customer list (Contacts)', what: 'Everyone who ever called, texted or filled in a form.' },
+  { key: 'jobs', title: 'Your jobs (Opportunities)', what: 'Every job as a card. Move it as the job moves forward.' },
+  { key: 'reviews', title: 'Get Google reviews', what: 'Do this when a job is done.' },
 ];
 
 const steps = [
@@ -98,17 +106,23 @@ const textGroups = [
       <section id="videos" class="og__card">
         <h2>What do you want to do?</h2>
         <p class="og__vhint">Tap the one you need. 10 to 20 seconds each.</p>
-        <div class="og__videos">
-          {videos.map((v) => (
-            <article class="og__video">
-              {v.ready
-                ? <video controls preload="none" playsinline poster={`/videos/owner/${v.slug}.jpg`} src={`/videos/owner/${v.slug}.mp4`} width="390" height="924" />
-                : <div class="og__soon" aria-hidden="true">Video coming soon</div>}
-              <h3>{v.title}</h3>
-              <p>{v.what}</p>
-            </article>
-          ))}
-        </div>
+        {videoGroups.map((grp) => (
+          <div class="og__vg">
+            <h3 class="og__vgt">{grp.title}</h3>
+            <p class="og__vgw">{grp.what}</p>
+            <div class="og__videos">
+              {videos.filter((v) => v.group === grp.key).map((v) => (
+                <article class="og__video">
+                  {v.ready
+                    ? <video controls preload="none" playsinline poster={`/videos/owner/${v.slug}.jpg`} src={`/videos/owner/${v.slug}.mp4`} width="390" height="924" />
+                    : <div class="og__soon" aria-hidden="true">Video coming soon</div>}
+                  <h3>{v.title}</h3>
+                  <p>{v.what}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
 
       <section id="how" class="og__card">
@@ -181,4 +195,8 @@ const textGroups = [
   .og__t { font-size: var(--text-sm); font-weight: 700; color: var(--color-accent); }
   .og__m { line-height: 1.45; overflow-wrap: anywhere; }
   .og__you { margin: var(--space-2) 0 0 !important; font-size: var(--text-sm); color: var(--color-text-muted); }
+  .og__vg { padding-top: var(--space-4); margin-top: var(--space-4); border-top: 1px solid var(--color-border); }
+  .og__vg:first-of-type { margin-top: 0; }
+  .og__vgt { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.25rem; color: var(--color-accent); margin: 0 0 2px; }
+  .og__vgw { margin: 0 0 var(--space-3) !important; color: var(--color-text-muted); font-size: var(--text-sm); }
 </style>
