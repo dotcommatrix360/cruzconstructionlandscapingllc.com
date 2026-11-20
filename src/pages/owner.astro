@@ -12,9 +12,11 @@ const videos = [
   { slug: 'call-customer', title: 'Call a customer', ready: true, what: 'Call from the app with your business number.' },
   { slug: 'add-customer', title: 'Add a new customer', ready: true, what: 'Name, phone, address, save.' },
   { slug: 'add-note', title: 'Add a note to a customer', ready: true, what: 'Write down what you saw on a site visit.' },
+  { slug: 'edit-contact', title: 'Edit a contact', ready: true, what: 'Fix a name, phone or address.' },
   { slug: 'move-job', title: 'Move a job to the next step', ready: true, what: 'Change the stage of a job in your Jobs Pipeline.' },
   { slug: 'review-pipeline', title: 'Ask for a review (finished job)', ready: true, what: 'Move the job to "Completed - Send Review".' },
   { slug: 'review-form', title: 'Ask for a review (no job card)', ready: true, what: 'Fill in name and phone on your customer form.' },
+  { slug: 'block-spam', title: 'Stop a spammer (DND)', ready: true, what: 'Turn on Do Not Disturb for a spam number.' },
 ];
 
 const steps = [
@@ -32,7 +34,8 @@ const steps = [
     <div class="container og__inner">
       <img class="og__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
       <h1 class="og__title">Owner guide</h1>
-      <a class="og__help" href="sms:+18882773619">Need help? Text Visar: <strong>(888) 277-3619</strong></a>
+      <a class="og__help" href="sms:+18882773619">Need help or something looks weird? Text Visar: <strong>(888) 277-3619</strong></a>
+      <p class="og__lead">Every Thursday evening Visar texts you to ask how your week went and which jobs you finished. Just reply: it goes straight to him.</p>
 
       <section id="videos" class="og__card">
         <h2>What do you want to do?</h2>
@@ -56,6 +59,17 @@ const steps = [
           {steps.map(([t, d]) => (<><dt>{t}</dt><dd set:html={d} /></>))}
         </dl>
       </section>
+
+      <section id="scams" class="og__card og__warn">
+        <h2>Watch out: spam and scams</h2>
+        <p>Now that you are online, bots and scammers will text, email and call you. <strong>Do not reply and do not click their links.</strong></p>
+        <ul>
+          <li>"Your website is broken", "Your SEO is failing", "You're missing on Google", "Claim your listing", "Your domain is expiring": all automated bots fishing for a reply.</li>
+          <li>Texts: don't answer. Turn on <strong>Do Not Disturb</strong> for that number (see the "Stop a spammer" video).</li>
+          <li>Spam calls: we can't fully stop them. Don't engage. Tell them: "Don't call me again or I'll report you," then hang up.</li>
+          <li>Not sure if it's real? Text Visar before you do anything.</li>
+        </ul>
+      </section>
     </div>
   </section>
 </BaseLayout>
@@ -72,6 +86,8 @@ const steps = [
   .og__how dd { margin: 0; color: var(--color-text-muted); }
   .og__how dd a { color: var(--color-accent); }
   @media (max-width: 480px) { .og__how { grid-template-columns: 1fr; gap: 2px; } .og__how dd { margin-bottom: 10px; } }
+  .og__warn { border-top-color: #d92d20; }
+  .og__warn ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 8px; }
   .og__lead { margin: 0; text-align: center; color: var(--color-text-muted); }
   .og__toc { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
   .og__toc a { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 999px; font-size: var(--text-sm); text-decoration: none; color: var(--color-text); }
