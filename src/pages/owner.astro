@@ -6,16 +6,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const videos = [
-  { slug: 'find-your-way', title: 'Find your way around the app', ready: true,
-    what: 'Open the app, see your day on Home, and use the bottom bar to reach Conversations, Contacts and Apps.' },
-  { slug: 'calls-texts-email', title: 'Calls, texts and email in the app', ready: true,
-    what: 'Call a customer, reply to a text, and switch the reply box from SMS to email in the Conversations inbox.' },
-  { slug: 'add-customer', title: 'Add a customer and notes', ready: true,
-    what: 'Create a contact, add their phone and address, and write a note after a site visit.' },
-  { slug: 'move-jobs', title: 'Move a job through the pipeline', ready: true,
-    what: 'From Home, tap Opportunities, tap a job and change its stage as the work moves forward (on a computer you can drag the cards).' },
-  { slug: 'review-request', title: 'Send a review request', ready: true,
-    what: 'Two ways: move the job to "Completed - Send Review", or fill in the customer form on your phone.' },
+  { slug: 'find-your-way', title: 'Find my way around the app', ready: true, what: 'Home, the bottom bar, where everything is.' },
+  { slug: 'reply-text', title: 'Reply to a text', ready: true, what: 'Answer a customer from your business number.' },
+  { slug: 'send-email', title: 'Send an email', ready: true, what: 'Switch the reply box from SMS to Email.' },
+  { slug: 'call-customer', title: 'Call a customer', ready: true, what: 'Call from the app with your business number.' },
+  { slug: 'add-customer', title: 'Add a new customer', ready: true, what: 'Name, phone, address, save.' },
+  { slug: 'add-note', title: 'Add a note to a customer', ready: true, what: 'Write down what you saw on a site visit.' },
+  { slug: 'move-job', title: 'Move a job to the next step', ready: true, what: 'Change the stage of a job in your Jobs Pipeline.' },
+  { slug: 'review-pipeline', title: 'Ask for a review (finished job)', ready: true, what: 'Move the job to "Completed - Send Review".' },
+  { slug: 'review-form', title: 'Ask for a review (no job card)', ready: true, what: 'Fill in name and phone on your customer form.' },
 ];
 
 const steps = [
@@ -64,7 +63,8 @@ const steps = [
       </nav>
 
       <section id="videos" class="og__card">
-        <h2>Short videos</h2>
+        <h2>What do you want to do?</h2>
+        <p class="og__vhint">Tap the one you need. Each video is 10 to 20 seconds.</p>
         <div class="og__videos">
           {videos.map((v) => (
             <article class="og__video">
@@ -113,5 +113,6 @@ const steps = [
   .og__soon { width: 100%; height: 4.5rem; background: #0d0d0c; border: 1px dashed var(--color-border); }
   .og__soon { display: grid; place-items: center; color: var(--color-text-muted); font-size: var(--text-sm); }
   .og__video h3 { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.15rem; margin: var(--space-2) 0 var(--space-1); }
+  .og__vhint { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
   .og__video p { margin: 0; color: var(--color-text-muted); font-size: var(--text-sm); }
 </style>
