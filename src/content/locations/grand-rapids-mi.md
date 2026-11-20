@@ -12,6 +12,8 @@ localDetails:
   - "Homes inside the city limits get their building permits from the City of Grand Rapids, while the surrounding townships issue their own. We confirm which office covers your address before any work starts."
 services: []
 faqs:
+  - question: "Is Grand Rapids too far for a Holland contractor?"
+    answer: "No. Grand Rapids is about 35 minutes from Holland along I-196, and it is inside the area we work every week."
   - question: "Do you work in Grand Rapids?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 35 minutes east of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Grand Rapids?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 35 minutes east of Holland, and we take on remodeling projects in Grand Rapids, MI. Our own crew does the work, and we explain each step as it happens.
 
 Grand Rapids homeowners hire us for full [kitchen remodels](/services/kitchen-remodeling/), [bathroom remodels](/services/bathroom-remodeling/) and [basement finishing](/services/basement-finishing/), and for smaller jobs like [drywall](/services/drywall/) repair in older plaster homes, [painting](/services/painting/) and [tile and LVP flooring](/services/tile-lvp-flooring/).
+
+## Typical Grand Rapids projects
+
+In Grand Rapids we see a lot of century-old homes where a kitchen or bath update turns into a bigger job once the walls are open. We price that honestly up front: if plaster needs to come down or a floor needs leveling before tile, it goes in the estimate, not in a surprise change order. Newer homes on the city's edges are more often about finishing a basement or replacing builder-grade carpet with LVP.

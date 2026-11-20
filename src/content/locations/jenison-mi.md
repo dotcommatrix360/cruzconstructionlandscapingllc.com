@@ -12,6 +12,8 @@ localDetails:
   - "Jenison sits along the Grand River between Hudsonville and Grandville, an easy drive from Holland along the I-196 corridor."
 services: []
 faqs:
+  - question: "Can you remodel my Jenison home in stages?"
+    answer: "Yes. Many Jenison homeowners do flooring first, then a bathroom, then the kitchen. We plan each phase so the next one fits."
   - question: "Do you work in Jenison?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 25 minutes east of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Jenison?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 25 minutes east of Holland, and we take on remodeling projects in Jenison, MI. Our own crew does the work, and we explain each step as it happens.
 
 Jenison homeowners hire us for [kitchen remodeling](/services/kitchen-remodeling/), [bathroom remodeling](/services/bathroom-remodeling/) and [tile and LVP flooring](/services/tile-lvp-flooring/), plus [kitchen backsplashes](/services/kitchen-backsplash/), [door replacement](/services/door-replacement/) and [painting](/services/painting/).
+
+## Typical Jenison projects
+
+Jenison homes from the 1970s and 1980s often still have their original kitchens, tub surrounds and carpet. A common project here is a phased update: new LVP through the main floor first, then the bathroom, then the kitchen, so the house stays livable and the budget stays manageable.

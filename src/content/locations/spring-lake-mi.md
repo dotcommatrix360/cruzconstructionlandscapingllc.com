@@ -12,6 +12,8 @@ localDetails:
   - "The Village of Spring Lake and Spring Lake Township each handle their own permits. We confirm which one applies to your home at the start."
 services: []
 faqs:
+  - question: "Can you work while we live in our Spring Lake home?"
+    answer: "Yes. We plan the work room by room and clean up each day, so you can stay in the house during most projects."
   - question: "Do you work in Spring Lake?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 25 minutes north of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Spring Lake?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 25 minutes north of Holland, and we take on remodeling projects in Spring Lake, MI. Our own crew does the work, and we explain each step as it happens.
 
 Spring Lake homeowners hire us for [bathroom remodeling](/services/bathroom-remodeling/), [custom tile showers](/services/custom-tile-showers/), [kitchen remodeling](/services/kitchen-remodeling/) and [kitchen backsplashes](/services/kitchen-backsplash/), plus [carpentry and trim](/services/carpentry-trim/) and [painting](/services/painting/).
+
+## Typical Spring Lake projects
+
+Spring Lake homeowners often call about updating a lake house: brighter kitchens with a new backsplash, refreshed bathrooms with custom tile showers, and new trim and paint that makes an older home feel new. We keep the job site tidy, since many of these homes are lived in during the work.

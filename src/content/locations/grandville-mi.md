@@ -12,6 +12,8 @@ localDetails:
   - "Homes in the City of Grandville get their permits from the city, and we check this at the start so the project is not held up later."
 services: []
 faqs:
+  - question: "Can you update a Grandville kitchen without a full remodel?"
+    answer: "Yes. New cabinets, a tile backsplash, paint and trim can change a kitchen a lot without moving walls or plumbing."
   - question: "Do you work in Grandville?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 30 minutes east of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Grandville?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 30 minutes east of Holland, and we take on remodeling projects in Grandville, MI. Our own crew does the work, and we explain each step as it happens.
 
 Grandville homeowners hire us for [kitchen remodeling](/services/kitchen-remodeling/), [cabinet installation](/services/cabinet-installation/), [bathroom remodeling](/services/bathroom-remodeling/) and [basement finishing](/services/basement-finishing/), plus [drywall](/services/drywall/) and [carpentry and trim](/services/carpentry-trim/).
+
+## Typical Grandville projects
+
+Grandville homeowners often want a kitchen that works better without moving walls: new cabinets, a backsplash, fresh paint and better lighting. In older ranch homes we also do a lot of ceiling and drywall repair, which has to be done right before any new finish goes on.

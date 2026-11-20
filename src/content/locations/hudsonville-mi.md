@@ -12,6 +12,8 @@ localDetails:
   - "Hudsonville borders Georgetown Township and Jamestown Township, and each issues its own permits. We confirm which one covers your home before we start."
 services: []
 faqs:
+  - question: "Why a drop ceiling in a Hudsonville basement?"
+    answer: "A drop ceiling keeps pipes, wiring and ductwork reachable for future repairs while still giving the room a finished look."
   - question: "Do you work in Hudsonville?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 25 minutes east of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Hudsonville?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 25 minutes east of Holland, and we take on remodeling projects in Hudsonville, MI. Our own crew does the work, and we explain each step as it happens.
 
 Hudsonville homeowners hire us for [basement finishing](/services/basement-finishing/), [insulation](/services/insulation/), [drop ceilings](/services/drop-ceilings/) and [tile and LVP flooring](/services/tile-lvp-flooring/), as well as [kitchen](/services/kitchen-remodeling/) and [bathroom remodeling](/services/bathroom-remodeling/).
+
+## Typical Hudsonville projects
+
+Most Hudsonville calls are about space: turning an unfinished basement into usable rooms. We frame, insulate, hang and finish drywall, install a drop ceiling so plumbing and ductwork stay reachable, and lay LVP that handles basement moisture. Upstairs, newer homes often get a bathroom refresh with a custom tile shower.

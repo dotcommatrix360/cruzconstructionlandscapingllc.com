@@ -12,6 +12,8 @@ localDetails:
   - "Homes in Wyoming are permitted by the City of Wyoming. We confirm what the job needs before work starts."
 services: []
 faqs:
+  - question: "Do you replace interior and entry doors in Wyoming?"
+    answer: "Yes. Door replacement is a common job in Wyoming's older ranch homes, along with the trim around them."
   - question: "Do you work in Wyoming?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 30 minutes east of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Wyoming?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 30 minutes east of Holland, and we take on remodeling projects in Wyoming, MI. Our own crew does the work, and we explain each step as it happens.
 
 Wyoming homeowners hire us for [bathroom remodeling](/services/bathroom-remodeling/), [basement finishing](/services/basement-finishing/), [door replacement](/services/door-replacement/) and [tile and LVP flooring](/services/tile-lvp-flooring/), plus [kitchen remodeling](/services/kitchen-remodeling/) and [painting](/services/painting/).
+
+## Typical Wyoming projects
+
+Wyoming's 1950s and 1960s ranch homes are solid houses with dated finishes. The projects we do most here are bathroom updates with a new tub surround or tile shower, replacing old interior and entry doors, and finishing a basement to add a bedroom or family room.

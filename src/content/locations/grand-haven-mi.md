@@ -12,6 +12,8 @@ localDetails:
   - "Grand Haven has older homes and cottages near downtown and the beach, plus newer homes in Grand Haven Township. The city and the township issue their own permits, so we check which one covers your address."
 services: []
 faqs:
+  - question: "How do you handle lake humidity in a Grand Haven bathroom?"
+    answer: "We waterproof behind the tile, use moisture-tolerant materials and make sure the room is vented, so the new bathroom lasts."
   - question: "Do you work in Grand Haven?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 25 minutes north of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Grand Haven?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 25 minutes north of Holland, and we take on remodeling projects in Grand Haven, MI. Our own crew does the work, and we explain each step as it happens.
 
 Grand Haven homeowners hire us for [bathroom remodeling](/services/bathroom-remodeling/), [custom tile showers](/services/custom-tile-showers/), [basement finishing](/services/basement-finishing/) and [kitchen remodeling](/services/kitchen-remodeling/), plus [insulation](/services/insulation/) and [tile and LVP flooring](/services/tile-lvp-flooring/).
+
+## Typical Grand Haven projects
+
+On the lakeshore, bathrooms and basements take the most wear from humidity. We build Grand Haven showers with proper waterproofing behind the tile and use flooring that tolerates moisture. Cottages near the beach often need careful work around older framing, and we account for that before quoting.

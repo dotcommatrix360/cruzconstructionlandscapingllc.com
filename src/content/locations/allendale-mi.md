@@ -12,6 +12,8 @@ localDetails:
   - "Building permits for Allendale homes go through Allendale Township. We confirm what is needed before the job starts."
 services: []
 faqs:
+  - question: "Do you do rental turnovers in Allendale?"
+    answer: "Yes. We handle LVP flooring, drywall repair and paint between tenants, with durable materials that hold up to student rentals."
   - question: "Do you work in Allendale?"
     answer: "Yes. Cruz Construction & Landscaping LLC is based in Holland, about 30 minutes northeast of Holland, and works across West Michigan. We hold Michigan Residential Builder License #262500681."
   - question: "What remodeling services do you offer in Allendale?"
@@ -25,3 +27,7 @@ faqs:
 Cruz Construction & Landscaping LLC is a Michigan-licensed builder based in Holland, about 30 minutes northeast of Holland, and we take on remodeling projects in Allendale, MI. Our own crew does the work, and we explain each step as it happens.
 
 Allendale homeowners and landlords hire us for [tile and LVP flooring](/services/tile-lvp-flooring/), [drywall](/services/drywall/), [painting](/services/painting/) and [basement finishing](/services/basement-finishing/), plus [bathroom](/services/bathroom-remodeling/) and [kitchen remodeling](/services/kitchen-remodeling/).
+
+## Typical Allendale projects
+
+In Allendale we work for two kinds of clients: landlords near Grand Valley State University who need durable, quick turnovers between tenants, and families in newer subdivisions finishing basements or updating bathrooms. For rentals we favor LVP, semi-gloss paint and repairs that hold up to heavy use.
