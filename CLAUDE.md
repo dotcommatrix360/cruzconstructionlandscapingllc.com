@@ -69,3 +69,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 
 ## Open TODOs from client
 - Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · GA4/GTM IDs · production domain/host
+
+## Owner guide + automations (2026-11-19)
+- /owner/ page: help line (text Visar 888-277-3619), numbers line (business 616-344-5421 → cell 616-502-1874), Thursday check-in note, scam warning on top, temporary "connect Facebook & Instagram" card (remove after Miguel connects), 12 task videos, How it works. Video sources in tools/owner-videos/.
+- GHL: owner alerts rewritten (short, name+phone, "Dotcom Matrix 360 auto alert"); new workflows "Incoming Text -> Notify Miguel", "Any New Lead -> Jobs Pipeline (New Lead)", "DND On -> Jobs Pipeline (Spam)"; Spam stage added; forms show on-form thank-you messages (no /thank-you page); sender info "{{senderID}}:" at start; Miguel's user phone = 616-502-1874; Miguel has Integrations (native) permission. FB/IG alert workflows unchanged until pages are connected.

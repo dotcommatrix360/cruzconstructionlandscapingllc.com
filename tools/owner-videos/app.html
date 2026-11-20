@@ -1,0 +1,413 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{width:780px;height:1848px;overflow:hidden;background:#0d0d0c}body{transform:scale(2);transform-origin:0 0;width:390px;height:924px;overflow:hidden;background:#0d0d0c;font-family:Inter,Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+#cap{height:96px;background:#0d0d0c;color:#fff;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:3px solid #c9a227}
+#cap .n{flex:none;width:34px;height:34px;border-radius:50%;background:#c9a227;color:#0d0d0c;font-weight:800;display:grid;place-items:center;font-size:15px}
+#cap .t{font-size:18.5px;font-weight:700;line-height:1.25;transition:opacity .25s}
+#phone{position:relative;width:390px;height:828px;background:#fff;overflow:hidden;color:#101828}
+.status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:14px;font-weight:600}
+.status .r{display:flex;gap:6px;align-items:center}
+.screen{position:absolute;top:44px;left:0;right:0;bottom:0;display:none;flex-direction:column;background:#fff}
+.screen.on{display:flex}
+.hdr{height:54px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid #eaecf0}
+.hdr h1{font-size:20px;font-weight:700;flex:1}
+.hdr .ic{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:#344054}
+.hdr .back{color:#1d5c43}
+.body{flex:1;overflow:hidden;position:relative}
+.nav{height:78px;border-top:1px solid #eaecf0;display:flex;padding:8px 4px 22px;background:#fff}
+.nav div{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10.5px;color:#667085;font-weight:500}
+.nav div.a{color:#1d5c43}
+.nav svg{width:22px;height:22px}
+.search{margin:10px 16px;height:38px;border-radius:10px;background:#f2f4f7;display:flex;align-items:center;gap:8px;padding:0 12px;color:#98a2b3;font-size:14px}
+.tabs{display:flex;gap:18px;padding:0 16px;border-bottom:1px solid #eaecf0;font-size:14px;font-weight:600;color:#667085}
+.tabs span{padding:8px 0}.tabs .a{color:#1d5c43;border-bottom:2px solid #1d5c43}
+.row{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #f2f4f7;align-items:center}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:15px}
+.row .m{flex:1;min-width:0}
+.row .nm{font-weight:700;font-size:15px;display:flex;justify-content:space-between}
+.row .nm small{font-weight:500;color:#98a2b3;font-size:12px}
+.row .pv{font-size:13.5px;color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%;background:#1d5c43;flex:none}
+.chan{font-size:10px;font-weight:700;padding:1px 6px;border-radius:6px;background:#e8f2ec;color:#1d5c43}
+/* chat */
+.msgs{position:absolute;inset:0;overflow:hidden;padding:14px 12px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end;background:#f9fafb}
+.b{max-width:78%;padding:9px 12px;border-radius:16px;font-size:14.5px;line-height:1.35}
+.b.in{background:#fff;border:1px solid #eaecf0;align-self:flex-start;border-bottom-left-radius:4px}
+.b.out{background:#1d5c43;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.b.mail{background:#fff;border:1px solid #a9d1ba;color:#101828;align-self:flex-end;border-bottom-right-radius:4px}
+.b.mail .sj{font-weight:700;font-size:13px;color:#1d5c43;margin-bottom:3px;display:flex;gap:5px;align-items:center}
+.meta{font-size:11px;color:#98a2b3;align-self:center}
+.meta.r{align-self:flex-end}
+.callcard{align-self:center;background:#fff;border:1px solid #eaecf0;border-radius:12px;padding:8px 12px;font-size:13px;display:flex;gap:8px;align-items:center;color:#b42318;font-weight:600}
+.comp{border-top:1px solid #eaecf0;padding:8px 12px 26px;background:#fff}
+.chsel{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#1d5c43;background:#e8f2ec;border-radius:8px;padding:5px 10px;margin-bottom:8px}
+.subj{display:none;border:1px solid #d0d5dd;border-radius:10px;padding:9px 12px;font-size:14px;margin-bottom:8px;min-height:38px}
+.inrow{display:flex;gap:8px;align-items:flex-end}
+.inp{flex:1;border:1px solid #d0d5dd;border-radius:20px;padding:10px 14px;font-size:14.5px;min-height:42px;line-height:1.35;color:#101828}
+.inp.ph{color:#98a2b3}
+.send{width:42px;height:42px;border-radius:50%;background:#1d5c43;display:grid;place-items:center;color:#fff;flex:none}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.18);padding:10px 0 30px;transform:translateY(110%);transition:transform .3s ease;z-index:20}
+.sheet.on{transform:none}
+.sheet .grab{width:40px;height:5px;border-radius:3px;background:#d0d5dd;margin:0 auto 10px}
+.sheet h3{font-size:15px;padding:4px 18px 10px;color:#667085;font-weight:600}
+.opt{display:flex;align-items:center;gap:12px;padding:14px 18px;font-size:16px;font-weight:500}
+.opt.sel{color:#1d5c43;font-weight:700}
+.dim{position:absolute;inset:0;background:rgba(16,24,40,.35);opacity:0;transition:opacity .3s;pointer-events:none;z-index:19}
+.dim.on{opacity:1}
+/* call */
+#call{background:linear-gradient(#1d2939,#0c111d);color:#fff;align-items:center;text-align:center}
+#call .big{width:96px;height:96px;border-radius:50%;background:#7a5af8;display:grid;place-items:center;font-size:34px;font-weight:700;margin:90px auto 18px}
+#call h2{font-size:26px}
+#call p{color:#98a2b3;margin-top:6px;font-size:15px}
+#call .tm{font-size:17px;color:#fff;margin-top:14px;font-variant-numeric:tabular-nums}
+#call .keys{display:grid;grid-template-columns:repeat(3,70px);gap:22px 34px;margin:60px auto 0}
+#call .k{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center}
+#call .end{width:72px;height:72px;border-radius:50%;background:#f04438;display:grid;place-items:center;margin:46px auto 0}
+/* forms */
+.form{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+.fl label{font-size:12.5px;font-weight:600;color:#344054;display:block;margin-bottom:5px}
+.fi{border:1px solid #d0d5dd;border-radius:10px;padding:10px 12px;font-size:15px;min-height:42px;color:#101828}
+.fi.focus{border-color:#1d5c43;box-shadow:0 0 0 3px #cfe5d8}
+.fi.ph{color:#98a2b3}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{background:#1d5c43;color:#fff;font-weight:700;text-align:center;border-radius:10px;padding:12px;font-size:15px}
+.btn.ghost{background:#fff;color:#344054;border:1px solid #d0d5dd}
+.fab{position:absolute;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#1d5c43;color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(29,92,67,.4)}
+.tag{display:inline-block;font-size:12px;background:#ecfdf3;color:#067647;border-radius:12px;padding:3px 9px;font-weight:600;margin-right:6px}
+.prof{padding:18px 16px;text-align:center;border-bottom:1px solid #eaecf0}
+.prof .av{width:64px;height:64px;font-size:22px;margin:0 auto 8px}
+.prof h2{font-size:20px}
+.prof p{color:#667085;font-size:14px;margin-top:3px}
+.acts{display:flex;justify-content:center;gap:22px;margin-top:14px}
+.acts div{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;color:#1d5c43;font-weight:600}
+.acts i{width:42px;height:42px;border-radius:50%;background:#e8f2ec;display:grid;place-items:center}
+.note{margin:12px 16px;border:1px solid #fedf89;background:#fffaeb;border-radius:12px;padding:12px;font-size:14px;line-height:1.4}
+.note small{display:block;color:#93370d;font-weight:600;margin-bottom:4px;font-size:12px}
+.kv{padding:6px 16px;font-size:14px}
+.kv div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f2f4f7}
+.kv span:first-child{color:#667085}
+/* pipeline */
+.psel{margin:10px 16px 6px;display:flex;justify-content:space-between;align-items:center;border:1px solid #d0d5dd;border-radius:10px;padding:9px 12px;font-weight:700;font-size:15px}
+.stages{display:flex;gap:8px;padding:6px 16px 10px;overflow:hidden;white-space:nowrap}
+.stg{flex:none;font-size:13px;font-weight:600;padding:7px 12px;border-radius:18px;background:#f2f4f7;color:#475467;transition:all .3s}
+.stg.a{background:#1d5c43;color:#fff}
+.stg b{opacity:.7;margin-left:4px}
+.card{margin:8px 16px;border:1px solid #eaecf0;border-radius:12px;padding:12px 14px;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:all .35s}
+.card h4{font-size:15px}
+.card p{font-size:13px;color:#667085;margin-top:3px;display:flex;justify-content:space-between}
+.card .v{color:#067647;font-weight:700}
+.toast{position:absolute;left:16px;right:16px;bottom:96px;background:#101828;color:#fff;border-radius:12px;padding:12px 14px;font-size:14px;display:flex;gap:10px;align-items:center;opacity:0;transform:translateY(20px);transition:all .3s;z-index:30}
+.toast.on{opacity:1;transform:none}
+.empty{text-align:center;color:#98a2b3;font-size:14px;margin-top:40px}
+/* browser */
+#web{background:#f2f4f7}
+.url{margin:8px 12px;background:#e4e7ec;border-radius:12px;padding:9px 12px;font-size:12.5px;white-space:nowrap;overflow:hidden;display:flex;gap:6px;align-items:center;color:#344054}
+.page{flex:1;overflow:hidden;background:#0d0d0c;color:#f5f1e6;position:relative}
+.page .in{position:absolute;left:0;right:0;top:0;transition:transform .6s ease;padding:16px 18px 40px}
+.page img{display:block;width:150px;margin:0 auto 8px}
+.page h2{font-family:Georgia,serif;font-size:26px;text-align:center;color:#fff;margin-bottom:12px}
+.wf{background:#161614;border:1px solid #2b2a26;border-radius:14px;padding:14px;font-size:13px;line-height:1.45;color:#d6d1c4}
+.wf p{margin-bottom:8px}
+.wf label{display:block;font-size:11.5px;font-weight:700;letter-spacing:.02em;color:#f5f1e6;margin:12px 0 6px}
+.wf .fi{background:#0d0d0c;border-color:#3a3833;color:#fff}
+.wf .fi.focus{border-color:#c9a227;box-shadow:0 0 0 3px rgba(201,162,39,.25)}
+.wf .btn{background:#c9a227;color:#0d0d0c;margin-top:14px;font-weight:800}
+.ok{display:none;text-align:center;padding:30px 10px}
+.ok .c{width:64px;height:64px;border-radius:50%;background:#c9a227;margin:0 auto 14px;display:grid;place-items:center}
+.ok h3{font-size:22px;color:#fff;font-family:Georgia,serif}
+.ok p{color:#d6d1c4;font-size:14px;margin-top:8px}
+/* real-app header, home, apps */
+.acct{height:58px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid #eaecf0}
+.acct .ini{width:30px;height:30px;border-radius:8px;background:#f2f4f7;display:grid;place-items:center;font-size:11px;font-weight:700;color:#475467}
+.acct .nm{flex:1;min-width:0;font-weight:700;font-size:14.5px;line-height:1.15}.acct .nm small{display:block;font-weight:500;color:#98a2b3;font-size:11.5px}
+.acct .ic{width:30px;height:30px;display:grid;place-items:center;color:#344054;position:relative}
+.bell::after{content:'';position:absolute;top:4px;right:6px;width:7px;height:7px;border-radius:50%;background:#f04438}
+.glance{margin:12px 14px;border:1px solid #eaecf0;border-radius:16px;padding:12px;box-shadow:0 4px 14px rgba(16,24,40,.06)}
+.glance h5{font-size:13px;color:#344054;font-weight:600;display:flex;justify-content:space-between;margin-bottom:10px}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gt{border:1px solid #eaecf0;border-radius:12px;padding:10px 12px;font-size:12px;color:#475467}.gt b{display:block;font-size:22px;color:#101828;margin-top:6px}
+.sec{margin:6px 14px 10px;border:1px solid #eaecf0;border-radius:14px;padding:10px 6px 12px}
+.sec h5{font-size:12.5px;color:#475467;font-weight:600;padding:0 8px 10px}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.icons div{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;color:#344054;text-align:center;line-height:1.15}
+.icons i{width:46px;height:46px;border-radius:50%;border:1px solid #eaecf0;display:grid;place-items:center;color:#344054}
+.ios{background:linear-gradient(160deg,#3b5b7a,#1b2a3a 60%,#0f1720);padding:30px 22px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 14px}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:#fff}
+.app i{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:800;color:#fff;font-size:20px}
+.ichips{display:flex;gap:6px;padding:8px 16px;font-size:12px}.ichips span{border:1px solid #eaecf0;border-radius:8px;padding:4px 9px;color:#475467}
+/* tap */
+#tap{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(201,162,39,.45);border:3px solid rgba(201,162,39,.95);pointer-events:none;opacity:0;z-index:99}
+#tap.go{animation:tap .55s ease-out}
+@keyframes tap{0%{opacity:0;transform:scale(.5)}25%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+.caret::after{content:'';display:inline-block;width:2px;height:1.05em;background:#1d5c43;vertical-align:-2px;margin-left:1px;animation:bl 1s steps(1) infinite}
+.wf .caret::after{background:#c9a227}
+@keyframes bl{50%{opacity:0}}
+</style></head>
+<body>
+<div id="cap"><div class="n" id="capn">1</div><div class="t" id="capt"></div></div>
+<div id="phone">
+  <div class="status"><span>9:41</span><span class="r"><svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="#101828"/><rect x="5" y="5" width="3" height="7" rx="1" fill="#101828"/><rect x="10" y="2" width="3" height="10" rx="1" fill="#101828"/><rect x="15" y="0" width="3" height="12" rx="1" fill="#101828"/></svg><svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3" fill="none" stroke="#101828"/><rect x="2" y="2" width="17" height="8" rx="2" fill="#101828"/><rect x="24" y="4" width="2" height="4" rx="1" fill="#101828"/></svg></span></div>
+
+
+  <section class="screen" id="ios"><div class="ios" style="flex:1"><div class="grid">
+    <div class="app"><i style="background:#34c759">☎</i>Phone</div><div class="app"><i style="background:#34c759">💬</i>Messages</div><div class="app"><i style="background:#0a84ff">✉</i>Mail</div><div class="app"><i style="background:#ff9f0a">📷</i>Camera</div>
+    <div class="app"><i style="background:#fff;color:#ff375f">📅</i>Calendar</div><div class="app"><i style="background:#8e8e93">⚙</i>Settings</div><div class="app" id="lcapp"><i style="background:#fff;color:#f15a29;font-size:24px">⬢</i>LeadConnector</div><div class="app"><i style="background:#ffd60a;color:#000">📝</i>Notes</div>
+  </div></div></section>
+  <section class="screen" id="home">
+    <div class="acct"><div class="ini">CC</div><div class="nm"><span style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px">Cruz Construction &amp; Landscaping ▾</span><small>Holland, MI</small></div><div class="ic bell"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="ic"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></div></div>
+    <div class="body">
+      <div class="glance"><h5>Today at a Glance <span>↻</span></h5><div class="gg"><div class="gt">Unread Messages<b>3</b></div><div class="gt">Missed Calls<b>1</b></div><div class="gt">New Leads<b>2</b></div><div class="gt">Tasks Due<b>0</b></div></div></div>
+      <div class="sec"><div class="icons"><div id="h-opps"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 4h4v10h-4zM16 4h4v6h-4z"/></svg></i>Opportunities</div><div id="h-dial"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></i>Dialer</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 12l2 2 4-4"/></svg></i>Task<br>Manager</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></i>Dashboard</div></div></div>
+      <div class="sec"><h5>Quick Actions</h5><div class="icons"><div id="h-addc"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M2 21a8 8 0 0113-6M19 14v6M16 17h6"/></svg></i>Add<br>Contact</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></i>New<br>Message</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></i>Call</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg></i>Reviews</div></div></div>
+    </div>
+    <div class="nav"></div>
+  </section>
+  <section class="screen" id="apps">
+    <div class="acct"><div class="ini">CC</div><div class="nm"><span style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px">Cruz Construction &amp; Landscaping ▾</span><small>Holland, MI</small></div><div class="ic bell"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="ic"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></div></div>
+    <div class="search">Search Apps…</div>
+    <div class="body">
+      <div class="sec"><h5>Insights &amp; Productivity</h5><div class="icons"><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></i>Dashboard</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 12l2 2 4-4"/></svg></i>Task<br>Manager</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg></i>Reputation</div></div></div>
+      <div class="sec"><h5>Communication</h5><div class="icons"><div id="a-conv"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></i>Conversations</div><div><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></i>Dialer</div><div id="a-cont"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></i>Contacts</div></div></div>
+      <div class="sec"><h5>Sales &amp; Operations</h5><div class="icons"><div id="a-opps"><i><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 4h4v10h-4zM16 4h4v6h-4z"/></svg></i>Opportunities</div></div></div>
+    </div>
+    <div class="nav"></div>
+  </section>
+  <!-- Conversations list -->
+  <section class="screen" id="convs">
+    <div class="acct"><div class="ini">CC</div><div class="nm"><span style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px">Cruz Construction &amp; Landscaping ▾</span><small>Holland, MI</small></div><div class="ic bell"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></svg></div><div class="ic"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></div></div>
+    <div class="search"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Search conversations</div>
+    <div class="tabs"><span class="a">Team Inbox</span><span>My Inbox</span><span>Internal Chat</span></div>
+    <div class="ichips"><span>Filter ▾</span><span style="border-color:#1d5c43;color:#1d5c43;font-weight:700">Unread</span><span>Recent</span><span>Starred</span><span>All</span></div>
+    <div class="body">
+      <div class="row" id="c-spam"><div class="av" style="background:#98a2b3">?</div><div class="m"><div class="nm">(305) 555-0199 <small>5m</small></div><div class="pv"><span class="dot"></span><span class="chan">SMS</span>Your website is broken! Your SEO is failing...</div></div></div>
+      <div class="row" id="c-sarah"><div class="av" style="background:#7a5af8">SM</div><div class="m"><div class="nm">Sarah Miller <small>2m</small></div><div class="pv"><span class="dot"></span><span class="chan">SMS</span>Hi! Could you give me a quote for a deck?</div></div></div>
+      <div class="row"><div class="av" style="background:#f04438">ED</div><div class="m"><div class="nm">Emily Davis <small>18m</small></div><div class="pv"><span class="dot"></span><span class="chan" style="background:#fef3f2;color:#b42318">Call</span>Missed call · auto-text sent</div></div></div>
+      <div class="row"><div class="av" style="background:#12b76a">JC</div><div class="m"><div class="nm">James Carter <small>1h</small></div><div class="pv"><span class="chan">Chat</span>Website chat: bathroom remodel question</div></div></div>
+      <div class="row"><div class="av" style="background:#f79009">RB</div><div class="m"><div class="nm">Robert Brown <small>Yesterday</small></div><div class="pv"><span class="chan">Email</span>Thanks Miguel, the kitchen looks great</div></div></div>
+      <div class="row"><div class="av" style="background:#2e90fa">LW</div><div class="m"><div class="nm">Linda Wilson <small>Mon</small></div><div class="pv"><span class="chan">SMS</span>See you Thursday at 8</div></div></div>
+    </div>
+    <div class="nav"></div>
+  </section>
+
+  <!-- Chat -->
+  <section class="screen" id="chat">
+    <div class="hdr"><div class="ic back"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="av" id="ch-av" style="background:#7a5af8;width:34px;height:34px;font-size:12px">SM</div><h1 style="font-size:17px" id="ch-name">Sarah Miller<br><small style="font-size:12px;color:#667085;font-weight:500">(616) 555-0142</small></h1><div class="ic" id="callbtn" style="color:#1d5c43"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></div></div>
+    <div class="body"><div class="msgs" id="msgs">
+      <div class="meta">Today 9:38 AM</div>
+      <div class="b in">Hi! Could you give me a quote for a deck? About 12x16, in Holland.</div>
+    </div></div>
+    <div class="comp">
+      <div class="chsel" id="chsel"><span id="chname">SMS</span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+      <div class="subj" id="subj"></div>
+      <div class="inrow"><div class="inp ph" id="inp">Type a message</div><div class="send" id="send"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></div></div>
+    </div>
+    <div class="dim" id="dim"></div>
+    <div class="sheet" id="chsheet"><div class="grab"></div><h3>Reply by</h3>
+      <div class="opt sel" id="o-sms"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>SMS</div>
+      <div class="opt" id="o-email"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</div>
+      <div class="opt" style="color:#98a2b3"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Facebook / Instagram (when they message there)</div>
+    </div>
+  </section>
+
+  <!-- Call -->
+  <section class="screen" id="call">
+    <div class="big">SM</div><h2>Sarah Miller</h2><p>Calling from 616-344-5421</p><div class="tm" id="tm">Calling…</div>
+    <div class="keys"><div class="k"><svg width="26" height="26" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v3"/></svg></div><div class="k"><svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></div><div class="k"><svg width="26" height="26" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg></div></div>
+    <div class="end" id="endcall"><svg width="30" height="30" fill="#fff" viewBox="0 0 24 24" style="transform:rotate(135deg)"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></div>
+  </section>
+
+  <!-- Contacts -->
+  <section class="screen" id="contacts">
+    <div class="hdr"><h1>Contacts</h1><div class="ic"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg></div></div>
+    <div class="search"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>Search name, phone, email</div>
+    <div class="body" id="clist">
+      <div class="row" id="ct-sarah"><div class="av" style="background:#7a5af8">SM</div><div class="m"><div class="nm">Sarah Miller</div><div class="pv">(616) 555-0142</div></div></div>
+      <div class="row"><div class="av" style="background:#12b76a">JC</div><div class="m"><div class="nm">James Carter</div><div class="pv">(616) 555-0177</div></div></div>
+      <div class="row"><div class="av" style="background:#f04438">ED</div><div class="m"><div class="nm">Emily Davis</div><div class="pv">(616) 555-0119</div></div></div>
+      <div class="row"><div class="av" style="background:#2e90fa">LW</div><div class="m"><div class="nm">Linda Wilson</div><div class="pv">(616) 555-0163</div></div></div>
+      <div class="row"><div class="av" style="background:#f79009">RB</div><div class="m"><div class="nm">Robert Brown</div><div class="pv">(616) 555-0108</div></div></div>
+      <div class="fab" id="fab"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+    </div>
+    <div class="nav"></div>
+  </section>
+
+  <!-- New contact -->
+  <section class="screen" id="newc">
+    <div class="hdr"><div class="ic back"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div><h1 id="nc-title">New contact</h1><div id="savec" style="color:#1d5c43;font-weight:700;font-size:16px;padding:6px">Save</div></div>
+    <div class="form">
+      <div class="two"><div class="fl"><label>First name</label><div class="fi ph" id="f-first">First name</div></div><div class="fl"><label>Last name</label><div class="fi ph" id="f-last">Last name</div></div></div>
+      <div class="fl"><label>Phone</label><div class="fi ph" id="f-phone">Phone number</div></div>
+      <div class="fl"><label>Email</label><div class="fi ph" id="f-email">Email</div></div>
+      <div class="fl"><label>Street address</label><div class="fi ph" id="f-addr">Address</div></div>
+      <div class="fl"><label>Tags</label><div class="fi ph" id="f-tags">Add tags</div></div>
+    </div>
+  </section>
+
+  <!-- Contact detail -->
+  <section class="screen" id="cdet">
+    <div class="hdr"><div class="ic back"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><h1>Contact</h1><div id="editc" style="color:#1d5c43;font-weight:700;font-size:16px;padding:6px">Edit</div></div>
+    <div class="prof"><div class="av" id="cd-av" style="background:#7a5af8">SM</div><h2 id="cd-name">Sarah Miller</h2><p id="cd-sub">(616) 555-0142 · sarah.m@example.com</p>
+      <div class="acts"><div><i><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></i>Call</div><div><i><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></i>Message</div><div><i><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></i>Email</div><div id="notebtn"><i><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9zM14 3v6h6M8 13h8M8 17h5"/></svg></i>Note</div></div></div>
+    <div class="tabs" style="margin-top:4px"><span class="a" id="t-ov">Overview</span><span id="t-notes">Notes</span><span>Activity</span></div>
+    <div class="body">
+      <div class="kv" id="kv"><div id="dndrow"><span>Do Not Disturb (all)</span><span id="dndt" style="width:44px;height:26px;border-radius:13px;background:#d0d5dd;position:relative;display:inline-block;transition:.25s"><i style="position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.25s"></i></span></div><div><span>Address</span><span>214 Lakeview Dr, Holland</span></div><div><span>Tags</span><span><span class="tag">deck</span></span></div><div><span>Source</span><span>Added in app</span></div></div>
+      <div id="notes" style="display:none"></div>
+    </div>
+    <div class="dim" id="dim2"></div>
+    <div class="sheet" id="notesheet"><div class="grab"></div><h3>Add note</h3><div style="padding:0 16px"><div class="fi ph" id="notein" style="min-height:96px">Write a note…</div><div class="btn" id="savenote" style="margin-top:12px">Save note</div></div></div>
+  </section>
+
+  <!-- Opportunities -->
+  <section class="screen" id="opps">
+    <div class="hdr"><h1>Opportunities</h1><div class="ic"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div></div>
+    <div class="psel">Jobs Pipeline<svg width="14" height="14" fill="none" stroke="#667085" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="stages" id="stages"></div>
+    <div class="body" id="cards"></div>
+    <div class="nav"></div>
+    <div class="dim" id="dim3"></div>
+    <div class="sheet" id="oppsheet"><div class="grab"></div><h3 id="opptitle">Deck build · Sarah Miller</h3>
+      <div style="padding:0 16px;display:flex;flex-direction:column;gap:12px">
+        <div class="fl"><label>Pipeline</label><div class="fi">Jobs Pipeline</div></div>
+        <div class="fl"><label>Stage</label><div class="fi" id="stagefield" style="display:flex;justify-content:space-between"><span id="stageval">New Lead</span><svg width="14" height="14" fill="none" stroke="#667085" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div></div>
+        <div class="fl"><label>Value</label><div class="fi">$8,500</div></div>
+        <div class="btn" id="saveopp">Save</div>
+      </div></div>
+    <div class="sheet" id="stagesheet" style="z-index:25"><div class="grab"></div><h3>Choose stage</h3><div id="stageopts"></div></div>
+    <div class="toast" id="toast"><svg width="20" height="20" fill="none" stroke="#32d583" stroke-width="2.6" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span id="toastt"></span></div>
+  </section>
+
+  <!-- Browser / review form -->
+  <section class="screen" id="web">
+    <div class="url"><svg width="13" height="13" fill="none" stroke="#344054" stroke-width="2.4" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>cruzconstructionlandscapingllc.com/marketing-form</div>
+    <div class="page"><div class="in" id="pagein">
+      <img src="logo.png" alt=""><h2>Add a finished customer</h2>
+      <div class="wf" id="wf">
+        <p>1. ⭐ This sends your 5-star review request (unhappy customers come to you, not Google). They get up to 4 reminders over 4 weeks; it stops once they leave a review.</p>
+        <p>2. 📱 They join your 1-year follow-up: a text every 2–3 months with your return-customer discount and a referral ask.</p>
+        <label>CUSTOMER FIRST NAME *</label><div class="fi" id="w-name"></div>
+        <label>PHONE (INCLUDE AREA CODE) *</label><div class="fi" id="w-phone"></div>
+        <div class="btn" id="w-submit">SUBMIT!</div>
+      </div>
+      <div class="ok" id="wok"><div class="c"><svg width="32" height="32" fill="none" stroke="#0d0d0c" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div><h3>Thank you!</h3><p>Sarah will get the review request text in a moment.</p></div>
+    </div></div>
+  </section>
+
+  <div id="tap"></div>
+</div>
+<script>
+const NAV=[['Home','<path d="M3 11l9-8 9 8v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/>'],['Conversations','<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>'],['Contacts','<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/>'],['Apps','<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>']];
+document.querySelectorAll('.nav').forEach(n=>{const act=n.closest('.screen').id;const map={home:0,convs:1,contacts:2,apps:3,opps:3};n.innerHTML=NAV.map((x,i)=>`<div class="${map[act]===i?'a':''}" data-nav="${x[0]}" data-scr="${act}"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">${x[1]}</svg>${x[0]}</div>`).join('')});
+const $=s=>document.querySelector(s);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+let capN=0;
+async function cap(t){const el=$('#capt');el.style.opacity=0;await sleep(200);capN++;$('#capn').textContent=capN;el.textContent=t;el.style.opacity=1;}
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));}
+async function tap(sel,after=350){const el=typeof sel==='string'?$(sel):sel;const r=el.getBoundingClientRect();const p=$('#phone').getBoundingClientRect();const k=p.width/390;const t=$('#tap');t.style.left=((r.left+r.width/2-p.left)/k)+'px';t.style.top=((r.top+r.height/2-p.top)/k)+'px';t.classList.remove('go');void t.offsetWidth;t.classList.add('go');await sleep(after);}
+async function type(sel,text,speed=55){const el=$(sel);el.classList.remove('ph');el.textContent='';el.classList.add('caret');if(el.classList.contains('fi'))el.classList.add('focus');for(const ch of text){el.textContent+=ch;await sleep(speed);}await sleep(250);el.classList.remove('caret');el.classList.remove('focus');}
+function bubble(cls,html,meta){const m=$('#msgs');const d=document.createElement('div');d.className='b '+cls;d.innerHTML=html;m.appendChild(d);if(meta){const x=document.createElement('div');x.className='meta r';x.textContent=meta;m.appendChild(x);}}
+function sheet(id,on,dim){$(id).classList.toggle('on',on);if(dim)$(dim).classList.toggle('on',on);}
+function toast(t){$('#toastt').textContent=t;$('#toast').classList.add('on');setTimeout(()=>$('#toast').classList.remove('on'),2600);}
+async function nav(from,label){await tap(`[data-scr="${from}"][data-nav="${label}"]`,450);}
+const STAGES=['New Lead','Contacted','Estimate Scheduled','Estimate Sent','Job Won','Job In Progress','Completed - Send Review','Lost / Not a Fit'];
+let jobs=[{n:'Deck build',c:'Sarah Miller',v:'$8,500',s:'New Lead'},{n:'Bathroom remodel',c:'James Carter',v:'$14,200',s:'New Lead'},{n:'Patio pavers',c:'Linda Wilson',v:'$6,300',s:'Estimate Sent'},{n:'Kitchen remodel',c:'Robert Brown',v:'$32,000',s:'Job In Progress'}];
+let curStage='New Lead';
+function renderBoard(){const st=$('#stages');st.innerHTML=STAGES.map(s=>`<div class="stg ${s===curStage?'a':''}" data-s="${s}">${s}<b>${jobs.filter(j=>j.s===s).length}</b></div>`).join('');const a=st.querySelector('.a');st.scrollLeft=Math.max(0,a.offsetLeft-16);const list=jobs.filter(j=>j.s===curStage);$('#cards').innerHTML=list.length?list.map(j=>`<div class="card" data-j="${j.n}"><h4>${j.n}</h4><p><span>${j.c}</span><span class="v">${j.v}</span></p></div>`).join(''):'<div class="empty">No jobs in this stage</div>';}
+async function goStage(s){curStage=s;renderBoard();await sleep(150);}
+async function moveJob(name,to){const card=$(`.card[data-j="${name}"]`);await tap(card,500);sheet('#oppsheet',true,'#dim3');$('#stageval').textContent=jobs.find(j=>j.n===name).s;await sleep(1300);await tap('#stagefield',450);$('#stageopts').innerHTML=STAGES.map(s=>`<div class="opt ${s===$('#stageval').textContent?'sel':''}" data-o="${s}" style="padding:11px 18px;font-size:15px">${s}</div>`).join('');sheet('#stagesheet',true);await sleep(1200);await tap(`[data-o="${to}"]`,400);$('#stageval').textContent=to;sheet('#stagesheet',false);await sleep(900);await tap('#saveopp',400);sheet('#oppsheet',false,'#dim3');jobs.find(j=>j.n===name).s=to;}
+
+const scripts={
+'block-spam':async()=>{
+  show('home');await cap('Spam text? Tap Conversations');await sleep(1200);await nav('home','Conversations');show('convs');await sleep(900);
+  await cap('Do NOT reply. Tap the message');await tap('#c-spam',500);
+  $('#ch-name').innerHTML='(305) 555-0199<br><small style="font-size:12px;color:#667085;font-weight:500">Unknown</small>';$('#msgs').innerHTML='<div class="meta">Today 9:12 AM</div><div class="b in">Your website is broken! Your SEO is failing. Reply YES for a free audit.</div>';$('#ch-av').textContent='?';$('#ch-av').style.background='#98a2b3';show('chat');await sleep(1600);
+  await cap('Tap the name at the top');await tap('#ch-name',500);
+  $('#cd-av').textContent='?';$('#cd-av').style.background='#98a2b3';$('#cd-name').textContent='(305) 555-0199';$('#cd-sub').textContent='Unknown sender';document.querySelectorAll('#kv > div:not(#dndrow)').forEach(d=>d.style.display='none');show('cdet');await sleep(1200);
+  await cap('Turn on Do Not Disturb');await tap('#dndt',400);$('#dndt').style.background='#d92d20';$('#dndt i').style.left='21px';await sleep(1200);
+  await cap('Done. No texts or auto-replies will go to them');await sleep(2800);
+},
+'edit-contact':async()=>{
+  show('home');await cap('Tap Contacts, then the customer');await sleep(1200);await nav('home','Contacts');show('contacts');await sleep(700);await tap('#ct-sarah',500);show('cdet');await sleep(900);
+  await cap('Tap Edit');await tap('#editc',500);
+  $('#nc-title').textContent='Edit contact';[['#f-first','Sarah'],['#f-last','Miller'],['#f-phone','(616) 555-0142'],['#f-email','sarah.m@example.com'],['#f-addr','214 Lakeview Dr, Holland']].forEach(([k,v])=>{$(k).textContent=v;$(k).classList.remove('ph')});$('#f-tags').classList.remove('ph');$('#f-tags').innerHTML='<span class="tag">deck</span>';show('newc');await sleep(1000);
+  await cap('Fix what changed, like a new phone number');await tap('#f-phone',300);await type('#f-phone','(616) 555-0188');await sleep(300);
+  await cap('Tap Save');await tap('#savec',500);$('#cd-sub').textContent='(616) 555-0188 · sarah.m@example.com';show('cdet');await sleep(600);
+  await cap('Done. The contact is updated');await sleep(2600);
+},
+'find-your-way':async()=>{
+  show('ios');await cap('Open the LeadConnector app');await sleep(1500);await tap('#lcapp',500);show('home');await sleep(500);
+  await cap('Home shows your day: messages, missed calls, new leads');await sleep(3000);
+  await cap('Opportunities is your Jobs Pipeline');await tap('#h-opps',350);await sleep(1800);
+  await cap('The bar at the bottom takes you everywhere');await sleep(800);
+  await nav('home','Conversations');show('convs');await cap('Conversations: texts, calls, chats, emails');await sleep(2400);
+  await nav('convs','Contacts');show('contacts');await cap('Contacts: every customer');await sleep(2200);
+  await nav('contacts','Home');show('home');await cap('Tap Home anytime to come back');await sleep(2200);
+},
+'reply-text':async()=>{
+  show('home');await cap('Tap Conversations');await sleep(1200);await nav('home','Conversations');show('convs');await sleep(900);
+  await cap('Tap the customer');await tap('#c-sarah',500);show('chat');await sleep(1000);
+  await cap('Type your reply and tap send');await tap('#inp',300);await type('#inp','Hi Sarah! Can I stop by Tuesday at 10 to measure?',45);await tap('#send',300);
+  bubble('out','Hi Sarah! Can I stop by Tuesday at 10 to measure?','SMS · Delivered');$('#inp').textContent='Type a message';$('#inp').classList.add('ph');await sleep(1000);
+  await cap('Done. It goes out from your business number');await sleep(2600);
+},
+'send-email':async()=>{
+  show('home');await cap('Tap Conversations, then the customer');await sleep(1200);await nav('home','Conversations');show('convs');await sleep(700);await tap('#c-sarah',500);show('chat');await sleep(900);
+  await cap('Tap SMS above the reply box');await tap('#chsel',400);sheet('#chsheet',true,'#dim');await sleep(1300);
+  await cap('Pick Email');await tap('#o-email',400);sheet('#chsheet',false,'#dim');$('#chname').textContent='Email';$('#subj').style.display='block';$('#subj').classList.add('ph');$('#subj').textContent='Subject';$('#inp').textContent='Write an email';await sleep(900);
+  await cap('Add a subject and message, then send');await tap('#subj',300);await type('#subj','Your deck estimate',45);await tap('#inp',300);await type('#inp','Hi Sarah, see you Tuesday at 10. Miguel',40);await tap('#send',300);
+  bubble('mail','<div class="sj">✉ Your deck estimate</div>Hi Sarah, see you Tuesday at 10. Miguel','Email · Sent');$('#inp').textContent='Write an email';$('#inp').classList.add('ph');$('#subj').textContent='Subject';await sleep(1000);
+  await cap('Done. Tap Email again to switch back to SMS');await sleep(2600);
+},
+'call-customer':async()=>{
+  show('home');await cap('Tap Conversations, then the customer');await sleep(1200);await nav('home','Conversations');show('convs');await sleep(700);await tap('#c-sarah',500);show('chat');await sleep(900);
+  await cap('Tap the phone icon at the top');await sleep(600);await tap('#callbtn',500);show('call');await sleep(800);
+  await cap('They see your business number');let n=0;$('#tm').textContent='0:00';for(let i=0;i<4;i++){await sleep(1000);n++;$('#tm').textContent='0:0'+n;}
+  await cap('Tap the red button to hang up');await tap('#endcall',500);show('chat');
+  const c=document.createElement('div');c.className='callcard';c.style.color='#067647';c.innerHTML='📞 Outgoing call · 0:04 · Recording';$('#msgs').appendChild(c);
+  await cap('The call is saved in the conversation');await sleep(2600);
+},
+'add-customer':async()=>{
+  show('home');await cap('Tap Contacts');await sleep(1200);await nav('home','Contacts');show('contacts');await sleep(800);
+  await cap('Tap +');await tap('#fab',500);show('newc');await sleep(700);
+  await cap('Fill in name, phone and address');await tap('#f-first',250);await type('#f-first','Sarah');await tap('#f-last',250);await type('#f-last','Miller');
+  await tap('#f-phone',250);await type('#f-phone','(616) 555-0142');await tap('#f-addr',250);await type('#f-addr','214 Lakeview Dr, Holland',40);
+  await cap('Tap Save');await sleep(500);await tap('#savec',500);show('cdet');await sleep(800);
+  await cap('Done. The customer is saved');await sleep(2600);
+},
+'add-note':async()=>{
+  show('home');await cap('Tap Contacts, then the customer');await sleep(1200);await nav('home','Contacts');show('contacts');await sleep(700);await tap('#ct-sarah',500);show('cdet');await sleep(900);
+  await cap('Tap Note');await tap('#notebtn',400);sheet('#notesheet',true,'#dim2');await sleep(700);
+  await cap('Write what you saw, then Save note');await tap('#notein',250);await type('#notein','Measured deck 12x16. Wants composite, gray. Estimate by Friday.',38);await tap('#savenote',400);sheet('#notesheet',false,'#dim2');
+  $('#t-ov').classList.remove('a');$('#t-notes').classList.add('a');$('#kv').style.display='none';$('#notes').style.display='block';$('#notes').innerHTML='<div class="note"><small>Miguel · just now</small>Measured deck 12x16. Wants composite, gray. Estimate by Friday.</div>';
+  await cap('Done. Notes stay with the customer');await sleep(2600);
+},
+'move-job':async()=>{
+  curStage='New Lead';show('home');await cap('Tap Opportunities');await sleep(1200);await tap('#h-opps',450);show('opps');renderBoard();await sleep(1000);
+  await cap('Tap the job');await sleep(300);
+  const card=$('.card[data-j="Deck build"]');await tap(card,500);sheet('#oppsheet',true,'#dim3');$('#stageval').textContent='New Lead';await sleep(900);
+  await cap('Tap Stage and pick the new one');await tap('#stagefield',450);$('#stageopts').innerHTML=STAGES.map(x=>`<div class="opt ${x==='New Lead'?'sel':''}" data-o="${x}" style="padding:11px 18px;font-size:15px">${x}</div>`).join('');sheet('#stagesheet',true);await sleep(1100);
+  await tap('[data-o="Estimate Scheduled"]',400);$('#stageval').textContent='Estimate Scheduled';sheet('#stagesheet',false);await sleep(700);
+  await cap('Tap Save');await tap('#saveopp',400);sheet('#oppsheet',false,'#dim3');jobs[0].s='Estimate Scheduled';toast('Moved to Estimate Scheduled');await sleep(400);await goStage('Estimate Scheduled');
+  await cap('Done. Do the same at every step');await sleep(2600);
+},
+'review-pipeline':async()=>{
+  jobs=[{n:'Deck build',c:'Sarah Miller',v:'$8,500',s:'Job In Progress'},{n:'Kitchen remodel',c:'Robert Brown',v:'$32,000',s:'Job In Progress'}];
+  curStage='Job In Progress';show('home');await cap('Job finished? Tap Opportunities');await sleep(1200);await tap('#h-opps',450);show('opps');renderBoard();await sleep(1000);
+  await cap('Move it to "Completed - Send Review" and Save');await moveJob('Deck build','Completed - Send Review');
+  toast('Review request on its way to Sarah');await sleep(400);await goStage('Completed - Send Review');
+  await cap('Done. The review texts go out on their own');await sleep(2800);
+},
+'review-form':async()=>{
+  show('web');await cap('No job card? Open your customer form');await sleep(2200);
+  await cap('Enter first name and phone');$('#pagein').style.transform='translateY(-150px)';await sleep(700);
+  await tap('#w-name',250);await type('#w-name','Sarah');await tap('#w-phone',250);await type('#w-phone','(616) 555-0142');
+  await cap('Tap Submit');await sleep(400);await tap('#w-submit',500);$('#wf').style.display='none';$('#wok').style.display='block';$('#pagein').style.transform='translateY(0)';
+  await cap('Done. Same review request goes out');await sleep(2600);
+},
+};
+window.done=false;
+(async()=>{const v=new URLSearchParams(location.search).get('v');await sleep(400);await scripts[v]();window.done=true;})();
+</script>
+</body></html>
