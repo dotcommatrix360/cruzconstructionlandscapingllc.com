@@ -84,6 +84,27 @@ const textGroups = [
       <p class="og__lead og__nums">Your business number (on the website): <strong>616-344-5421</strong>. Calls to it ring your cell: <strong>616-502-1874</strong>.</p>
       <p class="og__lead">Every Thursday evening Visar texts you to ask how your week went and which jobs you finished. Just reply: it goes straight to him.</p>
 
+      <section id="links" class="og__card">
+        <h2>Your review links</h2>
+        <ol class="og__links">
+          <li>
+            <strong>Direct Google profile link</strong>
+            <span>This opens directly on Google. Share this with friends, family and suppliers only.</span>
+            <a href="https://g.page/r/CWSNv0deXH9mEAI/review" target="_blank" rel="noopener">g.page/r/CWSNv0deXH9mEAI/review</a>
+          </li>
+          <li>
+            <strong>Review page</strong>
+            <span>This one doesn't open directly to Google. It goes through the protection form first.</span>
+            <a href="/feedback/" target="_blank" rel="noopener">cruzconstructionlandscapingllc.com/feedback</a>
+          </li>
+          <li>
+            <strong>Add a customer</strong>
+            <span>The form to add a customer and start the review sequence.</span>
+            <a href="/marketing-form/" target="_blank" rel="noopener">cruzconstructionlandscapingllc.com/marketing-form</a>
+          </li>
+        </ol>
+      </section>
+
       <section id="scams" class="og__card og__warn">
         <h2>Watch out: spam and scams</h2>
         <p>Now that you are online, bots and scammers will text, email and call you. <strong>Do not reply and do not click their links.</strong></p>
@@ -199,5 +220,9 @@ const textGroups = [
   .og__vg { padding-top: var(--space-4); margin-top: var(--space-4); border-top: 1px solid var(--color-border); }
   .og__vg:first-of-type { margin-top: 0; }
   .og__vgt { font-family: var(--font-heading); text-transform: uppercase; font-size: 1.25rem; color: var(--color-accent); margin: 0 0 2px; }
+  .og__links { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--space-3); }
+  .og__links li { display: grid; gap: 2px; }
+  .og__links span { color: var(--color-text-muted); }
+  .og__links a { font-weight: 700; overflow-wrap: anywhere; }
   .og__vgw { margin: 0 0 var(--space-3) !important; color: var(--color-text-muted); font-size: var(--text-sm); }
 </style>
