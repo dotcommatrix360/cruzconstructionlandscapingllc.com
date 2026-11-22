@@ -85,8 +85,21 @@ const steps = [
         <h2>One-time setup: connect Facebook &amp; Instagram</h2>
         <p>Do this once on a <strong>computer</strong> so your Facebook and Instagram messages show up in your app with your texts. Takes about 2 minutes.</p>
         <video controls preload="none" playsinline poster="/videos/owner/connect-fb-ig.jpg" src="/videos/owner/connect-fb-ig.mp4" width="1568" height="798"></video>
-        <p class="og__vhint">After you connect them, this section will be removed.</p>
+        <p class="og__vhint">Already connected them? Tap Done and this box goes away.</p>
+        <button type="button" class="og__done" data-done="connect-social">Done, I connected them</button>
       </section>
+      <script is:inline>
+        (function () {
+          var key = 'owner-done-connect-social';
+          var box = document.getElementById('connect-social');
+          try { if (localStorage.getItem(key) === '1') box.hidden = true; } catch (e) {}
+          var btn = box.querySelector('[data-done]');
+          btn.addEventListener('click', function () {
+            box.hidden = true;
+            try { localStorage.setItem(key, '1'); } catch (e) {}
+          });
+        })();
+      </script>
 
       <section id="videos" class="og__card">
         <h2>What do you want to do?</h2>
@@ -136,6 +149,8 @@ const steps = [
   .og__how dd a { color: var(--color-accent); }
   @media (max-width: 480px) { .og__how { grid-template-columns: 1fr; gap: 2px; } .og__how dd { margin-bottom: 10px; } }
   .og__todo { border-top-color: #2e90fa; }
+  .og__todo[hidden] { display: none; }
+  .og__done { margin-top: var(--space-3); padding: 12px 18px; border: 0; border-radius: 8px; background: #2e90fa; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; }
   .og__todo video { display: block; width: 100%; height: auto; margin: var(--space-3) 0; background: #0d0d0c; border: 1px solid var(--color-border); }
   .og__nums strong { color: var(--color-accent); white-space: nowrap; }
   .og__warn { border-top-color: #d92d20; }
