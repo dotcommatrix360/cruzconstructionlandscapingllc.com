@@ -25,7 +25,7 @@
       "postalCode": "49424",
       "country": "US"
     },
-    "hideAddress": false,
+    "hideAddress": true,
     "geo": {
       "lat": "",
       "lng": ""

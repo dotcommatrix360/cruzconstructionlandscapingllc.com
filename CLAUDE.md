@@ -69,7 +69,7 @@ Use the `local-business-website-builder` skill for all work in this repo. Agency
 - Service area: West Michigan, ~50-minute radius from Holland (Holland, Grand Rapids). Hours: 7am to 5pm, weekends every other week if needed, takes weekend calls (site shows Mon–Fri 7–5). Owner photo: not for now. Past-customer offer: 10% off, no conditions, applied at the estimate. Review incentive: $1 meal donation per review. Before 2025 he worked industrial (not used on site).
 
 ## Open TODOs from client
-- Business address added 2026-11-06 (2725 Kragspough Court, Holland, MI 49424, as registered for A2P/EIN). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · GA4/GTM IDs · production domain/host
+- Business address (as registered for A2P/EIN) kept in site.config.json but hidden on the site since 2026-11-23 (owner does not want it shown; hideAddress: true). Real kitchen / backsplash / cabinet photos (those three service pages and the kitchen tab still use stock, unlabelled per the owner 2026-11-02; sources in `src/assets/images/CREDITS.md`) · original phone files (1080p/4K) of the project videos for sharper stills · GA4/GTM IDs · production domain/host
 
 ## Owner guide + automations (2026-11-19)
 - /owner/ page: help line (text Visar 888-277-3619), numbers line (business 616-344-5421 → cell 616-502-1874), Thursday check-in note, scam warning on top, temporary "connect Facebook & Instagram" card (remove after Miguel connects), 12 task videos, How it works. Video sources in tools/owner-videos/.
