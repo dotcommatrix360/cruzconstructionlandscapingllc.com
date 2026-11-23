@@ -1,24 +1,55 @@
 ---
-// Internal page for the owner (Miguel): add a finished customer. The GHL form starts the review request and the
-// 1-year follow-up sequence. noindex, no nav/footer, no chat, not linked anywhere, not in the sitemap.
+// Internal page for the owner (Miguel), the one link in his weekly check-in text: add a finished customer (the GHL
+// form starts the review request and the 1-year follow-up sequence) and upload job photos (Dotcom Matrix 360's
+// photo uploader, his own upload page in embed mode: one batch per job with a description).
+// noindex, no nav/footer, no chat, not linked anywhere, not in the sitemap.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GhlForm from '../components/GhlForm.astro';
+
+const PHOTOS = 'https://chat.dotcommatrix360.com/photos/4c321w182d5v0u5n?embed=1&theme=dark&accent=f5b400';
 ---
-<BaseLayout title="Add a Finished Customer" description="Internal form: add a finished Cruz Construction customer to start the review request and 1-year follow-up." noindex noChat minimal>
+<BaseLayout title="Add a Finished Customer" description="Internal page: add a finished Cruz Construction customer for a review request, and upload job photos." noindex noChat minimal>
   <section class="mf">
     <div class="container mf__inner">
       <img class="mf__logo" src="/logo.png" alt="Cruz Construction & Landscaping LLC" width="420" height="250" />
-      <h1 class="mf__title">Add a finished customer</h1>
+      <nav class="mf__jump" aria-label="On this page">
+        <a href="#customer">Add a customer</a>
+        <a href="#photos">Upload photos</a>
+      </nav>
+
+      <h1 class="mf__title" id="customer">Add a finished customer</h1>
+      <p class="mf__note">Only once the job is finished: adding them starts the review texts.</p>
       <div class="mf__card">
         <GhlForm formId="XlcBPFO1AcZMCQbV5int" formName="Client Review + 1 Year Followup Sequence Form" height={900} />
+      </div>
+
+      <h2 class="mf__title mf__title--2" id="photos">Upload job photos</h2>
+      <p class="mf__note">Preferably upload in batches, one client at a time, and describe the job so we know which photos go with which client. We turn each one into a project on your website. Real jobs with a story build trust.</p>
+      <div class="mf__card">
+        <iframe class="mf__photos" src={PHOTOS} title="Upload job photos" loading="lazy" style="height:760px"></iframe>
       </div>
     </div>
   </section>
 </BaseLayout>
+<script is:inline>
+  // The uploader sends its height (and "scroll to me" after an upload) from chat.dotcommatrix360.com.
+  addEventListener('message', function (e) {
+    if (e.origin !== 'https://chat.dotcommatrix360.com' || !e.data) return;
+    var f = document.querySelector('.mf__photos');
+    if (e.data.type === 'job-photos-height' && e.data.h > 200) f.style.height = Math.ceil(e.data.h) + 'px';
+    if (e.data.type === 'job-photos-top') document.getElementById('photos').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
 <style>
   .mf { padding-block: clamp(2rem, 1.5rem + 3vw, 4rem); background: var(--color-bg); min-height: 100dvh; }
   .mf__inner { max-width: 40rem; display: grid; justify-items: center; }
   .mf__logo { width: min(11rem, 50%); height: auto; margin-bottom: var(--space-5); }
-  .mf__title { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); line-height: 1; margin: 0 0 var(--space-5); text-align: center; }
+  .mf__jump { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; margin: 0 0 var(--space-6); }
+  .mf__jump a { color: var(--color-accent-text); border: 1px solid var(--color-border-strong); padding: 0.55rem 1rem; text-decoration: none; font-weight: 600; }
+  .mf__jump a:hover { border-color: var(--color-accent); }
+  .mf__title { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); line-height: 1; margin: 0 0 var(--space-3); text-align: center; scroll-margin-top: var(--space-5); }
+  .mf__title--2 { margin-top: 3rem; }
+  .mf__note { color: var(--color-text-muted); text-align: center; margin: 0 0 var(--space-5); max-width: 34rem; }
   .mf__card { width: 100%; background: var(--color-surface); border: 1px solid var(--color-border); border-top: 4px solid var(--color-accent); padding: clamp(1rem, 0.75rem + 1.5vw, 1.75rem); }
+  .mf__photos { display: block; width: 100%; border: 0; background: transparent; }
 </style>
