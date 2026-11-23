@@ -4,8 +4,8 @@ title: "Remodeling Contractor in Grand Rapids, MI"
 seoTitle: "Kitchen, Bath & Basement Remodeling in Grand Rapids, MI"
 description: "Kitchen, bathroom and basement remodeling in Grand Rapids, MI, plus drywall, tile, flooring and carpentry from a Michigan-licensed West Michigan crew."
 region: "Kent County, Michigan"
-image: ../../assets/images/kitchen-remodel-island.jpg
-imageAlt: "Kitchen with a new island and white cabinets"
+image: ../../assets/images/kitchen-white-shaker-quartz-l-shape.jpg
+imageAlt: "Remodeled kitchen with white shaker cabinets and quartz counters"
 localDetails:
   - "Grand Rapids is Michigan's second-largest city, with the Grand River running through downtown. Homes in older neighborhoods such as Heritage Hill date back a century or more, so plaster walls, uneven floors and dated wiring often show up once a wall is opened."
   - "Many older Grand Rapids homes have plaster rather than drywall. When we remodel a kitchen or bath in one of these houses, we plan for patching or replacing plaster with drywall so the new tile and cabinets sit on flat, square walls."

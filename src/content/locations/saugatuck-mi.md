@@ -4,8 +4,8 @@ title: "Remodeling Contractor in Saugatuck, MI"
 seoTitle: "Kitchen, Bath & Basement Remodeling in Saugatuck, MI"
 description: "Kitchen, bathroom and basement remodeling in Saugatuck, MI, plus drywall, tile, flooring and carpentry from a Michigan-licensed West Michigan crew."
 region: "Allegan County, Michigan"
-image: ../../assets/images/tile-subway-backsplash.jpg
-imageAlt: "Kitchen with a white subway tile backsplash"
+image: ../../assets/images/glass-shower-white-tile.jpg
+imageAlt: "Walk-in shower with white tile and a glass door"
 localDetails:
   - "Saugatuck is a lakeshore resort town in Allegan County on the Kalamazoo River, next door to Douglas and a short drive south of Holland on I-196."
   - "Saugatuck has many older cottages and seasonal homes. Owners often update kitchens and baths between seasons, so we plan timing around when the home is empty or rented."

@@ -6,8 +6,8 @@ headline: "New floors that look great and hold up to real life."
 inShort: "Cruz Construction installs tile and LVP (luxury vinyl plank) floors in Holland, MI kitchens, bathrooms, basements and living areas, on their own or as part of a remodel."
 summary: "Tile and luxury vinyl plank floors for kitchens, bathrooms and basements."
 order: 8
-image: ../../assets/images/living-room-lvp-staircase.jpg
-imageAlt: "Wood-look LVP flooring through an open living area"
+image: ../../assets/images/family-room-lvp-wide.jpg
+imageAlt: "Large family room with new wood-look LVP flooring installed by our crew"
 faqs:
   - question: "Where does each flooring type work best?"
     answer: "Both are good choices; the room decides."

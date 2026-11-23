@@ -18,13 +18,14 @@ ask the client for the original phone files (1080p/4K) or still photos to sharpe
 | bathroom-tub-framing-before.jpg, bathroom-tub-surround-subway-tile.jpg, bathroom-vanity-slate-tile-floor.jpg | Bathroom tub surround remodel (`bathroom-tub-surround-remodel.mp4`) |
 | bedroom-framing-insulation-before.jpg, bedroom-finished-lvp.jpg, wall-insulation-before-drywall.jpg | Bedroom remodel, framing to finish (`bedroom-remodel-framing-to-finish.mp4`) |
 
-## Stock (temporary, kitchen pages only)
+## Client phone photos (2026-11-23)
 
-No kitchen, backsplash or cabinet footage yet. Per the owner (2026-11-02) these stock photos are shown without an
-"example" label. Replace them with real Cruz kitchen photos as soon as the client sends some.
+Sent by the client as a Google Photos export ("Aug 13, 2025 – Nov 23, 2026", 58 photos + 1 video, 2048 px). The best
+25 were resized to ≤1600 px, under 250 KB each: kitchen-*.jpg, glass-shower-white-tile, tile-shower-large-format-after,
+shower-*, half-bath-pedestal-sink, corner-*-shower, bathroom-hex-tile-floor-vanity, family-room-*, living-room-floor-before,
+living-room-lvp-after, hallway-lvp-flooring, open-kitchen-living-lvp, kitchen-grey-lvp-floor, shed-*. Before/after pairs
+are the same room from the same angle. The originals are in the client's Google Drive.
 
-| File | Source |
-|---|---|
-| tile-subway-backsplash.jpg | Stock image from the agency concept presentation (dotcommatrix360.com/cruz/) |
-| kitchen-remodel-island.jpg | Unsplash photo-1565538810643-b5bdb714032a (Unsplash License) |
-| kitchen-white-cabinets.jpg | Unsplash photo-1556911220-bff31c812dba (Unsplash License) |
+## Stock
+
+None. The three temporary kitchen stock photos were removed on 2026-11-23 and replaced with the client's own photos.

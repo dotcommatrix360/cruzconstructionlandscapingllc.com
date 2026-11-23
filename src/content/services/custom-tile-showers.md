@@ -6,8 +6,8 @@ headline: "The shower you have been wanting, built to fit."
 inShort: "Cruz Construction builds custom tile showers in Holland, MI bathrooms, on their own or as part of a full bathroom remodel, with matching tile or LVP floors."
 summary: "Tile showers built to fit your bathroom, as part of a remodel or on their own."
 order: 9
-image: ../../assets/images/tile-shower-dark-subway-pony-wall.jpg
-imageAlt: "Walk-in tile shower with dark glazed subway tile and a pony wall, built by our crew"
+image: ../../assets/images/glass-shower-white-tile.jpg
+imageAlt: "Walk-in shower with white tile, a glass door and a built-in bench, built by our crew"
 faqs:
   - question: "What goes into a custom tile shower?"
     answer: "A tile shower is planned around your bathroom, not picked off a shelf."

@@ -4,8 +4,8 @@ title: "Remodeling Contractor in Grandville, MI"
 seoTitle: "Kitchen, Bath & Basement Remodeling in Grandville, MI"
 description: "Kitchen, bathroom and basement remodeling in Grandville, MI, plus drywall, tile, flooring and carpentry from a Michigan-licensed West Michigan crew."
 region: "Kent County, Michigan"
-image: ../../assets/images/kitchen-white-cabinets.jpg
-imageAlt: "Kitchen with white cabinets"
+image: ../../assets/images/kitchen-under-cabinet-lights-quartz.jpg
+imageAlt: "White kitchen cabinets with under-cabinet lighting and quartz counters"
 localDetails:
   - "Grandville is a city in Kent County on the Grand River, just southwest of Grand Rapids and right off I-196, so it is a straight drive from Holland."
   - "Grandville has established neighborhoods of older ranch and two-story homes alongside newer developments. Older homes often need drywall, trim and floor leveling before new tile or flooring goes in, and we include that in the estimate."

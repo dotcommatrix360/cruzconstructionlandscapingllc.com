@@ -6,8 +6,8 @@ headline: "Cabinets installed level, solid and ready for counters."
 inShort: "Cruz Construction installs kitchen cabinets and bathroom vanities in Holland, MI homes, level and secure, as a single job or as part of a kitchen or bathroom remodel."
 summary: "Kitchen and bathroom cabinets installed level, secure and ready for counters."
 order: 13
-image: ../../assets/images/kitchen-white-cabinets.jpg
-imageAlt: "Kitchen with white cabinets and a stone counter"
+image: ../../assets/images/kitchen-tall-pantry-cabinets.jpg
+imageAlt: "Floor-to-ceiling white pantry cabinets installed by our crew"
 faqs:
   - question: "What happens when cabinets are installed?"
     answer: "A good install is mostly about getting everything level and secure."

@@ -6,8 +6,8 @@ headline: "The kitchen you have been picturing, built right."
 inShort: "Cruz Construction remodels kitchens in Holland, MI with its own crew: cabinets, backsplash, tile and LVP floors, drywall, paint and trim. You talk to the owner from the free estimate to the final walkthrough, and we explain every step as the work happens."
 summary: "Cabinets, backsplash, flooring, drywall, paint and trim, handled by one licensed crew."
 order: 1
-image: ../../assets/images/kitchen-remodel-island.jpg
-imageAlt: "A remodeled kitchen with an island, pendant lights and tile backsplash"
+image: ../../assets/images/kitchen-white-shaker-quartz-l-shape.jpg
+imageAlt: "A remodeled L-shaped kitchen with white shaker cabinets, quartz counters and pendant lights"
 faqs:
   - question: "How long does a kitchen remodel take?"
     answer: "It depends on the scope: what is being replaced, whether walls or layout change, and when materials arrive."

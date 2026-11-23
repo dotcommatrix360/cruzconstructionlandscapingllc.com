@@ -6,8 +6,8 @@ headline: "The fastest way to make your kitchen feel new."
 inShort: "Cruz Construction installs tile backsplashes in Holland, MI kitchens, one of the quickest ways to make a kitchen feel new, as a single job or with new cabinets."
 summary: "Tile backsplashes that update a kitchen fast, on their own or with a full remodel."
 order: 10
-image: ../../assets/images/tile-subway-backsplash.jpg
-imageAlt: "White subway tile backsplash behind a kitchen faucet"
+image: ../../assets/images/kitchen-subway-backsplash-range.jpg
+imageAlt: "Grey subway tile backsplash behind a stainless gas range, installed by our crew"
 faqs:
   - question: "Where does a backsplash go?"
     answer: "Anywhere the wall meets the counter and takes splashes."
